@@ -53,7 +53,7 @@ typedef struct _TestFabricScoped
     chip::CharSpan fabricSensitiveCharString;
     SimpleStruct fabricSensitiveStruct;
     /* TYPE WARNING: array array defaults to */ uint8_t * fabricSensitiveInt8uList;
-    chip::FabricIndex fabricIndex;
+    chip::FabricIndex FabricIndex;
 } TestFabricScoped;
 
 // Struct for Dimension
@@ -216,7 +216,7 @@ typedef struct _ActionStruct
     uint8_t Type;
     uint16_t EndpointListID;
     uint16_t SupportedCommands;
-    uint8_t Status;
+    uint8_t State;
 } ActionStruct;
 
 // Struct for ApplicationBasicApplication

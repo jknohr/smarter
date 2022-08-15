@@ -57,7 +57,8 @@ GetConnectedDeviceCallback::~GetConnectedDeviceCallback()
     env->DeleteGlobalRef(mJavaCallbackRef);
 }
 
-void GetConnectedDeviceCallback::OnDeviceConnectedFn(void * context, OperationalDeviceProxy * device)
+void GetConnectedDeviceCallback::OnDeviceConnectedFn(void * context, Messaging::ExchangeManager & exchangeMgr,
+                                                     SessionHandle & sessionHandle)
 {
     JNIEnv * env         = JniReferences::GetInstance().GetEnvForCurrentThread();
     auto * self          = static_cast<GetConnectedDeviceCallback *>(context);
@@ -78,11 +79,13 @@ void GetConnectedDeviceCallback::OnDeviceConnectedFn(void * context, Operational
     VerifyOrReturn(successMethod != nullptr, ChipLogError(Controller, "Could not find onDeviceConnected method"));
 
     static_assert(sizeof(jlong) >= sizeof(void *), "Need to store a pointer in a Java handle");
+
+    OperationalDeviceProxy * device = new OperationalDeviceProxy(&exchangeMgr, sessionHandle);
     DeviceLayer::StackUnlock unlock;
     env->CallVoidMethod(javaCallback, successMethod, reinterpret_cast<jlong>(device));
 }
 
-void GetConnectedDeviceCallback::OnDeviceConnectionFailureFn(void * context, PeerId peerId, CHIP_ERROR error)
+void GetConnectedDeviceCallback::OnDeviceConnectionFailureFn(void * context, const ScopedNodeId & peerId, CHIP_ERROR error)
 {
     JNIEnv * env         = JniReferences::GetInstance().GetEnvForCurrentThread();
     auto * self          = static_cast<GetConnectedDeviceCallback *>(context);
@@ -547,22 +550,23 @@ void ReportEventCallback::OnSubscriptionEstablished(SubscriptionId aSubscription
     JniReferences::GetInstance().CallSubscriptionEstablished(mSubscriptionEstablishedCallbackRef);
 }
 
-void ReportEventCallback::OnResubscriptionAttempt(CHIP_ERROR aTerminationCause, uint32_t aNextResubscribeIntervalMsec)
+CHIP_ERROR ReportEventCallback::OnResubscriptionNeeded(app::ReadClient * apReadClient, CHIP_ERROR aTerminationCause)
 {
-    VerifyOrReturn(mResubscriptionAttemptCallbackRef != nullptr,
-                   ChipLogError(Controller, "mResubscriptionAttemptCallbackRef is null"));
+    VerifyOrReturnLogError(mResubscriptionAttemptCallbackRef != nullptr, CHIP_ERROR_INVALID_ARGUMENT);
 
-    CHIP_ERROR err = CHIP_NO_ERROR;
-    JNIEnv * env   = JniReferences::GetInstance().GetEnvForCurrentThread();
+    JNIEnv * env = JniReferences::GetInstance().GetEnvForCurrentThread();
+
+    ReturnErrorOnFailure(app::ReadClient::Callback::OnResubscriptionNeeded(apReadClient, aTerminationCause));
 
     jmethodID onResubscriptionAttemptMethod;
-    err = JniReferences::GetInstance().FindMethod(env, mResubscriptionAttemptCallbackRef, "onResubscriptionAttempt", "(II)V",
-                                                  &onResubscriptionAttemptMethod);
-    VerifyOrReturn(err == CHIP_NO_ERROR, ChipLogError(Controller, "Could not find onResubscriptionAttempt method"));
+    ReturnLogErrorOnFailure(JniReferences::GetInstance().FindMethod(
+        env, mResubscriptionAttemptCallbackRef, "onResubscriptionAttempt", "(II)V", &onResubscriptionAttemptMethod));
 
     DeviceLayer::StackUnlock unlock;
     env->CallVoidMethod(mResubscriptionAttemptCallbackRef, onResubscriptionAttemptMethod, aTerminationCause.AsInteger(),
-                        aNextResubscribeIntervalMsec);
+                        apReadClient->ComputeTimeTillNextSubscription());
+
+    return CHIP_NO_ERROR;
 }
 
 void ReportEventCallback::ReportError(jobject attributePath, CHIP_ERROR err)

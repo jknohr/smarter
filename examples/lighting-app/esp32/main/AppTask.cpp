@@ -45,7 +45,6 @@ namespace {
 constexpr EndpointId kLightEndpointId = 1;
 QueueHandle_t sAppEventQueue;
 TaskHandle_t sAppTaskHandle;
-
 } // namespace
 
 AppTask AppTask::sAppTask;

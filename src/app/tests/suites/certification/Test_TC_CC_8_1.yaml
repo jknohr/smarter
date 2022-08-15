@@ -12,7 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: 27.2.19. [TC-CC-8.1] StopMoveStep functionality with server as DUT
+name: 25.3.23. [TC-CC-8.1] StopMoveStep functionality with server as DUT
+
+PICS:
+    - CC.S
 
 config:
     nodeId: 0x12344321
@@ -28,60 +31,35 @@ tests:
               - name: "nodeId"
                 value: nodeId
 
-    - label: "Turn on light for color control tests"
-      cluster: "On/Off"
-      command: "on"
+    - label: "TH writes 0 to the Options attribute"
+      PICS: CC.S.A000f
+      command: "writeAttribute"
+      attribute: "Options"
+      arguments:
+          value: 0
 
-    - label: "Check on/off attribute value is true after on command"
+    - label: "TH sends On command to DUT"
+      PICS: OO.S.C01.Rsp
       cluster: "On/Off"
-      command: "readAttribute"
-      attribute: "OnOff"
-      response:
-          value: 1
+      command: "On"
 
-    - label: "Move hue up command"
-      PICS: CC.S.C01.Rsp
-      command: "MoveHue"
+    - label:
+          "TH sends MoveToHue command to DUT with Hue=200, Direction=0x00
+          (shortest distance) and TransitionTime=0 (immediately)."
+      PICS: CC.S.F00 && CC.S.C00.Rsp
+      command: "MoveToHue"
       arguments:
           values:
-              - name: "MoveMode"
-                value: 1
-              - name: "Rate"
-                value: 50
+              - name: "hue"
+                value: 200
+              - name: "Direction"
+                value: 0
+              - name: "TransitionTime"
+                value: 0
               - name: "OptionsMask"
                 value: 0
               - name: "OptionsOverride"
                 value: 0
-
-    - label: "Reads CurrentHue attribute from DUT"
-      PICS: CC.S.A0000
-      command: "readAttribute"
-      attribute: "CurrentHue"
-      response:
-          constraints:
-              type: uint8
-              minValue: 0
-              maxValue: 254
-
-    - label: "Stop Move Step command"
-      PICS: CC.S.C47.Rsp
-      command: "StopMoveStep"
-      arguments:
-          values:
-              - name: "OptionsMask"
-                value: 0
-              - name: "OptionsOverride"
-                value: 0
-
-    - label: "Reads CurrentHue attribute from DUT"
-      PICS: CC.S.A0000
-      command: "readAttribute"
-      attribute: "CurrentHue"
-      response:
-          constraints:
-              type: uint8
-              minValue: 0
-              maxValue: 254
 
     - label: "Wait 100ms"
       cluster: "DelayCommands"
@@ -92,20 +70,10 @@ tests:
                 value: 100
 
     - label:
-          "Check current hue attribute value matched the value sent by the last
-          attribute"
-      PICS: CC.S.A0000
-      command: "readAttribute"
-      attribute: "CurrentHue"
-      response:
-          constraints:
-              type: uint8
-              minValue: 0
-              maxValue: 254
-
-    - label: "Move saturation up command"
-      PICS: CC.S.C04.Rsp
-      command: "MoveSaturation"
+          "TH sends MoveHue command to DUT with MoveMode=0x01 (up) and Rate=5
+          (units/s)"
+      PICS: CC.S.C01.Rsp && CC.S.F00
+      command: "MoveHue"
       arguments:
           values:
               - name: "MoveMode"
@@ -117,20 +85,16 @@ tests:
               - name: "OptionsOverride"
                 value: 0
 
-    - label:
-          "Check Saturation attribute value matched the value sent by the last
-          command"
-      PICS: CC.S.A0001
-      command: "readAttribute"
-      attribute: "CurrentSaturation"
-      response:
-          constraints:
-              type: uint8
-              minValue: 0
-              maxValue: 254
+    - label: "Wait 10s"
+      cluster: "DelayCommands"
+      command: "WaitForMs"
+      arguments:
+          values:
+              - name: "ms"
+                value: 10000
 
-    - label: "Stop Move Step command"
-      PICS: CC.S.C47.Rsp
+    - label: "TH sends StopMoveStep command to DUT"
+      PICS: CC.S.C47.Rsp && CC.S.F00
       command: "StopMoveStep"
       arguments:
           values:
@@ -139,15 +103,47 @@ tests:
               - name: "OptionsOverride"
                 value: 0
 
-    - label: "Reads CurrentSaturation attribute from DUT."
+    - label: "TH reads CurrentHue attribute from DUT"
+      PICS: CC.S.A0000 && CC.S.C01.Rsp && CC.S.F00
       command: "readAttribute"
-      PICS: CC.S.A0001
-      attribute: "CurrentSaturation"
+      attribute: "CurrentHue"
       response:
           constraints:
-              type: uint8
-              minValue: 0
+              minValue: 235
               maxValue: 254
+
+    - label: "Wait 2s"
+      cluster: "DelayCommands"
+      command: "WaitForMs"
+      arguments:
+          values:
+              - name: "ms"
+                value: 2000
+
+    - label: "TH reads CurrentHue attribute from DUT"
+      PICS: CC.S.A0000 && CC.S.C01.Rsp && CC.S.F00
+      command: "readAttribute"
+      attribute: "CurrentHue"
+      response:
+          constraints:
+              minValue: 240
+              maxValue: 254
+
+    - label:
+          "TH sends MoveToSaturation command to DUT with Saturation=150 and
+          TransitionTime=0 (immediately)"
+      PICS: CC.S.F00 && CC.S.C03.Rsp
+      command: "MoveToSaturation"
+      arguments:
+          values:
+              - name: "Saturation"
+                value: 150
+              - name: "TransitionTime"
+                value: 0
+              - name: "OptionsMask"
+                value: 0
+              - name: "OptionsOverride"
+                value: 0
 
     - label: "Wait 100ms"
       cluster: "DelayCommands"
@@ -158,143 +154,31 @@ tests:
                 value: 100
 
     - label:
-          "Check Saturation attribute value matched the value sent by the last
-          attribute"
-      PICS: CC.S.A0001
-      command: "readAttribute"
-      attribute: "CurrentSaturation"
-      response:
-          constraints:
-              type: uint8
-              minValue: 0
-              maxValue: 254
-
-    - label: "Move Color command"
-      PICS: CC.S.C08.Rsp
-      command: "MoveColor"
-      arguments:
-          values:
-              - name: "rateX"
-                value: 15
-              - name: "rateY"
-                value: 20
-              - name: "OptionsMask"
-                value: 0
-              - name: "OptionsOverride"
-                value: 0
-
-    - label: "Reads CurrentX attribute from DUT"
-      PICS: CC.S.A0003
-      command: "readAttribute"
-      attribute: "CurrentX"
-      response:
-          constraints:
-              type: uint16
-              minValue: 0
-              maxValue: 65279
-
-    - label: "Reads CurrentY attribute from DUT"
-      PICS: CC.S.A0004
-      command: "readAttribute"
-      attribute: "CurrentY"
-      response:
-          constraints:
-              type: uint16
-              minValue: 0
-              maxValue: 65279
-
-    - label: "Stop Move Step command"
-      PICS: CC.S.C47.Rsp
-      command: "StopMoveStep"
-      arguments:
-          values:
-              - name: "OptionsMask"
-                value: 0
-              - name: "OptionsOverride"
-                value: 0
-
-    - label: "Reads CurrentX attribute from DUT"
-      PICS: CC.S.A0003
-      command: "readAttribute"
-      attribute: "CurrentX"
-      response:
-          constraints:
-              type: uint16
-              minValue: 0
-              maxValue: 65279
-
-    - label: "Reads CurrentY attribute from DUT"
-      PICS: CC.S.A0004
-      command: "readAttribute"
-      attribute: "CurrentY"
-      response:
-          constraints:
-              type: uint16
-              minValue: 0
-              maxValue: 65279
-
-    - label: "Wait 100ms"
-      cluster: "DelayCommands"
-      command: "WaitForMs"
-      arguments:
-          values:
-              - name: "ms"
-                value: 100
-
-    - label:
-          "Check current x attribute value matched the value sent by the last
-          attribute"
-      PICS: CC.S.A0003
-      command: "readAttribute"
-      attribute: "CurrentX"
-      response:
-          constraints:
-              type: uint16
-              minValue: 0
-              maxValue: 65279
-
-    - label:
-          "Check current y attribute value matched the value sent by the last
-          attribute"
-      PICS: CC.S.A0004
-      command: "readAttribute"
-      attribute: "CurrentY"
-      response:
-          constraints:
-              type: uint16
-              minValue: 0
-              maxValue: 65279
-
-    - label: "Move up color temperature command"
-      PICS: CC.S.C4B.Rsp
-      command: "MoveColorTemperature"
+          "TH sends MoveSaturation command to DUT with MoveMode=0x01 (up) and
+          Rate=5 (units/s)"
+      command: "MoveSaturation"
+      PICS: CC.S.F00 && CC.S.C04.Rsp
       arguments:
           values:
               - name: "MoveMode"
                 value: 1
               - name: "Rate"
-                value: 10
-              - name: "ColorTemperatureMinimumMireds"
-                value: 1
-              - name: "ColorTemperatureMaximumMireds"
-                value: 255
+                value: 5
               - name: "OptionsMask"
                 value: 0
               - name: "OptionsOverride"
                 value: 0
 
-    - label: "Reads current color temprature from DUT"
-      PICS: CC.S.A0007
-      command: "readAttribute"
-      attribute: "ColorTemperature"
-      response:
-          constraints:
-              type: uint16
-              minValue: 0
-              maxValue: 65279
+    - label: "Wait 10s"
+      cluster: "DelayCommands"
+      command: "WaitForMs"
+      arguments:
+          values:
+              - name: "ms"
+                value: 10000
 
-    - label: "Stop Move Step command"
-      PICS: CC.S.C47.Rsp
+    - label: "TH sends StopMoveStep command to DUT"
+      PICS: CC.S.C47.Rsp && CC.S.F00
       command: "StopMoveStep"
       arguments:
           values:
@@ -303,15 +187,172 @@ tests:
               - name: "OptionsOverride"
                 value: 0
 
-    - label: "Reads current color temprature from DUT"
-      PICS: CC.S.A0007
+    - label: "TH reads CurrentSaturation attribute from DUT"
+      PICS: CC.S.F00 && CC.S.A0001
       command: "readAttribute"
-      attribute: "ColorTemperature"
+      attribute: "CurrentSaturation"
+      response:
+          saveAs: CurrentSaturationValue
+          constraints:
+              minValue: 170
+              maxValue: 230
+
+    - label: "Wait 2s"
+      cluster: "DelayCommands"
+      command: "WaitForMs"
+      arguments:
+          values:
+              - name: "ms"
+                value: 2000
+
+    - label: "TH reads CurrentSaturation attribute from DUT"
+      PICS: CC.S.F00 && CC.S.A0001
+      command: "readAttribute"
+      attribute: "CurrentSaturation"
       response:
           constraints:
-              type: uint16
+              minValue: CurrentSaturationValue
+              maxValue: 230
+
+    - label: "TH reads ColorTempPhysicalMinMireds attribute from DUT"
+      PICS: CC.S.F04 && CC.S.A400b
+      command: "readAttribute"
+      attribute: "ColorTempPhysicalMinMireds"
+      response:
+          saveAs: ColorTempPhysicalMinMireds
+          constraints:
+              type: int16u
               minValue: 0
               maxValue: 65279
+
+    - label: "TH reads ColorTempPhysicalMaxMireds attribute from DUT."
+      PICS: CC.S.F04 && CC.S.A400c
+      command: "readAttribute"
+      attribute: "ColorTempPhysicalMaxMireds"
+      response:
+          saveAs: ColorTempPhysicalMaxMireds
+          constraints:
+              type: int16u
+              minValue: 0
+              maxValue: 65279
+
+    - label:
+          "TH sends MoveToColorTemperature command to DUT with
+          ColorTemperatureMireds= ColorTempPhysicalMaxMireds / 2 and
+          TransitionTime=0 (immediately)."
+      PICS: CC.S.F04 && CC.S.C0a.Rsp && PICS_USER_PROMPT
+      verification: |
+          ./chip-tool colorcontrol move-to-color-temperature 32639 0 0 0 1 1
+
+          Verify in TH(chip-tool) Log:
+          [1649666592.559286][9065:9070] CHIP:DMG:                                StatusIB =
+          [1649666592.559322][9065:9070] CHIP:DMG:                                {
+          [1649666592.559357][9065:9070] CHIP:DMG:                                        status = 0x00 (SUCCESS),
+          [1649666592.559391][9065:9070] CHIP:DMG:                                },
+      cluster: "LogCommands"
+      command: "UserPrompt"
+      arguments:
+          values:
+              - name: "message"
+                value: "please enter 'y' for success"
+              - name: "expectedValue"
+                value: "y"
+
+    - label:
+          "TH sends MoveColorTemperature command to DUT with MoveMode = 0x01
+          (up), Rate = ColorTempPhysicalMaxMireds / 40"
+      PICS: CC.S.F04 && CC.S.C0a.Rsp && PICS_USER_PROMPT
+      verification: |
+          ./chip-tool colorcontrol move-color-temperature 1 16319 0 65279 0 0 1 1
+
+          Verify in TH(chip-tool) Log:
+          [1649666643.381403][9085:9090] CHIP:DMG:                                StatusIB =
+          [1649666643.381465][9085:9090] CHIP:DMG:                                {
+          [1649666643.381530][9085:9090] CHIP:DMG:                                        status = 0x00 (SUCCESS),
+          [1649666643.381582][9085:9090] CHIP:DMG:                                },
+      cluster: "LogCommands"
+      command: "UserPrompt"
+      arguments:
+          values:
+              - name: "message"
+                value: "please enter 'y' for success"
+              - name: "expectedValue"
+                value: "y"
+
+    - label: "After 10 seconds, TH sends StopMoveStep command to DUT."
+      PICS: CC.S.F04 && CC.S.C47.Rsp && PICS_USER_PROMPT
+      verification: |
+          ./chip-tool colorcontrol stop-move-step 0 0 1 1
+
+          Verify in TH(chip-tool) log:
+          StatusIB =
+          [1652253588.380407][14229:14234] CHIP:DMG:                                 {
+          [1652253588.380489][14229:14234] CHIP:DMG:                                         status = 0x00 (SUCCESS),
+          [1652253588.380573][14229:14234] CHIP:DMG:                                 },
+      cluster: "LogCommands"
+      command: "UserPrompt"
+      arguments:
+          values:
+              - name: "message"
+                value: "please enter 'y' for success"
+              - name: "expectedValue"
+                value: "y"
+
+    - label: "TH reads ColorTemperatureMireds attribute from DUT."
+      PICS: CC.S.F04 && CC.S.A0007 && PICS_USER_PROMPT
+      verification: |
+          ./chip-tool colorcontrol read color-temperature 1 1
+
+          Verify in TH(chip-tool) Log:
+          [1649666635.306093][9078:9083] CHIP:TOO: Endpoint: 1 Cluster: 0x0000_0300 Attribute 0x0000_0007 DataVersion: 4087364802
+          [1649666635.306184][9078:9083] CHIP:TOO:   ColorTemperature: 16000  (value can vary)
+          [1649666635.306298][9078:9083] CHIP:EM: Sending Standalone Ack for MessageCounter:2077197 on exchange 1795i
+      cluster: "LogCommands"
+      command: "UserPrompt"
+      arguments:
+          values:
+              - name: "message"
+                value: "please enter 'y' for success"
+              - name: "expectedValue"
+                value: "y"
+
+    - label:
+          "After another 2 seconds, TH reads ColorTemperatureMireds attribute
+          from DUT."
+      PICS: CC.S.F04 && CC.S.A0007 && PICS_USER_PROMPT
+      verification: |
+          ./chip-tool colorcontrol read color-temperature 1 1
+
+          Verify in TH(chip-tool) Log:
+          [1649666635.306093][9078:9083] CHIP:TOO: Endpoint: 1 Cluster: 0x0000_0300 Attribute 0x0000_0007 DataVersion: 4087364802
+          [1649666635.306184][9078:9083] CHIP:TOO:   ColorTemperature: 16000  (value can vary)
+          [1649666635.306298][9078:9083] CHIP:EM: Sending Standalone Ack for MessageCounter:2077197 on exchange 1795i
+      cluster: "LogCommands"
+      command: "UserPrompt"
+      arguments:
+          values:
+              - name: "message"
+                value: "please enter 'y' for success"
+              - name: "expectedValue"
+                value: "y"
+
+    - label:
+          "TH sends EnhancedMoveToHue command to DUT with EnhancedHue=20000,
+          Direction=0x00 (shortest distance) and TransitionTime=0 (immediately)."
+      PICS: CC.S.F01 && CC.S.C40.Rsp
+      command: "EnhancedMoveToHue"
+      arguments:
+          values:
+              - name: "EnhancedHue"
+                value: 20000
+              - name: "Direction"
+                value: 0
+              - name: "TransitionTime"
+                value: 0
+              - name: "OptionsMask"
+                value: 0
+              - name: "OptionsOverride"
+                value: 0
 
     - label: "Wait 100ms"
       cluster: "DelayCommands"
@@ -322,42 +363,30 @@ tests:
                 value: 100
 
     - label:
-          "Reads current color attribute value matched the value sent by the
-          last attribute"
-      PICS: CC.S.A0007
-      command: "readAttribute"
-      attribute: "ColorTemperature"
-      response:
-          constraints:
-              type: uint16
-              minValue: 0
-              maxValue: 65279
-
-    - label: "Enhanced Move Hue Up command"
-      PICS: CC.S.C41.Rsp
+          "TH sends EnhancedMoveHue command to DUT with MoveMode=0x01 (up) and
+          Rate=500 (units/s)"
+      PICS: CC.S.F01 && CC.S.C41.Rsp
       command: "EnhancedMoveHue"
       arguments:
           values:
               - name: "MoveMode"
                 value: 1
               - name: "Rate"
-                value: 50
+                value: 500
               - name: "OptionsMask"
                 value: 0
               - name: "OptionsOverride"
                 value: 0
 
-    - label: "Reads EnhancedCurrentHue attribute value from DUT"
-      PICS: CC.S.A4000
-      command: "readAttribute"
-      attribute: "EnhancedCurrentHue"
-      response:
-          constraints:
-              type: uint16
-              minValue: 0
-              maxValue: 65535
+    - label: "Wait 10s"
+      cluster: "DelayCommands"
+      command: "WaitForMs"
+      arguments:
+          values:
+              - name: "ms"
+                value: 10000
 
-    - label: "Stop Move Step command"
+    - label: "TH sends StopMoveStep command to DUT"
       PICS: CC.S.C47.Rsp
       command: "StopMoveStep"
       arguments:
@@ -367,43 +396,42 @@ tests:
               - name: "OptionsOverride"
                 value: 0
 
-    - label: "Reads EnhancedCurrentHue attribute value from DUT"
-      PICS: CC.S.A4000
+    - label: "TH reads EnhancedCurrentHue attribute from DUT"
       command: "readAttribute"
+      PICS: CC.S.A4000 && CC.S.C47.Rsp
       attribute: "EnhancedCurrentHue"
       response:
+          saveAs: EnhancedCurrentHueValue
           constraints:
-              type: uint16
-              minValue: 0
-              maxValue: 65535
+              minValue: 23500
+              maxValue: 26500
 
-    - label: "Wait 100ms"
+    - label: "Wait 10s"
       cluster: "DelayCommands"
       command: "WaitForMs"
       arguments:
           values:
               - name: "ms"
-                value: 100
+                value: 10000
 
-    - label:
-          "Check EnhancedCurrentHue attribute value matched the value sent by
-          the last attribute"
-      PICS: CC.S.A4000
+    - label: "TH reads EnhancedCurrentHue attribute from DUT"
       command: "readAttribute"
+      PICS: CC.S.A4000 && CC.S.C47.Rsp
       attribute: "EnhancedCurrentHue"
       response:
           constraints:
-              type: uint16
-              minValue: 0
-              maxValue: 65535
+              minValue: EnhancedCurrentHueValue
+              maxValue: 26500
 
-    - label: "Turn off light that we turned on"
+    - label: "Turn Off light that we turned on"
+      PICS: OO.S.C00.Rsp
       cluster: "On/Off"
-      command: "off"
+      command: "Off"
 
     - label: "Check on/off attribute value is false after off command"
       cluster: "On/Off"
       command: "readAttribute"
       attribute: "OnOff"
+      PICS: OO.S.A0000
       response:
           value: 0

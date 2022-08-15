@@ -55,6 +55,8 @@ shared_library("ChipDeviceCtrl") {
       "ChipDeviceController-ScriptBinding.cpp",
       "ChipDeviceController-ScriptDevicePairingDelegate.cpp",
       "ChipDeviceController-ScriptDevicePairingDelegate.h",
+      "ChipDeviceController-ScriptPairingDeviceDiscoveryDelegate.cpp",
+      "ChipDeviceController-ScriptPairingDeviceDiscoveryDelegate.h",
       "ChipDeviceController-StorageDelegate.cpp",
       "ChipDeviceController-StorageDelegate.h",
       "OpCredsBinding.cpp",
@@ -67,6 +69,7 @@ shared_library("ChipDeviceCtrl") {
       "chip/internal/ChipThreadWork.h",
       "chip/internal/CommissionerImpl.cpp",
       "chip/logging/LoggingRedirect.cpp",
+      "chip/utils/DeviceProxyUtils.cpp",
     ]
   } else {
     sources += [
@@ -280,6 +283,12 @@ chip_python_wheel_action("chip-core") {
     "pyyaml",
     "ipdb",
     "deprecation",
+    "mobly",
+
+    # Crypto libraries for complex tests and internal Python controller usage
+    "cryptography",
+    "pycrypto",
+    "ecdsa",
   ]
 
   if (current_os == "mac") {
@@ -358,7 +367,7 @@ chip_python_wheel_action("chip-clusters") {
   py_package_name = "chip-clusters"
   py_platform_tag = "any"
 
-  output_name = "chip_clusters-${chip_python_version}-py3-any.whl"
+  output_name = "chip_clusters-${chip_python_version}-py3-none-any.whl"
 }
 
 chip_python_wheel_action("chip-repl") {
@@ -396,6 +405,7 @@ chip_python_wheel_action("chip-repl") {
     "ipython!=8.1.0",
     "rich",
     "ipykernel",
+    "mobly",
   ]
 
   py_package_name = "chip-repl"
@@ -406,5 +416,5 @@ chip_python_wheel_action("chip-repl") {
     ":chip-core",
   ]
 
-  output_name = "chip_repl-${chip_python_version}-py3-any.whl"
+  output_name = "chip_repl-${chip_python_version}-py3-none-any.whl"
 }

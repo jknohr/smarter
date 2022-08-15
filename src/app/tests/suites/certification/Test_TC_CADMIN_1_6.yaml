@@ -16,30 +16,52 @@ name:
     24.1.6. [TC-CADMIN-1.6] Commissioning window handling timeout and revocation
     using BCM [DUT - Commissionee]
 
+PICS:
+    - CADMIN.S
+
 config:
     nodeId: 0x12344321
     timeout: 300
     nodeIdForDuplicateCommissioning:
-        type: NODE_ID
+        type: node_id
         defaultValue: 0x11
     nodeId2:
-        type: NODE_ID
+        type: node_id
         defaultValue: 0xCAFE
     nodeId3:
-        type: NODE_ID
+        type: node_id
         defaultValue: 0xC00FEE
     endpoint: 0
     discriminator:
-        type: INT16U
+        type: int16u
         defaultValue: 3840
     payload:
-        type: CHAR_STRING
+        type: char_string
         defaultValue: "MT:-24J0AFN00KA0648G00" # This value needs to be generated automatically
 
 tests:
+    - label: "Precondition: Reset Devices to factory defaults"
+      PICS: PICS_SDK_CI_ONLY
+      cluster: "SystemCommands"
+      command: "FactoryReset"
+
+    - label: "Precondition: Reset Devices to factory defaults"
+      verification: |
+          Not implemented in YAML
+      cluster: "LogCommands"
+      command: "UserPrompt"
+      PICS: PICS_SKIP_SAMPLE_APP
+      arguments:
+          values:
+              - name: "message"
+                value: "Factory Reset the DUT and enter 'y' after success"
+              - name: "expectedValue"
+                value: "y"
+
     - label: "TH_CR1 starts a commissioning process with DUT_CE"
       cluster: "DelayCommands"
       command: "WaitForCommissionee"
+      PICS: CADMIN.S
       arguments:
           values:
               - name: "nodeId"
@@ -50,13 +72,13 @@ tests:
       cluster: "AdministratorCommissioning"
       command: "OpenBasicCommissioningWindow"
       timedInteractionTimeoutMs: 10000
-      PICS: CADMIN.S.C0001
+      PICS: CADMIN.S.C01.Rsp
       arguments:
           values:
               - name: "CommissioningTimeout"
                 value: 180
 
-    - label: "Wait for PIXIT_COMM_WIN(180) + 10"
+    - label: "Wait for PIXIT.CADMIN.CwDuration + 10"
       cluster: "DelayCommands"
       command: "WaitForMs"
       arguments:
@@ -68,7 +90,7 @@ tests:
       identity: "beta"
       cluster: "CommissionerCommands"
       command: "PairWithCode"
-      PICS: CADMIN.S.C0001
+      PICS: CADMIN.S.C01.Rsp
       arguments:
           values:
               - name: "nodeId"
@@ -82,7 +104,7 @@ tests:
       cluster: "AdministratorCommissioning"
       command: "OpenBasicCommissioningWindow"
       timedInteractionTimeoutMs: 10000
-      PICS: CADMIN.S.C0001
+      PICS: CADMIN.S.C01.Rsp
       arguments:
           values:
               - name: "CommissioningTimeout"
@@ -91,10 +113,10 @@ tests:
     - label: "TH_CR1 revokes the commissioning window on DUT_CE"
       cluster: "AdministratorCommissioning"
       command: "RevokeCommissioning"
-      PICS: CADMIN.S.C0002
+      PICS: CADMIN.S.C02.Rsp
       timedInteractionTimeoutMs: 10000
 
-    - label: "Commission from beta"
+    - label: "TH_CR2 starts a commissioning process with DUT_CE"
       identity: "beta"
       cluster: "CommissionerCommands"
       command: "PairWithCode"
@@ -111,7 +133,7 @@ tests:
       cluster: "AdministratorCommissioning"
       command: "RevokeCommissioning"
       timedInteractionTimeoutMs: 10000
-      PICS: CADMIN.S.C0002
+      PICS: CADMIN.S.C02.Rsp
       response:
           error: FAILURE
 
@@ -138,24 +160,24 @@ tests:
       cluster: "AdministratorCommissioning"
       command: "OpenBasicCommissioningWindow"
       timedInteractionTimeoutMs: 10000
-      PICS: CADMIN.S.C0001
+      PICS: CADMIN.S.C01.Rsp
       arguments:
           values:
               - name: "CommissioningTimeout"
                 value: 180
 
-    - label: "TH_CR1 opens a commissioning window on DUT_CE"
+    - label: "TH_CR1 opens another commissioning window on DUT_CE"
       identity: "alpha"
       cluster: "AdministratorCommissioning"
       command: "OpenBasicCommissioningWindow"
       timedInteractionTimeoutMs: 10000
-      PICS: CADMIN.S.C0001
+      PICS: CADMIN.S.C01.Rsp
       arguments:
           values:
               - name: "CommissioningTimeout"
                 value: 180
       response:
-          error: 1
+          error: FAILURE
 
     - label: "Commission from beta"
       identity: "beta"
@@ -172,6 +194,7 @@ tests:
       identity: "beta"
       cluster: "DelayCommands"
       command: "WaitForCommissionee"
+      PICS: CADMIN.S
       arguments:
           values:
               - name: "nodeId"
@@ -182,7 +205,7 @@ tests:
           RevokeCommissioning command"
       cluster: "AdministratorCommissioning"
       command: "RevokeCommissioning"
-      PICS: CADMIN.S.C0002
+      PICS: CADMIN.S.C02.Rsp
       timedInteractionTimeoutMs: 10000
       response:
           error: FAILURE
@@ -191,6 +214,7 @@ tests:
       identity: "gamma"
       cluster: "CommissionerCommands"
       command: "PairWithCode"
+      PICS: CADMIN.S
       arguments:
           values:
               - name: "nodeId"

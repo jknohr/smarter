@@ -141,7 +141,6 @@ const char * const gCmdOptionHelp =
     "           x509-der  - X.509 DER raw format\n"
     "           x509-hex  - X.509 DER hex encoded format\n"
     "           chip      - raw CHIP TLV format\n"
-    "           chip-hex  - hex encoded CHIP TLV format\n"
     "           chip-b64  - base-64 encoded CHIP TLV format (default)\n"
     "           chip-hex  - hex encoded CHIP TLV format\n"
     "\n"
@@ -813,7 +812,7 @@ bool Cmd_GenCert(int argc, char * argv[])
 
     if (gInKeyFileName != nullptr)
     {
-        res = ReadKey(gInKeyFileName, newKey.get());
+        res = ReadKey(gInKeyFileName, newKey);
         VerifyTrueOrExit(res);
     }
     else
@@ -840,7 +839,7 @@ bool Cmd_GenCert(int argc, char * argv[])
         res = ReadCert(gCACertFileName, caCert.get());
         VerifyTrueOrExit(res);
 
-        res = ReadKey(gCAKeyFileName, caKey.get());
+        res = ReadKey(gCAKeyFileName, caKey);
         VerifyTrueOrExit(res);
 
         caCertPtr = caCert.get();

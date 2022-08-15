@@ -13,7 +13,10 @@
 # limitations under the License.
 # Auto-generated scripts for harness use only, please review before automation. The endpoints and cluster names are currently set to default
 
-name: 64.2.1. [TC-PSCFG-2.1] Attributes with server as DUT
+name: 65.2.1. [TC-PSCFG-2.1] Attributes with server as DUT
+
+PICS:
+    - PSCFG.S
 
 config:
     nodeId: 0x12344321
@@ -23,15 +26,15 @@ config:
 tests:
     - label: "Commission DUT to TH"
       verification: |
-
+          verification step to be updated.
       disabled: true
 
     - label: "TH reads the Sources attribute from the DUT"
       PICS: PSCFG.S.A0000
       verification: |
-          Verify on the TH Log:
-
           ./chip-tool powersourceconfiguration read sources 1 0
+
+           verify on TH(chip-tool) that source attribute provides a list, and each entry in the list has to be  number of an endpoint having a Power Source cluster.
 
           The response should look like this:
 

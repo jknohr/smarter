@@ -49,9 +49,6 @@ using namespace chip::Credentials;
 
 namespace {
 
-Crypto::P256Keypair gFabric1OpKey;
-Crypto::P256Keypair gFabric2OpKey;
-
 class ScopedFabricTable
 {
 public:
@@ -89,6 +86,8 @@ private:
 static CHIP_ERROR LoadTestFabric_Node01_01(nlTestSuite * inSuite, FabricTable & fabricTable, bool doCommit)
 {
     Crypto::P256SerializedKeypair opKeysSerialized;
+    static Crypto::P256Keypair opKey_Node01_01;
+
     FabricIndex fabricIndex;
     memcpy((uint8_t *) (opKeysSerialized), TestCerts::sTestCert_Node01_01_PublicKey, TestCerts::sTestCert_Node01_01_PublicKey_Len);
     memcpy((uint8_t *) (opKeysSerialized) + TestCerts::sTestCert_Node01_01_PublicKey_Len, TestCerts::sTestCert_Node01_01_PrivateKey,
@@ -98,24 +97,49 @@ static CHIP_ERROR LoadTestFabric_Node01_01(nlTestSuite * inSuite, FabricTable & 
     ByteSpan icacSpan(TestCerts::sTestCert_ICA01_Chip, TestCerts::sTestCert_ICA01_Chip_Len);
     ByteSpan nocSpan(TestCerts::sTestCert_Node01_01_Chip, TestCerts::sTestCert_Node01_01_Chip_Len);
 
-    NL_TEST_ASSERT(inSuite,
-                   opKeysSerialized.SetLength(TestCerts::sTestCert_Node01_01_PublicKey_Len +
-                                              TestCerts::sTestCert_Node01_01_PrivateKey_Len) == CHIP_NO_ERROR);
-    NL_TEST_ASSERT(inSuite, gFabric1OpKey.Deserialize(opKeysSerialized) == CHIP_NO_ERROR);
+    ReturnErrorOnFailure(
+        opKeysSerialized.SetLength(TestCerts::sTestCert_Node01_01_PublicKey_Len + TestCerts::sTestCert_Node01_01_PrivateKey_Len));
+    ReturnErrorOnFailure(opKey_Node01_01.Deserialize(opKeysSerialized));
+    ReturnErrorOnFailure(fabricTable.AddNewPendingTrustedRootCert(rcacSpan));
 
-    NL_TEST_ASSERT(inSuite, fabricTable.AddNewPendingTrustedRootCert(rcacSpan) == CHIP_NO_ERROR);
-
-    CHIP_ERROR err = fabricTable.AddNewPendingFabricWithProvidedOpKey(nocSpan, icacSpan, VendorId::TestVendor1, &gFabric1OpKey,
-                                                                      /*isExistingOpKeyExternallyOwned =*/true, &fabricIndex);
-    NL_TEST_ASSERT(inSuite, err == CHIP_NO_ERROR);
-
+    ReturnErrorOnFailure(fabricTable.AddNewPendingFabricWithProvidedOpKey(nocSpan, icacSpan, VendorId::TestVendor1,
+                                                                          &opKey_Node01_01,
+                                                                          /*isExistingOpKeyExternallyOwned =*/true, &fabricIndex));
     if (doCommit)
     {
-        err = fabricTable.CommitPendingFabricData();
-        NL_TEST_ASSERT(inSuite, err == CHIP_NO_ERROR);
+        ReturnErrorOnFailure(fabricTable.CommitPendingFabricData());
     }
 
-    return err;
+    return CHIP_NO_ERROR;
+}
+
+static CHIP_ERROR LoadTestFabric_Node01_02(nlTestSuite * inSuite, FabricTable & fabricTable, bool doCommit)
+{
+    Crypto::P256SerializedKeypair opKeysSerialized;
+    FabricIndex fabricIndex;
+    static Crypto::P256Keypair opKey_Node01_02;
+
+    memcpy((uint8_t *) (opKeysSerialized), TestCerts::sTestCert_Node01_02_PublicKey, TestCerts::sTestCert_Node01_02_PublicKey_Len);
+    memcpy((uint8_t *) (opKeysSerialized) + TestCerts::sTestCert_Node01_02_PublicKey_Len, TestCerts::sTestCert_Node01_02_PrivateKey,
+           TestCerts::sTestCert_Node01_02_PrivateKey_Len);
+
+    ByteSpan rcacSpan(TestCerts::sTestCert_Root01_Chip, TestCerts::sTestCert_Root01_Chip_Len);
+    ByteSpan nocSpan(TestCerts::sTestCert_Node01_02_Chip, TestCerts::sTestCert_Node01_02_Chip_Len);
+
+    ReturnErrorOnFailure(
+        opKeysSerialized.SetLength(TestCerts::sTestCert_Node01_02_PublicKey_Len + TestCerts::sTestCert_Node01_02_PrivateKey_Len));
+    ReturnErrorOnFailure(opKey_Node01_02.Deserialize(opKeysSerialized));
+
+    ReturnErrorOnFailure(fabricTable.AddNewPendingTrustedRootCert(rcacSpan));
+
+    ReturnErrorOnFailure(fabricTable.AddNewPendingFabricWithProvidedOpKey(nocSpan, {}, VendorId::TestVendor1, &opKey_Node01_02,
+                                                                          /*isExistingOpKeyExternallyOwned =*/true, &fabricIndex));
+    if (doCommit)
+    {
+        ReturnErrorOnFailure(fabricTable.CommitPendingFabricData());
+    }
+
+    return CHIP_NO_ERROR;
 }
 
 /**
@@ -125,6 +149,8 @@ static CHIP_ERROR LoadTestFabric_Node02_01(nlTestSuite * inSuite, FabricTable & 
 {
     Crypto::P256SerializedKeypair opKeysSerialized;
     FabricIndex fabricIndex;
+    static Crypto::P256Keypair opKey_Node02_01;
+
     memcpy((uint8_t *) (opKeysSerialized), TestCerts::sTestCert_Node02_01_PublicKey, TestCerts::sTestCert_Node02_01_PublicKey_Len);
     memcpy((uint8_t *) (opKeysSerialized) + TestCerts::sTestCert_Node02_01_PublicKey_Len, TestCerts::sTestCert_Node02_01_PrivateKey,
            TestCerts::sTestCert_Node02_01_PrivateKey_Len);
@@ -136,11 +162,11 @@ static CHIP_ERROR LoadTestFabric_Node02_01(nlTestSuite * inSuite, FabricTable & 
     NL_TEST_ASSERT(inSuite,
                    opKeysSerialized.SetLength(TestCerts::sTestCert_Node02_01_PublicKey_Len +
                                               TestCerts::sTestCert_Node02_01_PrivateKey_Len) == CHIP_NO_ERROR);
-    NL_TEST_ASSERT(inSuite, gFabric2OpKey.Deserialize(opKeysSerialized) == CHIP_NO_ERROR);
+    NL_TEST_ASSERT(inSuite, opKey_Node02_01.Deserialize(opKeysSerialized) == CHIP_NO_ERROR);
 
     NL_TEST_ASSERT(inSuite, fabricTable.AddNewPendingTrustedRootCert(rcacSpan) == CHIP_NO_ERROR);
 
-    CHIP_ERROR err = fabricTable.AddNewPendingFabricWithProvidedOpKey(nocSpan, icacSpan, VendorId::TestVendor1, &gFabric2OpKey,
+    CHIP_ERROR err = fabricTable.AddNewPendingFabricWithProvidedOpKey(nocSpan, icacSpan, VendorId::TestVendor1, &opKey_Node02_01,
                                                                       /*isExistingOpKeyExternallyOwned =*/true, &fabricIndex);
     NL_TEST_ASSERT(inSuite, err == CHIP_NO_ERROR);
 
@@ -166,6 +192,57 @@ void TestLastKnownGoodTimeInit(nlTestSuite * inSuite, void * inContext)
     System::Clock::Seconds32 firmwareBuildTime;
     NL_TEST_ASSERT(inSuite, DeviceLayer::ConfigurationMgr().GetFirmwareBuildChipEpochTime(firmwareBuildTime) == CHIP_NO_ERROR);
     NL_TEST_ASSERT(inSuite, lastKnownGoodChipEpochTime == firmwareBuildTime);
+}
+
+void TestCollidingFabrics(nlTestSuite * inSuite, void * inContext)
+{
+    chip::TestPersistentStorageDelegate testStorage;
+    ScopedFabricTable fabricTableHolder;
+    NL_TEST_ASSERT(inSuite, fabricTableHolder.Init(&testStorage) == CHIP_NO_ERROR);
+    FabricTable & fabricTable = fabricTableHolder.GetFabricTable();
+
+    //
+    // Start by loading NOCs for two nodes on the same fabric. The second one should fail since the FabricTable by default
+    // doesn't permit colliding fabrics.
+    //
+    NL_TEST_ASSERT(inSuite, LoadTestFabric_Node01_01(inSuite, fabricTable, /* doCommit = */ true) == CHIP_NO_ERROR);
+    NL_TEST_ASSERT(inSuite, LoadTestFabric_Node01_02(inSuite, fabricTable, /* doCommit = */ true) != CHIP_NO_ERROR);
+
+    //
+    // Revert the partially added NOC from the last call, permit colliding fabrics in the FabricTable and try again.
+    // This time, it should succeed
+    //
+    fabricTable.RevertPendingFabricData();
+    fabricTable.PermitCollidingFabrics();
+    NL_TEST_ASSERT(inSuite, LoadTestFabric_Node01_02(inSuite, fabricTable, /* doCommit = */ true) == CHIP_NO_ERROR);
+
+    ByteSpan rcacSpan(TestCerts::sTestCert_Root01_Chip, TestCerts::sTestCert_Root01_Chip_Len);
+    Credentials::P256PublicKeySpan rootPublicKeySpan;
+
+    NL_TEST_ASSERT(inSuite, Credentials::ExtractPublicKeyFromChipCert(rcacSpan, rootPublicKeySpan) == CHIP_NO_ERROR);
+
+    //
+    // Ensure we can find both node identities in the FabricTable.
+    //
+    {
+        chip::Platform::ScopedMemoryBuffer<uint8_t> nocBuf;
+        ByteSpan origNocSpan(TestCerts::sTestCert_Node01_01_Chip, TestCerts::sTestCert_Node01_01_Chip_Len);
+        NodeId nodeId;
+        FabricId fabricId;
+
+        NL_TEST_ASSERT(inSuite, ExtractNodeIdFabricIdFromOpCert(origNocSpan, &nodeId, &fabricId) == CHIP_NO_ERROR);
+        NL_TEST_ASSERT(inSuite, fabricTable.FindIdentity(rootPublicKeySpan, fabricId, nodeId) != nullptr);
+    }
+
+    {
+        chip::Platform::ScopedMemoryBuffer<uint8_t> nocBuf;
+        ByteSpan origNocSpan(TestCerts::sTestCert_Node01_02_Chip, TestCerts::sTestCert_Node01_02_Chip_Len);
+        NodeId nodeId;
+        FabricId fabricId;
+
+        NL_TEST_ASSERT(inSuite, ExtractNodeIdFabricIdFromOpCert(origNocSpan, &nodeId, &fabricId) == CHIP_NO_ERROR);
+        NL_TEST_ASSERT(inSuite, fabricTable.FindIdentity(rootPublicKeySpan, fabricId, nodeId) != nullptr);
+    }
 }
 
 void TestUpdateLastKnownGoodTime(nlTestSuite * inSuite, void * inContext)
@@ -478,7 +555,21 @@ void TestBasicAddNocUpdateNocFlow(nlTestSuite * inSuite, void * inContext)
             NL_TEST_ASSERT(inSuite, saw1 == false);
         }
 
+        uint8_t rcacBuf[Credentials::kMaxCHIPCertLength];
+        {
+            // No pending root cert yet.
+            MutableByteSpan fetchedSpan{ rcacBuf };
+            NL_TEST_ASSERT(inSuite, fabricTable.FetchPendingNonFabricAssociatedRootCert(fetchedSpan) == CHIP_ERROR_NOT_FOUND);
+        }
+
         NL_TEST_ASSERT_SUCCESS(inSuite, fabricTable.AddNewPendingTrustedRootCert(rcac));
+        {
+            // Now have a pending root cert.
+            MutableByteSpan fetchedSpan{ rcacBuf };
+            NL_TEST_ASSERT_SUCCESS(inSuite, fabricTable.FetchPendingNonFabricAssociatedRootCert(fetchedSpan));
+            NL_TEST_ASSERT(inSuite, fetchedSpan.data_equal(rcac));
+        }
+
         FabricIndex newFabricIndex = kUndefinedFabricIndex;
         bool keyIsExternallyOwned  = true;
 
@@ -488,6 +579,11 @@ void TestBasicAddNocUpdateNocFlow(nlTestSuite * inSuite, void * inContext)
                                                                                 keyIsExternallyOwned, &newFabricIndex));
         NL_TEST_ASSERT(inSuite, newFabricIndex == 1);
         NL_TEST_ASSERT_EQUALS(inSuite, fabricTable.FabricCount(), 1);
+        {
+            // No more pending root cert; it's associated with a fabric now.
+            MutableByteSpan fetchedSpan{ rcacBuf };
+            NL_TEST_ASSERT(inSuite, fabricTable.FetchPendingNonFabricAssociatedRootCert(fetchedSpan) == CHIP_ERROR_NOT_FOUND);
+        }
 
         // No storage yet
         NL_TEST_ASSERT(inSuite, storage.GetNumKeys() == numStorageKeysAtStart);
@@ -1750,6 +1846,51 @@ void TestUpdateNocFailSafe(nlTestSuite * inSuite, void * inContext)
     }
 }
 
+void TestAddRootCertFailSafe(nlTestSuite * inSuite, void * inContext)
+{
+    Credentials::TestOnlyLocalCertificateAuthority fabric11CertAuthority;
+
+    chip::TestPersistentStorageDelegate storage;
+
+    NL_TEST_ASSERT(inSuite, fabric11CertAuthority.Init().IsSuccess());
+
+    // Initialize a fabric table.
+    ScopedFabricTable fabricTableHolder;
+    NL_TEST_ASSERT(inSuite, fabricTableHolder.Init(&storage) == CHIP_NO_ERROR);
+    FabricTable & fabricTable = fabricTableHolder.GetFabricTable();
+
+    NL_TEST_ASSERT_EQUALS(inSuite, fabricTable.FabricCount(), 0);
+
+    // Add a root cert, see that pending works, and that revert works
+    {
+        ByteSpan rcac = fabric11CertAuthority.GetRcac();
+
+        uint8_t rcacBuf[Credentials::kMaxCHIPCertLength];
+        {
+            // No pending root cert yet.
+            MutableByteSpan fetchedSpan{ rcacBuf };
+            NL_TEST_ASSERT(inSuite, fabricTable.FetchPendingNonFabricAssociatedRootCert(fetchedSpan) == CHIP_ERROR_NOT_FOUND);
+        }
+
+        NL_TEST_ASSERT_SUCCESS(inSuite, fabricTable.AddNewPendingTrustedRootCert(rcac));
+        {
+            // Now have a pending root cert.
+            MutableByteSpan fetchedSpan{ rcacBuf };
+            NL_TEST_ASSERT_SUCCESS(inSuite, fabricTable.FetchPendingNonFabricAssociatedRootCert(fetchedSpan));
+            NL_TEST_ASSERT(inSuite, fetchedSpan.data_equal(rcac));
+        }
+
+        // Revert
+        fabricTable.RevertPendingFabricData();
+
+        {
+            // No pending root cert anymore.
+            MutableByteSpan fetchedSpan{ rcacBuf };
+            NL_TEST_ASSERT(inSuite, fabricTable.FetchPendingNonFabricAssociatedRootCert(fetchedSpan) == CHIP_ERROR_NOT_FOUND);
+        }
+    }
+}
+
 void TestSequenceErrors(nlTestSuite * inSuite, void * inContext)
 {
     // TODO: Write test
@@ -2436,6 +2577,7 @@ static const nlTest sTests[] =
     NL_TEST_DEF("Validate fabrics are loaded from persistence at FabricTable::init", TestPersistence),
     NL_TEST_DEF("Test fail-safe handling during AddNOC", TestAddNocFailSafe),
     NL_TEST_DEF("Test fail-safe handling during UpdateNoc", TestUpdateNocFailSafe),
+    NL_TEST_DEF("Test fail-safe handling for root cert", TestAddRootCertFailSafe),
     NL_TEST_DEF("Test interlock sequencing errors", TestSequenceErrors),
     NL_TEST_DEF("Test fabric label changes", TestFabricLabelChange),
     NL_TEST_DEF("Test compressed fabric ID is properly generated", TestCompressedFabricId),
@@ -2445,6 +2587,7 @@ static const nlTest sTests[] =
     NL_TEST_DEF("Test invalid chaining in AddNOC and UpdateNOC", TestInvalidChaining),
     NL_TEST_DEF("Test ephemeral keys allocation", TestEphemeralKeys),
     NL_TEST_DEF("Test proper detection of Commit Marker on init", TestCommitMarker),
+    NL_TEST_DEF("Test colliding fabrics in the fabric table", TestCollidingFabrics),
 
     NL_TEST_SENTINEL()
 };

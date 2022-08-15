@@ -205,6 +205,11 @@ private:
      */
     IdleStateReason MapErrorToIdleStateReason(CHIP_ERROR error);
 
+    ScopedNodeId GetProviderScopedId() const
+    {
+        return ScopedNodeId(mProviderLocation.Value().providerNodeID, mProviderLocation.Value().fabricIndex);
+    }
+
     /**
      * Record the new update state by updating the corresponding server attribute and logging a StateTransition event
      */
@@ -223,7 +228,7 @@ private:
     /**
      * Send QueryImage request using values matching Basic cluster
      */
-    CHIP_ERROR SendQueryImageRequest(OperationalDeviceProxy & deviceProxy);
+    CHIP_ERROR SendQueryImageRequest(Messaging::ExchangeManager & exchangeMgr, SessionHandle & sessionHandle);
 
     /**
      * Validate and extract mandatory information from QueryImageResponse
@@ -254,17 +259,17 @@ private:
     /**
      * Start download of the software image returned in QueryImageResponse
      */
-    CHIP_ERROR StartDownload(OperationalDeviceProxy & deviceProxy);
+    CHIP_ERROR StartDownload(Messaging::ExchangeManager & exchangeMgr, SessionHandle & sessionHandle);
 
     /**
      * Send ApplyUpdate request using values obtained from QueryImageResponse
      */
-    CHIP_ERROR SendApplyUpdateRequest(OperationalDeviceProxy & deviceProxy);
+    CHIP_ERROR SendApplyUpdateRequest(Messaging::ExchangeManager & exchangeMgr, SessionHandle & sessionHandle);
 
     /**
      * Send NotifyUpdateApplied request
      */
-    CHIP_ERROR SendNotifyUpdateAppliedRequest(OperationalDeviceProxy & deviceProxy);
+    CHIP_ERROR SendNotifyUpdateAppliedRequest(Messaging::ExchangeManager & exchangeMgr, SessionHandle & sessionHandle);
 
     /**
      * Store current update information to KVS
@@ -279,8 +284,8 @@ private:
     /**
      * Session connection callbacks
      */
-    static void OnConnected(void * context, OperationalDeviceProxy * deviceProxy);
-    static void OnConnectionFailure(void * context, PeerId peerId, CHIP_ERROR error);
+    static void OnConnected(void * context, Messaging::ExchangeManager & exchangeMgr, SessionHandle & sessionHandle);
+    static void OnConnectionFailure(void * context, const ScopedNodeId & peerId, CHIP_ERROR error);
     Callback::Callback<OnDeviceConnected> mOnConnectedCallback;
     Callback::Callback<OnDeviceConnectionFailure> mOnConnectionFailureCallback;
 
