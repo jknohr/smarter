@@ -28,6 +28,7 @@ else
     CHIP_ROOT="$MATTER_ROOT"
 fi
 
+
 source "$CHIP_ROOT/scripts/activate.sh"
 
 set -x
@@ -196,9 +197,9 @@ else
                     USE_WIFI=true
                 fi
 
-                optArgs+=$1" "
-                shift
-                ;;
+            optArgs+=$1" "
+            shift
+            ;;
         esac
     done
 
