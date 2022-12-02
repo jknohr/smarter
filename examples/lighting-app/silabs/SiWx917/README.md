@@ -10,11 +10,8 @@ An example showing the use of CHIP on the Silicon Labs SiWx917.
   - [Flashing the Application](#flashing-the-application)
   - [Viewing Logging Output](#viewing-logging-output)
   - [Running the Complete Example](#running-the-complete-example)
-    - [Notes](#notes)
-  - [Running RPC console](#running-rpc-console)
-  - [Device Tracing](#device-tracing)
+  - [Notes](#notes)
   - [Memory settings](#memory-settings)
-  - [OTA Software Update](#ota-software-update)
   - [Group Communication (Multicast)](#group-communication-multicast)
   - [Building options](#building-options)
     - [Disabling logging](#disabling-logging)
@@ -35,8 +32,8 @@ An example showing the use of CHIP on the Silicon Labs SiWx917.
 ## Introduction
 
 The SiWx917 lighting example provides a baseline demonstration of a Light control
-device, built using Matter and the Silicon Labs gecko SDK. It can be controlled
-by a Chip controller over a Wifi network..
+device, built using Matter, the Silicon Labs gecko SDK and Silicon labs WiseMCU SDK. It can be controlled
+by a Chip controller over a Wifi network.
 
 The lighting example is intended to serve both as a means to explore the
 workings of Matter as well as a template for creating real products based on the
@@ -73,6 +70,8 @@ Silicon Labs platform.
           cd ~/connectedhomeip
           ./scripts/examples/gn_efr32_example.sh examples/lighting-app/silabs/SiWx917/ out/test BRD4325A ssid=\"<ssid>\" psk=\"<psk>\" --wifi rs911x
 
+    -   > Enter your AP's SSID and passcode for the `ssid` and `psk` build parameters.
+
 -   To delete generated executable, libraries and object files use:
 
           $ cd ~/connectedhomeip
@@ -92,156 +91,34 @@ Silicon Labs platform.
           $ cd ~/connectedhomeip/examples/lighting-app/silabs/SiWx917
           $ rm -rf out/
 
-*   Build the example as Sleepy End Device (SED)
-
-          $ ./scripts/examples/gn_efr32_example.sh ./examples/lighting-app/silabs/SiWx917/ ./out/lighting-app_SED BRD4325A --sed
-
-    or use gn as previously mentioned but adding the following arguments:
-
-          $ gn gen out/debug '--args=silabs_board="BRD4325A" enable_sleepy_device=true chip_openthread_ftd=false'
-
-*   Build the example with pigweed RPC
-
-          $ ./scripts/examples/gn_efr32_example.sh examples/lighting-app/silabs/SiWx917/ out/lighting_app_rpc BRD4161A 'import("//with_pw_rpc.gni")'
-
-    or use GN/Ninja Directly
-
-          $ cd ~/connectedhomeip/examples/lighting-app/silabs/SiWx917
-          $ git submodule update --init
-          $ source third_party/connectedhomeip/scripts/activate.sh
-          $ export EFR32_BOARD=BRD4325A
-          $ gn gen out/debug --args='import("//with_pw_rpc.gni")'
-          $ ninja -C out/debug
-
-    [Running Pigweed RPC console](#running-pigweed-rpc-console)
-
-For more build options, help is provided when running the build script without
-arguments
-
-         ./scripts/examples/gn_efr32_example.sh
-
 <a name="flashing"></a>
 
 ## Flashing the Application
 
--   On the command line:
-
-          $ cd ~/connectedhomeip/examples/lighting-app/silabs/SiWx917
-          $ python3 out/debug/chip-efr32-lighting-example.flash.py
-
--   Or with the Ozone debugger, just load the .out file.
+-   Flashing requires the SiWx917 SoC device to be configured in the Ozone Debugger.
+-   Once it's configured, it can be run with the Ozone Debugger by loading the .out file.
+    -   > For detailed instructions, please refer to 
+        > [Running the Matter Demo on SiWx917 SoC](https://github.com/SiliconLabs/matter/blob/latest/docs/silabs/wifi/RUN_DEMO_SiWx917_SoC.md) 
+        > in the Silicon Labs Matter Github Repo
 
 <a name="view-logging"></a>
 
 ## Viewing Logging Output
 
-The example application is built to use the SEGGER Real Time Transfer (RTT)
-facility for log output. RTT is a feature built-in to the J-Link Interface MCU
-on the WSTK development board. It allows bi-directional communication with an
-embedded application without the need for a dedicated UART.
-
-Using the RTT facility requires downloading and installing the _SEGGER J-Link
-Software and Documentation Pack_
-([web site](https://www.segger.com/downloads/jlink#J-LinkSoftwareAndDocumentationPack)).
-
-Alternatively, SEGGER Ozone J-Link debugger can be used to view RTT logs too
-after flashing the .out file.
-
--   Download the J-Link installer by navigating to the appropriate URL and
-    agreeing to the license agreement.
-
--   [JLink_Linux_x86_64.deb](https://www.segger.com/downloads/jlink/JLink_Linux_x86_64.deb)
--   [JLink_MacOSX.pkg](https://www.segger.com/downloads/jlink/JLink_MacOSX.pkg)
-
-*   Install the J-Link software
-
-          $ cd ~/Downloads
-          $ sudo dpkg -i JLink_Linux_V*_x86_64.deb
-
-*   In Linux, grant the logged in user the ability to talk to the development
-    hardware via the linux tty device (/dev/ttyACMx) by adding them to the
-    dialout group.
-
-          $ sudo usermod -a -G dialout ${USER}
-
-Once the above is complete, log output can be viewed using the JLinkExe tool in
-combination with JLinkRTTClient as follows:
-
--   Run the JLinkExe tool with arguments to autoconnect to the WSTK board:
-
-    For MG12 use:
-
-          $ JLinkExe -device EFR32MG12PXXXF1024 -if JTAG -speed 4000 -autoconnect 1
-
-    For MG21 use:
-
-          $ JLinkExe -device EFR32MG21AXXXF1024 -if SWD -speed 4000 -autoconnect 1
-
--   In a second terminal, run the JLinkRTTClient to view logs:
-
-          $ JLinkRTTClient
+The example application's logging output can be viewed in the Ozone Debugger.
 
 <a name="running-complete-example"></a>
 
 ## Running the Complete Example
 
--   User interface : **LCD** The LCD on Silabs WSTK shows a QR Code. This QR
-    Code is be scanned by the CHIP Tool app For the Rendez-vous procedure over
-    BLE
-
-        * On devices that do not have or support the LCD Display like the BRD4166A Thunderboard Sense 2,
-          a URL can be found in the RTT logs.
-
-          <info  > [SVR] Copy/paste the below URL in a browser to see the QR Code:
-          <info  > [SVR] https://project-chip.github.io/connectedhomeip/qrcode.html?data=CH%3AI34NM%20-00%200C9SS0
-
-    **LED 0** shows the overall state of the device and its connectivity. The
-    following states are possible:
-
-        -   _Short Flash On (50 ms on/950 ms off)_ ; The device is in the
-            unprovisioned (unpaired) state and is waiting for a commissioning
-            application to connect.
-
-        -   _Rapid Even Flashing_ ; (100 ms on/100 ms off)_ &mdash; The device is in the
-            unprovisioned state and a commissioning application is connected through
-            Bluetooth LE.
-
-        -   _Short Flash Off_ ; (950ms on/50ms off)_ &mdash; The device is fully
-            provisioned, but does not yet have full Thread network or service
-            connectivity.
-
-        -   _Solid On_ ; The device is fully provisioned and has full Thread
-            network and service connectivity.
-
-    **LED 1** Simulates the Light The following states are possible:
-
-        -   _Solid On_ ; Light is on
-        -   _Off_ ; Light is off
-
-    **Push Button 0**
-
-        -   _Press and Release_ : Start, or restart, BLE advertisement in fast mode. It will advertise in this mode
-            for 30 seconds. The device will then switch to a slower interval advertisement.
-            After 15 minutes, the advertisement stops.
-
-        -   _Pressed and hold for 6 s_ : Initiates the factory reset of the device.
-            Releasing the button within the 6-second window cancels the factory reset
-            procedure. **LEDs** blink in unison when the factory reset procedure is
-            initiated.
-
-    **Push Button 1** Toggles the light state On/Off
-
-*   You can provision and control the Chip device using the python controller,
-    Chip tool standalone, Android or iOS app
-
-*   You can provision and control the Chip device using the python controller,
-    Chip tool standalone, Android or iOS app
+*   The example application supports provisioning over IP (on-network provisioning).
+*   You can provision and control the Chip device using the Chip tool standalone
 
     [CHIPTool](https://github.com/project-chip/connectedhomeip/blob/master/examples/chip-tool/README.md)
 
     Here is an example with the CHIPTool:
 
-    chip-tool pairing ble-thread 1 hex:<operationalDataset> 20202021 3840
+    chip-tool pairing onnetwork 1 20202021
 
     chip-tool onoff on 1 1
 
@@ -250,51 +127,18 @@ combination with JLinkRTTClient as follows:
 -   Depending on your network settings your router might not provide native ipv6
     addresses to your devices (Border router / PC). If this is the case, you
     need to add a static ipv6 addresses on both device and then an ipv6 route to
-    the border router on your PC
+    your router on your PC
 
     -   On PC(Linux): `sudo ip addr add dev <Network interface> 2002::1/64`
 
     -   Add Ipv6 route on PC(Linux)
-        `sudo ip route add <Thread global ipv6 prefix>/64 via 2002::2`
-
-<a name="running-pigweed-rpc-console"></a>
-
-## Running RPC console
-
--   As part of building the example with RPCs enabled the chip_rpc python
-    interactive console is installed into your venv. The python wheel files are
-    also created in the output folder: out/debug/chip_rpc_console_wheels. To
-    install the wheel files without rebuilding:
-    `pip3 install out/debug/chip_rpc_console_wheels/*.whl`
-
--   To use the chip-rpc console after it has been installed run:
-    `chip-console --device /dev/tty.<SERIALDEVICE> -b 115200 -o /<YourFolder>/pw_log.out`
-
--   Then you can simulate a button press or release using the following command
-    where : idx = 0 or 1 for Button PB0 or PB1 action = 0 for PRESSED, 1 for
-    RELEASE Test toggling the LED with
-    `rpcs.chip.rpc.Button.Event(idx=1, pushed=True)`
-
--   You can also Get and Set the light directly using the RPCs:
-    `rpcs.chip.rpc.Lighting.Get()`
-
-    `rpcs.chip.rpc.Lighting.Set(on=True, level=128, color=protos.chip.rpc.LightingColor(hue=5, saturation=5))`
-
-## Device Tracing
-
-Device tracing is available to analyze the device performance. To turn on
-tracing, build with RPC enabled. See Build the example with pigweed RPC.
-
-Obtain tracing json file.
-
-    $ ./{PIGWEED_REPO}/pw_trace_tokenized/py/pw_trace_tokenized/get_trace.py -d {PORT} -o {OUTPUT_FILE} \
-    -t {ELF_FILE} {PIGWEED_REPO}/pw_trace_tokenized/pw_trace_protos/trace_rpc.proto
+        `sudo ip route add <Router global ipv6 prefix>/64 via 2002::2`
 
 ## Memory settings
 
 While most of the RAM usage in CHIP is static, allowing easier debugging and
 optimization with symbols analysis, we still need some HEAP for the crypto and
-OpenThread. Size of the HEAP can be modified by changing the value of the
+Wi-Fi stack. Size of the HEAP can be modified by changing the value of the
 `configTOTAL_HEAP_SIZE` define inside of the FreeRTOSConfig.h file of this
 example. Please take note that a HEAP size smaller than 13k can and will cause a
 Mbedtls failure during the BLE rendez-vous or CASE session
@@ -305,12 +149,6 @@ console the RAM usage of each individual task and the number of Memory
 allocation and Free. While this is not extensive monitoring you're welcome to
 modify `examples/platform/efr32/MemMonitoring.cpp` to add your own memory
 tracking code inside the `trackAlloc` and `trackFree` function
-
-## OTA Software Update
-
-For the description of Software Update process with EFR32 example applications
-see
-[EFR32 OTA Software Update](../../../docs/guides/silabs_efr32_software_update.md)
 
 ## Group Communication (Multicast)
 
