@@ -197,32 +197,87 @@ Verify external power is supplied to rs911x
 
 <br>
 
-Due to the Door Lock App taking up more space than available flash on the MG12 + WF200 device combination, `chip_logging=false` needs to be included on the command line while building the app image, 
+Due to apps taking up more space than available flash on the MG12 + WF200 device combination, `chip_logging=false` needs to be included on the command line while building the app image, 
 to disable CHIP logs and thereby reduce the image size.
 
 This prevents debugging the code on the MG12 + WF200 device combination.
 
-In order to work around this constraint:
+In order to work around this constraint, disable either the LCD or the use of QR codes, depending on your debugging needs. Disabling one of these will sufficiently reduce the image size to allow 
+CHIP Logging to be enabled. 
 
-1. **For Apps other than Door Lock -** Apps other than Door Lock do not have a size constraint. Enable CHIP Logging by removing this from the build 
-command line: `chip_logging=false`
+If you disabled QR Codes, you may use the `chip-tool` for commissioning the device.
 
-    `./scripts/examples/gn_efr32_example.sh examples/lighting-app/efr32 out/wf200_lighting_app BRD4161A is_debug=false --wifi wf200 |& tee out/wf200_lock_app.log`
+If you disabled the LCD and need to debug with QR Codes, the URL to display the QR Code will be printed in the device logs.
+
+Disable LCD and enable CHIP Logging:
+`./scripts/examples/gn_efr32_example.sh examples/lock-app/efr32 out/wf200_lock_app BRD4161A is_debug=false disable_lcd=true --wifi wf200 |& tee out/wf200_lock_app.log`
+
+Disable QR Code and enable CHIP Logging:
+`./scripts/examples/gn_efr32_example.sh examples/lock-app/efr32 out/wf200_lock_app BRD4161A is_debug=false show_qr_code=false --wifi wf200 |& tee out/wf200_lock.log`
 
 <br>
 
-2. **For the Door Lock App -** Disable either the LCD or the use of QR codes, depending on your debugging needs. Disabling one of these will sufficiently reduce the image size to allow 
-CHIP Logging to be enabled. 
+### 11. SiWx917 SoC device sometimes loses its connection to Ozone:
 
-    If you disabled QR Codes, you may use the CHIP Tool for commissioning the device.
+<br>
 
-    If you disabled the LCD and need to debug with QR Codes, the URL to display the QR Code will be printed in the device logs.
+While running the application on the SiWx917 SoC device with the Ozone Debugger, a target connection loss (MCU reset) is sometimes seen.
 
-    Disable LCD and enable CHIP Logging:
-    `./scripts/examples/gn_efr32_example.sh examples/lock-app/efr32 out/wf200_lock_app BRD4161A is_debug=false disable_lcd=true --wifi wf200 |& tee out/wf200_lock_app.log`
+When this happens, 
 
-    Disable QR Code and enable CHIP Logging:
-    `./scripts/examples/gn_efr32_example.sh examples/lock-app/efr32 out/wf200_lock_app BRD4161A is_debug=false show_qr_code=false --wifi wf200 |& tee out/wf200_lock.log`
+1. Add a breakpoint in the code at the `init_ccpPlatform()` line below in `examples/lighting-app/silabs/SiWx917/src/main.cpp`:
+```code
+...
+
+// ================================================================================
+// Main Code
+// ================================================================================
+int main(void)
+{
+    init_ccpPlatform();
+    if (EFR32MatterConfig::InitMatter(BLE_DEV_NAME) != CHIP_NO_ERROR)
+        appError(CHIP_ERROR_INTERNAL);
+    ...
+```
+
+2. Flash the application again and run it again. 
+
+<br>
+
+### 12. MG24 device sometimes loses its connection to Ozone during OTA Update with RS9116:
+
+<br>
+
+While performing an OTA Update with the EFR32MG24 + RS9116 device combination, when the device is reset and bootloading begins with the new image, the Ozone Debugger sometimes loses its connection.
+
+There are two possible workarounds to this:
+
+1. Immediately re-attach the device to the console when the connection is lost.
+
+2. Download the RTT Viewer application instead and use it to view the logs during OTA Update.
+
+<br>
+
+### 13. MG24 device sometimes fails to bootload with the new image during OTA Update with WF200:
+
+<br>
+
+While performing an OTA Update with the EFR32MG24 + WF200 device combination using the external flash, when the device is reset and bootloading begins with the new image, the device sometimes starts up 
+with the existing image instead of the newly downloaded one.
+
+When this happens, perform the following steps to run the OTA Update successfully:
+
+1. Disconnect the WF200 Expansion Board from the EFR32MG24.
+
+2. Go To the Simplicity Commander's folder path in the command prompt and run the command below:
+```shell
+commander.exe extflash read --range 0x00:+<total size to read>
+```
+
+3. Reconnect the WF200 Expansion Board to the EFR32MG24 and reset the device.
+
+4. Re-run the OTA Update process from the beginning.
+
 
 ---
 

@@ -24,7 +24,7 @@ used with a Raspberry Pi to allow the Raspberry Pi's Open Thread Border Router
 to access the Thread network. Radio Co-Processor (RCP) images are available in
 the Assets section of this page:
 
-https://github.com/SiliconLabs/matter/releases/tag/v1.0.0
+https://github.com/SiliconLabs/matter/releases/tag/v1.0.1-1.0
 
 <br>
 
@@ -34,7 +34,7 @@ The Matter Accessory Device Images are used to turn an EFR into a Matter device.
 These are pre-built binary images for the Matter Demo. Matter Accessory Device
 Images are located in the Assets section of this page:
 
-https://github.com/SiliconLabs/matter/releases/tag/v1.0.0
+https://github.com/SiliconLabs/matter/releases/tag/v1.0.1-1.0
 
 For Matter over Thread, 3 different types of images are provided:
 
@@ -51,7 +51,7 @@ EFR32MG2x device, you will need to flash a bootloader binary on your device alon
 with the application image. Bootloader binaries for all of the Matter supported
 devices are available here:
 
-https://github.com/SiliconLabs/matter/releases/tag/v1.0.0
+https://github.com/SiliconLabs/matter/releases/tag/v1.0.1-1.0
 
 <br>
 
@@ -68,9 +68,32 @@ directory, `./third_party/silabs/wiseconnect-wifi-bt-sdk/firmware`
 SiWx917 Firmware(rps) images are available in
 the Assets section of this page:
 
-https://github.com/SiliconLabs/matter/releases/tag/v1.0.0
+https://github.com/SiliconLabs/matter/releases/tag/v1.0.1-1.0
+
+
+## SiWx917 SoC Firmware
+
+SiWx917 SoC Firmware(rps) image is available in the
+repository you have cloned, at the following relative path from the `/matter`
+directory, `./third_party/silabs/wisemcu-wifi-bt-sdk/connectivity_firmware`
+
+It can be used to update the SiWx917 SoC device firmware.
 
 <br>
+
+## SiWx917 SoC Configuration Files for Flashing the Matter Application
+
+In order to flash the Matter Application on the SiWx917 SoC, the Ozone Debugger must
+be configured for the SiWx917 SoC device by following the instructions [here](../wifi/SiWx917_Enablement_For_Ozone.md).
+
+The **JLinkDevices.xml** and **ELF** files referenced in the instructions may be found 
+in the Assets section of this page:
+
+https://github.com/SiliconLabs/matter/releases/tag/v1.0.1-1.0
+
+<br>
+
+
 ---
 
 [Table of Contents](../README.md) | [Thread Demo](../thread/DEMO_OVERVIEW.md) |

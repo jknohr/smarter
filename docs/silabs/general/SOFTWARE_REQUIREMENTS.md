@@ -6,18 +6,31 @@
     
     SSH client is used to communicate with the Raspberry Pi over a secure
     shell.
+<br>
 
 2. [Raspberry Pi Disk Imager](https://www.raspberrypi.com/software/)
     
     Raspberry Pi Disk Imager is used to flash the SD Card that contains the
     operating system for the Raspberry Pi. Note that, for the Thread demo, the
     operating system is the demo image.
+<br>
 
-3. [Flash tool](../general/FLASH_SILABS_DEVICE.md)
-    
+3. Flash Tools
+
+    - [Flash tool for EFR32 Device](../general/FLASH_SILABS_DEVICE.md)
+
     Simplicity Commander standalone or Simplicity Studio is used to flash
     Silicon Labs hardware with firmware images for the RCP and the Matter
     Accessory Device.
+
+    - [Flash tool for SiWx917 SoC Device](../general/FLASH_SILABS_SiWx917_SOC_DEVICE.md)
+
+    The Ozone Debugger can be configured to flash the application for the SiWx917 SoC device.
+	
+    > **Note:** 
+    >    1. Simplicity Studio and Commander tools support is not yet added for the SiWx917 SoC device.
+    >    2. The SiWx917 SoC device is not yet officially added in Ozone, but it can be configured in Ozone.
+<br>
 
 4. [Git Version Control ](https://git-scm.com/downloads)[only required for
    building images and development]
@@ -36,6 +49,7 @@
     ```shell
     $ ./scripts/checkout_submodules.py --shallow --recursive --platform efr32
     ```
+<br>
 
 5. If you are using an EFR32MG2x device you will require a bootloader to run the
    demo applications. When you flash your application image be sure to include a
@@ -112,7 +126,7 @@ $ cd /usr/local/lib/pkgconfig
 ```
 
 ```shell
-$ cd ln -s ../../Cellar/openssl@1.1/1.1.1g/lib/pkgconfig/* .
+$ ln -s ../../Cellar/openssl@1.1/1.1.1g/lib/pkgconfig/* .
 ```
 
 `openssl@1.1/1.1.1g` may need to be replaced with the actual version of OpenSSL
@@ -145,22 +159,41 @@ $ sudo apt-get install git gcc g++ pkg-config libssl-dev libdbus-1-dev libglib2.
 Before you run the demo or development on the RS9116 please be sure that you
 update the RS9116 firmware.
 
-Pre-Built Rs9116 firmware is available on the
-[Matter Artifacts page](../general/ARTIFACTS.md)
+Pre-Built RS9116 firmware is available in the github repository under `third_party/silabs/wiseconnect-wifi-bt-sdk/firmware`
 
 1. [Setting up TeraTerm](https://docs.silabs.com/rs9116/wiseconnect/2.0/tera-term-setup)
 2. [Updating the RS9116 Firmware](https://docs.silabs.com/rs9116/wiseconnect/2.0/update-evk-firmware)
 
 <br>
 
-## **Wi-Fi SiWx917-Specific Requirements:**
+## **Wi-Fi SiWx917 Specific Requirements:**
 
 Before you run the demo or development on the SiWx917 please be sure that you
 update the SiWx917 firmware.
 
-Pre-Built SiWx917 firmware is available on the
-[Matter Artifacts page](../general/ARTIFACTS.md). The following instructions are found on the docs.silabs.com website:
+<br>
 
+### **NCP mode**
+
+Pre-Built SiWx917 firmware for running in NCP mode (with the EFR32MG24) is available on the
+[Matter Artifacts page](../general/ARTIFACTS.md).
+
+<br>
+
+### **SoC mode**
+
+The WiseMCU Combo SDK package is only available to Alpha customers. Please contact Silicon Labs support.
+
+On obtaining the package, extract it, rename the folder as `wisemcu-wifi-bt-sdk` and copy it in the github repository under `third_party/silabs`.
+
+Pre-Built SiWx917 firmware for running in SoC mode is available under `third_party/silabs/wisemcu-wifi-bt-sdk/connectivity_firmware`
+
+<br>
+
+### **Flashing the firmware**
+
+The following instructions are found on the docs.silabs.com website:
+ 
 1. [Setting up TeraTerm](https://docs.silabs.com/SiWx917/wiseconnect/2.0/tera-term-setup)
 2. For updating the SiWx917 Firmware, refer [Updating the RS9116 Firmware](https://docs.silabs.com/rs9116/wiseconnect/2.0/update-evk-firmware). Instructions are the same for both SiWx917 and RS9116.
 

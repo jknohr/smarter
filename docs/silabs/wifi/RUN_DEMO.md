@@ -1,6 +1,6 @@
-# Running the Matter Demo over Wi-fi
+# Running the Matter Demo over Wi-Fi on EFR32 device
 
-## Flashing images/binaries on MG12, MG24 platform using Ozone, Simplicity Studio or Simplicity Commander.
+## Flashing Images/Binaries on EFR32MG12 or MG24 Platform using Ozone, Simplicity Studio, or Simplicity Commander
 
 > Note: If you are coming from Simplicity Studio, you may have already installed
 > the demo image in Simplicity Studio, in which case you can skip to the

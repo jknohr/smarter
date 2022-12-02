@@ -104,16 +104,18 @@ Matter Accessory Devices for Matter over Thread on the following platforms:
             <br><br>
 
 
-## Matter over Wi-Fi Accessory Device Requirements
+## Matter over Wi-Fi Accessory Device Requirements for NCP mode
 
 The Silicon Labs Matter over Wi-Fi demo and development requires two boards: the
-Silicon Labs EFR32 Radio board to run the Matter code and the RS9116
-or the SiWx917 or
-the WF200 to run the Wi-Fi protocol stack. Pre-built images for both the EFR32
-and the RS9116 are provided on the [Matter Artifacts page](./ARTIFACTS.md). The
-following boards are supported for the Matter over Wi-Fi demos and development:
+Silicon Labs EFR32 Radio board to run the Matter code and either the RS9116, SiWx917 or WF200 to run the Wi-Fi protocol stack. 
+Pre-built images for the EFR32 are provided on the [Matter Artifacts page](./ARTIFACTS.md). Pre-built images for SiWx917 or RS9116 connectivity 
+firmware are available as per the instructions on the [Software Requirements Page](./SOFTWARE_REQUIREMENTS.md). 
+The following boards are supported for the Matter over Wi-Fi demos and development:
 
-> **Note:** The EFR32MG24 is the preferred starting point for Matter MCUs.  It provides Secure Vault and can use the internal flash of the device to store an upgrade image. 
+> **Note:** 
+>    1. The EFR32MG24 is the preferred starting point for Matter MCUs.  It provides Secure Vault and can use the internal flash of the device to store an upgrade image.
+>    2. The WF200 connectivity firmware image is included in the pre-built EFR32MG12 or EFR32MG24 images on the [Matter Artifacts page](./ARTIFACTS.md) for running with the WF200 in NCP mode. The 
+Matter application downloads the connectivity firmware onto the WF200 on first-time startup.
 
 
 -   **MG24 boards:**
@@ -134,20 +136,49 @@ following boards are supported for the Matter over Wi-Fi demos and development:
         -   [SLWRB4163A](https://www.silabs.com/development-tools/wireless/zigbee/slwrb4163a-efr32mg12-radio-board)
     -   BRD4164A / SLWSTK6000B / Wireless Starter Kit / 2.4GHz@19dBm
         -   [SLWRB4164A](https://www.silabs.com/development-tools/wireless/zigbee/slwrb4164a-efr32mg12-radio-board)
+    -   BRD4170A / SLWSTK6000B / Wireless Starter Kit / 2.4GHz@19dBm
+        -   [SLWRB4170A](https://www.silabs.com/development-tools/wireless/zigbee/slwrb4170a-efr32mg12-radio-board)
             <br><br>
 
 
--   **Wi-Fi Dev Kit**
+-   **Wi-Fi NCP Dev Kits & boards**
 
     -   RS9116
-        -   [RS9116X-SB-EVK1](https://www.silabs.com/development-tools/wireless/wi-fi/rs9116x-sb-evk-development-kit)
+        -   SB-EVK1 / Single Band Wi-Fi Development Kit / 2.4GHz
+            -   [RS9116X-SB-EVK1](https://www.silabs.com/development-tools/wireless/wi-fi/rs9116x-sb-evk-development-kit)
+        -   SB-EVK2 / Single Band Wi-Fi Development Kit / 2.4GHz
+            -   [RS9116X-SB-EVK2](https://www.silabs.com/development-tools/wireless/wi-fi/rs9116x-sb-evk2-development-kit)
+        -   DB-EVK1 / Dual Band Wi-Fi Development Kit / 2.4GHz & 5GHz
+            -   [RS9116X-DB-EVK1](https://www.silabs.com/development-tools/wireless/wi-fi/rs9116x-db-evk-development-kit)
+            > **Note:** Matter only supported over 2.4GHz on this Dev kit.
+        -   Interconnect board (included in the Wi-Fi kits)
+        -   SPI Cable (included in the RS9116 kit)
+        -   Jumper Cables (included in the RS9116 kit)
     -   SiWx917
         -   [SiWx917](https://www.silabs.com/wireless/wi-fi/siwx917-wireless-socs)
     -   WF200
-        -   [WF200](https://www.silabs.com/wireless/wi-fi/wf200-series-2-transceiver-ics)
-    -   Interconnect board (included in the Wi-Fi kits)
-    -   SPI Cable (included in the RS9116 kit)
-    -   Jumper Cables (included in the RS9116 kit)
+        -   WF200 / Single Band Wi-Fi Expansion Board / 2.4GHz
+            -   [SLEXP8022A](https://www.silabs.com/development-tools/wireless/wi-fi/wf200-wifi-expansion-kit)
+        -   WFM200S / Single Band Wi-Fi Expansion Board / 2.4GHz
+            -   [SLEXP8023A](https://www.silabs.com/development-tools/wireless/wi-fi/wfm200-wifi-expansion-kit)
+            <br><br>
+
+
+## Matter over Wi-Fi Accessory Device Requirements for SoC mode
+
+The Silicon Labs Matter over Wi-Fi demo and development for SoC mode requires the SiWx917 SoC board that 
+supports Matter over Wi-Fi in a single-chip package - the integrated MCU is dedicated 
+for peripheral and application-related processing (Matter), while the ThreadArch® runs the
+wireless and networking protocol stacks. Pre-built images for the SiWx917 connectivity firmware 
+are available as per the instructions on the [Software Requirements Page](./SOFTWARE_REQUIREMENTS.md). The 
+following boards are supported for the Matter over Wi-Fi demos and development:
+
+-   **Wi-Fi SoC boards**
+
+    -   SiWx917
+        -   [SiWx917](https://www.silabs.com/wireless/wi-fi/siwx917-wireless-socs)
+            <br><br>
+
 
 ## Additional Matter over Wi-Fi Hardware Requirements
 
