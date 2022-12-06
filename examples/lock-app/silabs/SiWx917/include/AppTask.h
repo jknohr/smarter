@@ -29,7 +29,8 @@
 #include "AppEvent.h"
 #include "BaseApplication.h"
 #include "FreeRTOS.h"
-#include "LightingManager.h"
+#include "LockManager.h"
+//#include "sl_simple_button_instances.h"
 #include "timers.h" // provides FreeRTOS timer support
 #include <app/clusters/identify-server/identify-server.h>
 #include <ble/BLEEndPoint.h>
@@ -88,6 +89,10 @@ const sl_button_t sl_button_btn1 = {
 #define APP_ERROR_CREATE_TIMER_FAILED CHIP_APPLICATION_ERROR(0x04)
 #define APP_ERROR_START_TIMER_FAILED CHIP_APPLICATION_ERROR(0x05)
 #define APP_ERROR_STOP_TIMER_FAILED CHIP_APPLICATION_ERROR(0x06)
+#define APP_ERROR_ALLOCATION_FAILED CHIP_APPLICATION_ERROR(0x07)
+#if defined(ENABLE_CHIP_SHELL)
+#define APP_ERROR_TOO_MANY_SHELL_ARGUMENTS CHIP_APPLICATION_ERROR(0x08)
+#endif // ENABLE_CHIP_SHELL
 
 /**********************************************************
  * AppTask Declaration
@@ -109,6 +114,10 @@ public:
     static void AppTaskMain(void * pvParameter);
 
     CHIP_ERROR StartAppTask();
+
+    void ActionRequest(int32_t aActor, LockManager::Action_t aAction);
+    static void ActionInitiated(LockManager::Action_t aAction, int32_t aActor);
+    static void ActionCompleted(LockManager::Action_t aAction);
 
     /**
      * @brief Event handler when a button is pressed
@@ -134,16 +143,8 @@ public:
      */
     static void OnIdentifyStop(Identify * identify);
 
-    void PostLightActionRequest(int32_t aActor, LightingManager::Action_t aAction);
-
 private:
     static AppTask sAppTask;
-
-    static void ActionInitiated(LightingManager::Action_t aAction, int32_t aActor);
-    static void ActionCompleted(LightingManager::Action_t aAction);
-    static void LightActionEventHandler(AppEvent * aEvent);
-
-    static void UpdateClusterState(intptr_t context);
 
     /**
      * @brief AppTask initialisation function
@@ -168,4 +169,18 @@ private:
      * @param aEvent button event being processed
      */
     static void SwitchActionEventHandler(AppEvent * aEvent);
+
+    /**
+     * @brief Update Cluster State
+     *
+     * @param context current context
+     */
+    static void UpdateClusterState(intptr_t context);
+
+    /**
+     * @brief Handle lock update event
+     *
+     * @param aEvent event received
+     */
+    static void LockActionEventHandler(AppEvent * aEvent);
 };

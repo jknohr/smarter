@@ -29,7 +29,6 @@
 #include "AppEvent.h"
 #include "BaseApplication.h"
 #include "FreeRTOS.h"
-#include "LightingManager.h"
 #include "timers.h" // provides FreeRTOS timer support
 #include <app/clusters/identify-server/identify-server.h>
 #include <ble/BLEEndPoint.h>
@@ -39,6 +38,7 @@
 /**********************************************************
  * Defines
  *********************************************************/
+
 #define SL_SIMPLE_BUTTON_MODE_POLL               0U   ///< BUTTON input capture using polling
 #define SL_SIMPLE_BUTTON_MODE_POLL_AND_DEBOUNCE  1U   ///< BUTTON input capture using polling and debouncing
 #define SL_SIMPLE_BUTTON_MODE_INTERRUPT          2U   ///< BUTTON input capture using interrupt
@@ -134,16 +134,8 @@ public:
      */
     static void OnIdentifyStop(Identify * identify);
 
-    void PostLightActionRequest(int32_t aActor, LightingManager::Action_t aAction);
-
 private:
     static AppTask sAppTask;
-
-    static void ActionInitiated(LightingManager::Action_t aAction, int32_t aActor);
-    static void ActionCompleted(LightingManager::Action_t aAction);
-    static void LightActionEventHandler(AppEvent * aEvent);
-
-    static void UpdateClusterState(intptr_t context);
 
     /**
      * @brief AppTask initialisation function

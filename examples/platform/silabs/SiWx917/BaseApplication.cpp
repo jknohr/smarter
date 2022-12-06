@@ -303,6 +303,59 @@ void BaseApplication::LightEventHandler()
     //
     // Otherwise, blink the LED ON for a very short time.
 }
+void BaseApplication::ButtonHandler(AppEvent * aEvent)
+{
+    // To trigger software update: press the APP_FUNCTION_BUTTON button briefly (<
+    // FACTORY_RESET_TRIGGER_TIMEOUT) To initiate factory reset: press the
+    // APP_FUNCTION_BUTTON for FACTORY_RESET_TRIGGER_TIMEOUT +
+    // FACTORY_RESET_CANCEL_WINDOW_TIMEOUT All LEDs start blinking after
+    // FACTORY_RESET_TRIGGER_TIMEOUT to signal factory reset has been initiated.
+    // To cancel factory reset: release the APP_FUNCTION_BUTTON once all LEDs
+    // start blinking within the FACTORY_RESET_CANCEL_WINDOW_TIMEOUT
+    if (aEvent->ButtonEvent.Action == SL_SIMPLE_BUTTON_PRESSED)
+    {
+        if (!mFunctionTimerActive && mFunction == kFunction_NoneSelected)
+        {
+            StartFunctionTimer(FACTORY_RESET_TRIGGER_TIMEOUT);
+            mFunction = kFunction_StartBleAdv;
+        }
+    }
+    else
+    {
+        // If the button was released before factory reset got initiated, start BLE advertissement in fast mode
+        if (mFunctionTimerActive && mFunction == kFunction_StartBleAdv)
+        {
+            CancelFunctionTimer();
+            mFunction = kFunction_NoneSelected;
+
+
+#ifdef SL_WIFI
+            if (!ConnectivityMgr().IsWiFiStationProvisioned())
+#else
+            if (!ConnectivityMgr().IsThreadProvisioned())
+#endif /* !SL_WIFI */
+            {
+                // Enable BLE advertisements
+                ConnectivityMgr().SetBLEAdvertisingEnabled(true);
+                ConnectivityMgr().SetBLEAdvertisingMode(ConnectivityMgr().kFastAdvertising);
+            }
+            else { SILABS_LOG("Network is already provisioned, Ble advertissement not enabled"); }
+        }
+        else if (mFunctionTimerActive && mFunction == kFunction_FactoryReset)
+        {
+            CancelFunctionTimer();
+
+#if CHIP_DEVICE_CONFIG_ENABLE_SED == 1
+            StopStatusLEDTimer();
+#endif
+
+            // Change the function to none selected since factory reset has been
+            // canceled.
+            mFunction = kFunction_NoneSelected;
+            SILABS_LOG("Factory Reset has been Canceled");
+        }
+    }
+}
 
 void BaseApplication::CancelFunctionTimer()
 {

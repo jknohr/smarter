@@ -86,6 +86,50 @@ int soc_pll_config(void)
 
 /*==============================================*/
 /**
+ * @fn           void RSI_Wakeupsw_config()
+ * @brief        This function Initializes the platform
+ * @param[in]    none 
+ * @param[out]   none
+ * @return       none
+ * @section description
+ * This function initializes the platform
+ *
+ */
+void RSI_Wakeupsw_config(void)
+{
+  /*Configure the NPSS GPIO mode to wake up  */
+  RSI_NPSSGPIO_SetPinMux(NPSS_GPIO_2, NPSSGPIO_PIN_MUX_MODE2);
+
+  /*Configure the NPSS GPIO direction to input */
+  RSI_NPSSGPIO_SetDir(NPSS_GPIO_2, NPSS_GPIO_DIR_INPUT);
+
+  /*Configure the NPSS GPIO interrupt polarity */
+  RSI_NPSSGPIO_SetPolarity(NPSS_GPIO_2, NPSS_GPIO_INTR_HIGH);
+
+  /*Enable the REN*/
+  RSI_NPSSGPIO_InputBufferEn(NPSS_GPIO_2, 1);
+
+  /* Set the GPIO to wake from deep sleep */
+  RSI_NPSSGPIO_SetWkpGpio(NPSS_GPIO_2_INTR);
+
+  /* Un mask the NPSS GPIO interrupt*/
+  RSI_NPSSGPIO_IntrUnMask(NPSS_GPIO_2_INTR);
+
+  /*Select wake up sources */
+  RSI_PS_SetWkpSources(GPIO_BASED_WAKEUP);
+
+  /* clear NPSS GPIO interrupt*/
+  RSI_NPSSGPIO_ClrIntr(NPSS_GPIO_2_INTR);
+
+  /*Enable the NPSS GPIO interrupt slot*/
+  NVIC_EnableIRQ(NPSS_TO_MCU_GPIO_INTR_IRQn);
+
+  NVIC_SetPriority(NPSS_TO_MCU_GPIO_INTR_IRQn, 7);
+}
+
+
+/*==============================================*/
+/**
  * @fn           void rsi_hal_board_init()
  * @brief        This function Initializes the platform
  * @param[in]    none 
@@ -97,7 +141,6 @@ int soc_pll_config(void)
  */
 void rsi_hal_board_init(void)
 {
-  SystemCoreClockUpdate();
 
   /* configure clock for SiWx917 SoC */
   soc_pll_config();
@@ -111,4 +154,6 @@ void rsi_hal_board_init(void)
 #ifdef DEBUG_UART
   DEBUGINIT();
 #endif
+
+
 }

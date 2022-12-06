@@ -275,7 +275,7 @@ void ConfigurationManagerImpl::DoFactoryReset(intptr_t arg)
 {
     CHIP_ERROR err;
 
-    ChipLogProgress(DeviceLayer, "Performing factory reset");
+    ChipLogProgress(DeviceLayer, "Performing factory reset   !!!!");
 
     err = SILABSConfig::FactoryResetConfig();
     if (err != CHIP_NO_ERROR)

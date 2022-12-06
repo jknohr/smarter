@@ -21,21 +21,17 @@
 
 #include "AppConfig.h"
 #include "init_ccpPlatform.h"
-
 #include <DeviceInfoProviderImpl.h>
 #include <app/server/Server.h>
 #include <credentials/DeviceAttestationCredsProvider.h>
 #include <matter_config.h>
-#ifdef SI917_ATTESTATION_CREDENTIALS
+#ifdef EFR32_ATTESTATION_CREDENTIALS
 #include <examples/platform/silabs/SilabsDeviceAttestationCreds.h>
 #else
 #include <credentials/examples/DeviceAttestationCredsExample.h>
 #endif
 
-#include "rsi_board.h"
-#include "rsi_chip.h"
-#define BLE_DEV_NAME "SiLabs-Light"
-
+#define BLE_DEV_NAME "SiLabs-Door-Lock"
 extern "C" void sl_button_on_change();
 
 using namespace ::chip;
@@ -54,27 +50,25 @@ static chip::DeviceLayer::DeviceInfoProviderImpl gExampleDeviceInfoProvider;
 int main(void)
 {
     init_ccpPlatform();
-    if (SI917MatterConfig::InitMatter(BLE_DEV_NAME) != CHIP_NO_ERROR) {
+	
+    if (SI917MatterConfig::InitMatter(BLE_DEV_NAME) != CHIP_NO_ERROR)
         appError(CHIP_ERROR_INTERNAL);
-    }
 
-    gExampleDeviceInfoProvider.SetStorageDelegate(&chip::Server::GetInstance().GetPersistentStorage());
+    gExampleDeviceInfoProvider.SetStorageDelegate(&Server::GetInstance().GetPersistentStorage());
     chip::DeviceLayer::SetDeviceInfoProvider(&gExampleDeviceInfoProvider);
 
     chip::DeviceLayer::PlatformMgr().LockChipStack();
     // Initialize device attestation config
 #ifdef SI917_ATTESTATION_CREDENTIALS
-    SetDeviceAttestationCredentialsProvider(SILABS::GetSILABSDacProvider());
+    SetDeviceAttestationCredentialsProvider(SI917::GetSI917DacProvider());
 #else
     SetDeviceAttestationCredentialsProvider(Examples::GetExampleDACProvider());
 #endif
     chip::DeviceLayer::PlatformMgr().UnlockChipStack();
 
     SILABS_LOG("Starting App Task");
-    if (AppTask::GetAppTask().StartAppTask() != CHIP_NO_ERROR) {
+    if (AppTask::GetAppTask().StartAppTask() != CHIP_NO_ERROR)
         appError(CHIP_ERROR_INTERNAL);
-    }
-
 
     SILABS_LOG("Starting FreeRTOS scheduler");
     vTaskStartScheduler();
@@ -87,5 +81,5 @@ int main(void)
 
 void sl_button_on_change()
 {
-    AppTask::GetAppTask().ButtonEventHandler(APP_LIGHT_SWITCH, SL_SIMPLE_BUTTON_PRESSED);
+    AppTask::GetAppTask().ButtonEventHandler(APP_FUNCTION_BUTTON, SL_SIMPLE_BUTTON_PRESSED);
 }

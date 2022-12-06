@@ -17,6 +17,7 @@
 
 #include "rsi_driver.h"
 #include "rsi_m4.h"
+#include "rsi_chip.h"
 #include "rsi_board.h"
 #ifdef COMMON_FLASH_EN
 #include "rsi_power_save.h"
@@ -24,6 +25,7 @@
 
 rsi_m4ta_desc_t tx_desc[2];
 rsi_m4ta_desc_t rx_desc[2];
+void sl_button_on_change( void );
 
 uint32_t NVIC_GetIRQEnable(IRQn_Type IRQn)
 {
@@ -62,6 +64,14 @@ void rsi_assertion(uint16_t assertion_val, const char *string)
 void IRQ074_Handler(void)
 {
   ROM_WL_rsi_m4_interrupt_isr(global_cb_p);
+}
+
+void IRQ021_Handler(void)
+{
+  /* clear NPSS GPIO interrupt*/
+  RSI_NPSSGPIO_ClrIntr(NPSS_GPIO_2_INTR);
+
+  sl_button_on_change();
 }
 
 /*==============================================*/

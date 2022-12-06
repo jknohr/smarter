@@ -17,31 +17,45 @@
  *    limitations under the License.
  */
 
+/**********************************************************
+ * Includes
+ *********************************************************/
+
 #include "AppTask.h"
 #include "AppConfig.h"
 #include "AppEvent.h"
+#include "binding-handler.h"
 
+#ifdef ENABLE_WSTK_LEDS
+#include "LEDWidget.h"
+#endif // ENABLE_WSTK_LEDS
 
+#ifdef DISPLAY_ENABLED
+#include "lcd.h"
+#ifdef QR_CODE_ENABLED
+#include "qrcodegen.h"
+#endif // QR_CODE_ENABLED
+#endif // DISPLAY_ENABLED
 
 #include <app-common/zap-generated/attribute-id.h>
 #include <app-common/zap-generated/attribute-type.h>
 #include <app-common/zap-generated/cluster-id.h>
-#include <app/clusters/identify-server/identify-server.h>
-#include <app/clusters/on-off-server/on-off-server.h>
 #include <app/server/OnboardingCodesUtil.h>
 #include <app/server/Server.h>
 #include <app/util/attribute-storage.h>
-
 #include <assert.h>
-
+#include <lib/support/CodeUtils.h>
+#include <platform/CHIPDeviceLayer.h>
 #include <setup_payload/QRCodeSetupPayloadGenerator.h>
 #include <setup_payload/SetupPayload.h>
 
-#include <lib/support/CodeUtils.h>
+#include <app/clusters/identify-server/identify-server.h>
 
-#include <platform/CHIPDeviceLayer.h>
+/**********************************************************
+ * Defines and Constants
+ *********************************************************/
 
-
+#define SYSTEM_STATE_LED &sl_led_led0
 
 #define APP_FUNCTION_BUTTON &sl_button_btn0
 #define APP_LIGHT_SWITCH &sl_button_btn1
@@ -51,9 +65,13 @@ using namespace ::chip::DeviceLayer;
 
 namespace {
 
-
+/**********************************************************
+ * Variable declarations
+ *********************************************************/
 
 EmberAfIdentifyEffectIdentifier sIdentifyEffect = EMBER_ZCL_IDENTIFY_EFFECT_IDENTIFIER_STOP_EFFECT;
+
+bool mCurrentButtonState = false;
 
 /**********************************************************
  * Identify Callbacks
@@ -73,6 +91,7 @@ void OnTriggerIdentifyEffectCompleted(chip::System::Layer * systemLayer, void * 
 
 void OnTriggerIdentifyEffect(Identify * identify)
 {
+    ChipLogProgress(Zcl, "Trigger Identify Effect");
     sIdentifyEffect = identify->mCurrentEffectIdentifier;
 
     if (identify->mCurrentEffectIdentifier == EMBER_ZCL_IDENTIFY_EFFECT_IDENTIFIER_CHANNEL_CHANGE)
@@ -121,13 +140,17 @@ Identify gIdentify = {
 using namespace chip::TLV;
 using namespace ::chip::DeviceLayer;
 
+/**********************************************************
+ * AppTask Definitions
+ *********************************************************/
+
 AppTask AppTask::sAppTask;
 
 CHIP_ERROR AppTask::Init()
 {
     CHIP_ERROR err = CHIP_NO_ERROR;
 #ifdef DISPLAY_ENABLED
-    GetLCD().Init((uint8_t *) "Lighting-App");
+    GetLCD().Init((uint8_t *) "Light Switch");
 #endif
 
     err = BaseApplication::Init(&gIdentify);
@@ -137,16 +160,13 @@ CHIP_ERROR AppTask::Init()
         appError(err);
     }
 
-/* TODO 
-    err = LightMgr().Init();
+    // Configure Bindings - TODO ERROR PROCESSING
+    err = InitBindingHandler();
     if (err != CHIP_NO_ERROR)
     {
-        SILABS_LOG("LightMgr::Init() failed");
+        SILABS_LOG("InitBindingHandler() failed");
         appError(err);
     }
-
-    LightMgr().SetCallbacks(ActionInitiated, ActionCompleted);
-*/
 
     return err;
 }
@@ -160,7 +180,7 @@ void AppTask::AppTaskMain(void * pvParameter)
 {
     AppEvent event;
     QueueHandle_t sAppEventQueue = *(static_cast<QueueHandle_t *>(pvParameter));
-    SILABS_LOG("AppTaskMain");
+
     CHIP_ERROR err = sAppTask.Init();
     if (err != CHIP_NO_ERROR)
     {
@@ -173,10 +193,9 @@ void AppTask::AppTaskMain(void * pvParameter)
 #endif
 
     SILABS_LOG("App Task started");
-
     while (true)
     {
-        BaseType_t eventReceived = xQueueReceive(sAppEventQueue, &event, pdMS_TO_TICKS(10));
+        BaseType_t eventReceived = xQueueReceive(sAppEventQueue, &event, portMAX_DELAY);
         while (eventReceived == pdTRUE)
         {
             sAppTask.DispatchEvent(&event);
@@ -203,36 +222,29 @@ void AppTask::OnIdentifyStop(Identify * identify)
 #endif
 }
 
-void AppTask::LightActionEventHandler(AppEvent * aEvent)
+void AppTask::SwitchActionEventHandler(AppEvent * aEvent)
 {
-    bool initiated = false;
-    LightingManager::Action_t action;
-    int32_t actor;
-    CHIP_ERROR err = CHIP_NO_ERROR;
+    if (aEvent->Type == AppEvent::kEventType_Button)
+    {
+        BindingCommandData * data = Platform::New<BindingCommandData>();
+        data->clusterId           = chip::app::Clusters::OnOff::Id;
 
-    if (aEvent->Type == AppEvent::kEventType_Light)
-    {
-        action = static_cast<LightingManager::Action_t>(aEvent->LightEvent.Action);
-        actor  = aEvent->LightEvent.Actor;
-    }
-    else if (aEvent->Type == AppEvent::kEventType_Button)
-    {
-        action = (LightMgr().IsLightOn()) ? LightingManager::OFF_ACTION : LightingManager::ON_ACTION;
-        actor  = AppEvent::kEventType_Button;
-    }
-    else
-    {
-        err = APP_ERROR_UNHANDLED_EVENT;
-    }
-
-    if (err == CHIP_NO_ERROR)
-    {
-        initiated = LightMgr().InitiateAction(actor, action);
-
-        if (!initiated)
+        if (mCurrentButtonState)
         {
-            SILABS_LOG("Action is already in progress or active.");
+            mCurrentButtonState = false;
+            data->commandId     = chip::app::Clusters::OnOff::Commands::Off::Id;
         }
+        else
+        {
+            data->commandId     = chip::app::Clusters::OnOff::Commands::On::Id;
+            mCurrentButtonState = true;
+        }
+
+#ifdef DISPLAY_ENABLED
+        sAppTask.GetLCD().WriteDemoUI(mCurrentButtonState);
+#endif
+
+        DeviceLayer::PlatformMgr().ScheduleWork(SwitchWorkerFunction, reinterpret_cast<intptr_t>(data));
     }
 }
 
@@ -247,66 +259,6 @@ void AppTask::ButtonEventHandler(const sl_button_t * buttonHandle, uint8_t btnAc
     button_event.Type               = AppEvent::kEventType_Button;
     button_event.ButtonEvent.Action = btnAction;
 
-    SILABS_LOG("### button 1 Pressed ### ");
-    button_event.Handler = BaseApplication::ButtonHandler;
+    button_event.Handler = SwitchActionEventHandler;
     sAppTask.PostEvent(&button_event);
-
-}
-
-void AppTask::ActionInitiated(LightingManager::Action_t aAction, int32_t aActor)
-{
-    // Action initiated, update the light led
-    bool lightOn = aAction == LightingManager::ON_ACTION;
-    SILABS_LOG("Turning light %s", (lightOn) ? "On" : "Off")
-
-#ifdef DISPLAY_ENABLED
-    sAppTask.GetLCD().WriteDemoUI(lightOn);
-#endif
-
-    if (aActor == AppEvent::kEventType_Button)
-    {
-        sAppTask.mSyncClusterToButtonAction = true;
-    }
-}
-
-void AppTask::ActionCompleted(LightingManager::Action_t aAction)
-{
-    // action has been completed bon the light
-    if (aAction == LightingManager::ON_ACTION)
-    {
-        SILABS_LOG("Light ON")
-    }
-    else if (aAction == LightingManager::OFF_ACTION)
-    {
-        SILABS_LOG("Light OFF")
-    }
-
-    if (sAppTask.mSyncClusterToButtonAction)
-    {
-        chip::DeviceLayer::PlatformMgr().ScheduleWork(UpdateClusterState, reinterpret_cast<intptr_t>(nullptr));
-        sAppTask.mSyncClusterToButtonAction = false;
-    }
-}
-
-void AppTask::PostLightActionRequest(int32_t aActor, LightingManager::Action_t aAction)
-{
-    AppEvent event;
-    event.Type              = AppEvent::kEventType_Light;
-    event.LightEvent.Actor  = aActor;
-    event.LightEvent.Action = aAction;
-    event.Handler           = LightActionEventHandler;
-    PostEvent(&event);
-}
-
-void AppTask::UpdateClusterState(intptr_t context)
-{
-    uint8_t newValue = LightMgr().IsLightOn();
-
-    // write the new on/off value
-    EmberAfStatus status = OnOffServer::Instance().setOnOffValue(1, newValue, false);
-
-    if (status != EMBER_ZCL_STATUS_SUCCESS)
-    {
-        SILABS_LOG("ERR: updating on/off %x", status);
-    }
 }

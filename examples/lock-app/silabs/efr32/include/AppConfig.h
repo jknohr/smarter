@@ -17,46 +17,30 @@
  *    limitations under the License.
  */
 
-#include "AppConfig.h"
-#include <lib/support/CHIPPlatformMemory.h>
-#include <platform/CHIPDeviceLayer.h>
+#pragma once
 
+// ---- Door lock Example App Config ----
+
+#define APP_TASK_NAME "Lock"
+
+// Time it takes in ms for the simulated actuator to move from one
+// state to another.
+#define ACTUATOR_MOVEMENT_PERIOS_MS 10
+
+// EFR Logging
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include <assert.h>
-#include <string.h>
 
-#include "rsi_pll.h"
-#include "rsi_board.h"
-#include "system_RS1xxxx.h"
-#include "rsi_rom_clks.h"
+void silabsInitLog(void);
 
-#include <mbedtls/platform.h>
-
-#include "init_ccpPlatform.h"
-
-extern "C" void RSI_Board_Init(void);
-
-void initAntenna(void);
-
-/* GPIO button config */
-void RSI_Wakeupsw_config(void);
-
-void init_ccpPlatform(void)
-{
-    SystemCoreClockUpdate();
-
-    RSI_Board_Init();
-
-    RSI_Wakeupsw_config();
-
-#if SILABS_LOG_ENABLED
-    silabsInitLog();
-#endif
-
-}
+void efr32Log(const char * aFormat, ...);
+#define SILABS_LOG(...) efr32Log(__VA_ARGS__);
+void appError(int err);
 
 #ifdef __cplusplus
 }
+
+#include <lib/core/CHIPError.h>
+void appError(CHIP_ERROR error);
 #endif

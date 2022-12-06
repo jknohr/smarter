@@ -189,12 +189,9 @@ See http://www.FreeRTOS.org/RTOS-Cortex-M3-M4.html. */
 #define configSUPPORT_STATIC_ALLOCATION (1)
 #define configSUPPORT_DYNAMIC_ALLOCATION (1)
 
+/* Maintain the HEAP size similer to EFR32 */
 #ifndef configTOTAL_HEAP_SIZE
-#ifdef SL_WIFI
-#define configTOTAL_HEAP_SIZE ((size_t)(50 * 1024))
-#else
-#define configTOTAL_HEAP_SIZE ((size_t)(20 * 1024))
-#endif
+#define configTOTAL_HEAP_SIZE ((size_t)(34 * 1024))
 #endif // configTOTAL_HEAP_SIZE
 
 /* Optional functions - most linkers will remove unused functions anyway. */

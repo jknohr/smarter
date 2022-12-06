@@ -17,11 +17,10 @@
  *    limitations under the License.
  */
 
-#include <AppTask.h>
+#include <AppConfig.h>
+#include <WindowApp.h>
 
-#include "AppConfig.h"
 #include "init_ccpPlatform.h"
-
 #include <DeviceInfoProviderImpl.h>
 #include <app/server/Server.h>
 #include <credentials/DeviceAttestationCredsProvider.h>
@@ -32,14 +31,7 @@
 #include <credentials/examples/DeviceAttestationCredsExample.h>
 #endif
 
-#include "rsi_board.h"
-#include "rsi_chip.h"
-#define BLE_DEV_NAME "SiLabs-Light"
-
-extern "C" void sl_button_on_change();
-
-using namespace ::chip;
-using namespace ::chip::Inet;
+#define BLE_DEV_NAME "Silabs-Window"
 using namespace ::chip::DeviceLayer;
 using namespace ::chip::Credentials;
 
@@ -53,15 +45,20 @@ static chip::DeviceLayer::DeviceInfoProviderImpl gExampleDeviceInfoProvider;
 // ================================================================================
 int main(void)
 {
+    CHIP_ERROR err = CHIP_NO_ERROR;
+
     init_ccpPlatform();
-    if (SI917MatterConfig::InitMatter(BLE_DEV_NAME) != CHIP_NO_ERROR) {
+    if (SI917MatterConfig::InitMatter(BLE_DEV_NAME) != CHIP_NO_ERROR)
         appError(CHIP_ERROR_INTERNAL);
-    }
 
     gExampleDeviceInfoProvider.SetStorageDelegate(&chip::Server::GetInstance().GetPersistentStorage());
     chip::DeviceLayer::SetDeviceInfoProvider(&gExampleDeviceInfoProvider);
 
+    WindowApp & app = WindowApp::Instance();
+
+    SILABS_LOG("Starting App");
     chip::DeviceLayer::PlatformMgr().LockChipStack();
+    err = app.Init();
     // Initialize device attestation config
 #ifdef SI917_ATTESTATION_CREDENTIALS
     SetDeviceAttestationCredentialsProvider(SILABS::GetSILABSDacProvider());
@@ -70,22 +67,19 @@ int main(void)
 #endif
     chip::DeviceLayer::PlatformMgr().UnlockChipStack();
 
-    SILABS_LOG("Starting App Task");
-    if (AppTask::GetAppTask().StartAppTask() != CHIP_NO_ERROR) {
-        appError(CHIP_ERROR_INTERNAL);
+    if (err != CHIP_NO_ERROR)
+    {
+        SILABS_LOG("App Init failed");
+        appError(err);
     }
 
+    err = app.Start();
+    if (err != CHIP_NO_ERROR)
+    {
+        SILABS_LOG("App Start failed");
+        appError(err);
+    }
 
-    SILABS_LOG("Starting FreeRTOS scheduler");
-    vTaskStartScheduler();
-
-    // Should never get here.
-    chip::Platform::MemoryShutdown();
-    SILABS_LOG("vTaskStartScheduler() failed");
-    appError(CHIP_ERROR_INTERNAL);
-}
-
-void sl_button_on_change()
-{
-    AppTask::GetAppTask().ButtonEventHandler(APP_LIGHT_SWITCH, SL_SIMPLE_BUTTON_PRESSED);
+    app.Finish();
+    return err.AsInteger();
 }

@@ -21,7 +21,6 @@
 
 #include "AppConfig.h"
 #include "init_ccpPlatform.h"
-
 #include <DeviceInfoProviderImpl.h>
 #include <app/server/Server.h>
 #include <credentials/DeviceAttestationCredsProvider.h>
@@ -34,7 +33,8 @@
 
 #include "rsi_board.h"
 #include "rsi_chip.h"
-#define BLE_DEV_NAME "SiLabs-Light"
+
+#define BLE_DEV_NAME "SiLabs-Light-Switch"
 
 extern "C" void sl_button_on_change();
 
@@ -58,13 +58,13 @@ int main(void)
         appError(CHIP_ERROR_INTERNAL);
     }
 
-    gExampleDeviceInfoProvider.SetStorageDelegate(&chip::Server::GetInstance().GetPersistentStorage());
+    gExampleDeviceInfoProvider.SetStorageDelegate(&Server::GetInstance().GetPersistentStorage());
     chip::DeviceLayer::SetDeviceInfoProvider(&gExampleDeviceInfoProvider);
 
     chip::DeviceLayer::PlatformMgr().LockChipStack();
     // Initialize device attestation config
 #ifdef SI917_ATTESTATION_CREDENTIALS
-    SetDeviceAttestationCredentialsProvider(SILABS::GetSILABSDacProvider());
+    SetDeviceAttestationCredentialsProvider(SIWx917::GetSIWx917DacProvider());
 #else
     SetDeviceAttestationCredentialsProvider(Examples::GetExampleDACProvider());
 #endif
@@ -74,7 +74,6 @@ int main(void)
     if (AppTask::GetAppTask().StartAppTask() != CHIP_NO_ERROR) {
         appError(CHIP_ERROR_INTERNAL);
     }
-
 
     SILABS_LOG("Starting FreeRTOS scheduler");
     vTaskStartScheduler();
