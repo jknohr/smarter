@@ -143,6 +143,12 @@ efr32_sdk("sdk") {
     "${examples_common_plat_dir}",
   ]
 
+  if (use_rs911x) {
+    include_dirs += [
+      "${chip_root}/src/platform/silabs/EFR32/rs911x",
+    ]
+  }
+
   defines = [
     "BOARD_ID=${silabs_board}",
     "OTA_PERIODIC_TIMEOUT=${OTA_periodic_query_timeout}",

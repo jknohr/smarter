@@ -97,6 +97,7 @@ if (silabs_board == "BRD4166A" || silabs_board == "BRD2601B" ||
 }
 
 # WiFi settings
+defines = []
 if (chip_enable_wifi) {
   # disabling LCD for MG24 for wifi
   if (silabs_board == "BRD4186A" || silabs_board == "BRD4187A") {
@@ -105,7 +106,7 @@ if (chip_enable_wifi) {
   }
 
   if (ssid != ""){
-    defines = [
+    defines += [
       "CHIP_ONNETWORK_PAIRING = 1",
       "CHIP_WIFI_SSID = $ssid",
     ]

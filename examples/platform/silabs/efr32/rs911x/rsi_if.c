@@ -44,7 +44,6 @@
 #include "rsi_wlan.h"
 #include "rsi_wlan_apis.h"
 #include "rsi_wlan_config.h"
-//#include "rsi_wlan_non_rom.h"
 #include "rsi_bootup_config.h"
 #include "rsi_error.h"
 
@@ -66,6 +65,10 @@ bool hasNotifiedIPV6 = false;
 bool hasNotifiedIPV4 = false;
 #endif /* CHIP_DEVICE_CONFIG_ENABLE_IPV4 */
 bool hasNotifiedWifiConnectivity = false;
+
+#if (RS91X_BLE_ENABLE)
+extern rsi_semaphore_handle_t sl_ble_init_sem;
+#endif
 
 /*
  * This file implements the interface to the RSI SAPIs
@@ -297,15 +300,17 @@ static int32_t wfx_rsi_init(void)
     extern void rsi_hal_board_init(void);
 
     WFX_RSI_LOG("%s: starting(HEAP_SZ = %d)", __func__, SL_HEAP_SIZE);
+
     //! Driver initialization
     status = rsi_driver_init(wfx_rsi_drv_buf, WFX_RSI_BUF_SZ);
     if ((status < RSI_DRIVER_STATUS) || (status > WFX_RSI_BUF_SZ))
     {
-        WFX_RSI_LOG("%s: error: RSI drv init failed with status: %02x", __func__, status);
+        WFX_RSI_LOG("%s: error: RSI Driver initialization failed with status: %02x", __func__, status);
         return status;
     }
 
     WFX_RSI_LOG("%s: rsi_device_init", __func__);
+
     /* ! Redpine module intialisation */
     if ((status = rsi_device_init(LOAD_NWP_FW)) != RSI_SUCCESS)
     {
@@ -313,6 +318,7 @@ static int32_t wfx_rsi_init(void)
         return status;
     }
     WFX_RSI_LOG("%s: start wireless drv task", __func__);
+
     /*
      * Create the driver task
      */
@@ -320,19 +326,20 @@ static int32_t wfx_rsi_init(void)
                                          WLAN_TASK_PRIORITY, driverRsiTaskStack, &driverRsiTaskBuffer);
     if (NULL == wfx_rsi.drv_task)
     {
-        WFX_RSI_LOG("%s: error: rsi_wireless_driver_task failed", __func__);
+        WFX_RSI_LOG("%s: error: Create the driver task failed", __func__);
         return RSI_ERROR_INVALID_PARAM;
     }
 
     /* Initialize WiSeConnect or Module features. */
     WFX_RSI_LOG("%s: rsi_wireless_init", __func__);
-    if ((status = rsi_wireless_init(OPER_MODE_0, COEX_MODE_0)) != RSI_SUCCESS)
+    if ((status = rsi_wireless_init(OPER_MODE_0, RSI_OPERMODE_WLAN_BLE)) != RSI_SUCCESS)
     {
-        WFX_RSI_LOG("%s: error: rsi_wireless_init failed with status: %02x", __func__, status);
+        WFX_RSI_LOG("%s: error: Initialize WiSeConnect failed with status: %02x", __func__, status);
         return status;
     }
 
     WFX_RSI_LOG("%s: get FW version..", __func__);
+
     /*
      * Get the MAC and other info to let the user know about it.
      */
@@ -382,6 +389,11 @@ static int32_t wfx_rsi_init(void)
     }
 #endif
     wfx_rsi.dev_state |= WFX_RSI_ST_DEV_READY;
+
+#if (RS91X_BLE_ENABLE)
+     rsi_semaphore_post(&sl_ble_init_sem);
+#endif
+
     WFX_RSI_LOG("%s: RSI: OK", __func__);
     return RSI_SUCCESS;
 }
@@ -518,6 +530,8 @@ static void wfx_rsi_do_join(void)
 void wfx_rsi_task(void * arg)
 {
     EventBits_t flags;
+    WFX_RSI_LOG("%s: starting ", __func__);
+
 #ifndef RS911X_SOCKETS
     TickType_t last_dhcp_poll, now;
     struct netif * sta_netif;

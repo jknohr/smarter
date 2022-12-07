@@ -39,7 +39,6 @@
 #include "rsi_wlan.h"
 #include "rsi_wlan_apis.h"
 #include "rsi_wlan_config.h"
-//#include "rsi_wlan_non_rom.h"
 #include "rsi_bootup_config.h"
 
 #include "dhcp_client.h"
@@ -70,6 +69,7 @@ static uint8_t wfx_rsi_drv_buf[WFX_RSI_BUF_SZ];
 wfx_wifi_scan_ext_t * temp_reset;
 uint8_t security;
 
+extern rsi_semaphore_handle_t sl_ble_init_sem;
 /******************************************************************
  * @fn   int32_t wfx_rsi_get_ap_info(wfx_wifi_scan_result_t *ap)
  * @brief
@@ -275,7 +275,7 @@ static int32_t wfx_rsi_init(void)
 
     /* Initialize WiSeConnect or Module features. */
     WFX_RSI_LOG("%s: rsi_wireless_init", __func__);
-    if ((status = rsi_wireless_init(OPER_MODE_0, COEX_MODE_0)) != RSI_SUCCESS)
+    if ((status = rsi_wireless_init(OPER_MODE_0, RSI_OPERMODE_WLAN_BLE)) != RSI_SUCCESS)
     {
         WFX_RSI_LOG("%s: error: rsi_wireless_init failed with status: %02x", __func__, status);
         return status;
@@ -332,6 +332,7 @@ static int32_t wfx_rsi_init(void)
 #endif
     wfx_rsi.dev_state |= WFX_RSI_ST_DEV_READY;
     WFX_RSI_LOG("%s: RSI: OK", __func__);
+    rsi_semaphore_post(&sl_ble_init_sem);
     return RSI_SUCCESS;
 }
 

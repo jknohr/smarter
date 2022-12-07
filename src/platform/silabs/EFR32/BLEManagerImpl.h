@@ -27,9 +27,23 @@
 
 #include "FreeRTOS.h"
 #include "gatt_db.h"
+#include "timers.h"
+#ifdef RS91X_BLE_ENABLE
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+#include <rsi_ble.h>
+#include <rsi_ble_apis.h>
+#include <rsi_bt_common.h>
+#ifdef __cplusplus
+}
+#endif
+
+#else
 #include "sl_bgapi.h"
 #include "sl_bt_api.h"
-#include "timers.h"
+#endif
 
 namespace chip {
 namespace DeviceLayer {
@@ -42,6 +56,8 @@ using namespace chip::Ble;
  */
 class BLEManagerImpl final : public BLEManager, private BleLayer, private BlePlatformDelegate, private BleApplicationDelegate
 {
+public:
+    void HandleBootEvent(void);
     // Allow the BLEManager interface class to delegate method calls to
     // the implementation methods provided by this class.
     friend BLEManager;
@@ -128,37 +144,51 @@ class BLEManagerImpl final : public BLEManager, private BleLayer, private BlePla
 #if CHIP_ENABLE_ADDITIONAL_DATA_ADVERTISING
     PacketBufferHandle c3AdditionalDataBufferHandle;
 #endif
-
-    CHIP_ERROR MapBLEError(int bleErr);
-    void DriveBLEState(void);
-    CHIP_ERROR ConfigureAdvertisingData(void);
+public:
     CHIP_ERROR StartAdvertising(void);
+    void DriveBLEState(void);
+    CHIP_ERROR MapBLEError(int bleErr);
+    CHIP_ERROR ConfigureAdvertisingData(void);
     CHIP_ERROR StopAdvertising(void);
 #if CHIP_ENABLE_ADDITIONAL_DATA_ADVERTISING
     CHIP_ERROR EncodeAdditionalDataTlv();
 #endif
+
+#ifdef RS91X_BLE_ENABLE
+    void HandleConnectEvent(void);
+    void HandleConnectionCloseEvent(uint16_t reason);
+    void HandleWriteEvent(rsi_ble_event_write_t evt);
+    void UpdateMtu(rsi_ble_event_mtu_t evt);
+    void HandleTXCharCCCDWrite(rsi_ble_event_write_t * evt);
+    void HandleSoftTimerEvent(void);
+    void HandleRXCharWrite(rsi_ble_event_write_t * evt);
+    static void HandleC3ReadRequest(void);
+
+#else // if EFR32 BLE is used
+
     void UpdateMtu(volatile sl_bt_msg_t * evt);
-    void HandleBootEvent(void);
     void HandleConnectEvent(volatile sl_bt_msg_t * evt);
     void HandleConnectionCloseEvent(volatile sl_bt_msg_t * evt);
     void HandleWriteEvent(volatile sl_bt_msg_t * evt);
     void HandleTXCharCCCDWrite(volatile sl_bt_msg_t * evt);
     void HandleRXCharWrite(volatile sl_bt_msg_t * evt);
-    void HandleTxConfirmationEvent(BLE_CONNECTION_OBJECT conId);
     void HandleSoftTimerEvent(volatile sl_bt_msg_t * evt);
-    bool RemoveConnection(uint8_t connectionHandle);
-    void AddConnection(uint8_t connectionHandle, uint8_t bondingHandle);
-    void StartBleAdvTimeoutTimer(uint32_t aTimeoutInMs);
-    void CancelBleAdvTimeoutTimer(void);
-    CHIPoBLEConState * GetConnectionState(uint8_t conId, bool allocate = false);
-    static void DriveBLEState(intptr_t arg);
     static void bluetoothStackEventHandler(void * p_arg);
-    static void BleAdvTimeoutHandler(TimerHandle_t xTimer);
-    uint8_t GetTimerHandle(uint8_t connectionHandle, bool allocate);
 
 #if CHIP_ENABLE_ADDITIONAL_DATA_ADVERTISING
     static void HandleC3ReadRequest(volatile sl_bt_msg_t * evt);
 #endif
+#endif // RS91X_BLE_ENABLE
+
+    static void DriveBLEState(intptr_t arg);
+    static void BleAdvTimeoutHandler(TimerHandle_t xTimer);
+    void AddConnection(uint8_t connectionHandle, uint8_t bondingHandle);
+    bool RemoveConnection(uint8_t connectionHandle);
+    void HandleTxConfirmationEvent(BLE_CONNECTION_OBJECT conId);
+    void StartBleAdvTimeoutTimer(uint32_t aTimeoutInMs);
+    void CancelBleAdvTimeoutTimer(void);
+    CHIPoBLEConState * GetConnectionState(uint8_t conId, bool allocate = false);
+    uint8_t GetTimerHandle(uint8_t connectionHandle, bool allocate);
 };
 
 /**
