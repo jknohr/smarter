@@ -40,7 +40,9 @@
 #include <setup_payload/QRCodeSetupPayloadGenerator.h>
 #include <setup_payload/SetupPayload.h>
 
+#ifndef RS91X_BLE_ENABLE
 #include <platform/silabs/EFR32/freertos_bluetooth.h>
+#endif
 
 #include <lib/support/CodeUtils.h>
 

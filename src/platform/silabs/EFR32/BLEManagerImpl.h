@@ -26,7 +26,6 @@
 #if CHIP_DEVICE_CONFIG_ENABLE_CHIPOBLE
 
 #include "FreeRTOS.h"
-#include "gatt_db.h"
 #include "timers.h"
 #ifdef RS91X_BLE_ENABLE
 
@@ -41,9 +40,11 @@ extern "C" {
 #endif
 
 #else
+#include "gatt_db.h"
 #include "sl_bgapi.h"
 #include "sl_bt_api.h"
 #endif
+
 
 namespace chip {
 namespace DeviceLayer {
@@ -125,7 +126,9 @@ public:
 
     struct CHIPoBLEConState
     {
+#ifndef RS91X_BLE_ENABLE
         bd_addr address;
+#endif
         uint16_t mtu : 10;
         uint16_t allocated : 1;
         uint16_t subscribed : 1;

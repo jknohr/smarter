@@ -332,11 +332,16 @@ static int32_t wfx_rsi_init(void)
 
     /* Initialize WiSeConnect or Module features. */
     WFX_RSI_LOG("%s: rsi_wireless_init", __func__);
-    if ((status = rsi_wireless_init(OPER_MODE_0, RSI_OPERMODE_WLAN_BLE)) != RSI_SUCCESS)
-    {
+
+#if (RS91X_BLE_ENABLE)
+    if ((status = rsi_wireless_init(OPER_MODE_0, RSI_OPERMODE_WLAN_BLE)) != RSI_SUCCESS) {
+#else
+    if ((status = rsi_wireless_init(OPER_MODE_0, COEX_MODE_0)) != RSI_SUCCESS) {
+#endif
         WFX_RSI_LOG("%s: error: Initialize WiSeConnect failed with status: %02x", __func__, status);
         return status;
     }
+
 
     WFX_RSI_LOG("%s: get FW version..", __func__);
 

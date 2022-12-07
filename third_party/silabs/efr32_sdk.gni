@@ -73,13 +73,6 @@ template("efr32_sdk") {
     }
   }
 
-  use_rs911x = false
-  if (defined(invoker.use_rs911x)) {
-    if (invoker.use_rs911x) {
-      use_rs911x = true
-    }
-  }
-
   sdk_target_name = target_name
 
   config("${sdk_target_name}_config") {
@@ -147,7 +140,6 @@ template("efr32_sdk") {
       "${efr32_sdk_root}/platform/middleware/glib/dmd",
       "${efr32_sdk_root}/platform/base/hal/plugin/psstore",
       "${efr32_sdk_root}/platform/base/hal/plugin/antenna",
-      "${efr32_sdk_root}/protocol/bluetooth/inc/",
       "${efr32_sdk_root}/util/plugin/plugin-common/fem-control",
       "${efr32_sdk_root}/util/silicon_labs/silabs_core/graphics",
       "${efr32_sdk_root}/util/silicon_labs/silabs_core/memory_manager",
@@ -166,10 +158,19 @@ template("efr32_sdk") {
       "${efr32_sdk_root}/util/third_party/freertos/kernel/include",
       "${sdk_support_root}/matter/efr32/${silabs_family}/${silabs_board}/config",
       "${sdk_support_root}/matter/efr32/${silabs_family}/${silabs_board}/autogen",
-      "${chip_root}/examples/platform/silabs/efr32/rs911x",
-      "${chip_root}/examples/platform/silabs/efr32/rs911x/hal",
-      "${chip_root}/third_party/silabs/wiseconnect-wifi-bt-sdk/sapi/include",
     ]
+
+    if (chip_enable_ble_rs911x) {
+      _include_dirs += [
+        "${chip_root}/examples/platform/silabs/efr32/rs911x",
+        "${chip_root}/examples/platform/silabs/efr32/rs911x/hal",
+        "${chip_root}/third_party/silabs/wiseconnect-wifi-bt-sdk/sapi/include",
+      ]
+    } else {
+      _include_dirs += [
+        "${efr32_sdk_root}/protocol/bluetooth/inc/",
+      ]
+    }
 
     # Note that we're setting the mbedTLS and PSA configuration files through a
     # define. This means the build system by default does not pick up changes in
@@ -202,10 +203,13 @@ template("efr32_sdk") {
       "SL_COMPONENT_CATALOG_PRESENT",
       "PLATFORM_HEADER=\"platform-header.h\"",
       "USE_NVM3=1",
-
-      #"__STACK_SIZE=0",
-      "RSI_BLE_ENABLE=1",
     ]
+
+    if (chip_enable_ble_rs911x) {
+      defines += [
+        "RSI_BLE_ENABLE=1",
+      ]
+    }
 
     defines += board_defines
 
@@ -274,11 +278,16 @@ template("efr32_sdk") {
       ]
 
       libs += [
-        "${sdk_support_root}/protocol/bluetooth/lib/EFR32MG12P/GCC/binapploader.o",
-        "${sdk_support_root}/protocol/bluetooth/lib/EFR32MG12P/GCC/libbluetooth.a",
         "${sdk_support_root}/platform/radio/rail_lib/autogen/librail_release/librail_multiprotocol_efr32xg12_gcc_release.a",
         "${sdk_support_root}/platform/emdrv/nvm3/lib/libnvm3_CM4_gcc.a",
       ]
+
+      if (!chip_enable_ble_rs911x) {
+        libs += [
+          "${sdk_support_root}/protocol/bluetooth/lib/EFR32MG12P/GCC/binapploader.o",
+          "${sdk_support_root}/protocol/bluetooth/lib/EFR32MG12P/GCC/libbluetooth.a",
+        ]
+      }
 
       defines += [ "EFR32MG12" ]
     } else if (silabs_family == "efr32mg21") {
@@ -461,10 +470,6 @@ template("efr32_sdk") {
       "${efr32_sdk_root}/platform/service/token_manager/src/sl_token_manufacturing.c",
       "${efr32_sdk_root}/platform/service/udelay/src/sl_udelay.c",
       "${efr32_sdk_root}/platform/service/udelay/src/sl_udelay_armv6m_gcc.S",
-      "${efr32_sdk_root}/protocol/bluetooth/src/sl_bt_mbedtls_context.c",
-      "${efr32_sdk_root}/protocol/bluetooth/src/sl_bt_stack_init.c",
-      "${efr32_sdk_root}/protocol/bluetooth/src/sli_bt_advertiser_config.c",
-      "${efr32_sdk_root}/protocol/bluetooth/src/sli_bt_connection_config.c",
       "${efr32_sdk_root}/util/silicon_labs/silabs_core/memory_manager/sl_malloc.c",
       "${efr32_sdk_root}/util/third_party/crypto/mbedtls/library/aes.c",
       "${efr32_sdk_root}/util/third_party/crypto/mbedtls/library/aesni.c",
@@ -581,17 +586,24 @@ template("efr32_sdk") {
       "${sdk_support_root}/matter/efr32/${silabs_family}/${silabs_board}/autogen/sl_device_init_clocks.c",
       "${sdk_support_root}/matter/efr32/${silabs_family}/${silabs_board}/autogen/sl_event_handler.c",
       "${sdk_support_root}/matter/efr32/${silabs_family}/${silabs_board}/autogen/sl_simple_button_instances.c",
+
     ]
 
-    if (use_rs911x) {
+    if (chip_enable_ble_rs911x) {
       sources += [
-      "${wiseconnect_sdk_root}/sapi/bluetooth/rsi_ble_gap_apis.c",
-      "${wiseconnect_sdk_root}/sapi/bluetooth/rsi_ble_gatt_apis.c",
-      "${wiseconnect_sdk_root}/sapi/bluetooth/rsi_bt_common_apis.c",
-      "${wiseconnect_sdk_root}/sapi/driver/rsi_bt_ble.c",
+        "${wiseconnect_sdk_root}/sapi/driver/rsi_bt_ble.c",
+        "${wiseconnect_sdk_root}/sapi/bluetooth/rsi_ble_gap_apis.c",
+        "${wiseconnect_sdk_root}/sapi/bluetooth/rsi_ble_gatt_apis.c",
+        "${wiseconnect_sdk_root}/sapi/bluetooth/rsi_bt_common_apis.c",
+      ]
+    } else {
+      sources += [
+      "${efr32_sdk_root}/protocol/bluetooth/src/sl_bt_mbedtls_context.c",
+      "${efr32_sdk_root}/protocol/bluetooth/src/sl_bt_stack_init.c",
+      "${efr32_sdk_root}/protocol/bluetooth/src/sli_bt_advertiser_config.c",
+      "${efr32_sdk_root}/protocol/bluetooth/src/sli_bt_connection_config.c",
       ]
     }
-
 
     if (use_wstk_leds) {
       sources += [

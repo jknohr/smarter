@@ -540,7 +540,6 @@ CHIP_ERROR BLEManagerImpl::ConfigureAdvertisingData(void)
     uint32_t index              = 0;
     uint32_t mDeviceNameLength  = 0;
     uint8_t mDeviceIdInfoLength = 0;
-    err                         = ConfigurationMgr().GetBLEDeviceIdentificationInfo(mDeviceIdInfo);
 
     ChipLogProgress(DeviceLayer, "ConfigureAdvertisingData start");
 
@@ -549,6 +548,7 @@ CHIP_ERROR BLEManagerImpl::ConfigureAdvertisingData(void)
     memset(responseData, 0, MAX_RESPONSE_DATA_LEN);
     memset(advData, 0, MAX_ADV_DATA_LEN);
 
+    err = ConfigurationMgr().GetBLEDeviceIdentificationInfo(mDeviceIdInfo);
     SuccessOrExit(err);
 
     if (!mFlags.Has(Flags::kDeviceNameSet))
@@ -580,22 +580,8 @@ CHIP_ERROR BLEManagerImpl::ConfigureAdvertisingData(void)
     advData[index++] = ShortUUID_CHIPoBLEService[0];                                            // AD value
     advData[index++] = ShortUUID_CHIPoBLEService[1];
 
-    // TODO:: replace the hardcoded values by calling the GetBLEDeviceIdentificationInfo
-    advData[index++] = 0;   // OpCode
-    advData[index++] = 0;   // DeviceDiscriminatorAndAdvVersion []
-    advData[index++] = 15;  // DeviceDiscriminatorAndAdvVersion []
-    advData[index++] = 241; // DeviceVendorId []
-    advData[index++] = 255; // DeviceVendorId []
-    advData[index++] = 5;   // DeviceProductId[]
-    advData[index++] = 128; // DeviceProductId[]
-    advData[index++] = 0;   // AdditionalDataFlag
-
-    //! prepare advertise data //local/device name
-    advData[index++] = strlen(RSI_BLE_DEV_NAME) + 1;
-    advData[index++] = 9;
-
-    memcpy(&advData[index], RSI_BLE_DEV_NAME, strlen(RSI_BLE_DEV_NAME)); // AD value
-    index += strlen(RSI_BLE_DEV_NAME);
+    memcpy(&advData[index], (void *) &mDeviceIdInfo, mDeviceIdInfoLength); // AD value
+    index += mDeviceIdInfoLength;
 
 #if CHIP_ENABLE_ADDITIONAL_DATA_ADVERTISING
     ReturnErrorOnFailure(EncodeAdditionalDataTlv());
@@ -786,7 +772,7 @@ void BLEManagerImpl::HandleTXCharCCCDWrite(rsi_ble_event_write_t * evt)
     ChipDeviceEvent event;
 
     // Determine if the client is enabling or disabling notification/indication.
-    if (evt->att_value[0] == 1)
+    if (evt->att_value[0] != 0)
     {
         isIndicationEnabled = true;
     }

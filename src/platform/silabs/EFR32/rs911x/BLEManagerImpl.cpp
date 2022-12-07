@@ -261,7 +261,6 @@ CHIP_ERROR BLEManagerImpl::_Init()
 
     mFlags.ClearAll().Set(Flags::kAdvertisingEnabled, CHIP_DEVICE_CONFIG_CHIPOBLE_ENABLE_ADVERTISING_AUTOSTART);
     mFlags.Set(Flags::kFastAdvertisingEnabled, true);
-    PlatformMgr().ScheduleWork(DriveBLEState, 0);
 
 exit:
     ChipLogProgress(DeviceLayer, "%s END ", __func__);
@@ -291,7 +290,6 @@ CHIP_ERROR BLEManagerImpl::_SetAdvertisingEnabled(bool val)
     if (mFlags.Has(Flags::kAdvertisingEnabled) != val)
     {
         mFlags.Set(Flags::kAdvertisingEnabled, val);
-        PlatformMgr().ScheduleWork(DriveBLEState, 0);
     }
 
 exit:
@@ -312,7 +310,7 @@ CHIP_ERROR BLEManagerImpl::_SetAdvertisingMode(BLEAdvertisingMode mode)
         return CHIP_ERROR_INVALID_ARGUMENT;
     }
     mFlags.Set(Flags::kRestartAdvertising);
-    PlatformMgr().ScheduleWork(DriveBLEState, 0);
+
     return CHIP_NO_ERROR;
 }
 
@@ -350,7 +348,6 @@ CHIP_ERROR BLEManagerImpl::_SetDeviceName(const char * deviceName)
     {
         mDeviceName[0] = 0;
     }
-    PlatformMgr().ScheduleWork(DriveBLEState, 0);
     ChipLogProgress(DeviceLayer, "_SetDeviceName Ended");
     return CHIP_NO_ERROR;
 }
@@ -499,9 +496,6 @@ void BLEManagerImpl::DriveBLEState(void)
     ChipLogProgress(DeviceLayer, "DriveBLEState starting");
     CHIP_ERROR err = CHIP_NO_ERROR;
 
-    // Check if BLE stack is initialized
-    // VerifyOrExit(mFlags.Has(Flags::kEFRBLEStackInitialized), /* */);
-
     ChipLogProgress(DeviceLayer, "Start advertising if needed...");
     // Start advertising if needed...
     if (mServiceMode == ConnectivityManager::kCHIPoBLEServiceMode_Enabled && mFlags.Has(Flags::kAdvertisingEnabled) &&
@@ -585,22 +579,8 @@ CHIP_ERROR BLEManagerImpl::ConfigureAdvertisingData(void)
     advData[index++] = ShortUUID_CHIPoBLEService[0];                                            // AD value
     advData[index++] = ShortUUID_CHIPoBLEService[1];
 
-    // TODO:: replace the hardcoded values by calling the GetBLEDeviceIdentificationInfo
-    advData[index++] = 0;   // OpCode
-    advData[index++] = 0;   // DeviceDiscriminatorAndAdvVersion []
-    advData[index++] = 15;  // DeviceDiscriminatorAndAdvVersion []
-    advData[index++] = 241; // DeviceVendorId []
-    advData[index++] = 255; // DeviceVendorId []
-    advData[index++] = 5;   // DeviceProductId[]
-    advData[index++] = 128; // DeviceProductId[]
-    advData[index++] = 0;   // AdditionalDataFlag
-
-    //! prepare advertise data //local/device name
-    advData[index++] = strlen(RSI_BLE_DEV_NAME) + 1;
-    advData[index++] = 9;
-
-    memcpy(&advData[index], RSI_BLE_DEV_NAME, strlen(RSI_BLE_DEV_NAME)); // AD value
-    index += strlen(RSI_BLE_DEV_NAME);
+    memcpy(&advData[index], (void *) &mDeviceIdInfo, mDeviceIdInfoLength); // AD value
+    index += mDeviceIdInfoLength;
 
 #if CHIP_ENABLE_ADDITIONAL_DATA_ADVERTISING
     ReturnErrorOnFailure(EncodeAdditionalDataTlv());
@@ -676,7 +656,6 @@ exit:
 CHIP_ERROR BLEManagerImpl::StopAdvertising(void)
 {
     CHIP_ERROR err = CHIP_NO_ERROR;
-    // sl_status_t ret;
 
     if (mFlags.Has(Flags::kAdvertising))
     {
@@ -716,15 +695,12 @@ void BLEManagerImpl::UpdateMtu(rsi_ble_event_mtu_t evt)
 void BLEManagerImpl::HandleBootEvent(void)
 {
     mFlags.Set(Flags::kEFRBLEStackInitialized);
-    PlatformMgr().ScheduleWork(DriveBLEState, 0);
 }
 
 void BLEManagerImpl::HandleConnectEvent(void)
 {
     ChipLogProgress(DeviceLayer, "Connect Event for handle : %d", event_msg.connectionHandle);
     AddConnection(event_msg.connectionHandle, event_msg.bondingHandle);
-
-    PlatformMgr().ScheduleWork(DriveBLEState, 0);
 }
 
 // TODO:: Implementation need to be done.
