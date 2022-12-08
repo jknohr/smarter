@@ -45,7 +45,6 @@ extern "C" {
 #include "sl_bt_api.h"
 #endif
 
-
 namespace chip {
 namespace DeviceLayer {
 namespace Internal {

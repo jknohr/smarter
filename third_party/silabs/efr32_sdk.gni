@@ -605,6 +605,7 @@ template("efr32_sdk") {
       ]
     }
 
+
     if (use_wstk_leds) {
       sources += [
         "${efr32_sdk_root}/platform/driver/leddrv/src/sl_led.c",
