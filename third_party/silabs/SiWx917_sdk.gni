@@ -118,6 +118,7 @@ template("efr32_sdk") {
       "${sdk_support_root}/matter/mbedtls/tinycrypt/inc",
       "${sdk_support_root}/matter/mbedtls/tinycrypt/src",
       "${chip_root}/third_party/mbedtls/repo/include",
+      "${chip_root}/third_party/mbedtls/repo/library",
 
       "${sdk_support_root}/matter/efr32/${silabs_family}/${silabs_board}/config",
       "${sdk_support_root}/matter/efr32/${silabs_family}/${silabs_board}/autogen",

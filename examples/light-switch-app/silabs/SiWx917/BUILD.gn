@@ -96,6 +96,8 @@ if (silabs_board == "BRD4166A" || silabs_board == "BRD2601B" ||
   disable_lcd = true
 }
 
+defines = []
+
 # WiFi settings
 if (chip_enable_wifi) {
   wifi_sdk_dir = "${chip_root}/src/platform/silabs/SiWx917/wifi"

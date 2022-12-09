@@ -156,7 +156,6 @@ efr32_sdk("sdk") {
 
   include_dirs = [
     "${chip_root}/src/platform/silabs/SiWx917",
-    "${chip_root}/third_party/mbedtls/repo/library",
     "${efr32_project_dir}/include",
     "${examples_plat_dir}",
     "${chip_root}/src/lib",
