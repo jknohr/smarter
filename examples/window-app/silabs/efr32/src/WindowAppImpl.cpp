@@ -229,7 +229,7 @@ CHIP_ERROR WindowAppImpl::Init()
     }
     else
     {
-        EFR32_LOG("Getting QR code failed!");
+        SILABS_LOG("Getting QR code failed!");
     }
 #endif // QR_CODE_ENABLED
 
