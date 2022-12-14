@@ -56,15 +56,11 @@
 
 ## Demo Execution - Commissioning a SiWx917 SoC Device using chip-tool for Linux
 
-> **Note**: 
->    1. Commissioning over BLE is not yet supported on the SiWx917 SoC device. The following instructions cover commissioning over IP (on-network pairing).
->    2. Commissioning can be done using chip-tool running either on Linux or Raspberry Pi.
+> **Note**: Commissioning can be done using chip-tool running either on Linux or Raspberry Pi.
 
-1. Wait for the SiWx917 SoC device to connect to the Wi-Fi AP with the credentials provided (`ssid` and `psk`) while building the application image.
- 
-2. Wait for the SiWx917 SoC device to acquire an IPv6 address (or IPv4 address if IPv4 usage was enabled while building).
- 
-3. Run the following:
+1. Get the SSID and PSK of the Wi-Fi network (WPA2 - Security) you are connected to.
+
+2. Run the following:
 
     ```shell
     $ cd $MATTER_WORKDIR/matter
@@ -73,22 +69,22 @@
     ### Commissioning Command:
 
     ```shell
-    $ out/standalone/chip-tool pairing onnetwork 1122 20202021
+    $ out/standalone/chip-tool pairing ble-wifi 1122 $SSID $PSK 20202021 3840
     ```
 
 > **Note**: The Node ID used here is `1122`. This will be used in future commands.
  
-4. To set the Lighting application to the **on** state on the SiWx917:
+3. To set the Lighting application to the **on** state on the SiWx917:
     ```shell
     $ out/standalone/chip-tool onoff on 1122 1
     ```
  
-5. To set the Lighting application to the **off** state on the SiWx917:
+4. To set the Lighting application to the **off** state on the SiWx917:
     ```shell
     $ out/standalone/chip-tool onoff off 1122 1
     ```
  
-6. The updated **on/off** state may be verified with the following command:
+5. The updated **on/off** state may be verified with the following command:
     ```shell
     $ out/standalone/chip-tool onoff read on-off 1122 1
     ```
@@ -99,9 +95,12 @@ successfully, refer to the troubleshooting information on the
  
 The commissioning command mentioned above does the following:
 
--   Once the SiWx917 has acquired an IP address, it starts advertising over mDNS on IPv4 and IPv6.
--   The chip-tool locates the device over Wi-Fi and establishes operational certificates.
--   Future communications (tests) will then happen over Wi-Fi.
+- chip-tool scans BLE and locates the Silicon Labs device that uses the specified discriminator
+- Sends the Wi-Fi SSID and Passkey
+- The Silicon Labs device will join the Wi-Fi network and get an IP address.
+It then starts providing mDNS records on IPv4 and IPv6
+- chip-tool then locates the device over Wi-Fi and establishes operational certificates
+- Future communications (tests) will then happen over Wi-Fi
  
 ---
 

@@ -42,7 +42,7 @@ them on a Raspberry Pi. To do so you will need:
             -   [XG24-RB4186C](https://www.silabs.com/development-tools/wireless/xg24-rb4186c-efr32xg24-wireless-gecko-radio-board)
         -   BRD4187C / SLWSTK6006A / Wireless Starter Kit / 2.4GHz@20dBm
             -   [XG24-RB4187C](https://www.silabs.com/development-tools/wireless/xg24-rb4187c-efr32xg24-wireless-gecko-radio-board)
-<br><br>
+
     -   **MG12 boards:**
 
         -   BRD4161A / SLWSTK6000B / Wireless Starter Kit / 2.4GHz@19dBm
@@ -53,7 +53,6 @@ them on a Raspberry Pi. To do so you will need:
             -   [SLWRB4163A](https://www.silabs.com/development-tools/wireless/zigbee/slwrb4163a-efr32mg12-radio-board)
         -   BRD4164A / SLWSTK6000B / Wireless Starter Kit / 2.4GHz@19dBm
             -   [SLWRB4164A](https://www.silabs.com/development-tools/wireless/zigbee/slwrb4164a-efr32mg12-radio-board)
-                <br><br>
 
 ## Matter Over Thread Accessory Device Requirements
 
@@ -84,7 +83,7 @@ Matter Accessory Devices for Matter over Thread on the following platforms:
         - [XGM240-RB4316A](https://www.silabs.com/development-tools/wireless/xgm240-rb4316a-xgm240p-module-radio-board?tab=overview)
     -   BRD4317A / SLWSTK6006A / Wireless Starter Kit/ 2.4GHz@20dBm
         - [XGM240-RB4317A](https://www.silabs.com/development-tools/wireless/xgm240-rb4317a-xgm240p-module-radio-board?tab=overview)
-<br><br>
+
 -   **MG12 boards:**
 
     -   [EFR32MG12 Development Kit](https://www.silabs.com/development-tools/wireless/zigbee/efr32mg12-dual-band-starter-kit)
@@ -101,22 +100,21 @@ Matter Accessory Devices for Matter over Thread on the following platforms:
     -   BRD4170A / SLWSTK6000B / Multiband Wireless Starter Kit / 2.4GHz@19dBm,
         915MHz@19dBm
         -   [SLWRB4170A](https://www.silabs.com/development-tools/wireless/zigbee/slwrb4170a-efr32mg12-radio-board)
-            <br><br>
 
 
 ## Matter over Wi-Fi Accessory Device Requirements for NCP mode
 
-The Silicon Labs Matter over Wi-Fi demo and development requires two boards: the
+The Silicon Labs Matter over Wi-Fi NCP mode demo and development requires two boards: the
 Silicon Labs EFR32 Radio board to run the Matter code and either the RS9116, SiWx917 or WF200 to run the Wi-Fi protocol stack. 
 Pre-built images for the EFR32 are provided on the [Matter Artifacts page](./ARTIFACTS.md). Pre-built images for SiWx917 or RS9116 connectivity 
 firmware are available as per the instructions on the [Software Requirements Page](./SOFTWARE_REQUIREMENTS.md). 
-The following boards are supported for the Matter over Wi-Fi demos and development:
 
 > **Note:** 
 >    1. The EFR32MG24 is the preferred starting point for Matter MCUs.  It provides Secure Vault and can use the internal flash of the device to store an upgrade image.
->    2. The WF200 connectivity firmware image is included in the pre-built EFR32MG12 or EFR32MG24 images on the [Matter Artifacts page](./ARTIFACTS.md) for running with the WF200 in NCP mode. The 
+>    2. The WF200 connectivity firmware image is included in the EFR32MG12 or EFR32MG24 images on the [Matter Artifacts page](./ARTIFACTS.md) for running with the WF200 in NCP mode. The 
 Matter application downloads the connectivity firmware onto the WF200 on first-time startup.
 
+The following boards are supported for the Matter over Wi-Fi demos and development:
 
 -   **MG24 boards:**
 
@@ -124,7 +122,7 @@ Matter application downloads the connectivity firmware onto the WF200 on first-t
         -   [XG24-RB4186C](https://www.silabs.com/development-tools/wireless/xg24-rb4186c-efr32xg24-wireless-gecko-radio-board)
     -   BRD4187C / SLWSTK6006A / Wireless Starter Kit / 2.4GHz@20dBm
         - [XG24-RB4187C](https://www.silabs.com/development-tools/wireless/xg24-rb4187c-efr32xg24-wireless-gecko-radio-board)
-<br><br>
+
 -   **MG12 boards:**
 
     -   [EFR32MG12 Development Kit](https://www.silabs.com/development-tools/wireless/zigbee/efr32mg12-dual-band-starter-kit)
@@ -138,7 +136,6 @@ Matter application downloads the connectivity firmware onto the WF200 on first-t
         -   [SLWRB4164A](https://www.silabs.com/development-tools/wireless/zigbee/slwrb4164a-efr32mg12-radio-board)
     -   BRD4170A / SLWSTK6000B / Wireless Starter Kit / 2.4GHz@19dBm
         -   [SLWRB4170A](https://www.silabs.com/development-tools/wireless/zigbee/slwrb4170a-efr32mg12-radio-board)
-            <br><br>
 
 
 -   **Wi-Fi NCP Dev Kits & boards**
@@ -161,7 +158,6 @@ Matter application downloads the connectivity firmware onto the WF200 on first-t
             -   [SLEXP8022A](https://www.silabs.com/development-tools/wireless/wi-fi/wf200-wifi-expansion-kit)
         -   WFM200S / Single Band Wi-Fi Expansion Board / 2.4GHz
             -   [SLEXP8023A](https://www.silabs.com/development-tools/wireless/wi-fi/wfm200-wifi-expansion-kit)
-            <br><br>
 
 
 ## Matter over Wi-Fi Accessory Device Requirements for SoC mode
@@ -177,7 +173,6 @@ following boards are supported for the Matter over Wi-Fi demos and development:
 
     -   SiWx917
         -   [SiWx917](https://www.silabs.com/wireless/wi-fi/siwx917-wireless-socs)
-            <br><br>
 
 
 ## Additional Matter over Wi-Fi Hardware Requirements

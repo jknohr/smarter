@@ -143,7 +143,7 @@ The commissioning command mentioned above does the following:
 - chip-tool scans BLE and locates the Silicon Labs device that uses the
 specified discriminator
 - Sends the Wi-Fi SSID and Passkey
-- The Silicon Labs device will join the Wi-Fi network and get an IPv4 address.
+- The Silicon Labs device will join the Wi-Fi network and get an IP address.
 It then starts providing mDNS records on IPv4 and IPv6
 - chip-tool then locates the device over Wi-Fi and establishes operational
 certificates

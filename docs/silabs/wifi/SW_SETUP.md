@@ -20,7 +20,6 @@ forward to the instructions for running the demo.
   - **For SiWx917 SoC processor**
 
     - [Running the Matter Demo for SiWx917 SoC device over Wi-Fi page](./RUN_DEMO_SiWx917_SoC.md)
- <br><br>
 
 If you are planning to build the Wi-Fi images from scratch, 
 continue with this documentation.
@@ -71,12 +70,12 @@ The following commands are for building the Matter application. Depending on whi
 you are using, select the appropriate command to build.
 
 >    **Note:**
->    1. The following build commands are for the `lighting-app` application.
->    2. In order to build different applications other than `lighting-app` (such as `lock-app`), substitute the appropriate application name & 
+>    1. The build commands given below are for the following applications: `lighting-app`, `lock-app`, `light-switch-app`, `window-app`
+>    2. In order to build applications other than those mentioned in # 1, (such as `thermostat-app`), substitute the appropriate application name & 
 substitute `/silabs/efr32/` with `/efr32/` after the application name.
->    3. Additional examples are provided in the [/examples](../../../examples/) directory, or [/silabs_examples](../../../silabs_examples/) (such as `onoff-plug-app`).
->    4. In order to build from [/silabs_examples](../../../silabs_examples/) (such as `onoff-plug-app`), substitute `examples` with `silabs_examples`.
->    5. To build for EFR32MG12 or EFR32MG24 host processors, substite `BRD41xxx` in the build command with the appropriate MG12 or MG24 board number
+>    3. Additional examples (such as `onoff-plug-app`) are provided in the [/examples](../../../examples/) or [/silabs_examples](../../../silabs_examples/) directory.
+>    4. In order to build applications from [/silabs_examples](../../../silabs_examples/) (such as `onoff-plug-app`), substitute `examples` with `silabs_examples`.
+>    5. To build for EFR32MG12 or EFR32MG24 host processors, substitute `BRD41xxx` in the build command with the appropriate MG12 or MG24 board number
 from the [Hardware Requirements Page](../general/HARDWARE_REQUIREMENTS.md).
 
 Run the following:
@@ -120,12 +119,11 @@ $ ./scripts/examples/gn_efr32_example.sh examples/lighting-app/silabs/efr32 out/
 Build command for SiWx917 SoC processor:
 
 ```shell
-./scripts/examples/gn_efr32_example.sh examples/lighting-app/silabs/SiWx917 out/SiWx917_lighting BRD4325A ssid=\"<SSID>\" psk=\"<passcode-key>\" --wifi rs911x |& tee out/rs911x_lighting.out
+./scripts/examples/gn_efr32_example.sh examples/lighting-app/silabs/SiWx917 out/SiWx917_lighting BRD4325A --wifi rs911x |& tee out/rs911x_lighting.out
 ```
 >    **Note:**
 >    1. LCD and QR code features are not enabled for SiWx917 SoC.
->    2. Enter your AP's SSID and passcode-key in the `ssid` and `psk` parameters in the build command line above.
->    3. Before building for SiWx917 SoC, you must first obtain the WiseMCU Combo SDK package and install it. See the [Software Requirements page](../general/SOFTWARE_REQUIREMENTS.md).
+>    2. Before building for SiWx917 SoC, you must first obtain the WiseMCU Combo SDK package and install it. See the [Software Requirements page](../general/SOFTWARE_REQUIREMENTS.md).
 
 A complete list of hardware supported is included on the [Hardware Requirements page](../general/HARDWARE_REQUIREMENTS.md).
 
@@ -179,8 +177,6 @@ Navigate to
 `examples/platform/efr32/FreeRTOSConfig.h`. Find the macro:
 \``configMINIMAL_STACK_SIZE`\`, and change the macro value from `140` to
  **`320`**.
-
-<br>
 
 [Table of Contents](../README.md) | [Thread Demo](../thread/DEMO_OVERVIEW.md) |
 [Wi-Fi Demo](./DEMO_OVERVIEW.md)

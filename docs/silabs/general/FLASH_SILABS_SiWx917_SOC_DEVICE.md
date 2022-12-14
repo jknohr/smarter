@@ -4,8 +4,6 @@ Once you have an image built, you can flash it onto your SiWx917 SoC device over
 
 > Note: Flashing using Simplicity Studio and Simplicity Commander is not yet supported for the SiWx917 SoC.
 
-<br>
-
 ## Ozone J-Link Debugger:
 
  - [Flashing and debug procedure for Ozone](../wifi/RUN_DEMO_SiWx917_SoC.md)
