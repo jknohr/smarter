@@ -32,8 +32,17 @@ An example showing the use of CHIP on the Silicon Labs SiWx917.
 ## Introduction
 
 The SiWx917 lighting example provides a baseline demonstration of a Light control
-device, built using Matter, the Silicon Labs gecko SDK and Silicon labs WiseMCU SDK. It can be controlled
-by a Chip controller over a Wifi network.
+device, built using Matter, the Silicon Labs Gecko SDK, and the Silicon Labs WiseMCU SDK. It can be controlled
+by a Chip controller over a Wi-Fi network.
+
+The SiWx917 device can be commissioned over Bluetooth Low Energy where the device
+and the Chip controller will exchange security information with the rendezvous
+procedure. Wi-Fi Network credentials are then provided to the
+SiWx917 device which will then join the Wi-Fi network.
+
+If the LCD is enabled, the LCD on the Silabs WSTK shows a QR Code containing the
+needed commissioning information for the BLE connection and starting the
+rendezvous procedure.
 
 The lighting example is intended to serve both as a means to explore the
 workings of Matter as well as a template for creating real products based on the
@@ -68,28 +77,12 @@ Silicon Labs platform.
 *   Build the example application:
 
           cd ~/connectedhomeip
-          ./scripts/examples/gn_efr32_example.sh examples/lighting-app/silabs/SiWx917/ out/test BRD4325A ssid=\"<ssid>\" psk=\"<psk>\" --wifi rs911x
-
-    -   > Enter your AP's SSID and passcode for the `ssid` and `psk` build parameters.
+          ./scripts/examples/gn_efr32_example.sh examples/lighting-app/silabs/SiWx917/ out/test BRD4325A --wifi rs911x
 
 -   To delete generated executable, libraries and object files use:
 
           $ cd ~/connectedhomeip
           $ rm -rf ./out/
-
-    OR use GN/Ninja directly
-
-          $ cd ~/connectedhomeip/examples/lighting-app/silabs/SiWx917
-          $ git submodule update --init
-          $ source third_party/connectedhomeip/scripts/activate.sh
-          $ export EFR32_BOARD=BRD4325A
-          $ gn gen out/debug
-          $ ninja -C out/debug
-
--   To delete generated executable, libraries and object files use:
-
-          $ cd ~/connectedhomeip/examples/lighting-app/silabs/SiWx917
-          $ rm -rf out/
 
 <a name="flashing"></a>
 
@@ -111,28 +104,31 @@ The example application's logging output can be viewed in the Ozone Debugger.
 
 ## Running the Complete Example
 
-*   The example application supports provisioning over IP (on-network provisioning).
-*   You can provision and control the Chip device using the Chip tool standalone
+*   You can provision and control the Chip device using the chip-tool standalone
 
-    [CHIPTool](https://github.com/project-chip/connectedhomeip/blob/master/examples/chip-tool/README.md)
+    [chip-tool](https://github.com/project-chip/connectedhomeip/blob/master/examples/chip-tool/README.md)
 
-    Here is an example with the CHIPTool:
+    Here is an example with the chip-tool:
 
-    chip-tool pairing onnetwork 1 20202021
+    -   > $SSID and $PSK are the SSID and passcode of your Wi-Fi Access Point.
 
+    ```
+    chip-tool pairing ble-wifi 1122 $SSID $PSK 20202021 3840
+    
     chip-tool onoff on 1 1
+    ```
 
 ### Notes
 
--   Depending on your network settings your router might not provide native ipv6
-    addresses to your devices (Border router / PC). If this is the case, you
-    need to add a static ipv6 addresses on both device and then an ipv6 route to
+-   Depending on your network settings your router might not provide native IPv6
+    addresses to your devices (Router / PC). If this is the case, you
+    need to add a static IPv6 addresses on both devices and then an IPv6 route to
     your router on your PC
 
     -   On PC(Linux): `sudo ip addr add dev <Network interface> 2002::1/64`
 
-    -   Add Ipv6 route on PC(Linux)
-        `sudo ip route add <Router global ipv6 prefix>/64 via 2002::2`
+    -   Add IPv6 route on PC(Linux)
+        `sudo ip route add <Router global IPv6 prefix>/64 via 2002::2`
 
 ## Memory settings
 
@@ -147,7 +143,7 @@ To track memory usage you can set `enable_heap_monitoring = true` either in the
 BUILD.gn file or pass it as a build argument to gn. This will print on the RTT
 console the RAM usage of each individual task and the number of Memory
 allocation and Free. While this is not extensive monitoring you're welcome to
-modify `examples/platform/efr32/MemMonitoring.cpp` to add your own memory
+modify `examples/platform/silabs/SiWx917/MemMonitoring.cpp` to add your own memory
 tracking code inside the `trackAlloc` and `trackFree` function
 
 ## Group Communication (Multicast)
@@ -169,19 +165,19 @@ passed to the build scripts.
 
 `chip_progress_logging, chip_detail_logging, chip_automation_logging`
 
-    $ ./scripts/examples/gn_efr32_example.sh ./examples/lighting-app/silabs/SiWx917 ./out/lighting-app BRD4325A "chip_detail_logging=false chip_automation_logging=false chip_progress_logging=false"
+    $ ./scripts/examples/gn_efr32_example.sh ./examples/lighting-app/silabs/SiWx917 ./out/lighting-app BRD4325A "chip_detail_logging=false chip_automation_logging=false chip_progress_logging=false" --wifi rs911x
 
 ### Debug build / release build
 
 `is_debug`
 
-    $ ./scripts/examples/gn_efr32_example.sh ./examples/lighting-app/silabs/SiWx917 ./out/lighting-app BRD4325A "is_debug=false"
+    $ ./scripts/examples/gn_efr32_example.sh ./examples/lighting-app/silabs/SiWx917 ./out/lighting-app BRD4325A "is_debug=false" --wifi rs911x
 
 ### Disabling LCD
 
 `show_qr_code`
 
-    $ ./scripts/examples/gn_efr32_example.sh ./examples/lighting-app/silabs/SiWx917 ./out/lighting-app BRD4325A "show_qr_code=false"
+    $ ./scripts/examples/gn_efr32_example.sh ./examples/lighting-app/silabs/SiWx917 ./out/lighting-app BRD4325A "show_qr_code=false" --wifi rs911x
 
 ### KVS maximum entry count
 
@@ -190,4 +186,4 @@ passed to the build scripts.
     Set the maximum Kvs entries that can be stored in NVM (Default 75)
     Thresholds: 30 <= kvs_max_entries <= 255
 
-    $ ./scripts/examples/gn_efr32_example.sh ./examples/lighting-app/silabs/SiWx917 ./out/lighting-app BRD4325A kvs_max_entries=50
+    $ ./scripts/examples/gn_efr32_example.sh ./examples/lighting-app/silabs/SiWx917 ./out/lighting-app BRD4325A kvs_max_entries=50 --wifi rs911x

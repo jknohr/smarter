@@ -31,17 +31,17 @@ An example showing the use of CHIP on the Silicon Labs EFR32 MG12 and MG24.
 ## Introduction
 
 The EFR32 window-covering example provides a baseline demonstration of a Window
-Covering device, built using Matter and the Silicon Labs gecko SDK. It can be
-controlled by a Chip controller over an Openthread or Wifi network.
+Covering device, built using Matter and the Silicon Labs Gecko SDK. It can be
+controlled by a Chip controller over an Openthread or Wi-Fi network.
 
 The EFR32 device can be commissioned over Bluetooth Low Energy where the device
-and the Chip controller will exchange security information with the Rendez-vous
+and the Chip controller will exchange security information with the rendezvous
 procedure. In the case of Thread, the Thread Network credentials are provided to
 the EFR32 device which will then join the Thread network.
 
 If the LCD is enabled, the LCD on the Silabs WSTK shows a QR Code containing the
 needed commissioning information for the BLE connection and starting the
-Rendez-vous procedure. Once the device is commissioned, the displays shows a
+rendezvous procedure. Once the device is commissioned, the displays shows a
 representation of the window covering state.
 
 The window-covering example is intended to serve both as a means to explore the
@@ -103,7 +103,7 @@ Silicon Labs platform.
 *   Build the example application:
 
           cd ~/connectedhomeip
-          ./scripts/examples/gn_efr32_example.sh ./examples/window-app/efr32/ ./out/window-app BRD4161A
+          ./scripts/examples/gn_efr32_example.sh ./examples/window-app/silabs/efr32/ ./out/window-app BRD4161A
 
 -   To delete generated executable, libraries and object files use:
 
@@ -112,21 +112,21 @@ Silicon Labs platform.
 
     OR use GN/Ninja directly
 
-          $ cd ~/connectedhomeip/examples/window-app/efr32
+          $ cd ~/connectedhomeip/examples/window-app/silabs/efr32
           $ git submodule update --init
           $ source third_party/connectedhomeip/scripts/activate.sh
-          $ export EFR32_BOARD=BRD4161A
+          $ export SILABS_BOARD=BRD4161A
           $ gn gen out/debug
           $ ninja -C out/debug
 
 -   To delete generated executable, libraries and object files use:
 
-          $ cd ~/connectedhomeip/examples/window-app/efr32
+          $ cd ~/connectedhomeip/examples/window-app/silabs/efr32
           $ rm -rf out/
 
 *   Build the example as Sleepy End Device (SED)
 
-          $ ./scripts/examples/gn_efr32_example.sh ./examples/window-app/efr32/ ./out/window-app_SED BRD4161A --sed
+          $ ./scripts/examples/gn_efr32_example.sh ./examples/window-app/silabs/efr32/ ./out/window-app_SED BRD4161A --sed
 
     or use gn as previously mentioned but adding the following arguments:
 
@@ -134,14 +134,14 @@ Silicon Labs platform.
 
 *   Build the example with pigweed RCP
 
-          $ ./scripts/examples/gn_efr32_example.sh examples/window-app/efr32/ out/window_app_rpc BRD4161A 'import("//with_pw_rpc.gni")'
+          $ ./scripts/examples/gn_efr32_example.sh examples/window-app/silabs/efr32/ out/window_app_rpc BRD4161A 'import("//with_pw_rpc.gni")'
 
     or use GN/Ninja Directly
 
-          $ cd ~/connectedhomeip/examples/window-app/efr32
+          $ cd ~/connectedhomeip/examples/window-app/silabs/efr32
           $ git submodule update --init
           $ source third_party/connectedhomeip/scripts/activate.sh
-          $ export EFR32_BOARD=BRD4161A
+          $ export SILABS_BOARD=BRD4161A
           $ gn gen out/debug --args='import("//with_pw_rpc.gni")'
           $ ninja -C out/debug
 
@@ -158,7 +158,7 @@ arguments
 
 -   On the command line:
 
-          $ cd ~/connectedhomeip/examples/window-app/efr32
+          $ cd ~/connectedhomeip/examples/window-app/silabs/efr32
           $ python3 out/debug/chip-efr32-window-example.flash.py
 
 -   Or with the Ozone debugger, just load the .out file.
@@ -227,7 +227,7 @@ combination with JLinkRTTClient as follows:
     under File->New->Project Wizard->Examples->Thread : ot-rcp
 
 -   User interface : **LCD** The LCD on Silabs WSTK shows a QR Code. This QR
-    Code is be scanned by the CHIP Tool app For the Rendez-vous procedure over
+    Code is be scanned by the chip-tool app For the Rendez-vous procedure over
     BLE
 
         * On devices that do not have or support the LCD Display like the BRD4166A Thunderboard Sense 2,
@@ -306,11 +306,11 @@ combination with JLinkRTTClient as follows:
     running the window-app example. You can also get the address list with the
     command ipaddr again in the serial terminal )
 
-    You can provision the Chip device using Chip tool Android or iOS app or
+    You can provision the Chip device using chip-tool Android or iOS app or
     through CLI commands on your OT BR
 
     The
-    [CHIPTool](https://github.com/project-chip/connectedhomeip/blob/master/examples/chip-tool/README.md)
+    [chip-tool](https://github.com/project-chip/connectedhomeip/blob/master/examples/chip-tool/README.md)
     can now be used to send ZCL commands to the window covering device. For
     instance, to set the window covering lift by percentage:
 
@@ -330,9 +330,9 @@ combination with JLinkRTTClient as follows:
 
 ### Notes
 
--   Depending on your network settings your router might not provide native ipv6
+-   Depending on your network settings your router might not provide native IPv6 
     addresses to your devices (Border router / PC). If this is the case, you
-    need to add a static ipv6 addresses on both device and then an ipv6 route to
+    need to add a static IPv6 addresses on both devices and then an IPv6 route to
     the border router on your PC
 
           # On Border Router :
@@ -341,8 +341,8 @@ combination with JLinkRTTClient as follows:
           # On PC (Linux) :
           $ sudo ip addr add dev <Network interface> 2002::1/64
 
-          # Add Ipv6 route on PC (Linux)
-          $ sudo ip route add <Thread global ipv6 prefix>/64 via 2002::2
+          # Add IPv6 route on PC (Linux)
+          $ sudo ip route add <Thread global IPv6 prefix>/64 via 2002::2
 
 <a name="running-pigweed-rpc-console"></a>
 
@@ -362,19 +362,19 @@ features can easily be toggled on or off. Here is a short list of options :
 
 chip_progress_logging, chip_detail_logging, chip_automation_logging
 
-    $ ./scripts/examples/gn_efr32_example.sh ./examples/lighting-app/efr32 ./out/lighting-app BRD4164A "chip_detail_logging=false chip_automation_logging=false chip_progress_logging=false"
+    $ ./scripts/examples/gn_efr32_example.sh ./examples/window-app/silabs/efr32 ./out/window-app BRD4164A "chip_detail_logging=false chip_automation_logging=false chip_progress_logging=false"
 
 ### Debug build / release build
 
 is_debug
 
-    $ ./scripts/examples/gn_efr32_example.sh ./examples/lighting-app/efr32 ./out/lighting-app BRD4164A "is_debug=false"
+    $ ./scripts/examples/gn_efr32_example.sh ./examples/window-app/silabs/efr32 ./out/window-app BRD4164A "is_debug=false"
 
 ### Disabling LCD
 
 show_qr_code
 
-    $ ./scripts/examples/gn_efr32_example.sh ./examples/lighting-app/efr32 ./out/lighting-app BRD4164A "show_qr_code=false"
+    $ ./scripts/examples/gn_efr32_example.sh ./examples/window-app/silabs/efr32 ./out/window-app BRD4164A "show_qr_code=false"
 
 ### KVS maximum entry count
 
@@ -383,4 +383,4 @@ kvs_max_entries
     Set the maximum Kvs entries that can be stored in NVM (Default 75)
     Thresholds: 30 <= kvs_max_entries <= 255
 
-    $ ./scripts/examples/gn_efr32_example.sh ./examples/lighting-app/efr32 ./out/lighting-app BRD4164A kvs_max_entries=50
+    $ ./scripts/examples/gn_efr32_example.sh ./examples/window-app/silabs/efr32 ./out/window-app BRD4164A kvs_max_entries=50

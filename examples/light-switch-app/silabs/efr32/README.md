@@ -36,12 +36,12 @@ An example showing the use of CHIP on the Silicon Labs EFR32 MG12 and MG24.
 
 ## Introduction
 
-The EFR32 light switch example provides a baseline demonstration of a on-off
-light switch device, built using Matter and the Silicon Labs gecko SDK. It can
-be controlled by a Chip controller over an Openthread or Wifi network.
+The EFR32 light switch example provides a baseline demonstration of an on-off
+light switch device, built using Matter and the Silicon Labs Gecko SDK. It can
+be controlled by a Chip controller over an Openthread or Wi-Fi network.
 
 The EFR32 device can be commissioned over Bluetooth Low Energy where the device
-and the Chip controller will exchange security information with the Rendez-vous
+and the Chip controller will exchange security information with the rendezvous
 procedure. If using Thread, Thread Network credentials are then provided to the
 EFR32 device which will then join the network.
 
@@ -135,7 +135,7 @@ Silicon Labs platform.
 *   Build the example application:
 
           cd ~/connectedhomeip
-          ./scripts/examples/gn_efr32_example.sh ./examples/light-switch-app/efr32/ ./out/light-switch-app BRD4161A
+          ./scripts/examples/gn_efr32_example.sh ./examples/light-switch-app/silabs/efr32/ ./out/light-switch-app BRD4161A
 
 -   To delete generated executable, libraries and object files use:
 
@@ -144,25 +144,25 @@ Silicon Labs platform.
 
     OR use GN/Ninja directly
 
-          $ cd ~/connectedhomeip/examples/light-switch-app/efr32
+          $ cd ~/connectedhomeip/examples/light-switch-app/silabs/efr32
           $ git submodule update --init
           $ source third_party/connectedhomeip/scripts/activate.sh
-          $ export EFR32_BOARD=BRD4161A
+          $ export SILABS_BOARD=BRD4161A
           $ gn gen out/debug
           $ ninja -C out/debug
 
 -   To delete generated executable, libraries and object files use:
 
-          $ cd ~/connectedhomeip/examples/light-switch-app/efr32
+          $ cd ~/connectedhomeip/examples/light-switch-app/silabs/efr32
           $ rm -rf out/
 
 *   Build the example with Matter shell
 
-          ./scripts/examples/gn_efr32_example.sh examples/light-switch-app/efr32/ out/light-switch-app BRD4161A chip_build_libshell=true
+          ./scripts/examples/gn_efr32_example.sh examples/light-switch-app/silabs/efr32/ out/light-switch-app BRD4161A chip_build_libshell=true
 
 *   Build the example as Sleepy End Device (SED)
 
-          $ ./scripts/examples/gn_efr32_example.sh ./examples/light-switch-app/efr32/ ./out/light-switch-app_SED BRD4161A --sed
+          $ ./scripts/examples/gn_efr32_example.sh ./examples/light-switch-app/silabs/efr32/ ./out/light-switch-app_SED BRD4161A --sed
 
     or use gn as previously mentioned but adding the following arguments:
 
@@ -170,14 +170,14 @@ Silicon Labs platform.
 
 *   Build the example with pigweed RCP
 
-          $ ./scripts/examples/gn_efr32_example.sh examples/light-switch-app/efr32/ out/light-switch-app_rpc BRD4161A 'import("//with_pw_rpc.gni")'
+          $ ./scripts/examples/gn_efr32_example.sh examples/light-switch-app/silabs/efr32/ out/light-switch-app_rpc BRD4161A 'import("//with_pw_rpc.gni")'
 
     or use GN/Ninja Directly
 
-          $ cd ~/connectedhomeip/examples/light-switch-app/efr32
+          $ cd ~/connectedhomeip/examples/light-switch-app/silabs/efr32
           $ git submodule update --init
           $ source third_party/connectedhomeip/scripts/activate.sh
-          $ export EFR32_BOARD=BRD4161A
+          $ export SILABS_BOARD=BRD4161A
           $ gn gen out/debug --args='import("//with_pw_rpc.gni")'
           $ ninja -C out/debug
 
@@ -194,7 +194,7 @@ arguments
 
 -   On the command line:
 
-          $ cd ~/connectedhomeip/examples/lighting-app/efr32
+          $ cd ~/connectedhomeip/examples/lighting-app/silabs/efr32
           $ python3 out/debug/chip-efr32-light-switch-example.flash.py
 
 -   Or with the Ozone debugger, just load the .out file.
@@ -264,11 +264,11 @@ combination with JLinkRTTClient as follows:
 
 -   For this example to work, it is necessary to have a second efr32 device
     running the
-    [lighting app example](https://github.com/project-chip/connectedhomeip/blob/master/examples/lighting-app/efr32/README.md)
+    [lighting app example](https://github.com/project-chip/connectedhomeip/blob/master/examples/lighting-app/silabs/efr32/README.md)
     commissioned on the same openthread network
 
 -   User interface : **LCD** The LCD on Silabs WSTK shows a QR Code. This QR
-    Code is be scanned by the CHIP Tool app For the Rendez-vous procedure over
+    Code is be scanned by the chip-tool app For the Rendez-vous procedure over
     BLE
 
         * On devices that do not have or support the LCD Display like the BRD4166A Thunderboard Sense 2,
@@ -328,10 +328,10 @@ combination with JLinkRTTClient as follows:
         - 'switch binding group <fabric index> <group id>'              : Creates a group binding
 
 *   You can provision and control the Chip device using the python controller,
-    [CHIPTool](https://github.com/project-chip/connectedhomeip/blob/master/examples/chip-tool/README.md)
+    [chip-tool](https://github.com/project-chip/connectedhomeip/blob/master/examples/chip-tool/README.md)
     standalone, Android or iOS app
 
-    Here is an example with the CHIPTool for unicast commands only:
+    Here is an example with the chip-tool for unicast commands only:
 
     ```
     chip-tool pairing ble-thread 1 hex:<operationalDataset> 20202021 3840
@@ -341,7 +341,7 @@ combination with JLinkRTTClient as follows:
     chip-tool binding write binding '[{"fabricIndex": 1, "node": <lighting-node-id>, "endpoint": 1, "cluster":6}]' 1 1
     ```
 
-    Here is an example with the CHIPTool for groups commands only:
+    Here is an example with the chip-tool for groups commands only:
 
     ```
     chip-tool pairing ble-thread 1 hex:<operationalDataset> 20202021 3840
@@ -369,9 +369,9 @@ combination with JLinkRTTClient as follows:
 
 ### Notes
 
--   Depending on your network settings your router might not provide native ipv6
+-   Depending on your network settings your router might not provide native IPv6
     addresses to your devices (Border router / PC). If this is the case, you
-    need to add a static ipv6 addresses on both device and then an ipv6 route to
+    need to add a static IPv6 addresses on both devices and then an IPv6 route to
     the border router on your PC
 
 #### On Border Router:
@@ -382,7 +382,7 @@ combination with JLinkRTTClient as follows:
 
 `$ sudo ip addr add dev <Network interface> 2002::1/64`
 
-#Add Ipv6 route on PC(Linux) \$ sudo ip route add <Thread global ipv6 prefix>/64
+#Add IPv6 route on PC(Linux) \$ sudo ip route add <Thread global IPv6 prefix>/64
 via 2002::2
 
 <a name="running-pigweed-rpc-console"></a>
@@ -418,14 +418,14 @@ While most of the RAM usage in CHIP is static, allowing easier debugging and
 optimization with symbols analysis, we still need some HEAP for the crypto and
 OpenThread. Size of the HEAP can be modified by changing the value of the
 `configTOTAL_HEAP_SIZE` define inside of the FreeRTOSConfig.h file of this
-example. Please take note that a HEAP size smaller than 13k can and will cause a
-Mbedtls failure during the BLE rendez-vous or CASE session
+example. Please take note that a HEAP size smaller than 13k can and will cause an
+Mbedtls failure during the BLE rendezvous or CASE session
 
 To track memory usage you can set `enable_heap_monitoring = true` either in the
 BUILD.gn file or pass it as a build argument to gn. This will print on the RTT
 console the RAM usage of each individual task and the number of Memory
 allocation and Free. While this is not extensive monitoring you're welcome to
-modify `examples/platform/efr32/MemMonitoring.cpp` to add your own memory
+modify `examples/platform/silabs/efr32/MemMonitoring.cpp` to add your own memory
 tracking code inside the `trackAlloc` and `trackFree` function
 
 ## OTA Software Update
@@ -444,19 +444,19 @@ features can easily be toggled on or off. Here is a short list of options :
 
 chip_progress_logging, chip_detail_logging, chip_automation_logging
 
-    $ ./scripts/examples/gn_efr32_example.sh ./examples/lighting-app/efr32 ./out/lighting-app BRD4164A "chip_detail_logging=false chip_automation_logging=false chip_progress_logging=false"
+    $ ./scripts/examples/gn_efr32_example.sh ./examples/light-switch-app/silabs/efr32 ./out/light-switch-app BRD4164A "chip_detail_logging=false chip_automation_logging=false chip_progress_logging=false"
 
 ### Debug build / release build
 
 is_debug
 
-    $ ./scripts/examples/gn_efr32_example.sh ./examples/lighting-app/efr32 ./out/lighting-app BRD4164A "is_debug=false"
+    $ ./scripts/examples/gn_efr32_example.sh ./examples/light-switch-app/silabs/efr32 ./out/light-switch-app BRD4164A "is_debug=false"
 
 ### Disabling LCD
 
 show_qr_code
 
-    $ ./scripts/examples/gn_efr32_example.sh ./examples/lighting-app/efr32 ./out/lighting-app BRD4164A "show_qr_code=false"
+    $ ./scripts/examples/gn_efr32_example.sh ./examples/light-switch-app/silabs/efr32 ./out/light-switch-app BRD4164A "show_qr_code=false"
 
 ### KVS maximum entry count
 
@@ -465,4 +465,4 @@ kvs_max_entries
     Set the maximum Kvs entries that can be stored in NVM (Default 75)
     Thresholds: 30 <= kvs_max_entries <= 255
 
-    $ ./scripts/examples/gn_efr32_example.sh ./examples/lighting-app/efr32 ./out/lighting-app BRD4164A kvs_max_entries=50
+    $ ./scripts/examples/gn_efr32_example.sh ./examples/light-switch-app/silabs/efr32 ./out/light-switch-app BRD4164A kvs_max_entries=50

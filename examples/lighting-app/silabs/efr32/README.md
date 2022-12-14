@@ -35,17 +35,17 @@ An example showing the use of CHIP on the Silicon Labs EFR32 MG12 and MG24.
 ## Introduction
 
 The EFR32 lighting example provides a baseline demonstration of a Light control
-device, built using Matter and the Silicon Labs gecko SDK. It can be controlled
-by a Chip controller over an Openthread or Wifi network..
+device, built using Matter and the Silicon Labs Gecko SDK. It can be controlled
+by a Chip controller over an Openthread or Wi-Fi network.
 
 The EFR32 device can be commissioned over Bluetooth Low Energy where the device
-and the Chip controller will exchange security information with the Rendez-vous
+and the Chip controller will exchange security information with the rendezvous
 procedure. If using Thread, Thread Network credentials are then provided to the
 EFR32 device which will then join the Thread network.
 
 If the LCD is enabled, the LCD on the Silabs WSTK shows a QR Code containing the
 needed commissioning information for the BLE connection and starting the
-Rendez-vous procedure.
+rendezvous procedure.
 
 The lighting example is intended to serve both as a means to explore the
 workings of Matter as well as a template for creating real products based on the
@@ -141,7 +141,7 @@ Silicon Labs platform.
           $ cd ~/connectedhomeip/examples/lighting-app/silabs/efr32
           $ git submodule update --init
           $ source third_party/connectedhomeip/scripts/activate.sh
-          $ export EFR32_BOARD=BRD4161A
+          $ export SILABS_BOARD=BRD4161A
           $ gn gen out/debug
           $ ninja -C out/debug
 
@@ -160,14 +160,14 @@ Silicon Labs platform.
 
 *   Build the example with pigweed RPC
 
-          $ ./scripts/examples/gn_efr32_example.sh examples/lighting-app/efr32/ out/lighting_app_rpc BRD4161A 'import("//with_pw_rpc.gni")'
+          $ ./scripts/examples/gn_efr32_example.sh examples/lighting-app/silabs/efr32/ out/lighting_app_rpc BRD4161A 'import("//with_pw_rpc.gni")'
 
     or use GN/Ninja Directly
 
           $ cd ~/connectedhomeip/examples/lighting-app/silabs/efr32
           $ git submodule update --init
           $ source third_party/connectedhomeip/scripts/activate.sh
-          $ export EFR32_BOARD=BRD4161A
+          $ export SILABS_BOARD=BRD4161A
           $ gn gen out/debug --args='import("//with_pw_rpc.gni")'
           $ ninja -C out/debug
 
@@ -253,7 +253,7 @@ combination with JLinkRTTClient as follows:
     under File->New->Project Wizard->Examples->Thread : ot-rcp
 
 -   User interface : **LCD** The LCD on Silabs WSTK shows a QR Code. This QR
-    Code is be scanned by the CHIP Tool app For the Rendez-vous procedure over
+    Code is be scanned by the chip-tool app For the Rendez-vous procedure over
     BLE
 
         * On devices that do not have or support the LCD Display like the BRD4166A Thunderboard Sense 2,
@@ -299,24 +299,26 @@ combination with JLinkRTTClient as follows:
     **Push Button 1** Toggles the light state On/Off
 
 *   You can provision and control the Chip device using the python controller,
-    Chip tool standalone, Android or iOS app
+    chip-tool standalone, Android or iOS app
 
 *   You can provision and control the Chip device using the python controller,
-    Chip tool standalone, Android or iOS app
+    chip-tool standalone, Android or iOS app
 
-    [CHIPTool](https://github.com/project-chip/connectedhomeip/blob/master/examples/chip-tool/README.md)
+    [chip-tool](https://github.com/project-chip/connectedhomeip/blob/master/examples/chip-tool/README.md)
 
-    Here is an example with the CHIPTool:
+    Here is an example with the chip-tool:
 
+    ```
     chip-tool pairing ble-thread 1 hex:<operationalDataset> 20202021 3840
 
     chip-tool onoff on 1 1
+    ```
 
 ### Notes
 
 -   Depending on your network settings your router might not provide native ipv6
     addresses to your devices (Border router / PC). If this is the case, you
-    need to add a static ipv6 addresses on both device and then an ipv6 route to
+    need to add a static ipv6 addresses on both devices and then an ipv6 route to
     the border router on your PC
 
     -   On Border Router: `sudo ip addr add dev <Network interface> 2002::2/64`
@@ -365,14 +367,14 @@ While most of the RAM usage in CHIP is static, allowing easier debugging and
 optimization with symbols analysis, we still need some HEAP for the crypto and
 OpenThread. Size of the HEAP can be modified by changing the value of the
 `configTOTAL_HEAP_SIZE` define inside of the FreeRTOSConfig.h file of this
-example. Please take note that a HEAP size smaller than 13k can and will cause a
-Mbedtls failure during the BLE rendez-vous or CASE session
+example. Please take note that a HEAP size smaller than 13k can and will cause an
+Mbedtls failure during the BLE rendezvous or CASE session
 
 To track memory usage you can set `enable_heap_monitoring = true` either in the
 BUILD.gn file or pass it as a build argument to gn. This will print on the RTT
 console the RAM usage of each individual task and the number of Memory
 allocation and Free. While this is not extensive monitoring you're welcome to
-modify `examples/platform/efr32/MemMonitoring.cpp` to add your own memory
+modify `examples/platform/silabs/efr32/MemMonitoring.cpp` to add your own memory
 tracking code inside the `trackAlloc` and `trackFree` function
 
 ## OTA Software Update
