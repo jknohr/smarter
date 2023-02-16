@@ -32,7 +32,7 @@ bitmaps: {
   {{#zcl_bitmaps}}
   "{{asUpperCamelCase label}}" : {
     {{#zcl_bitmap_items}}
-    {{mask}} : "{{asUpperCamelCase label}}",
+    {{mask}} : "{{label}}",
     {{/zcl_bitmap_items}}
   },
   {{/zcl_bitmaps}}

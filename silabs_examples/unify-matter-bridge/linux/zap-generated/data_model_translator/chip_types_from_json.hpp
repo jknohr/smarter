@@ -1219,5 +1219,38 @@ inline std::optional<chip::BitMask<PressureMeasurement::PressureFeature>> from_j
 /***************************** Bitmap Converters **************/
 
 /***************************** Bitmap Converters **************/
+template <>
+inline std::optional<chip::BitMask<OccupancySensing::OccupancyBitmap>> from_json(const nlohmann::json& obj)
+{
+    chip::BitMask<OccupancySensing::OccupancyBitmap> r;
+    r.SetField(OccupancySensing::OccupancyBitmap::kOccupied, obj.value("SensedOccupancy", false));
+    return r;
+}
+template <>
+inline std::optional<chip::BitMask<OccupancySensing::OccupancySensorTypeBitmap>> from_json(const nlohmann::json& obj)
+{
+    chip::BitMask<OccupancySensing::OccupancySensorTypeBitmap> r;
+    r.SetField(OccupancySensing::OccupancySensorTypeBitmap::kPir, obj.value("PIR", false));
+    r.SetField(OccupancySensing::OccupancySensorTypeBitmap::kUltrasonic, obj.value("Ultrasonic", false));
+    r.SetField(OccupancySensing::OccupancySensorTypeBitmap::kPhysicalContact, obj.value("PhysicalContact", false));
+    return r;
+}
 
+template <>
+inline std::optional<OccupancySensing::OccupancySensorTypeEnum> from_json(const nlohmann::json& value)
+{
+    const std::map<std::string, OccupancySensing::OccupancySensorTypeEnum> table = {
+        { "Pir", OccupancySensing::OccupancySensorTypeEnum::kPir },
+        { "Ultrasonic", OccupancySensing::OccupancySensorTypeEnum::kUltrasonic },
+        { "PIRAndUltrasonic", OccupancySensing::OccupancySensorTypeEnum::kPIRAndUltrasonic },
+        { "PhysicalContact", OccupancySensing::OccupancySensorTypeEnum::kPhysicalContact },
+    };
+
+    auto i = table.find(value);
+    if (i != table.end()) {
+        return i->second;
+    } else {
+        return std::nullopt;
+    }
+}
 /***************************** Bitmap Converters **************/

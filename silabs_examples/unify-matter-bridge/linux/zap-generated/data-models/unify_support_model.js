@@ -2440,7 +2440,7 @@ exports.model = {
       1 : "SensedOccupancy",
     },
     "OccupancySensingOccupancySensorTypeBitmap" : {
-      1 : "Pir",
+      1 : "PIR",
       2 : "Ultrasonic",
       4 : "PhysicalContact",
     },

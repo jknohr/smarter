@@ -1258,7 +1258,7 @@ exports.model = {
       3 : "TrustedTimeNodeId",
       4 : "DefaultNtp",
       5 : "TimeZone",
-      6 : "DstOffset",
+      6 : "DSTOffset",
       7 : "LocalTime",
       8 : "TimeZoneDatabase",
       9 : "NtpServerPort",
@@ -3594,10 +3594,6 @@ exports.model = {
       "DoorAjar",
       "ForcedUser",
     ], //
-    "AnonymousDataState" : [
-      "NoSourceFound",
-      "SourceFound",
-    ], //
     "ApplicationLauncherStatusEnum" : [
       "Success",
       "AppNotAvailable",
@@ -3840,9 +3836,6 @@ exports.model = {
       "Add",
       "Clear",
       "Modify",
-    ], //
-    "DeviceStatus2Structure" : [
-      "IrisSymptomCode",
     ], //
     "DlLockState" : [
       "NotFullyLocked",
@@ -4116,6 +4109,11 @@ exports.model = {
       "Usb",
       "Other",
     ], //
+    "IntentEnum" : [
+      "EndUserSupport",
+      "NetworkDiag",
+      "CrashLogs",
+    ], //
     "InterfaceTypeEnum" : [
       "Unspecified",
       "WiFi",
@@ -4153,28 +4151,13 @@ exports.model = {
       "Pin",
       "Rfid",
       "Fingerprint",
+      "FingerVein",
     ], //
     "LockOperationTypeEnum" : [
       "Lock",
       "Unlock",
       "NonAccessUserEvent",
       "ForcedUserEvent",
-    ], //
-    "LogsIntent" : [
-      "EndUserSupport",
-      "NetworkDiag",
-      "CrashLogs",
-    ], //
-    "LogsStatus" : [
-      "Success",
-      "Exhausted",
-      "NoLogs",
-      "Busy",
-      "Denied",
-    ], //
-    "LogsTransferProtocol" : [
-      "ResponsePayload",
-      "Bdx",
     ], //
     "MediaPlaybackStatusEnum" : [
       "Success",
@@ -4271,10 +4254,10 @@ exports.model = {
       "RollingBack",
       "DelayedOnUserConsent",
     ], //
-    "OccupancySensorType" : [
+    "OccupancySensorTypeEnum" : [
       "Pir",
       "Ultrasonic",
-      "PirAndUltrasonic",
+      "PIRAndUltrasonic",
       "PhysicalContact",
     ], //
     "OnOffDelayedAllOffEffectVariant" : [
@@ -4293,10 +4276,6 @@ exports.model = {
       "Off",
       "On",
       "TogglePreviousOnOff",
-    ], //
-    "OperatingMode" : [
-      "Normal",
-      "Configure",
     ], //
     "OperatingModeEnum" : [
       "Normal",
@@ -4400,12 +4379,6 @@ exports.model = {
       "Outdoor",
       "IndoorOutdoor",
     ], //
-    "RemoteEnableFlags" : [
-      "Disabled",
-      "TemporarilyLockedDisabled",
-      "EnabledRemoteControl",
-      "EnabledRemoteAndEnergyControl",
-    ], //
     "RoutingRole" : [
       "Unspecified",
       "Unassigned",
@@ -4457,6 +4430,13 @@ exports.model = {
       "PAKEParameterError",
       "WindowNotOpen",
     ], //
+    "StatusEnum" : [
+      "Success",
+      "Exhausted",
+      "NoLogs",
+      "Busy",
+      "Denied",
+    ], //
     "StepMode" : [
       "Up",
       "Down",
@@ -4503,10 +4483,6 @@ exports.model = {
       "Dry",
       "Sleep",
     ], //
-    "TimeEncoding" : [
-      "Relative",
-      "Absolute",
-    ], //
     "TimeSourceEnum" : [
       "None",
       "Unknown",
@@ -4525,6 +4501,10 @@ exports.model = {
       "CloudSource",
       "Ptp",
       "Gnss",
+    ], //
+    "TransferProtocolEnum" : [
+      "ResponsePayload",
+      "Bdx",
     ], //
     "Type" : [
       "RollerShade",
@@ -4871,7 +4851,7 @@ exports.model = {
       2 : "ThreadNetworkInterface",
       4 : "EthernetNetworkInterface",
     },
-    "Occupancy" : {
+    "OccupancyBitmap" : {
       1 : "Occupied",
     },
     "OccupancySensorTypeBitmap" : {
@@ -4951,11 +4931,6 @@ exports.model = {
     },
     "SoftwareDiagnosticsFeature" : {
       1 : "WaterMarks",
-    },
-    "StartTime" : {
-      63 : "Minutes",
-      192 : "TimeEncoding",
-      65280 : "Hours",
     },
     "SupportedStreamingProtocol" : {
       1 : "Dash",

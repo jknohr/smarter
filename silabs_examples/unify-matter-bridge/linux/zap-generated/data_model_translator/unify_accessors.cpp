@@ -8002,11 +8002,12 @@ namespace matter_bridge {
 
             namespace Occupancy {
 
-                EmberAfStatus Get(const chip::app::ConcreteAttributePath& endpoint, uint8_t& value)
+                EmberAfStatus Get(const chip::app::ConcreteAttributePath& endpoint,
+                    chip::BitMask<chip::app::Clusters::OccupancySensing::OccupancyBitmap>& value)
                 {
                     attribute_state_cache& cache = attribute_state_cache::get_instance();
 
-                    using Traits = NumericAttributeTraits<uint8_t>;
+                    using Traits = NumericAttributeTraits<chip::BitMask<chip::app::Clusters::OccupancySensing::OccupancyBitmap>>;
                     Traits::StorageType temp_storage;
 
                     if (cache.get<Traits::StorageType>(endpoint, temp_storage)) {
@@ -8019,10 +8020,11 @@ namespace matter_bridge {
                     }
                 }
 
-                EmberAfStatus Set(const chip::app::ConcreteAttributePath& endpoint, const uint8_t& value)
+                EmberAfStatus Set(const chip::app::ConcreteAttributePath& endpoint,
+                    const chip::BitMask<chip::app::Clusters::OccupancySensing::OccupancyBitmap>& value)
                 {
                     attribute_state_cache& cache = attribute_state_cache::get_instance();
-                    using Traits = NumericAttributeTraits<uint8_t>;
+                    using Traits = NumericAttributeTraits<chip::BitMask<chip::app::Clusters::OccupancySensing::OccupancyBitmap>>;
                     Traits::StorageType storageValue;
                     Traits::WorkingToStorage(value, storageValue);
                     cache.set(endpoint, storageValue);
@@ -8033,11 +8035,12 @@ namespace matter_bridge {
 
             namespace OccupancySensorType {
 
-                EmberAfStatus Get(const chip::app::ConcreteAttributePath& endpoint, uint8_t& value)
+                EmberAfStatus Get(const chip::app::ConcreteAttributePath& endpoint,
+                    chip::app::Clusters::OccupancySensing::OccupancySensorTypeEnum& value)
                 {
                     attribute_state_cache& cache = attribute_state_cache::get_instance();
 
-                    using Traits = NumericAttributeTraits<uint8_t>;
+                    using Traits = NumericAttributeTraits<chip::app::Clusters::OccupancySensing::OccupancySensorTypeEnum>;
                     Traits::StorageType temp_storage;
 
                     if (cache.get<Traits::StorageType>(endpoint, temp_storage)) {
@@ -8050,10 +8053,11 @@ namespace matter_bridge {
                     }
                 }
 
-                EmberAfStatus Set(const chip::app::ConcreteAttributePath& endpoint, const uint8_t& value)
+                EmberAfStatus Set(const chip::app::ConcreteAttributePath& endpoint,
+                    const chip::app::Clusters::OccupancySensing::OccupancySensorTypeEnum& value)
                 {
                     attribute_state_cache& cache = attribute_state_cache::get_instance();
-                    using Traits = NumericAttributeTraits<uint8_t>;
+                    using Traits = NumericAttributeTraits<chip::app::Clusters::OccupancySensing::OccupancySensorTypeEnum>;
                     Traits::StorageType storageValue;
                     Traits::WorkingToStorage(value, storageValue);
                     cache.set(endpoint, storageValue);
@@ -8064,11 +8068,12 @@ namespace matter_bridge {
 
             namespace OccupancySensorTypeBitmap {
 
-                EmberAfStatus Get(const chip::app::ConcreteAttributePath& endpoint, uint8_t& value)
+                EmberAfStatus Get(const chip::app::ConcreteAttributePath& endpoint,
+                    chip::BitMask<chip::app::Clusters::OccupancySensing::OccupancySensorTypeBitmap>& value)
                 {
                     attribute_state_cache& cache = attribute_state_cache::get_instance();
 
-                    using Traits = NumericAttributeTraits<uint8_t>;
+                    using Traits = NumericAttributeTraits<chip::BitMask<chip::app::Clusters::OccupancySensing::OccupancySensorTypeBitmap>>;
                     Traits::StorageType temp_storage;
 
                     if (cache.get<Traits::StorageType>(endpoint, temp_storage)) {
@@ -8081,10 +8086,11 @@ namespace matter_bridge {
                     }
                 }
 
-                EmberAfStatus Set(const chip::app::ConcreteAttributePath& endpoint, const uint8_t& value)
+                EmberAfStatus Set(const chip::app::ConcreteAttributePath& endpoint,
+                    const chip::BitMask<chip::app::Clusters::OccupancySensing::OccupancySensorTypeBitmap>& value)
                 {
                     attribute_state_cache& cache = attribute_state_cache::get_instance();
-                    using Traits = NumericAttributeTraits<uint8_t>;
+                    using Traits = NumericAttributeTraits<chip::BitMask<chip::app::Clusters::OccupancySensing::OccupancySensorTypeBitmap>>;
                     Traits::StorageType storageValue;
                     Traits::WorkingToStorage(value, storageValue);
                     cache.set(endpoint, storageValue);

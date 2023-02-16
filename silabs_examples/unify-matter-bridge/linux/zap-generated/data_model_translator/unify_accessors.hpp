@@ -3386,18 +3386,24 @@ namespace matter_bridge {
         namespace Attributes {
 
             namespace Occupancy {
-                EmberAfStatus Get(const chip::app::ConcreteAttributePath& endpoint, uint8_t& value);
-                EmberAfStatus Set(const chip::app::ConcreteAttributePath& endpoint, const uint8_t& value);
+                EmberAfStatus Get(const chip::app::ConcreteAttributePath& endpoint,
+                    chip::BitMask<chip::app::Clusters::OccupancySensing::OccupancyBitmap>& value);
+                EmberAfStatus Set(const chip::app::ConcreteAttributePath& endpoint,
+                    const chip::BitMask<chip::app::Clusters::OccupancySensing::OccupancyBitmap>& value);
             } // namespace Occupancy
 
             namespace OccupancySensorType {
-                EmberAfStatus Get(const chip::app::ConcreteAttributePath& endpoint, uint8_t& value);
-                EmberAfStatus Set(const chip::app::ConcreteAttributePath& endpoint, const uint8_t& value);
+                EmberAfStatus Get(const chip::app::ConcreteAttributePath& endpoint,
+                    chip::app::Clusters::OccupancySensing::OccupancySensorTypeEnum& value);
+                EmberAfStatus Set(const chip::app::ConcreteAttributePath& endpoint,
+                    const chip::app::Clusters::OccupancySensing::OccupancySensorTypeEnum& value);
             } // namespace OccupancySensorType
 
             namespace OccupancySensorTypeBitmap {
-                EmberAfStatus Get(const chip::app::ConcreteAttributePath& endpoint, uint8_t& value);
-                EmberAfStatus Set(const chip::app::ConcreteAttributePath& endpoint, const uint8_t& value);
+                EmberAfStatus Get(const chip::app::ConcreteAttributePath& endpoint,
+                    chip::BitMask<chip::app::Clusters::OccupancySensing::OccupancySensorTypeBitmap>& value);
+                EmberAfStatus Set(const chip::app::ConcreteAttributePath& endpoint,
+                    const chip::BitMask<chip::app::Clusters::OccupancySensing::OccupancySensorTypeBitmap>& value);
             } // namespace OccupancySensorTypeBitmap
 
             namespace PIROccupiedToUnoccupiedDelay {
