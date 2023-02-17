@@ -23,7 +23,6 @@
 #include "semphr.h"
 #include "task.h"
 #include "timers.h"
-
 #include "sl_wfx_cmd_api.h"
 #include "sl_wfx_constants.h"
 
@@ -128,6 +127,7 @@ typedef struct __attribute__((__packed__)) sl_wfx_mib_req_s
 #endif /* RS911X_SOCKETS */
 
 #include "sl_status.h"
+#include "stdbool.h"
 
 #ifdef RS911X_WIFI
 #define WLAN_TASK_STACK_SIZE 1024
@@ -138,6 +138,7 @@ typedef struct __attribute__((__packed__)) sl_wfx_mib_req_s
 #else /* WF200 */
 #define WLAN_TASK_STACK_SIZE 1024
 #define WLAN_TASK_PRIORITY 1
+#define BLE_TASK_PRIORITY 1
 #define MAX_JOIN_RETRIES_COUNT 5
 #endif
 
