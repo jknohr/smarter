@@ -96,8 +96,8 @@ CHIP_ERROR SI917MatterConfig::InitMatter(const char * appName)
 #ifdef HEAP_MONITORING
     MemMonitoring::startHeapMonitoring();
 #endif
-    SetDeviceInstanceInfoProvider(&EFR32::EFR32DeviceDataProvider::GetDeviceDataProvider());
-    SetCommissionableDataProvider(&EFR32::EFR32DeviceDataProvider::GetDeviceDataProvider());
+    SetDeviceInstanceInfoProvider(&SIWx917::SIWx917DeviceDataProvider::GetDeviceDataProvider());
+    SetCommissionableDataProvider(&SIWx917::SIWx917DeviceDataProvider::GetDeviceDataProvider());
 
     //==============================================
     // Init Matter Stack
@@ -114,7 +114,14 @@ CHIP_ERROR SI917MatterConfig::InitMatter(const char * appName)
         return CHIP_ERROR_INTERNAL;
     }
     ReturnErrorOnFailure(PlatformMgr().InitChipStack());
-
+#ifdef SIWX917_USE_COMISSIONABLE_DATA
+    err = SIWx917::SIWx917DeviceDataProvider::GetDeviceDataProvider().FlashFactoryData();
+    if (err != CHIP_NO_ERROR)
+    {
+        SILABS_LOG("Flashing to the device failed");
+        return err;
+    }
+#endif
     chip::DeviceLayer::ConnectivityMgr().SetBLEDeviceName(appName);
 
     // Stop Matter event handling while setting up resources
