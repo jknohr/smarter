@@ -20,17 +20,7 @@
 #include "AppTask.h"
 #include "AppConfig.h"
 #include "AppEvent.h"
-//#include "LEDWidget.h"
-#ifdef DISPLAY_ENABLED
-#include "lcd.h"
-#ifdef QR_CODE_ENABLED
-#include "qrcodegen.h"
-#endif // QR_CODE_ENABLED
-#endif // DISPLAY_ENABLED
-//#include "sl_simple_led_instances.h"
-#include <app-common/zap-generated/attribute-id.h>
-#include <app-common/zap-generated/attribute-type.h>
-#include <app-common/zap-generated/cluster-id.h>
+
 #include <app/clusters/identify-server/identify-server.h>
 #include <app/clusters/on-off-server/on-off-server.h>
 #include <app/server/OnboardingCodesUtil.h>
@@ -42,23 +32,23 @@
 #include <setup_payload/QRCodeSetupPayloadGenerator.h>
 #include <setup_payload/SetupPayload.h>
 
-// #ifndef RS91X_BLE_ENABLE
-// #include <platform/silabs/EFR32/freertos_bluetooth.h>
-// #endif
-
 #include <lib/support/CodeUtils.h>
 
 #include <platform/CHIPDeviceLayer.h>
 
-//#define ONOFF_LED &sl_led_led1
-#define APP_FUNCTION_BUTTON &sl_button_btn0
-#define APP_ONOFF_BUTTON &sl_button_btn1
+#ifdef ENABLE_WSTK_LEDS
+#include "LEDWidget.h"
+#define APP_ACTION_LED 1
+#endif // ENABLE_WSTK_LEDS
 
 using namespace chip;
 using namespace ::chip::DeviceLayer;
 
 namespace {
-//LEDWidget sOnOffLED;
+
+#ifdef ENABLE_WSTK_LEDS
+LEDWidget sOnOffLED;
+#endif // ENABLE_WSTK_LEDS
 
 EmberAfIdentifyEffectIdentifier sIdentifyEffect = EMBER_ZCL_IDENTIFY_EFFECT_IDENTIFIER_STOP_EFFECT;
 
@@ -88,6 +78,10 @@ void OnTriggerIdentifyEffect(Identify * identify)
                         identify->mEffectVariant);
         sIdentifyEffect = static_cast<EmberAfIdentifyEffectIdentifier>(identify->mEffectVariant);
     }
+
+#if CHIP_DEVICE_CONFIG_ENABLE_SED == 1
+    AppTask::GetAppTask().StartStatusLEDTimer();
+#endif
 
     switch (sIdentifyEffect)
     {
@@ -149,8 +143,10 @@ CHIP_ERROR AppTask::Init()
 
     PlugMgr().SetCallbacks(ActionInitiated, ActionCompleted);
 
-    //sOnOffLED.Init(ONOFF_LED);
-    //sOnOffLED.Set(PlugMgr().IsPlugOn());
+#ifdef ENABLE_WSTK_LEDS
+    sOnOffLED.Init(APP_ACTION_LED);
+    sOnOffLED.Set(PlugMgr().IsPlugOn());
+#endif // ENABLE_WSTK_LEDS
 
     return err;
 }
@@ -211,12 +207,14 @@ void AppTask::OnOffActionEventHandler(AppEvent * aEvent)
 {
     bool initiated = false;
     OnOffPlugManager::Action_t action;
+    int32_t actor;
     CHIP_ERROR err = CHIP_NO_ERROR;
     
 
     if (aEvent->Type == AppEvent::kEventType_Button)
     {
         action = (PlugMgr().IsPlugOn()) ? OnOffPlugManager::OFF_ACTION : OnOffPlugManager::ON_ACTION;
+		actor  = AppEvent::kEventType_Button;
     }
     else
     {
@@ -225,7 +223,7 @@ void AppTask::OnOffActionEventHandler(AppEvent * aEvent)
 
     if (err == CHIP_NO_ERROR)
     {
-        initiated = PlugMgr().InitiateAction(aEvent->Type, action);
+        initiated = PlugMgr().InitiateAction(actor, action);
 
         if (!initiated)
         {
@@ -234,23 +232,17 @@ void AppTask::OnOffActionEventHandler(AppEvent * aEvent)
     }
 }
 
-void AppTask::ButtonEventHandler(const sl_button_t * buttonHandle, uint8_t btnAction)
+void AppTask::ButtonEventHandler(uint8_t button, uint8_t btnAction)
 {
-    if (buttonHandle == NULL)
-    {
-        return;
-    }
-
     AppEvent button_event           = {};
     button_event.Type               = AppEvent::kEventType_Button;
     button_event.ButtonEvent.Action = btnAction;
-
-    if (buttonHandle == APP_ONOFF_BUTTON && btnAction == SL_SIMPLE_BUTTON_PRESSED)
+    if (button == SIWx917_BTN1 && btnAction == SL_SIMPLE_BUTTON_PRESSED)
     {
         button_event.Handler = OnOffActionEventHandler;
         sAppTask.PostEvent(&button_event);
     }
-    else if (buttonHandle == APP_FUNCTION_BUTTON)
+    else if (button == SIWx917_BTN0)
     {
         button_event.Handler = BaseApplication::ButtonHandler;
         sAppTask.PostEvent(&button_event);
@@ -262,7 +254,7 @@ void AppTask::ActionInitiated(OnOffPlugManager::Action_t aAction, int32_t aActor
     // Action initiated, update the light led
     bool lightOn = aAction == OnOffPlugManager::ON_ACTION;
     SILABS_LOG("Turning light %s", (lightOn) ? "On" : "Off")
-    //sOnOffLED.Set(lightOn);
+    sOnOffLED.Set(lightOn);
 
 #ifdef DISPLAY_ENABLED
     sAppTask.GetLCD().WriteDemoUI(lightOn);
