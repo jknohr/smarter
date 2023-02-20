@@ -79,7 +79,7 @@ CHIP_ERROR SIWx917DeviceDataProvider::FlashFactoryData()
     }
     if (discriminatorValue != 0)
     {
-        err = SILABSConfig::WriteConfigValue(SILABSConfig::kConfigKey_SetupDiscriminator, discriminatorValue);
+        err = SilabsConfig::WriteConfigValue(SilabsConfig::kConfigKey_SetupDiscriminator, discriminatorValue);
         if (err != CHIP_NO_ERROR)
         {
             return err;
@@ -87,14 +87,14 @@ CHIP_ERROR SIWx917DeviceDataProvider::FlashFactoryData()
     }
     uint8_t payload[kTotalPayloadDataSizeInBytes];
     setupPayload(payload);
-    err = SILABSConfig::WriteConfigValueBin(SILABSConfig::kConfigKey_SetupPayloadBitSet, payload, kTotalPayloadDataSizeInBytes);
+    err = SilabsConfig::WriteConfigValueBin(SilabsConfig::kConfigKey_SetupPayloadBitSet, payload, kTotalPayloadDataSizeInBytes);
     if (err != CHIP_NO_ERROR)
     {
         return err;
     }
     if (spake2Interation != 0)
     {
-        err = SILABSConfig::WriteConfigValue(SILABSConfig::kConfigKey_Spake2pIterationCount, spake2Interation);
+        err = SilabsConfig::WriteConfigValue(SilabsConfig::kConfigKey_Spake2pIterationCount, spake2Interation);
         if (err != CHIP_NO_ERROR)
         {
             return err;
@@ -102,7 +102,7 @@ CHIP_ERROR SIWx917DeviceDataProvider::FlashFactoryData()
     }
     if (spake2Salt != NULL)
     {
-        err = SILABSConfig::WriteConfigValueStr(SILABSConfig::kConfigKey_Spake2pSalt, spake2Salt);
+        err = SilabsConfig::WriteConfigValueStr(SilabsConfig::kConfigKey_Spake2pSalt, spake2Salt);
         if (err != CHIP_NO_ERROR)
         {
             return err;
@@ -110,7 +110,7 @@ CHIP_ERROR SIWx917DeviceDataProvider::FlashFactoryData()
     }
     if (spake2Verifier != NULL)
     {
-        err = SILABSConfig::WriteConfigValueStr(SILABSConfig::kConfigKey_Spake2pVerifier, spake2Verifier);
+        err = SilabsConfig::WriteConfigValueStr(SilabsConfig::kConfigKey_Spake2pVerifier, spake2Verifier);
         if (err != CHIP_NO_ERROR)
         {
             return err;
@@ -118,7 +118,7 @@ CHIP_ERROR SIWx917DeviceDataProvider::FlashFactoryData()
     }
     if (productId != 0)
     {
-        err = SILABSConfig::WriteConfigValue(SILABSConfig::kConfigKey_ProductId, productId);
+        err = SilabsConfig::WriteConfigValue(SilabsConfig::kConfigKey_ProductId, productId);
         if (err != CHIP_NO_ERROR)
         {
             return err;
@@ -126,7 +126,7 @@ CHIP_ERROR SIWx917DeviceDataProvider::FlashFactoryData()
     }
     if (vendorId != 0)
     {
-        err = SILABSConfig::WriteConfigValue(SILABSConfig::kConfigKey_VendorId, vendorId);
+        err = SilabsConfig::WriteConfigValue(SilabsConfig::kConfigKey_VendorId, vendorId);
         if (err != CHIP_NO_ERROR)
         {
             return err;
@@ -134,7 +134,7 @@ CHIP_ERROR SIWx917DeviceDataProvider::FlashFactoryData()
     }
     if (strlen(productName) != 0)
     {
-        err = SILABSConfig::WriteConfigValueStr(SILABSConfig::kConfigKey_ProductName, productName);
+        err = SilabsConfig::WriteConfigValueStr(SilabsConfig::kConfigKey_ProductName, productName);
         if (err != CHIP_NO_ERROR)
         {
             return err;
@@ -142,7 +142,7 @@ CHIP_ERROR SIWx917DeviceDataProvider::FlashFactoryData()
     }
     if (strlen(vendorName) != 0)
     {
-        err = SILABSConfig::WriteConfigValueStr(SILABSConfig::kConfigKey_VendorName, vendorName);
+        err = SilabsConfig::WriteConfigValueStr(SilabsConfig::kConfigKey_VendorName, vendorName);
         if (err != CHIP_NO_ERROR)
         {
             return err;
@@ -150,7 +150,7 @@ CHIP_ERROR SIWx917DeviceDataProvider::FlashFactoryData()
     }
     if (strlen(hwVersionString) != 0)
     {
-        err = SILABSConfig::WriteConfigValueStr(SILABSConfig::kConfigKey_HardwareVersionString, hwVersionString);
+        err = SilabsConfig::WriteConfigValueStr(SilabsConfig::kConfigKey_HardwareVersionString, hwVersionString);
         if (err != CHIP_NO_ERROR)
         {
             return err;
@@ -158,7 +158,7 @@ CHIP_ERROR SIWx917DeviceDataProvider::FlashFactoryData()
     }
     if (rotatingId != 0)
     {
-        err = SILABSConfig::WriteConfigValue(SILABSConfig::kConfigKey_UniqueId, rotatingId);
+        err = SilabsConfig::WriteConfigValue(SilabsConfig::kConfigKey_UniqueId, rotatingId);
         if (err != CHIP_NO_ERROR)
         {
             return err;
@@ -172,7 +172,7 @@ CHIP_ERROR SIWx917DeviceDataProvider::GetSetupDiscriminator(uint16_t & setupDisc
     CHIP_ERROR err;
     uint32_t setupDiscriminator32;
 
-    err = SILABSConfig::ReadConfigValue(SILABSConfig::kConfigKey_SetupDiscriminator, setupDiscriminator32);
+    err = SilabsConfig::ReadConfigValue(SilabsConfig::kConfigKey_SetupDiscriminator, setupDiscriminator32);
 #if defined(CHIP_DEVICE_CONFIG_USE_TEST_SETUP_DISCRIMINATOR) && CHIP_DEVICE_CONFIG_USE_TEST_SETUP_DISCRIMINATOR
     if (err == CHIP_DEVICE_ERROR_CONFIG_NOT_FOUND)
     {
@@ -188,7 +188,8 @@ CHIP_ERROR SIWx917DeviceDataProvider::GetSetupDiscriminator(uint16_t & setupDisc
 
 CHIP_ERROR SIWx917DeviceDataProvider::GetSpake2pIterationCount(uint32_t & iterationCount)
 {
-    CHIP_ERROR err = SILABSConfig::ReadConfigValue(SILABSConfig::kConfigKey_Spake2pIterationCount, iterationCount);
+    CHIP_ERROR err = SilabsConfig::ReadConfigValue(SilabsConfig::kConfigKey_Spake2pIterationCount, iterationCount);
+
 #if defined(CHIP_DEVICE_CONFIG_USE_TEST_SPAKE2P_ITERATION_COUNT) && CHIP_DEVICE_CONFIG_USE_TEST_SPAKE2P_ITERATION_COUNT
     if (err == CHIP_DEVICE_ERROR_CONFIG_NOT_FOUND)
     {
@@ -207,7 +208,8 @@ CHIP_ERROR SIWx917DeviceDataProvider::GetSpake2pSalt(MutableByteSpan & saltBuf)
     char saltB64[kSpake2pSalt_MaxBase64Len] = { 0 };
     size_t saltB64Len                       = 0;
 
-    err = SILABSConfig::ReadConfigValueStr(SILABSConfig::kConfigKey_Spake2pSalt, saltB64, sizeof(saltB64), saltB64Len);
+    err = SilabsConfig::ReadConfigValueStr(SilabsConfig::kConfigKey_Spake2pSalt, saltB64, sizeof(saltB64), saltB64Len);
+
 #if defined(CHIP_DEVICE_CONFIG_USE_TEST_SPAKE2P_SALT)
     if (err == CHIP_DEVICE_ERROR_CONFIG_NOT_FOUND)
     {
@@ -239,7 +241,7 @@ CHIP_ERROR SIWx917DeviceDataProvider::GetSpake2pVerifier(MutableByteSpan & verif
     char verifierB64[kSpake2pSerializedVerifier_MaxBase64Len] = { 0 };
     size_t verifierB64Len                                     = 0;
 
-    err = SILABSConfig::ReadConfigValueStr(SILABSConfig::kConfigKey_Spake2pVerifier, verifierB64, sizeof(verifierB64),
+    err = SilabsConfig::ReadConfigValueStr(SilabsConfig::kConfigKey_Spake2pVerifier, verifierB64, sizeof(verifierB64),
                                            verifierB64Len);
 #if defined(CHIP_DEVICE_CONFIG_USE_TEST_SPAKE2P_VERIFIER)
     if (err == CHIP_DEVICE_ERROR_CONFIG_NOT_FOUND)
@@ -267,7 +269,8 @@ CHIP_ERROR SIWx917DeviceDataProvider::GetSetupPayload(MutableCharSpan & payloadB
     CHIP_ERROR err                                      = CHIP_NO_ERROR;
     uint8_t payloadBitSet[kTotalPayloadDataSizeInBytes] = { 0 };
     size_t bitSetLen                                    = 0;
-    err = SILABSConfig::ReadConfigValueBin(SILABSConfig::kConfigKey_SetupPayloadBitSet, payloadBitSet, kTotalPayloadDataSizeInBytes,
+
+    err = SilabsConfig::ReadConfigValueBin(SilabsConfig::kConfigKey_SetupPayloadBitSet, payloadBitSet, kTotalPayloadDataSizeInBytes,
                                            bitSetLen);
     SILABS_LOG("error error %d", err);
 #if defined(CHIP_DEVICE_CONFIG_USE_TEST_SETUP_PIN_CODE) && CHIP_DEVICE_CONFIG_USE_TEST_SETUP_PIN_CODE
@@ -304,7 +307,7 @@ CHIP_ERROR SIWx917DeviceDataProvider::GetSetupPayload(MutableCharSpan & payloadB
 CHIP_ERROR SIWx917DeviceDataProvider::GetVendorName(char * buf, size_t bufSize)
 {
     size_t vendorNameLen = 0; // without counting null-terminator
-    return SILABSConfig::ReadConfigValueStr(SILABSConfig::kConfigKey_VendorName, buf, bufSize, vendorNameLen);
+    return SilabsConfig::ReadConfigValueStr(SilabsConfig::kConfigKey_VendorName, buf, bufSize, vendorNameLen);
 }
 
 CHIP_ERROR SIWx917DeviceDataProvider::GetVendorId(uint16_t & vendorId)
@@ -312,7 +315,8 @@ CHIP_ERROR SIWx917DeviceDataProvider::GetVendorId(uint16_t & vendorId)
     ChipError err       = CHIP_NO_ERROR;
     uint32_t vendorId32 = 0;
 
-    err = SILABSConfig::ReadConfigValue(SILABSConfig::kConfigKey_VendorId, vendorId32);
+    err = SilabsConfig::ReadConfigValue(SilabsConfig::kConfigKey_VendorId, vendorId32);
+
 #if defined(CHIP_DEVICE_CONFIG_DEVICE_VENDOR_ID) && CHIP_DEVICE_CONFIG_DEVICE_VENDOR_ID
     if (err == CHIP_DEVICE_ERROR_CONFIG_NOT_FOUND)
     {
@@ -329,7 +333,7 @@ CHIP_ERROR SIWx917DeviceDataProvider::GetVendorId(uint16_t & vendorId)
 CHIP_ERROR SIWx917DeviceDataProvider::GetProductName(char * buf, size_t bufSize)
 {
     size_t productNameLen = 0; // without counting null-terminator
-    return SILABSConfig::ReadConfigValueStr(SILABSConfig::kConfigKey_ProductName, buf, bufSize, productNameLen);
+    return SilabsConfig::ReadConfigValueStr(SilabsConfig::kConfigKey_ProductName, buf, bufSize, productNameLen);
 }
 
 CHIP_ERROR SIWx917DeviceDataProvider::GetProductId(uint16_t & productId)
@@ -337,7 +341,8 @@ CHIP_ERROR SIWx917DeviceDataProvider::GetProductId(uint16_t & productId)
     ChipError err        = CHIP_NO_ERROR;
     uint32_t productId32 = 0;
 
-    err = SILABSConfig::ReadConfigValue(SILABSConfig::kConfigKey_ProductId, productId32);
+    err = SilabsConfig::ReadConfigValue(SilabsConfig::kConfigKey_ProductId, productId32);
+
 #if defined(CHIP_DEVICE_CONFIG_DEVICE_PRODUCT_ID) && CHIP_DEVICE_CONFIG_DEVICE_PRODUCT_ID
     if (err == CHIP_DEVICE_ERROR_CONFIG_NOT_FOUND)
     {
@@ -355,7 +360,7 @@ CHIP_ERROR SIWx917DeviceDataProvider::GetHardwareVersionString(char * buf, size_
 {
     size_t hardwareVersionStringLen = 0; // without counting null-terminator
     CHIP_ERROR err =
-        SILABSConfig::ReadConfigValueStr(SILABSConfig::kConfigKey_HardwareVersionString, buf, bufSize, hardwareVersionStringLen);
+        SilabsConfig::ReadConfigValueStr(SilabsConfig::kConfigKey_HardwareVersionString, buf, bufSize, hardwareVersionStringLen);
 #if defined(CHIP_DEVICE_CONFIG_DEVICE_SOFTWARE_VERSION_STRING)
     if (err == CHIP_DEVICE_ERROR_CONFIG_NOT_FOUND)
     {
@@ -371,7 +376,7 @@ CHIP_ERROR SIWx917DeviceDataProvider::GetHardwareVersion(uint16_t & hardwareVers
     CHIP_ERROR err;
     uint32_t hardwareVersion32;
 
-    err = SILABSConfig::ReadConfigValue(SILABSConfig::kConfigKey_HardwareVersion, hardwareVersion32);
+    err = SilabsConfig::ReadConfigValue(SilabsConfig::kConfigKey_HardwareVersion, hardwareVersion32);
 #if defined(CHIP_DEVICE_CONFIG_DEVICE_HARDWARE_VERSION)
     if (err == CHIP_DEVICE_ERROR_CONFIG_NOT_FOUND)
     {
@@ -393,7 +398,7 @@ CHIP_ERROR SIWx917DeviceDataProvider::GetRotatingDeviceIdUniqueId(MutableByteSpa
 
     size_t uniqueIdLen = 0;
     err =
-        SILABSConfig::ReadConfigValueBin(SILABSConfig::kConfigKey_UniqueId, uniqueIdSpan.data(), uniqueIdSpan.size(), uniqueIdLen);
+        SilabsConfig::ReadConfigValueBin(SilabsConfig::kConfigKey_UniqueId, uniqueIdSpan.data(), uniqueIdSpan.size(), uniqueIdLen);
 #ifdef CHIP_DEVICE_CONFIG_ROTATING_DEVICE_ID_UNIQUE_ID
     if (err == CHIP_DEVICE_ERROR_CONFIG_NOT_FOUND)
     {
@@ -415,7 +420,7 @@ CHIP_ERROR SIWx917DeviceDataProvider::GetRotatingDeviceIdUniqueId(MutableByteSpa
 CHIP_ERROR SIWx917DeviceDataProvider::GetSerialNumber(char * buf, size_t bufSize)
 {
     size_t serialNumberLen = 0; // without counting null-terminator
-    return SILABSConfig::ReadConfigValueStr(SILABSConfig::kConfigKey_SerialNum, buf, bufSize, serialNumberLen);
+    return SilabsConfig::ReadConfigValueStr(SilabsConfig::kConfigKey_SerialNum, buf, bufSize, serialNumberLen);
 }
 
 CHIP_ERROR SIWx917DeviceDataProvider::GetManufacturingDate(uint16_t & year, uint8_t & month, uint8_t & day)
@@ -426,7 +431,7 @@ CHIP_ERROR SIWx917DeviceDataProvider::GetManufacturingDate(uint16_t & year, uint
     size_t dateLen;
     char * parseEnd;
 
-    err = SILABSConfig::ReadConfigValueBin(SILABSConfig::kConfigKey_ManufacturingDate, reinterpret_cast<uint8_t *>(dateStr),
+    err = SilabsConfig::ReadConfigValueBin(SilabsConfig::kConfigKey_ManufacturingDate, reinterpret_cast<uint8_t *>(dateStr),
                                            sizeof(dateStr), dateLen);
     SuccessOrExit(err);
 

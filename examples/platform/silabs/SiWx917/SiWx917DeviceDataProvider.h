@@ -29,11 +29,11 @@ namespace SIWx917 {
  */
 
 class SIWx917DeviceDataProvider : public CommissionableDataProvider,
-                                  public Internal::GenericDeviceInstanceInfoProvider<Internal::SILABSConfig>
+                                  public Internal::GenericDeviceInstanceInfoProvider<Internal::SilabsConfig>
 {
 public:
     SIWx917DeviceDataProvider() :
-        CommissionableDataProvider(), Internal::GenericDeviceInstanceInfoProvider<Internal::SILABSConfig>(
+        CommissionableDataProvider(), Internal::GenericDeviceInstanceInfoProvider<Internal::SilabsConfig>(
                                           ConfigurationManagerImpl::GetDefaultInstance())
     {}
 
