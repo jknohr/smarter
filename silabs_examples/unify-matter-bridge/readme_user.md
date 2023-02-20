@@ -331,3 +331,19 @@ The above MQTT debug messages can also be traced in Unify logs.
 
 - Alternatively to disable a particular command or disable reading particular
 attributes from the test refer to PICS Usage from [README](../../src/app/tests/suites/README.md)
+
+To find the PICS variables to set or unset you can look at the yaml files for the tests in '`src/app/tests/suites/certification/`'
+
+For e.g. following entry in PICS file '`test_onOff.PICS`' can be passed to configure Level Control for Lighting in Test_TC_OCC_3_1.
+This PICS file will tell test Test_TC_OCC_3_1 that the end device support Level Contorl for Lighting. Similary more 
+
+For more info on the OO.S.F00 Refer "Chapter 1. PICS Definition" in "On/Off Cluster Test Plan" in "Matter Application ClustersTest Plans"
+
+```
+OO.S.F00=1
+```
+
+to run the test with above PICS file you can use following command line
+```
+./chip-tool tests Test_TC_OO_1_1 --nodeId 1 --endpoint 2 --delayInMs 1400 --PICS ./test_onOff.PICS
+```
