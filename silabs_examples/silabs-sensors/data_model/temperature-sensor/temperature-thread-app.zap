@@ -33,7 +33,7 @@
   ],
   "endpointTypes": [
     {
-      "id": 17,
+      "id": 12,
       "name": "MA-rootdevice",
       "deviceTypeRef": {
         "id": 2,
@@ -4087,7 +4087,7 @@
       ]
     },
     {
-      "id": 18,
+      "id": 11,
       "name": "MA-dimmablelight",
       "deviceTypeRef": {
         "id": 24,

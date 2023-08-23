@@ -33,7 +33,7 @@
   ],
   "endpointTypes": [
     {
-      "id": 21,
+      "id": 20,
       "name": "Root Node",
       "deviceTypeRef": {
         "id": 2,
@@ -5711,7 +5711,7 @@
       ]
     },
     {
-      "id": 22,
+      "id": 19,
       "name": "Aggregator",
       "deviceTypeRef": {
         "id": 6,
