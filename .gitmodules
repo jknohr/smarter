@@ -323,3 +323,7 @@
 	url = https://github.com/SiliconLabs/wiseconnect
 	branch = master
 	platforms = efr32
+[submodule "third_party/silabs/aws_ota_sdk/ota-for-aws-iot-embedded-sdk"]
+	path = third_party/silabs/aws_ota_sdk/ota-for-aws-iot-embedded-sdk
+	url = https://github.com/aws/ota-for-aws-iot-embedded-sdk.git
+    platforms = efr32
