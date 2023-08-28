@@ -184,8 +184,8 @@ protected:
                                                           report.GetProtocolData()->DataLength());
 
                     uint16_t minimumWaitTime = 0;
-                    err                      = reader.Read16(&minimumWaitTime).StatusCode();
-                    if (err != CHIP_NO_ERROR)
+                    auto err_value                      = reader.Read16(&minimumWaitTime).StatusCode();
+                    if (err_value != CHIP_NO_ERROR)
                     {
                         ChipLogError(SecureChannel, "Failed to read the minimum wait time: %" CHIP_ERROR_FORMAT, err.Format());
                     }
