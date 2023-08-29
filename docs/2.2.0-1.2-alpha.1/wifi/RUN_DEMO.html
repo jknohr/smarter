@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Running the Matter Demo over Wi-Fi on an EFR32 device &mdash; Matter 2.2.0-1.2-alpha.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom_styles.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Running the Matter Demo over Wi-Fi for SiWx917 SoC" href="RUN_DEMO_SiWx917_SoC.html" />
+    <link rel="prev" title="Matter over Wi-Fi Demo Overview" href="DEMO_OVERVIEW.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #3b82f6" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Matter
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                2.2.0-1.2-alpha.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../OVERVIEW.html">User's Guide Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NEW_FEATURES.html">Matter New Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nav_1_overview.html">Matter Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nav_2_prereq.html">Matter Development Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nav_4_thread.html">Matter Over Thread</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../nav_5_wifi.html">Matter Over Wi-Fi</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="DEMO_OVERVIEW.html">Demo Overview</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Demo on EFR32 NCP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#flashing-images-binaries-on-efr32mg24-platform-using-ozone-simplicity-studio-or-simplicity-commander">Flashing Images/Binaries on EFR32MG24 Platform using Ozone, Simplicity Studio, or Simplicity Commander</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#directions-for-flashing-using-ozone">Directions for Flashing using Ozone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#demo-execution-commissioning-a-wi-fi-device-using-chip-tool-for-linux">Demo Execution - Commissioning a Wi-Fi Device using chip-tool for Linux</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO_SiWx917_SoC.html">Demo on 917 SoC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SW_SETUP.html">Wi-Fi GitHub Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nav_5_wifi_917.html">917 SoC Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nav_5_wifi_dic.html">Wi-Fi Direct Internet Connectivity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WIFI_SLEEPY_END_DEVICE.html">Wi-Fi Intermittently Connected Devices (ICD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WIFI_Sleepy_Device_Power_Measurement.html">Wi-Fi ICD Power Measurement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BUILD_PI_ENV.html">Build Chip Tool on Raspi</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../unify/index.html">Unify Matter Bridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nav_3_general.html">Developer Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nav_6_faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #3b82f6" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Matter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../nav_5_wifi.html">Matter Over Wi-Fi</a></li>
+      <li class="breadcrumb-item active">Running the Matter Demo over Wi-Fi on an EFR32 device</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/wifi/RUN_DEMO.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="running-the-matter-demo-over-wi-fi-on-an-efr32-device">
+<h1>Running the Matter Demo over Wi-Fi on an EFR32 device<a class="headerlink" href="#running-the-matter-demo-over-wi-fi-on-an-efr32-device" title="Permalink to this heading"></a></h1>
+<section id="flashing-images-binaries-on-efr32mg24-platform-using-ozone-simplicity-studio-or-simplicity-commander">
+<h2>Flashing Images/Binaries on EFR32MG24 Platform using Ozone, Simplicity Studio, or Simplicity Commander<a class="headerlink" href="#flashing-images-binaries-on-efr32mg24-platform-using-ozone-simplicity-studio-or-simplicity-commander" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>Note: If you are coming from Simplicity Studio, you may have already installed
+the demo image using Simplicity Studio, in which case you can skip to the
+next step.</p>
+</div></blockquote>
+<ol class="arabic">
+<li><p>Plug the WSTK and EFR into the laptop.</p></li>
+<li><p>Based on the Application being built, make sure to flash proper <a class="reference internal" href="../general/ARTIFACTS.html"><span class="std std-doc">bootloader</span></a> internal or external binaries.</p></li>
+<li><p>Launch Ozone, Simplicity Studio or Simplicity Commander Standalone - this
+will display a GUI.</p>
+<p>If you are using Simplicity Studio or Simplicity Commander, you can follow the general instructions for flashing a Silicon Labs device.
+<a class="reference internal" href="../general/FLASH_SILABS_DEVICE.html"><span class="std std-doc">Flash a Silicon Labs Device</span></a>. If you are using Ozone, you can follow the instructions below.</p>
+</li>
+</ol>
+</section>
+<section id="directions-for-flashing-using-ozone">
+<h2>Directions for Flashing using Ozone<a class="headerlink" href="#directions-for-flashing-using-ozone" title="Permalink to this heading"></a></h2>
+<ol class="arabic">
+<li><p>In ‘New Project Wizard’:</p>
+<ol class="arabic simple">
+<li><p>Click the three-dots on the ‘Device’ tab and select ‘Manufacturer’ as
+‘<code class="docutils literal notranslate"><span class="pre">Silicon</span> <span class="pre">Labs</span></code>’</p></li>
+<li><p>Select ‘Device’ as <code class="docutils literal notranslate"><span class="pre">EFR32MG24Bxxx1536</span></code>
+depending on the device you are using.</p></li>
+<li><p>Click ‘OK’</p></li>
+<li><p>The ‘Register set’ tab will get filled automatically</p></li>
+<li><p>‘Peripherals’ tab need not be changed as it is optional</p></li>
+</ol>
+</li>
+<li><p>Click ‘Next’ - the window that is displayed will contain:</p>
+<ul class="simple">
+<li><p>Serial Number: Read from device</p></li>
+<li><p>Target Interface: JTAG</p></li>
+<li><p>Speed: 4MHz</p></li>
+<li><p>Host Interface: USB</p></li>
+<li><p>There will be one product in the ‘Emulators connected via USB’ tab -
+select this and click ‘Next’</p></li>
+</ul>
+</li>
+<li><p>Click on the ‘Silicon Labs device’ detected, and then click ‘Next’</p></li>
+<li><p>You will be asked to select the image/binary to be loaded: click the
+three-dots on that tab and navigate to ‘<code class="docutils literal notranslate"><span class="pre">out/rs911x_lighting/BRD41xxx</span></code>’
+through ‘Browse’, select the file named <code class="docutils literal notranslate"><span class="pre">chip-efr32-lighting-example.out</span></code>
+and click ‘Next’. This is the image built in previous step.</p>
+<blockquote>
+<div><p>Note that you may be using a different board like the
+BRD4186C or BRD4187C, in which case your image will be in a directory
+corresponding to that board identifier.</p>
+</div></blockquote>
+</li>
+<li><p>Make sure the next screen has ‘Initial PC’ selected as ‘ELF Entry Point’ -
+click ‘Finish’</p>
+<blockquote>
+<div><p>Ignore Diagnostics warning about ‘FreeRTOS’ detected - click ‘Continue’</p>
+</div></blockquote>
+</li>
+<li><p>Select ‘Download and Reset Program’ in the dropdown next to the Power button
+on the top left of the page</p>
+<blockquote>
+<div><p>The Silabs chip, EFR32MG24, will be erased and programmed</p>
+</div></blockquote>
+</li>
+<li><p>Run the image by clicking the ‘Play’ button on the top left (or press the F5
+key)</p>
+<blockquote>
+<div><p>The output of the EFR32 can be viewed on the console of the Ozone GUI</p>
+</div></blockquote>
+</li>
+<li><p><strong>[Optional]</strong> This step is for when the device has already been flashed and
+is being used for testing/debug purposes:</p>
+<blockquote>
+<div><p>If you are restarting the device and do not need to re-flash the EFR
+firmware, then you can use these commands (JLinkExe &amp; JLinRTTClient). The
+following commands will provide you with a serial console of the EFR32</p>
+</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>konsole<span class="w"> </span>-e<span class="w"> </span>JLinkExe<span class="w"> </span>-device<span class="w"> </span>EFR32MG24Bxxx1536<span class="w"> </span>-if<span class="w"> </span>JTAG<span class="w"> </span>-speed<span class="w"> </span><span class="m">4000</span><span class="w"> </span>-autoconnect<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>(Put it in the background)</p>
+</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sleep<span class="w"> </span><span class="m">3</span>
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>konsole<span class="w"> </span>-e<span class="w"> </span>JLinkRTTClient<span class="w"> </span><span class="p">&amp;</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>You may need to press <ENTER> in the JLinkExe console first</p>
+</div></blockquote>
+</li>
+</ol>
+</section>
+<section id="demo-execution-commissioning-a-wi-fi-device-using-chip-tool-for-linux">
+<h2>Demo Execution - Commissioning a Wi-Fi Device using chip-tool for Linux<a class="headerlink" href="#demo-execution-commissioning-a-wi-fi-device-using-chip-tool-for-linux" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>Commissioning can be done using chip-tool running either on Linux or Raspberry
+Pi</p>
+</div></blockquote>
+<ol class="arabic">
+<li><p>Get the SSID and PSK of the Wi-Fi network (WPA2 - Security) you are connected
+to.</p></li>
+<li><p>Run the following:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$MATTER_WORKDIR</span>/matter
+</pre></div>
+</div>
+<h3 class="rubric" id="commissioning-command">Commissioning Command:</h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>out/standalone/chip-tool<span class="w"> </span>pairing<span class="w"> </span>ble-wifi<span class="w"> </span><span class="m">1122</span><span class="w"> </span><span class="nv">$SSID</span><span class="w"> </span><span class="nv">$PSK</span><span class="w"> </span><span class="m">20202021</span><span class="w"> </span><span class="m">3840</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>The node ID used here is 1122. This will be used in future commands.
+‘$SSID’ is a placeholder for your Wi-Fi SSID and ‘$PSK’ is a placeholder
+for the password of your Wi-Fi network.</p>
+</div></blockquote>
+</li>
+<li><p>To turn <strong>on</strong> the LED on the EFR32MG24:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>out/standalone/chip-tool<span class="w"> </span>onoff<span class="w"> </span>on<span class="w"> </span><span class="m">1122</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</li>
+<li><p>To turn <strong>off</strong> the LED on the EFR32MG24:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>out/standalone/chip-tool<span class="w"> </span>onoff<span class="w"> </span>off<span class="w"> </span><span class="m">1122</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>If there are any failures, run the following command and then re-run the
+chip-tool command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/tmp/chip_*
+</pre></div>
+</div>
+<p>If you are having difficulty getting the chip-tool to commission the device
+successfully, it may be because you have more than one network interface
+available to the chip-tool. The device on which you are running the chip-tool
+must be on the same Wi-Fi network as your RS9116 or WF200 and there cannot be
+another network interface on the device that is running the chip-tool. For
+instance, if you have an Ethernet connection as well as a Wi-Fi connection, you
+need to unplug the Ethernet connection and try running the chip-tool as in step
+#2 above.</p>
+<p>As the device remembers the Access Point credentials given for commissioning, if
+you want to run the demo multiple times, do a factory reset by pressing the BTN0
+on EFR32MG24 for about 6-7 seconds. The LED0 will flash 3 times.</p>
+<p>The commissioning command mentioned above does the following:</p>
+<ul class="simple">
+<li><p>chip-tool scans BLE and locates the Silicon Labs device that uses the
+specified discriminator</p></li>
+<li><p>Sends the Wi-Fi SSID and Passkey</p></li>
+<li><p>The Silicon Labs device will join the Wi-Fi network and get an IP address.
+It then starts providing mDNS records on IPv4 and IPv6</p></li>
+<li><p>chip-tool then locates the device over Wi-Fi and establishes operational
+certificates</p></li>
+<li><p>Future communications (tests) will then happen over Wi-Fi</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+    <hr/>
+    <p>Copyright © 2023 Silicon Laboratories. All rights reserved.</p>
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XXXXXXXXXX', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>
