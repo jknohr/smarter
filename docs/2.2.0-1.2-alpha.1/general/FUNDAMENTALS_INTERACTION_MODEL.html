@@ -59,14 +59,14 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">The Matter Interaction Model</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-read-interaction">The Read Interaction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-write-interaction">The Write Interaction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#invoke-interaction">Invoke Interaction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#subscription-interaction">Subscription Interaction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-invoke-interaction">The Invoke Interaction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-subscription-interaction">The Subscription Interaction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#relating-matter-to-zigbee">Relating Matter to Zigbee</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#matter-specifications">Matter Specifications</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="COMMISSIONING.html">Matter Commissioning</a></li>
-<li class="toctree-l2"><a class="reference internal" href="OT_SLEEPY_END_DEVICE.html">Matter Sleepy End Devices over OpenThread</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OT_SLEEPY_END_DEVICE.html">Matter Intermittently Connected Devices over OpenThread</a></li>
 <li class="toctree-l2"><a class="reference internal" href="OTA_BOOTLOADER.html">Creating Gecko Bootloader for Use in Matter OTA Software Update</a></li>
 <li class="toctree-l2"><a class="reference internal" href="OTA_SOFTWARE_UPDATE.html">Matter Software Update with EFR32 Example Applications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SECURITY.html">Security</a></li>
@@ -200,8 +200,8 @@
 <p>Untimed and timed Write Transactions differ in their restrictions. All actions in timed transactions are unicast-only, whereas Untimed Write Request Actions may be multicast but require the Suppress Response flag to be set to prevent the network from flooding with status responses.</p>
 </section>
 </section>
-<section id="invoke-interaction">
-<h2>Invoke Interaction<a class="headerlink" href="#invoke-interaction" title="Permalink to this heading"></a></h2>
+<section id="the-invoke-interaction">
+<h2>The Invoke Interaction<a class="headerlink" href="#the-invoke-interaction" title="Permalink to this heading"></a></h2>
 <p><img alt="Diagram of a Timed Invoke Interaction" src="../_images/timed-invoke-interaction.jpg" /></p>
 <p>An initiator invokes command(s) on a target’s cluster(s) through Invoke Interactions. An Invoke Interaction consists of either a Timed or Untimed Invoke Transaction, just like a Write Interaction consists of a Timed or Untimed Write Transaction.</p>
 <p>Just like a Timed Write Transaction, a Timed Invoke Transaction consists of the following steps:</p>
@@ -221,8 +221,8 @@
 </ol>
 <p>Untimed and timed Invoke Transactions differ in the same way that untimed and timed Write Transactions differ, both in their actions and restrictions on unicast or multicast.</p>
 </section>
-<section id="subscription-interaction">
-<h2>Subscription Interaction<a class="headerlink" href="#subscription-interaction" title="Permalink to this heading"></a></h2>
+<section id="the-subscription-interaction">
+<h2>The Subscription Interaction<a class="headerlink" href="#the-subscription-interaction" title="Permalink to this heading"></a></h2>
 <p><img alt="Diagram of a Subscription Interaction" src="../_images/subscription-interaction.jpg" /></p>
 <p>An initiator uses a Subscription Interaction to automatically receive periodic Report Data Transactions from the target. This creates a relationship between the initiator and target, which are referred to respectively as the subscriber and publisher after the subscription has been made.</p>
 <p>Subscription Interactions include two transactions types: A Subscribe Transaction and Report Transaction.</p>
