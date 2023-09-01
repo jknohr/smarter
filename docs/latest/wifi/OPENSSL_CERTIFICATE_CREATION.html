@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Openssl Certificate Creation &mdash; Matter 2.1.0-1.1 documentation</title>
+  <title>Openssl Certificate Creation &mdash; Matter 2.2.0-1.2-alpha.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
@@ -22,8 +22,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Mosquitto" href="MOSQUITTO_SETUP.html" />
-    <link rel="prev" title="Matter Sleepy End Devices over Wi-Fi" href="WIFI_SLEEPY_END_DEVICE.html" /> 
+    <link rel="next" title="Matter Intermittently Connected Devices (ICD) (Formerly Sleepy End Devices)" href="WIFI_SLEEPY_END_DEVICE.html" />
+    <link rel="prev" title="Set Up MQTT Explorer" href="MQTT_EXPLORER_SETUP.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,7 +39,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2.1.0-1.1
+                2.2.0-1.2-alpha.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -51,41 +51,32 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../OVERVIEW.html">Silicon Labs Matter User’s Guide Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../NEW_FEATURES.html">Silicon Labs Matter New Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../OVERVIEW.html">User's Guide Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NEW_FEATURES.html">Matter New Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_1_overview.html">Matter Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_2_prereq.html">Matter Development Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_4_thread.html">Matter Over Thread</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../nav_5_wifi.html">Matter Over Wi-Fi</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="DEMO_OVERVIEW.html">Matter over Wi-Fi Demo Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO.html">Running the Matter Demo over Wi-Fi on EFR32 device</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO_SiWx917_SoC.html">Running the Matter Demo over Wi-Fi for SiWx917 SoC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SiWx917_Enablement_For_Ozone.html">Ozone Environment Setup for a SiWx917 SoC Device</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SiWx917_SoC_FWUpdate.html">Updating SiWx917 SoC Firmware using Tera Term</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SiWx917SoC_Factory_Reset.html">SiWx917 SoC Factory Reset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using_917_NCP_with_the_Google_Ecosystem_SETUP.html">Google Ecosystem Setup and Demo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SW_SETUP.html">Software Setup and Preliminaries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WIFI_SLEEPY_END_DEVICE.html">Matter Sleepy End Devices over Wi-Fi</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Openssl Certificate Creation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#openssl-installation-in-ubuntu">Openssl Installation (In ubuntu)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#certificates-creation">Certificates Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DEMO_OVERVIEW.html">Demo Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO.html">Demo on EFR32 NCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO_SiWx917_SoC.html">Demo on 917 SoC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SW_SETUP.html">Wi-Fi GitHub Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nav_5_wifi_917.html">917 SoC Development</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../nav_5_wifi_dic.html">Wi-Fi Direct Internet Connectivity</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="DIC_Wi-Fi.html">What is DIC?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BUILD_DIC.html">How to Build DIC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MOSQUITTO_SETUP.html">MQTT Server with Mosquitto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AWS_CONFIGURATION_REGISTRATION.html">MQTT Server with AWS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MQTT_EXPLORER_SETUP.html">MQTT Explorer</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Open SSL for MQTT</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="MOSQUITTO_SETUP.html">Mosquitto</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MQTT_EXPLORER_SETUP.html">Set Up MQTT Explorer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DIC_Wi-Fi.html">Matter Wi-Fi Direct Internet Connectivity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_DIC.html">Build Procedure For Direct Internet Connectivity (DIC)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_CHIP_ENV.html">Building Your Wi-Fi Matter End Device and the chip-tool</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_CHIP_ENV.html#build-environment-for-linux">Build Environment for Linux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_PI_ENV.html">Using the Pre-Built Rasberry Pi “Matter Hub” Image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_PI_ENV.html#building-environment-using-raspberry-pi-4">Building Environment using Raspberry Pi 4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="AWS_CONFIGURATION_REGISTRATION.html">Amazon Web Services (AWS)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WIFI_Sleepy_Device_Power_Measurement.html">Power Measurements for Wi-Fi Devices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WIFI_ANDROID.html">Commissioning Wi-Fi Device using Android</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WIFI_SLEEPY_END_DEVICE.html">Wi-Fi Intermittently Connected Devices (ICD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WIFI_Sleepy_Device_Power_Measurement.html">Wi-Fi ICD Power Measurement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BUILD_PI_ENV.html">Build Chip Tool on Raspi</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../unify/index.html">Unify Matter Bridge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dev/vscode/index.html">VS Code Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_3_general.html">Developer Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_6_faq.html">FAQ</a></li>
 </ul>
@@ -105,6 +96,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../nav_5_wifi.html">Matter Over Wi-Fi</a></li>
+          <li class="breadcrumb-item"><a href="../nav_5_wifi_dic.html">Wi-Fi Direct Internet Connectivity</a></li>
       <li class="breadcrumb-item active">Openssl Certificate Creation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/wifi/OPENSSL_CERTIFICATE_CREATION.md.txt" rel="nofollow"> View page source</a>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matter Wi-Fi Direct Internet Connectivity &mdash; Matter 2.1.0-1.1 documentation</title>
+  <title>Matter Wi-Fi Direct Internet Connectivity &mdash; Matter 2.2.0-1.2-alpha.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
@@ -23,7 +23,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Build Procedure For Direct Internet Connectivity (DIC)" href="BUILD_DIC.html" />
-    <link rel="prev" title="Set Up MQTT Explorer" href="MQTT_EXPLORER_SETUP.html" /> 
+    <link rel="prev" title="Wi-Fi Direct Internet Connectivity" href="../nav_5_wifi_dic.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,7 +39,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2.1.0-1.1
+                2.2.0-1.2-alpha.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -51,43 +51,32 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../OVERVIEW.html">Silicon Labs Matter User’s Guide Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../NEW_FEATURES.html">Silicon Labs Matter New Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../OVERVIEW.html">User's Guide Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NEW_FEATURES.html">Matter New Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_1_overview.html">Matter Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_2_prereq.html">Matter Development Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_4_thread.html">Matter Over Thread</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../nav_5_wifi.html">Matter Over Wi-Fi</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="DEMO_OVERVIEW.html">Matter over Wi-Fi Demo Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO.html">Running the Matter Demo over Wi-Fi on EFR32 device</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO_SiWx917_SoC.html">Running the Matter Demo over Wi-Fi for SiWx917 SoC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SiWx917_Enablement_For_Ozone.html">Ozone Environment Setup for a SiWx917 SoC Device</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SiWx917_SoC_FWUpdate.html">Updating SiWx917 SoC Firmware using Tera Term</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SiWx917SoC_Factory_Reset.html">SiWx917 SoC Factory Reset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using_917_NCP_with_the_Google_Ecosystem_SETUP.html">Google Ecosystem Setup and Demo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SW_SETUP.html">Software Setup and Preliminaries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WIFI_SLEEPY_END_DEVICE.html">Matter Sleepy End Devices over Wi-Fi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="OPENSSL_CERTIFICATE_CREATION.html">Openssl Certificate Creation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MOSQUITTO_SETUP.html">Mosquitto</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MQTT_EXPLORER_SETUP.html">Set Up MQTT Explorer</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Matter Wi-Fi Direct Internet Connectivity</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#feature-design">Feature Design</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#end-to-end-set-up-bring-up">End-to-End Set-up bring up</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#message-queuing-telemetry-transport-mqtt">Message Queuing Telemetry Transport (MQTT)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#end-to-end-test-of-dic-light-application">End-to-End Test of DIC Light Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DEMO_OVERVIEW.html">Demo Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO.html">Demo on EFR32 NCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO_SiWx917_SoC.html">Demo on 917 SoC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SW_SETUP.html">Wi-Fi GitHub Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nav_5_wifi_917.html">917 SoC Development</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../nav_5_wifi_dic.html">Wi-Fi Direct Internet Connectivity</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">What is DIC?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BUILD_DIC.html">How to Build DIC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MOSQUITTO_SETUP.html">MQTT Server with Mosquitto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AWS_CONFIGURATION_REGISTRATION.html">MQTT Server with AWS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MQTT_EXPLORER_SETUP.html">MQTT Explorer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OPENSSL_CERTIFICATE_CREATION.html">Open SSL for MQTT</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_DIC.html">Build Procedure For Direct Internet Connectivity (DIC)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_CHIP_ENV.html">Building Your Wi-Fi Matter End Device and the chip-tool</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_CHIP_ENV.html#build-environment-for-linux">Build Environment for Linux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_PI_ENV.html">Using the Pre-Built Rasberry Pi “Matter Hub” Image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_PI_ENV.html#building-environment-using-raspberry-pi-4">Building Environment using Raspberry Pi 4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="AWS_CONFIGURATION_REGISTRATION.html">Amazon Web Services (AWS)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WIFI_Sleepy_Device_Power_Measurement.html">Power Measurements for Wi-Fi Devices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WIFI_ANDROID.html">Commissioning Wi-Fi Device using Android</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WIFI_SLEEPY_END_DEVICE.html">Wi-Fi Intermittently Connected Devices (ICD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WIFI_Sleepy_Device_Power_Measurement.html">Wi-Fi ICD Power Measurement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BUILD_PI_ENV.html">Build Chip Tool on Raspi</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../unify/index.html">Unify Matter Bridge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dev/vscode/index.html">VS Code Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_3_general.html">Developer Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_6_faq.html">FAQ</a></li>
 </ul>
@@ -107,6 +96,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../nav_5_wifi.html">Matter Over Wi-Fi</a></li>
+          <li class="breadcrumb-item"><a href="../nav_5_wifi_dic.html">Wi-Fi Direct Internet Connectivity</a></li>
       <li class="breadcrumb-item active">Matter Wi-Fi Direct Internet Connectivity</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/wifi/DIC_Wi-Fi.md.txt" rel="nofollow"> View page source</a>
@@ -122,7 +112,7 @@
 <ul class="simple">
 <li><p>Direct Internet Connectivity (DIC) is a silabs only feature to connect matter devices to proprietary cloud solutions(AWS,GCP,APPLE …) directly.  As such, a Matter Wi-Fi device must support connecting locally on the Matter Fabric, via IPv6, and connecting to the Internet via IPv4.</p></li>
 <li><p>Matter devices can be controlled by chip-tool or controller and the respective status of the attribute modified will be published to the cloud.</p></li>
-<li><p>Remote user can install the cloud specific application to get the notifiction on the attribute status.</p></li>
+<li><p>Remote user can install the cloud specific application to get the notification on the attribute status.</p></li>
 </ul>
 <section id="feature-design">
 <h2>Feature Design<a class="headerlink" href="#feature-design" title="Permalink to this heading"></a></h2>
@@ -169,15 +159,79 @@
 <section id="end-to-end-test-of-dic-light-application">
 <h2>End-to-End Test of DIC Light Application<a class="headerlink" href="#end-to-end-test-of-dic-light-application" title="Permalink to this heading"></a></h2>
 <ul class="simple">
-<li><p>User Setup (MQTT Explorer)</p>
+<li><p>Sharing status of device to cloud</p>
 <ul>
-<li><p>For executing with efr32, refer to the following: <a class="reference internal" href="RUN_DEMO.html"><span class="std std-doc">Running the Matter Demo on EFR32 hosts</span></a></p></li>
-<li><p>For executing with SiWx917 SoC, refer to the following: <a class="reference internal" href="RUN_DEMO_SiWx917_SoC.html"><span class="std std-doc">Running the Matter Demo on SiWx917 SoC</span></a></p></li>
+<li><p>End-to-end command to be executed from chip-tool, refer <a class="reference internal" href="RUN_DEMO.html"><span class="std std-doc">Running the Matter Demo on EFR32 hosts</span></a></p></li>
+<li><p>Below is the application specific attribute/s information or state shared to the cloud through Direct Internet Connectivity Solution</p>
+<ul>
+<li><p>For Lighting App, On/Off Attributes</p></li>
+<li><p>For Lock App, lock/unlock Attributes</p></li>
+<li><p>For On/off Plug App, On/Off Attributes</p></li>
 </ul>
 </li>
-<li><p>In MQTT explorer under light/state topic, state of the light will be updated. Below is the screenshot for reference</p></li>
+<li><p>Application status would be updated on the mqtt_explorer UI, as shown in below image.</p></li>
+</ul>
+</li>
 </ul>
 <p><img alt="DIC STATUS UPDATE" src="../_images/mqtt_explorer_4.png" /></p>
+<ul class="simple">
+<li><p>Control of the device through cloud interface</p>
+<ul>
+<li><p>Make sure matter device is up and commissioned successfully, refer <a class="reference internal" href="RUN_DEMO.html"><span class="std std-doc">Running the Matter Demo on EFR32 hosts</span></a></p></li>
+<li><p>For Controlling the device, set topic name and the commands to be executed in the mqtt_explorer for below applications.</p>
+<ul>
+<li><p>Lighting App</p>
+<ul>
+<li><p>Topic: command</p></li>
+<li><p>Commands:</p>
+<ul>
+<li><p>toggle</p></li>
+<li><p>on</p></li>
+<li><p>off</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Onoff-plug App</p>
+<ul>
+<li><p>Topic: command</p></li>
+<li><p>Commands:</p>
+<ul>
+<li><p>toggle</p></li>
+<li><p>on</p></li>
+<li><p>off</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Lock App</p>
+<ul>
+<li><p>Topic: command</p></li>
+<li><p>Commands:</p>
+<ul>
+<li><p>lock</p></li>
+<li><p>unlock</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Then click <code class="docutils literal notranslate"><span class="pre">publish</span></code> button to execute the command.
+<img alt="Silicon Labs - DIC design" src="../_images/control-device-through-cloud.png" /></p></li>
+</ul>
+</li>
+<li><p>Download AWS OTA Image through cloud interface</p>
+<ul>
+<li><p>Make sure matter device is up and commissioned successfully, refer <a class="reference internal" href="RUN_DEMO.html"><span class="std std-doc">Running the Matter Demo on EFR32 hosts</span></a></p></li>
+<li><p>Make sure device is connected to MQTT Server successfully.</p></li>
+<li><p>Then Create a AWS OTA Job in the AWS Website, refer <a class="reference internal" href="AWS_CONFIGURATION_REGISTRATION.html"><span class="std std-doc">How to create AWS OTA JOB</span></a></p></li>
+<li><p>Trigger OTA Command through MQTT Explorer like below.</p></li>
+<li><p>Then click <code class="docutils literal notranslate"><span class="pre">publish</span></code> button to execute the AWS OTA command.
+<img alt="Silicon Labs - DIC design" src="../_images/download-aws-ota-through-cloud.png" /></p></li>
+</ul>
+</li>
+</ul>
 </section>
 </section>
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matter Hardware Requirements &mdash; Matter 2.1.0-1.1 documentation</title>
+  <title>Matter Hardware Requirements &mdash; Matter 2.2.0-1.2-alpha.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
@@ -39,7 +39,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2.1.0-1.1
+                2.2.0-1.2-alpha.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -51,8 +51,8 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../OVERVIEW.html">Silicon Labs Matter User’s Guide Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../NEW_FEATURES.html">Silicon Labs Matter New Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../OVERVIEW.html">User's Guide Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NEW_FEATURES.html">Matter New Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_1_overview.html">Matter Overview</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../nav_2_prereq.html">Matter Development Prerequisites</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Matter Hardware Requirements</a><ul>
@@ -70,7 +70,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../nav_4_thread.html">Matter Over Thread</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_5_wifi.html">Matter Over Wi-Fi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../unify/index.html">Unify Matter Bridge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dev/vscode/index.html">VS Code Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_3_general.html">Developer Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_6_faq.html">FAQ</a></li>
 </ul>
@@ -331,7 +330,16 @@ Matter application downloads the connectivity firmware onto the WF200 on first-t
 <li><p>Jumper Cables (included in the RS9116 kit)</p></li>
 </ul>
 </li>
-<li><p>SiWx917</p></li>
+<li><p>SiWx917</p>
+<ul class="simple">
+<li><p>SiWx917 NCP Mode / Wi-Fi Expansion Board / 2.4GHz</p>
+<ul>
+<li><p>BRD8036A (A0 Expansion v1.0)</p></li>
+<li><p>BRD8036A (A0 Expansion v1.1)</p></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><p>WF200</p>
 <ul class="simple">
 <li><p>WF200 / Single Band Wi-Fi Expansion Board / 2.4GHz</p>
@@ -353,20 +361,31 @@ Matter application downloads the connectivity firmware onto the WF200 on first-t
 <section id="matter-over-wi-fi-accessory-device-requirements-for-soc-mode">
 <h2>Matter over Wi-Fi Accessory Device Requirements for SoC mode<a class="headerlink" href="#matter-over-wi-fi-accessory-device-requirements-for-soc-mode" title="Permalink to this heading"></a></h2>
 <p>The Silicon Labs Matter over Wi-Fi demo and development for SoC mode requires the SiWx917 SoC board that
-supports Matter over Wi-Fi in a single-chip package - the integrated MCU is dedicated
-for peripheral and application-related processing (Matter), while the ThreadArch® runs the
+supports Matter over Wi-Fi in a single-chip package - the integrated M4 processor is dedicated
+for peripheral and application-related processing (Matter), while the Wireless processor runs the
 wireless and networking protocol stacks. Pre-built images for the SiWx917 connectivity firmware
 are available as per the instructions on the <a class="reference internal" href="SOFTWARE_REQUIREMENTS.html"><span class="std std-doc">Software Requirements Page</span></a>. The
 following boards are supported for the Matter over Wi-Fi demos and development:</p>
+<ul>
+<li><p><strong>Wi-Fi SoC boards:</strong></p></li>
+<li><p>SiWx917 / BRD4002A / Wireless Starter Kit</p></li>
+<li><p>SiWx917 SoC Mode</p>
 <ul class="simple">
-<li><p><strong>Wi-Fi SoC boards</strong></p>
+<li><p>SiWx917 SoC / Dual Flash Radio Board / 2.4GHz</p>
 <ul>
-<li><p>SiWx917 / SLWSTK6006A / Wireless Starter Kit</p>
+<li><p>BRD4325B - A0 dual flash 1.1</p></li>
+<li><p>BRD4325B - A0 dual flash 1.2</p></li>
+</ul>
+</li>
+<li><p>SiWx917 SoC / Common Flash Radio Board / 2.4GHz</p>
 <ul>
-<li><p><a class="reference external" href="https://www.silabs.com/wireless/wi-fi/siwx917-wireless-socs">SiWx917</a></p></li>
+<li><p>BRD4325C - B0 common flash v1.2</p></li>
+<li><p>BRD4325G - B0 Stacked Flash + External PSRAM v1.2</p></li>
 </ul>
 </li>
 </ul>
+<p><strong>Note:</strong>
+Refer <a class="reference external" href="https://www.silabs.com/wireless/wi-fi/siwx917-wireless-socs">SiWx917 SoC</a> for more details</p>
 </li>
 </ul>
 </section>

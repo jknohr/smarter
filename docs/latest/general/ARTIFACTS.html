@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matter Software Artifacts &mdash; Matter 2.1.0-1.1 documentation</title>
+  <title>Matter Software Artifacts &mdash; Matter 2.2.0-1.2-alpha.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
@@ -39,7 +39,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2.1.0-1.1
+                2.2.0-1.2-alpha.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -51,8 +51,8 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../OVERVIEW.html">Silicon Labs Matter User’s Guide Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../NEW_FEATURES.html">Silicon Labs Matter New Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../OVERVIEW.html">User's Guide Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NEW_FEATURES.html">Matter New Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_1_overview.html">Matter Overview</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../nav_2_prereq.html">Matter Development Prerequisites</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="HARDWARE_REQUIREMENTS.html">Matter Hardware Requirements</a></li>
@@ -63,7 +63,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#matter-accessory-device-images">Matter Accessory Device Images</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#matter-bootloader-binaries">Matter Bootloader Binaries</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rs9116-firmware">RS9116 Firmware</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#siwx917-firmware">SiWx917 Firmware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#siwx917-firmware-for-siwx917-ncp">SiWx917 Firmware for SiWx917 NCP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#siwx917-firmware-for-siwx917-soc">SiWx917 Firmware for SiWx917 SoC</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#siwx917-soc-configuration-files-for-flashing-the-matter-application">SiWx917 SoC Configuration Files for Flashing the Matter Application</a></li>
 </ul>
 </li>
@@ -72,7 +73,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../nav_4_thread.html">Matter Over Thread</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_5_wifi.html">Matter Over Wi-Fi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../unify/index.html">Unify Matter Bridge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dev/vscode/index.html">VS Code Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_3_general.html">Developer Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_6_faq.html">FAQ</a></li>
 </ul>
@@ -113,7 +113,7 @@ Pi. The Matter Hub Image provides both an Open Thread Border Router and the
 Matter chip-tool. Note the image is ~10GB in size so depending on your internet
 connection this download may take some time. Start the Matter Hub Raspberry Pi
 image download here:</p>
-<p><a class="reference external" href="https://www.silabs.com/documents/public/software/SilabsMatterPi_2.0.0-1.1.zip">https://www.silabs.com/documents/public/software/SilabsMatterPi_2.0.0-1.1.zip</a></p>
+<p><a class="reference external" href="https://www.silabs.com/documents/public/software/SilabsMatterPi_2.2.0-1.2-alpha.1.zip">https://www.silabs.com/documents/public/software/SilabsMatterPi_2.2.0-1.2-alpha.1.zip</a></p>
 </section>
 <section id="radio-co-processor-rcp-images">
 <h2>Radio Co-Processor (RCP) Images<a class="headerlink" href="#radio-co-processor-rcp-images" title="Permalink to this heading"></a></h2>
@@ -121,14 +121,14 @@ image download here:</p>
 used with a Raspberry Pi to allow the Raspberry Pi’s Open Thread Border Router
 to access the Thread network. Radio Co-Processor (RCP) images are available in
 the Assets section of this page:</p>
-<p><a class="reference external" href="https://github.com/SiliconLabs/matter/releases/tag/v2.1.0-1.1">https://github.com/SiliconLabs/matter/releases/tag/v2.1.0-1.1</a></p>
+<p><a class="reference external" href="https://github.com/SiliconLabs/matter/releases/tag/v2.2.0-1.2-alpha.1">https://github.com/SiliconLabs/matter/releases/tag/v2.2.0-1.2-alpha.1</a></p>
 </section>
 <section id="matter-accessory-device-images">
 <h2>Matter Accessory Device Images<a class="headerlink" href="#matter-accessory-device-images" title="Permalink to this heading"></a></h2>
 <p>The Matter Accessory Device Images are used to turn an EFR into a Matter device.
 These are pre-built binary images for the Matter Demo. Matter Accessory Device
 Images are located in the Assets section of this page:</p>
-<p><a class="reference external" href="https://github.com/SiliconLabs/matter/releases/tag/v2.1.0-1.1">https://github.com/SiliconLabs/matter/releases/tag/v2.1.0-1.1</a></p>
+<p><a class="reference external" href="https://github.com/SiliconLabs/matter/releases/tag/v2.2.0-1.2-alpha.1">https://github.com/SiliconLabs/matter/releases/tag/v2.2.0-1.2-alpha.1</a></p>
 <p>For Matter over Thread, 3 different types of images are provided:</p>
 <ol class="arabic simple">
 <li><p><strong>Standard</strong>: Includes all code including enabling the LCD for a QR Code that can be used for commissioning.</p></li>
@@ -142,22 +142,39 @@ Images are located in the Assets section of this page:</p>
 EFR32MG2x device, you will need to flash a bootloader binary on your device along
 with the application image. Bootloader binaries for all of the Matter supported
 devices are available here:</p>
-<p><a class="reference external" href="https://github.com/SiliconLabs/matter/releases/tag/v2.1.0-1.1">https://github.com/SiliconLabs/matter/releases/tag/v2.1.0-1.1</a></p>
+<p><a class="reference external" href="https://github.com/SiliconLabs/matter/releases/tag/v2.2.0-1.2-alpha.1">https://github.com/SiliconLabs/matter/releases/tag/v2.2.0-1.2-alpha.1</a></p>
 </section>
 <section id="rs9116-firmware">
 <h2>RS9116 Firmware<a class="headerlink" href="#rs9116-firmware" title="Permalink to this heading"></a></h2>
-<p>The RS9116 firmware is used to update the RS9116 - it can be found in the
-repository you have cloned, at the following relative path from the <code class="docutils literal notranslate"><span class="pre">/matter</span></code>
-directory, <code class="docutils literal notranslate"><span class="pre">./third_party/silabs/wiseconnect-wifi-bt-sdk/firmware</span></code></p>
+<p>The RS9116 firmware (rs9116_firmware_files_with_rev.zip) is used to update the RS9116 which can be found in the Assets section of this page:</p>
+<p><a class="reference external" href="https://github.com/SiliconLabs/matter/releases/tag/v2.2.0-1.2-alpha.1">https://github.com/SiliconLabs/matter/releases/tag/v2.2.0-1.2-alpha.1</a></p>
+<p><strong>Note</strong>:
+RS9116 chip/module needs to be flashed with proper firmware as mentioned below:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">RS916.x.x.x.x.x.rps</span> <span class="pre">-</span> <span class="pre">This</span> <span class="pre">firmware</span> <span class="pre">image</span> <span class="pre">is</span> <span class="pre">valid</span> <span class="pre">for</span> <span class="pre">RS9116</span> <span class="pre">1.5</span> <span class="pre">revision</span> <span class="pre">chip/module</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RS9116.x.x.x.x.x.rps</span> <span class="pre">-</span> <span class="pre">This</span> <span class="pre">firmware</span> <span class="pre">image</span> <span class="pre">is</span> <span class="pre">valid</span> <span class="pre">for</span> <span class="pre">RS9116</span> <span class="pre">1.4/1.3</span> <span class="pre">revision</span> <span class="pre">chip/module</span></code></p></li>
+</ul>
 </section>
-<section id="siwx917-firmware">
-<h2>SiWx917 Firmware<a class="headerlink" href="#siwx917-firmware" title="Permalink to this heading"></a></h2>
-<blockquote>
-<div><p><strong>Note</strong>: SiWx917 firmware is only available to Alpha customers. Contact Silicon Labs support to obtain the WiseMCU SDK and install it as per the instructions on the <a class="reference internal" href="SOFTWARE_REQUIREMENTS.html"><span class="std std-doc">Software Requirements page</span></a>.</p>
-</div></blockquote>
-<p>The SiWx917 firmware is used to update the SiWx917 device connectivity firmware. It can be found in the
-repository you have cloned, at the following relative path from the <code class="docutils literal notranslate"><span class="pre">/matter</span></code>
-directory, <code class="docutils literal notranslate"><span class="pre">./third_party/silabs/wisemcu-wifi-bt-sdk/connectivity_firmware</span></code></p>
+<section id="siwx917-firmware-for-siwx917-ncp">
+<h2>SiWx917 Firmware for SiWx917 NCP<a class="headerlink" href="#siwx917-firmware-for-siwx917-ncp" title="Permalink to this heading"></a></h2>
+<p>The SiWx917 firmware(SiWx917NCP_firmware_files.zip) is used to update the SiWx917 NCP which can be found in the Assets section of this page:</p>
+<p><a class="reference external" href="https://github.com/SiliconLabs/matter/releases/tag/v2.2.0-1.2-alpha.1">https://github.com/SiliconLabs/matter/releases/tag/v2.2.0-1.2-alpha.1</a></p>
+<p><strong>Note</strong>:
+SiWx917 NCP board need to be flashed with proper firmware as mentioned below:</p>
+<ul class="simple">
+<li><p>``SiWG917-A.2.9.X.X.X.rps - This firmware image is valid for BRD8036A (A0 Expansion v1.1) board`</p></li>
+</ul>
+</section>
+<section id="siwx917-firmware-for-siwx917-soc">
+<h2>SiWx917 Firmware for SiWx917 SoC<a class="headerlink" href="#siwx917-firmware-for-siwx917-soc" title="Permalink to this heading"></a></h2>
+<p>The SiWx917 firmware (SiWx917SOC_firmware_files.zip) along with WiSeConnect 3 SDK is used to update the SiWx917 SoC which can be found in the Assets section of this page:</p>
+<p><a class="reference external" href="https://github.com/SiliconLabs/matter/releases/tag/v2.2.0-1.2-alpha.1">https://github.com/SiliconLabs/matter/releases/tag/v2.2.0-1.2-alpha.1</a></p>
+<p><strong>Note</strong>:
+SiWx917 SoC boards need to be flashed with proper firmware as mentioned below:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SiWG917-A.2.9.X.X.X.rps</span> <span class="pre">-</span> <span class="pre">This</span> <span class="pre">firmware</span> <span class="pre">image</span> <span class="pre">is</span> <span class="pre">valid</span> <span class="pre">for</span> <span class="pre">BRD4325B(A0</span> <span class="pre">dual</span> <span class="pre">flash</span> <span class="pre">1.2)</span> <span class="pre">board</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SiWG917-B.2.9.X.X.X.rps</span> <span class="pre">-</span> <span class="pre">This</span> <span class="pre">firmware</span> <span class="pre">image</span> <span class="pre">is</span> <span class="pre">valid</span> <span class="pre">for</span> <span class="pre">BRD4325C(B0</span> <span class="pre">common</span> <span class="pre">flash</span> <span class="pre">v1.2)</span> <span class="pre">board</span></code></p></li>
+</ul>
 </section>
 <section id="siwx917-soc-configuration-files-for-flashing-the-matter-application">
 <h2>SiWx917 SoC Configuration Files for Flashing the Matter Application<a class="headerlink" href="#siwx917-soc-configuration-files-for-flashing-the-matter-application" title="Permalink to this heading"></a></h2>
@@ -165,7 +182,7 @@ directory, <code class="docutils literal notranslate"><span class="pre">./third_
 be configured for the SiWx917 SoC device by following the instructions on the <a class="reference internal" href="../wifi/SiWx917_Enablement_For_Ozone.html"><span class="std std-doc">Ozone Environment Setup for SiWx917 SoC page</span></a>.</p>
 <p>The <strong>JLinkDevices.xml</strong> and <strong>ELF</strong> files referenced in the instructions may be found
 in the Assets section of this page:</p>
-<p><a class="reference external" href="https://github.com/SiliconLabs/matter/releases/tag/v2.1.0-1.1">https://github.com/SiliconLabs/matter/releases/tag/v2.1.0-1.1</a></p>
+<p><a class="reference external" href="https://github.com/SiliconLabs/matter/releases/tag/v2.2.0-1.2-alpha.1">https://github.com/SiliconLabs/matter/releases/tag/v2.2.0-1.2-alpha.1</a></p>
 </section>
 </section>
 

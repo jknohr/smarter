@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matter Overview &mdash; Matter 2.1.0-1.1 documentation</title>
+  <title>Matter Overview &mdash; Matter 2.2.0-1.2-alpha.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/tabs.css" type="text/css" />
@@ -22,7 +22,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Commissioning" href="general/COMMISSIONING.html" />
+    <link rel="next" title="Introduction to Matter" href="general/FUNDAMENTALS_INTRO.html" />
     <link rel="prev" title="Silicon Labs Matter New Features" href="NEW_FEATURES.html" /> 
 </head>
 
@@ -39,7 +39,7 @@
               <img src="_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2.1.0-1.1
+                2.2.0-1.2-alpha.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -51,11 +51,14 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="OVERVIEW.html">Silicon Labs Matter User’s Guide Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="NEW_FEATURES.html">Silicon Labs Matter New Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OVERVIEW.html">User's Guide Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NEW_FEATURES.html">Matter New Features</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Matter Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="general/COMMISSIONING.html">Commissioning</a></li>
-<li class="toctree-l2"><a class="reference internal" href="general/OT_SLEEPY_END_DEVICE.html">Matter Sleepy End Devices over OpenThread</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general/FUNDAMENTALS_INTRO.html">Introduction to Matter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general/FUNDAMENTALS_DATA_MODEL.html">The Matter Data Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general/FUNDAMENTALS_INTERACTION_MODEL.html">The Matter Interaction Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general/COMMISSIONING.html">Matter Commissioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general/OT_SLEEPY_END_DEVICE.html">Matter Intermittently Connected Devices over OpenThread</a></li>
 <li class="toctree-l2"><a class="reference internal" href="general/OTA_BOOTLOADER.html">Creating Gecko Bootloader for Use in Matter OTA Software Update</a></li>
 <li class="toctree-l2"><a class="reference internal" href="general/OTA_SOFTWARE_UPDATE.html">Matter Software Update with EFR32 Example Applications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="general/SECURITY.html">Security</a></li>
@@ -65,7 +68,6 @@
 <li class="toctree-l1"><a class="reference internal" href="nav_4_thread.html">Matter Over Thread</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nav_5_wifi.html">Matter Over Wi-Fi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="unify/index.html">Unify Matter Bridge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dev/vscode/index.html">VS Code Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nav_3_general.html">Developer Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nav_6_faq.html">FAQ</a></li>
 </ul>
@@ -98,12 +100,50 @@
 <h1>Matter Overview<a class="headerlink" href="#matter-overview" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="general/COMMISSIONING.html">Commissioning</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="general/FUNDAMENTALS_INTRO.html">Introduction to Matter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="general/FUNDAMENTALS_INTRO.html#why-matter">Why Matter?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general/FUNDAMENTALS_INTRO.html#matter-enablement">Matter Enablement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general/FUNDAMENTALS_INTRO.html#matter-network-architecture">Matter Network Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general/FUNDAMENTALS_INTRO.html#matter-layered-architecture">Matter Layered Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general/FUNDAMENTALS_INTRO.html#matter-security">Matter Security</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="general/FUNDAMENTALS_DATA_MODEL.html">The Matter Data Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="general/FUNDAMENTALS_DATA_MODEL.html#nodes">Nodes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="general/FUNDAMENTALS_DATA_MODEL.html#endpoints">Endpoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general/FUNDAMENTALS_DATA_MODEL.html#clusters">Clusters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="general/FUNDAMENTALS_DATA_MODEL.html#device-types">Device Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general/FUNDAMENTALS_DATA_MODEL.html#relating-matter-to-zigbee">Relating Matter to Zigbee</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="general/FUNDAMENTALS_INTERACTION_MODEL.html">The Matter Interaction Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="general/FUNDAMENTALS_INTERACTION_MODEL.html#the-read-interaction">The Read Interaction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general/FUNDAMENTALS_INTERACTION_MODEL.html#the-write-interaction">The Write Interaction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="general/FUNDAMENTALS_INTERACTION_MODEL.html#timed-transactions-and-security">Timed Transactions and Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general/FUNDAMENTALS_INTERACTION_MODEL.html#timed-write-transactions">Timed Write Transactions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general/FUNDAMENTALS_INTERACTION_MODEL.html#untimed-write-transactions">Untimed Write Transactions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general/FUNDAMENTALS_INTERACTION_MODEL.html#write-transaction-restrictions">Write Transaction Restrictions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="general/FUNDAMENTALS_INTERACTION_MODEL.html#the-invoke-interaction">The Invoke Interaction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general/FUNDAMENTALS_INTERACTION_MODEL.html#the-subscription-interaction">The Subscription Interaction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="general/FUNDAMENTALS_INTERACTION_MODEL.html#subscribe-transaction">Subscribe Transaction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general/FUNDAMENTALS_INTERACTION_MODEL.html#report-transaction">Report Transaction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general/FUNDAMENTALS_INTERACTION_MODEL.html#subscription-interaction-restrictions">Subscription Interaction Restrictions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="general/FUNDAMENTALS_INTERACTION_MODEL.html#relating-matter-to-zigbee">Relating Matter to Zigbee</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general/FUNDAMENTALS_INTERACTION_MODEL.html#matter-specifications">Matter Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="general/COMMISSIONING.html">Matter Commissioning</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="general/COMMISSIONING.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="general/COMMISSIONING.html#example-commissioning-flow">Example Commissioning Flow</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="general/OT_SLEEPY_END_DEVICE.html">Matter Sleepy End Devices over OpenThread</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="general/OT_SLEEPY_END_DEVICE.html">Matter Intermittently Connected Devices over OpenThread</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="general/OT_SLEEPY_END_DEVICE.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="general/OT_SLEEPY_END_DEVICE.html#operating-modes">Operating Modes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="general/OT_SLEEPY_END_DEVICE.html#thread-communication">Thread Communication</a></li>

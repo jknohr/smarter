@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Software Setup and Preliminaries &mdash; Matter 2.1.0-1.1 documentation</title>
+  <title>Building a Wi-Fi End Device for Matter in GitHub &mdash; Matter 2.2.0-1.2-alpha.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
@@ -22,8 +22,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Matter Sleepy End Devices over Wi-Fi" href="WIFI_SLEEPY_END_DEVICE.html" />
-    <link rel="prev" title="Google Ecosystem Setup and Demo" href="using_917_NCP_with_the_Google_Ecosystem_SETUP.html" /> 
+    <link rel="next" title="917 SoC Development" href="../nav_5_wifi_917.html" />
+    <link rel="prev" title="Running the Matter Demo over Wi-Fi for SiWx917 SoC" href="RUN_DEMO_SiWx917_SoC.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,7 +39,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2.1.0-1.1
+                2.2.0-1.2-alpha.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -51,43 +51,30 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../OVERVIEW.html">Silicon Labs Matter User’s Guide Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../NEW_FEATURES.html">Silicon Labs Matter New Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../OVERVIEW.html">User's Guide Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NEW_FEATURES.html">Matter New Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_1_overview.html">Matter Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_2_prereq.html">Matter Development Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_4_thread.html">Matter Over Thread</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../nav_5_wifi.html">Matter Over Wi-Fi</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="DEMO_OVERVIEW.html">Matter over Wi-Fi Demo Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO.html">Running the Matter Demo over Wi-Fi on EFR32 device</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO_SiWx917_SoC.html">Running the Matter Demo over Wi-Fi for SiWx917 SoC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SiWx917_Enablement_For_Ozone.html">Ozone Environment Setup for a SiWx917 SoC Device</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SiWx917_SoC_FWUpdate.html">Updating SiWx917 SoC Firmware using Tera Term</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SiWx917SoC_Factory_Reset.html">SiWx917 SoC Factory Reset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using_917_NCP_with_the_Google_Ecosystem_SETUP.html">Google Ecosystem Setup and Demo</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Software Setup and Preliminaries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DEMO_OVERVIEW.html">Demo Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO.html">Demo on EFR32 NCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO_SiWx917_SoC.html">Demo on 917 SoC</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Wi-Fi GitHub Development</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#software-setup">Software Setup</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#compiling-the-chip-tool">Compiling the chip-tool</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#using-the-matter-accessory-device-mad-pre-built-binaries">Using the Matter Accessory Device (MAD) Pre-Built Binaries</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#building-the-matter-application">Building the Matter Application</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="WIFI_SLEEPY_END_DEVICE.html">Matter Sleepy End Devices over Wi-Fi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="OPENSSL_CERTIFICATE_CREATION.html">Openssl Certificate Creation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MOSQUITTO_SETUP.html">Mosquitto</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MQTT_EXPLORER_SETUP.html">Set Up MQTT Explorer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DIC_Wi-Fi.html">Matter Wi-Fi Direct Internet Connectivity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_DIC.html">Build Procedure For Direct Internet Connectivity (DIC)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_CHIP_ENV.html">Building Your Wi-Fi Matter End Device and the chip-tool</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_CHIP_ENV.html#build-environment-for-linux">Build Environment for Linux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_PI_ENV.html">Using the Pre-Built Rasberry Pi “Matter Hub” Image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_PI_ENV.html#building-environment-using-raspberry-pi-4">Building Environment using Raspberry Pi 4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="AWS_CONFIGURATION_REGISTRATION.html">Amazon Web Services (AWS)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WIFI_Sleepy_Device_Power_Measurement.html">Power Measurements for Wi-Fi Devices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WIFI_ANDROID.html">Commissioning Wi-Fi Device using Android</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nav_5_wifi_917.html">917 SoC Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nav_5_wifi_dic.html">Wi-Fi Direct Internet Connectivity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WIFI_SLEEPY_END_DEVICE.html">Wi-Fi Intermittently Connected Devices (ICD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WIFI_Sleepy_Device_Power_Measurement.html">Wi-Fi ICD Power Measurement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BUILD_PI_ENV.html">Build Chip Tool on Raspi</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../unify/index.html">Unify Matter Bridge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dev/vscode/index.html">VS Code Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_3_general.html">Developer Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_6_faq.html">FAQ</a></li>
 </ul>
@@ -107,7 +94,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../nav_5_wifi.html">Matter Over Wi-Fi</a></li>
-      <li class="breadcrumb-item active">Software Setup and Preliminaries</li>
+      <li class="breadcrumb-item active">Building a Wi-Fi End Device for Matter in GitHub</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/wifi/SW_SETUP.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -117,8 +104,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section class="tex2jax_ignore mathjax_ignore" id="software-setup-and-preliminaries">
-<h1>Software Setup and Preliminaries<a class="headerlink" href="#software-setup-and-preliminaries" title="Permalink to this heading"></a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="building-a-wi-fi-end-device-for-matter-in-github">
+<h1>Building a Wi-Fi End Device for Matter in GitHub<a class="headerlink" href="#building-a-wi-fi-end-device-for-matter-in-github" title="Permalink to this heading"></a></h1>
 <section id="software-setup">
 <h2>Software Setup<a class="headerlink" href="#software-setup" title="Permalink to this heading"></a></h2>
 <p>If you have not downloaded or cloned this repository, you can run the following
@@ -194,8 +181,7 @@ you are using, select the appropriate command to build.</p>
 <div><p><strong>Note:</strong></p>
 <ol class="arabic simple">
 <li><p>The build commands given below are for the following applications: <code class="docutils literal notranslate"><span class="pre">lighting-app</span></code>, <code class="docutils literal notranslate"><span class="pre">lock-app</span></code>, <code class="docutils literal notranslate"><span class="pre">light-switch-app</span></code>, <code class="docutils literal notranslate"><span class="pre">window-app</span></code></p></li>
-<li><p>In order to build applications other than those mentioned in # 1, (such as <code class="docutils literal notranslate"><span class="pre">thermostat-app</span></code>), substitute the appropriate application name &amp;
-substitute <code class="docutils literal notranslate"><span class="pre">/silabs/efr32/</span></code> with <code class="docutils literal notranslate"><span class="pre">/efr32/</span></code> after the application name.</p></li>
+<li><p>In order to build applications other than those mentioned in # 1, (such as <code class="docutils literal notranslate"><span class="pre">thermostat-app</span></code>), substitute the appropriate application name after the application name.</p></li>
 <li><p>Additional examples (such as <code class="docutils literal notranslate"><span class="pre">onoff-plug-app</span></code>) are provided in the <a class="reference external" href="https://github.com/SiliconLabs/matter/blob/latest/examples/">/examples</a> or <a class="reference external" href="https://github.com/SiliconLabs/matter/blob/latest/silabs_examples/">/silabs_examples</a> directory.</p></li>
 <li><p>In order to build applications from <a class="reference external" href="https://github.com/SiliconLabs/matter/blob/latest/silabs_examples/">/silabs_examples</a> (such as <code class="docutils literal notranslate"><span class="pre">onoff-plug-app</span></code>), substitute <code class="docutils literal notranslate"><span class="pre">examples</span></code> with <code class="docutils literal notranslate"><span class="pre">silabs_examples</span></code>.</p></li>
 <li><p>To build for EFR32MG24 host processors, substitute <code class="docutils literal notranslate"><span class="pre">BRD41xxx</span></code> in the build command with the appropriate MG24 board number
@@ -211,19 +197,23 @@ $<span class="w"> </span>&lt;run_appropriate_build_command_from_below&gt;
 <div><p><strong>Note:</strong> The image size currently exceeds the available flash with CHIP logging enabled.</p>
 </div></blockquote>
 <p>Build command for EFR32MG24 + RS9116:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./scripts/examples/gn_efr32_example.sh<span class="w"> </span>examples/lighting-app/silabs/efr32<span class="w"> </span>out/rs911x_lighting<span class="w"> </span>BRD41xxx<span class="w"> </span><span class="nv">disable_lcd</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="nv">use_external_flash</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="nv">chip_enable_ble_rs911x</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span>--wifi<span class="w"> </span>rs9116<span class="w"> </span><span class="p">|&amp;</span><span class="w"> </span>tee<span class="w"> </span>out/rs911x_lighting.log
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./scripts/examples/gn_silabs_example.sh<span class="w"> </span>examples/lighting-app/silabs/<span class="w"> </span>out/rs911x_lighting<span class="w"> </span>BRD41xxx<span class="w"> </span><span class="nv">disable_lcd</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="nv">use_external_flash</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="nv">chip_enable_ble_rs911x</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span>--wifi<span class="w"> </span>rs9116<span class="w"> </span><span class="p">|&amp;</span><span class="w"> </span>tee<span class="w"> </span>out/rs911x_lighting.log
 </pre></div>
 </div>
 <p>Build command for EFR32MG24 + SiWx917:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./scripts/examples/gn_efr32_example.sh<span class="w"> </span>examples/lighting-app/silabs/efr32<span class="w"> </span>out/siwx917_lighting<span class="w"> </span>BRD41xxx<span class="w"> </span><span class="nv">disable_lcd</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="nv">use_external_flash</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="nv">chip_enable_ble_rs911x</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span>--wifi<span class="w"> </span>SiWx917<span class="w"> </span><span class="p">|&amp;</span><span class="w"> </span>tee<span class="w"> </span>out/siwx917_lighting.log
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./scripts/examples/gn_silabs_example.sh<span class="w"> </span>examples/lighting-app/silabs/<span class="w"> </span>out/siwx917_lighting<span class="w"> </span>BRD41xxx<span class="w"> </span><span class="nv">disable_lcd</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="nv">use_external_flash</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="nv">chip_enable_ble_rs911x</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span>--wifi<span class="w"> </span>SiWx917<span class="w"> </span><span class="p">|&amp;</span><span class="w"> </span>tee<span class="w"> </span>out/siwx917_lighting.log
 </pre></div>
 </div>
 <p>Build command for EFR32MG24 + WF200:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./scripts/examples/gn_efr32_example.sh<span class="w"> </span>examples/lighting-app/silabs/efr32<span class="w"> </span>out/wf200_lighting<span class="w"> </span>BRD41xxx<span class="w"> </span><span class="nv">chip_build_libshell</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span>--wifi<span class="w"> </span>wf200<span class="w"> </span><span class="p">|&amp;</span><span class="w"> </span>tee<span class="w"> </span>out/wf200_lighting.log
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./scripts/examples/gn_silabs_example.sh<span class="w"> </span>examples/lighting-app/silabs/<span class="w"> </span>out/wf200_lighting<span class="w"> </span>BRD41xxx<span class="w"> </span><span class="nv">chip_build_libshell</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span>--wifi<span class="w"> </span>wf200<span class="w"> </span><span class="p">|&amp;</span><span class="w"> </span>tee<span class="w"> </span>out/wf200_lighting.log
 </pre></div>
 </div>
-<p>Build command for SiWx917 SoC processor:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./scripts/examples/gn_efr32_example.sh<span class="w"> </span>examples/lighting-app/silabs/SiWx917<span class="w"> </span>out/SiWx917_lighting<span class="w"> </span>BRD4325B<span class="w"> </span><span class="p">|&amp;</span><span class="w"> </span>tee<span class="w"> </span>out/soc_lighting.out
+<p>Build command for SiWx917 SoC processor(dual flash):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./scripts/examples/gn_silabs_example.sh<span class="w"> </span>examples/lighting-app/silabs/<span class="w"> </span>out/SiWx917_lighting<span class="w"> </span>BRD4325B<span class="w"> </span><span class="p">|&amp;</span><span class="w"> </span>tee<span class="w"> </span>out/soc_lighting.out
+</pre></div>
+</div>
+<p>Build command for SiWx917 SoC processor(common flash):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./scripts/examples/gn_silabs_example.sh<span class="w"> </span>examples/lighting-app/silabs/<span class="w"> </span>out/SiWx917_lighting<span class="w"> </span>BRD4325x<span class="w"> </span><span class="nv">is_debug</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="p">|&amp;</span><span class="w"> </span>tee<span class="w"> </span>out/soc_lighting.out
 </pre></div>
 </div>
 <blockquote>
@@ -238,7 +228,7 @@ $<span class="w"> </span>&lt;run_appropriate_build_command_from_below&gt;
 <p>Enable or disable the lighting application’s features using the following flags.</p>
 <ol class="arabic">
 <li><p><code class="docutils literal notranslate"><span class="pre">rs91x_wpa3_only</span></code> : Use this flag while building to enable wpa3 mode in rs91x wifi chip.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./scripts/examples/gn_efr32_example.sh<span class="w"> </span>examples/lighting-app/silabs/efr32/<span class="w"> </span>out/rs911x_lighting<span class="w"> </span>BRD41xxx<span class="w"> </span><span class="nv">rs91x_wpa3_only</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span>--wifi<span class="w"> </span>rs9116<span class="w"> </span><span class="p">|&amp;</span><span class="w"> </span>tee<span class="w"> </span>out/rs911x_lighting.log
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./scripts/examples/gn_silabs_example.sh<span class="w"> </span>examples/lighting-app/silabs/<span class="w"> </span>out/rs911x_lighting<span class="w"> </span>BRD41xxx<span class="w"> </span><span class="nv">rs91x_wpa3_only</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span>--wifi<span class="w"> </span>rs9116<span class="w"> </span><span class="p">|&amp;</span><span class="w"> </span>tee<span class="w"> </span>out/rs911x_lighting.log
 </pre></div>
 </div>
 </li>
@@ -252,12 +242,12 @@ $<span class="w"> </span>&lt;run_appropriate_build_command_from_below&gt;
 </div></blockquote>
 <ol class="arabic" start="2">
 <li><p><code class="docutils literal notranslate"><span class="pre">segger_rtt_buffer_size_up</span></code> : Flag to get the complete logs without truncation.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./scripts/examples/gn_efr32_example.sh<span class="w"> </span>examples/lighting-app/silabs/efr32/<span class="w"> </span>out/rs911x_lighting<span class="w"> </span>BRD41xxx<span class="w"> </span><span class="nv">segger_rtt_buffer_size_up</span><span class="o">=</span><span class="m">2068</span><span class="w"> </span>--wifi<span class="w"> </span>rs9116<span class="w"> </span><span class="p">|&amp;</span><span class="w"> </span>tee<span class="w"> </span>out/rs911x_lighting.log
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./scripts/examples/gn_silabs_example.sh<span class="w"> </span>examples/lighting-app/silabs/<span class="w"> </span>out/rs911x_lighting<span class="w"> </span>BRD41xxx<span class="w"> </span><span class="nv">segger_rtt_buffer_size_up</span><span class="o">=</span><span class="m">2068</span><span class="w"> </span>--wifi<span class="w"> </span>rs9116<span class="w"> </span><span class="p">|&amp;</span><span class="w"> </span>tee<span class="w"> </span>out/rs911x_lighting.log
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">show_qr_code=false</span></code> : Use this flag while building to disable QR code.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./scripts/examples/gn_efr32_example.sh<span class="w"> </span>examples/lighting-app/silabs/efr32/<span class="w"> </span>out/rs911x_lighting<span class="w"> </span>BRD41xxx<span class="w"> </span><span class="nv">show_qr_code</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span>--wifi<span class="w"> </span>rs9116<span class="w"> </span><span class="p">|&amp;</span><span class="w"> </span>tee<span class="w"> </span>out/rs911x_lighting.log
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./scripts/examples/gn_silabs_example.sh<span class="w"> </span>examples/lighting-app/silabs/<span class="w"> </span>out/rs911x_lighting<span class="w"> </span>BRD41xxx<span class="w"> </span><span class="nv">show_qr_code</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span>--wifi<span class="w"> </span>rs9116<span class="w"> </span><span class="p">|&amp;</span><span class="w"> </span>tee<span class="w"> </span>out/rs911x_lighting.log
 </pre></div>
 </div>
 </li>
@@ -271,7 +261,7 @@ $<span class="w"> </span>&lt;run_appropriate_build_command_from_below&gt;
 </div></blockquote>
 <ol class="arabic" start="4">
 <li><p><code class="docutils literal notranslate"><span class="pre">chip_enable_wifi_ipv4</span></code> : Use this flag while building to enable IPV4 (disabled by default).</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./scripts/examples/gn_efr32_example.sh<span class="w"> </span>examples/lighting-app/silabs/efr32/<span class="w"> </span>out/rs911x_lighting<span class="w"> </span>BRD41xxx<span class="w"> </span><span class="nv">chip_enable_wifi_ipv4</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span>--wifi<span class="w"> </span>rs9116<span class="w"> </span><span class="p">|&amp;</span><span class="w"> </span>tee<span class="w"> </span>out/rs911x_lighting.log
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./scripts/examples/gn_silabs_example.sh<span class="w"> </span>examples/lighting-app/silabs/<span class="w"> </span>out/rs911x_lighting<span class="w"> </span>BRD41xxx<span class="w"> </span><span class="nv">chip_enable_wifi_ipv4</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span>--wifi<span class="w"> </span>rs9116<span class="w"> </span><span class="p">|&amp;</span><span class="w"> </span>tee<span class="w"> </span>out/rs911x_lighting.log
 </pre></div>
 </div>
 </li>

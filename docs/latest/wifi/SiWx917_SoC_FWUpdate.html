@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Updating SiWx917 SoC Firmware using Tera Term &mdash; Matter 2.1.0-1.1 documentation</title>
+  <title>Updating SiWx917 SoC Connectivity Firmware &mdash; Matter 2.2.0-1.2-alpha.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
@@ -39,7 +39,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2.1.0-1.1
+                2.2.0-1.2-alpha.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -51,40 +51,30 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../OVERVIEW.html">Silicon Labs Matter User’s Guide Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../NEW_FEATURES.html">Silicon Labs Matter New Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../OVERVIEW.html">User's Guide Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NEW_FEATURES.html">Matter New Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_1_overview.html">Matter Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_2_prereq.html">Matter Development Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_4_thread.html">Matter Over Thread</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../nav_5_wifi.html">Matter Over Wi-Fi</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="DEMO_OVERVIEW.html">Matter over Wi-Fi Demo Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO.html">Running the Matter Demo over Wi-Fi on EFR32 device</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO_SiWx917_SoC.html">Running the Matter Demo over Wi-Fi for SiWx917 SoC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SiWx917_Enablement_For_Ozone.html">Ozone Environment Setup for a SiWx917 SoC Device</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Updating SiWx917 SoC Firmware using Tera Term</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#steps-to-update-the-firmware-on-siwx917-soc-radio-board">Steps to update the firmware on SiWx917 SoC radio board</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DEMO_OVERVIEW.html">Demo Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO.html">Demo on EFR32 NCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO_SiWx917_SoC.html">Demo on 917 SoC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SW_SETUP.html">Wi-Fi GitHub Development</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../nav_5_wifi_917.html">917 SoC Development</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="SiWx917_Enablement_For_Ozone.html">Using Ozone with 917 SoC</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">917 SoC Firmware Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SiWx917SoC_Factory_Reset.html">917 SoC Factory Reset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using_917_NCP_with_the_Google_Ecosystem_SETUP.html">917 SoC with Google Ecosystem</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="SiWx917SoC_Factory_Reset.html">SiWx917 SoC Factory Reset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using_917_NCP_with_the_Google_Ecosystem_SETUP.html">Google Ecosystem Setup and Demo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SW_SETUP.html">Software Setup and Preliminaries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WIFI_SLEEPY_END_DEVICE.html">Matter Sleepy End Devices over Wi-Fi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="OPENSSL_CERTIFICATE_CREATION.html">Openssl Certificate Creation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MOSQUITTO_SETUP.html">Mosquitto</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MQTT_EXPLORER_SETUP.html">Set Up MQTT Explorer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DIC_Wi-Fi.html">Matter Wi-Fi Direct Internet Connectivity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_DIC.html">Build Procedure For Direct Internet Connectivity (DIC)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_CHIP_ENV.html">Building Your Wi-Fi Matter End Device and the chip-tool</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_CHIP_ENV.html#build-environment-for-linux">Build Environment for Linux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_PI_ENV.html">Using the Pre-Built Rasberry Pi “Matter Hub” Image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_PI_ENV.html#building-environment-using-raspberry-pi-4">Building Environment using Raspberry Pi 4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="AWS_CONFIGURATION_REGISTRATION.html">Amazon Web Services (AWS)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WIFI_Sleepy_Device_Power_Measurement.html">Power Measurements for Wi-Fi Devices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WIFI_ANDROID.html">Commissioning Wi-Fi Device using Android</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nav_5_wifi_dic.html">Wi-Fi Direct Internet Connectivity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WIFI_SLEEPY_END_DEVICE.html">Wi-Fi Intermittently Connected Devices (ICD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WIFI_Sleepy_Device_Power_Measurement.html">Wi-Fi ICD Power Measurement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BUILD_PI_ENV.html">Build Chip Tool on Raspi</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../unify/index.html">Unify Matter Bridge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dev/vscode/index.html">VS Code Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_3_general.html">Developer Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_6_faq.html">FAQ</a></li>
 </ul>
@@ -104,7 +94,8 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../nav_5_wifi.html">Matter Over Wi-Fi</a></li>
-      <li class="breadcrumb-item active">Updating SiWx917 SoC Firmware using Tera Term</li>
+          <li class="breadcrumb-item"><a href="../nav_5_wifi_917.html">917 SoC Development</a></li>
+      <li class="breadcrumb-item active">Updating SiWx917 SoC Connectivity Firmware</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/wifi/SiWx917_SoC_FWUpdate.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -114,13 +105,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section class="tex2jax_ignore mathjax_ignore" id="updating-siwx917-soc-firmware-using-tera-term">
-<h1>Updating SiWx917 SoC Firmware using Tera Term<a class="headerlink" href="#updating-siwx917-soc-firmware-using-tera-term" title="Permalink to this heading"></a></h1>
-<blockquote>
-<div><p>Please note that the method of updating the SiWx917 SoC firmware listed below is considered a legacy mode of operation. You may also update the SiWx917 SoC firmware using Simplicity Commander. For instructions on how to do this please consider <a class="reference internal" href="RUN_DEMO_SiWx917_SoC.html"><span class="std std-doc">Running Demo on the SiWx917SoC</span></a></p>
-</div></blockquote>
-<section id="steps-to-update-the-firmware-on-siwx917-soc-radio-board">
-<h2>Steps to update the firmware on SiWx917 SoC radio board<a class="headerlink" href="#steps-to-update-the-firmware-on-siwx917-soc-radio-board" title="Permalink to this heading"></a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="updating-siwx917-soc-connectivity-firmware">
+<h1>Updating SiWx917 SoC Connectivity Firmware<a class="headerlink" href="#updating-siwx917-soc-connectivity-firmware" title="Permalink to this heading"></a></h1>
+<p>Download the recommended version of firmware before you start with the update process from the <a class="reference internal" href="../general/ARTIFACTS.html"><span class="std std-doc">Matter Artifacts page</span></a></p>
+<section id="steps-to-update-the-firmware-on-siwx917-soc-radio-board-using-simplicity-studio">
+<h2>Steps to update the firmware on SiWx917 SoC radio board using Simplicity Studio<a class="headerlink" href="#steps-to-update-the-firmware-on-siwx917-soc-radio-board-using-simplicity-studio" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Refer to the Simplicity Studio documentation on flashing a device <a class="reference external" href="http://docs.silabs.com/simplicity-studio-5-users-guide/latest/ss-5-users-guide-building-and-flashing/flashing">Upgrading SiWx917 Connectivity firmware</a></p></li>
+</ol>
+</section>
+<section id="steps-to-update-the-firmware-on-siwx917-soc-radio-board-using-simplicity-commander">
+<h2>Steps to update the firmware on SiWx917 SoC radio board using Simplicity Commander<a class="headerlink" href="#steps-to-update-the-firmware-on-siwx917-soc-radio-board-using-simplicity-commander" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Refer to the Simplicity Commander documentation on flashing a device <a class="reference external" href="https://www.silabs.com/documents/public/user-guides/ug162-simplicity-commander-reference-guide.pdf">Upgrading SiWx917 Connectivity firmware with Simplicity Commander</a></p></li>
+</ol>
+</section>
+<section id="steps-to-update-the-firmware-on-siwx917-soc-radio-board-using-tera-term">
+<h2>Steps to update the firmware on SiWx917 SoC radio board using Tera Term<a class="headerlink" href="#steps-to-update-the-firmware-on-siwx917-soc-radio-board-using-tera-term" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Connect power cable to radio board.</p></li>
 <li><p>Jumper should be connected.</p></li>
@@ -139,8 +140,7 @@
 <p><img alt="Silicon Labs - SiWx917 FW send" src="../_images/SiWx917_SoC_Kermit.png" /></p>
 <ol class="arabic simple" start="8">
 <li><p>Once the image transfer is complete, type “c” to continue to check the upgrade sequence, once the upgrade is successful , Enter “1” for the Enter next command , once text “Loading…” appears type (Ctrl + \ + c) to exit from Kermit and “q” to quit and return to the terminal.</p></li>
-<li><p>Reset both the buttons to Off/Low state.</p></li>
-<li><p>Flash and run the application - <a class="reference internal" href="RUN_DEMO_SiWx917_SoC.html"><span class="std std-doc">Running the Matter Demo on SiWx917 SoC</span></a>.</p></li>
+<li><p>Reset 917 SoC switch positions: Left switch should be on the <strong>OFF/LOW</strong>, and right switch should be on the <strong>NORMAL</strong> side</p></li>
 </ol>
 </section>
 </section>

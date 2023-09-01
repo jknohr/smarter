@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Running the Matter Demo over Wi-Fi on EFR32 device &mdash; Matter 2.1.0-1.1 documentation</title>
+  <title>Running the Matter Demo over Wi-Fi on an EFR32 device &mdash; Matter 2.2.0-1.2-alpha.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
@@ -39,7 +39,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2.1.0-1.1
+                2.2.0-1.2-alpha.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -51,41 +51,29 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../OVERVIEW.html">Silicon Labs Matter User’s Guide Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../NEW_FEATURES.html">Silicon Labs Matter New Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../OVERVIEW.html">User's Guide Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NEW_FEATURES.html">Matter New Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_1_overview.html">Matter Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_2_prereq.html">Matter Development Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_4_thread.html">Matter Over Thread</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../nav_5_wifi.html">Matter Over Wi-Fi</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="DEMO_OVERVIEW.html">Matter over Wi-Fi Demo Overview</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Running the Matter Demo over Wi-Fi on EFR32 device</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DEMO_OVERVIEW.html">Demo Overview</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Demo on EFR32 NCP</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#flashing-images-binaries-on-efr32mg24-platform-using-ozone-simplicity-studio-or-simplicity-commander">Flashing Images/Binaries on EFR32MG24 Platform using Ozone, Simplicity Studio, or Simplicity Commander</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#directions-for-flashing-using-ozone">Directions for Flashing using Ozone</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#demo-execution-commissioning-a-wi-fi-device-using-chip-tool-for-linux">Demo Execution - Commissioning a Wi-Fi Device using chip-tool for Linux</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO_SiWx917_SoC.html">Running the Matter Demo over Wi-Fi for SiWx917 SoC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SiWx917_Enablement_For_Ozone.html">Ozone Environment Setup for a SiWx917 SoC Device</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SiWx917_SoC_FWUpdate.html">Updating SiWx917 SoC Firmware using Tera Term</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SiWx917SoC_Factory_Reset.html">SiWx917 SoC Factory Reset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using_917_NCP_with_the_Google_Ecosystem_SETUP.html">Google Ecosystem Setup and Demo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SW_SETUP.html">Software Setup and Preliminaries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WIFI_SLEEPY_END_DEVICE.html">Matter Sleepy End Devices over Wi-Fi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="OPENSSL_CERTIFICATE_CREATION.html">Openssl Certificate Creation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MOSQUITTO_SETUP.html">Mosquitto</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MQTT_EXPLORER_SETUP.html">Set Up MQTT Explorer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DIC_Wi-Fi.html">Matter Wi-Fi Direct Internet Connectivity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_DIC.html">Build Procedure For Direct Internet Connectivity (DIC)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_CHIP_ENV.html">Building Your Wi-Fi Matter End Device and the chip-tool</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_CHIP_ENV.html#build-environment-for-linux">Build Environment for Linux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_PI_ENV.html">Using the Pre-Built Rasberry Pi “Matter Hub” Image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_PI_ENV.html#building-environment-using-raspberry-pi-4">Building Environment using Raspberry Pi 4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="AWS_CONFIGURATION_REGISTRATION.html">Amazon Web Services (AWS)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WIFI_Sleepy_Device_Power_Measurement.html">Power Measurements for Wi-Fi Devices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WIFI_ANDROID.html">Commissioning Wi-Fi Device using Android</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO_SiWx917_SoC.html">Demo on 917 SoC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SW_SETUP.html">Wi-Fi GitHub Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nav_5_wifi_917.html">917 SoC Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nav_5_wifi_dic.html">Wi-Fi Direct Internet Connectivity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WIFI_SLEEPY_END_DEVICE.html">Wi-Fi Intermittently Connected Devices (ICD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WIFI_Sleepy_Device_Power_Measurement.html">Wi-Fi ICD Power Measurement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BUILD_PI_ENV.html">Build Chip Tool on Raspi</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../unify/index.html">Unify Matter Bridge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dev/vscode/index.html">VS Code Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_3_general.html">Developer Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_6_faq.html">FAQ</a></li>
 </ul>
@@ -105,7 +93,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../nav_5_wifi.html">Matter Over Wi-Fi</a></li>
-      <li class="breadcrumb-item active">Running the Matter Demo over Wi-Fi on EFR32 device</li>
+      <li class="breadcrumb-item active">Running the Matter Demo over Wi-Fi on an EFR32 device</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/wifi/RUN_DEMO.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -115,22 +103,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section class="tex2jax_ignore mathjax_ignore" id="running-the-matter-demo-over-wi-fi-on-efr32-device">
-<h1>Running the Matter Demo over Wi-Fi on EFR32 device<a class="headerlink" href="#running-the-matter-demo-over-wi-fi-on-efr32-device" title="Permalink to this heading"></a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="running-the-matter-demo-over-wi-fi-on-an-efr32-device">
+<h1>Running the Matter Demo over Wi-Fi on an EFR32 device<a class="headerlink" href="#running-the-matter-demo-over-wi-fi-on-an-efr32-device" title="Permalink to this heading"></a></h1>
 <section id="flashing-images-binaries-on-efr32mg24-platform-using-ozone-simplicity-studio-or-simplicity-commander">
 <h2>Flashing Images/Binaries on EFR32MG24 Platform using Ozone, Simplicity Studio, or Simplicity Commander<a class="headerlink" href="#flashing-images-binaries-on-efr32mg24-platform-using-ozone-simplicity-studio-or-simplicity-commander" title="Permalink to this heading"></a></h2>
 <blockquote>
 <div><p>Note: If you are coming from Simplicity Studio, you may have already installed
-the demo image in Simplicity Studio, in which case you can skip to the
+the demo image using Simplicity Studio, in which case you can skip to the
 next step.</p>
 </div></blockquote>
 <ol class="arabic">
 <li><p>Plug the WSTK and EFR into the laptop.</p></li>
 <li><p>Based on the Application being built, make sure to flash proper <a class="reference internal" href="../general/ARTIFACTS.html"><span class="std std-doc">bootloader</span></a> internal or external binaries.</p></li>
 <li><p>Launch Ozone, Simplicity Studio or Simplicity Commander Standalone - this
-will display a GUI. If you are not using Ozone, you can follow the
-instructions to
-<a class="reference internal" href="../general/FLASH_SILABS_DEVICE.html"><span class="std std-doc">Flash a Silicon Labs Device</span></a></p></li>
+will display a GUI.</p>
+<p>If you are using Simplicity Studio or Simplicity Commander, you can follow the general instructions for flashing a Silicon Labs device.
+<a class="reference internal" href="../general/FLASH_SILABS_DEVICE.html"><span class="std std-doc">Flash a Silicon Labs Device</span></a>. If you are using Ozone, you can follow the instructions below.</p>
+</li>
+</ol>
+</section>
+<section id="directions-for-flashing-using-ozone">
+<h2>Directions for Flashing using Ozone<a class="headerlink" href="#directions-for-flashing-using-ozone" title="Permalink to this heading"></a></h2>
+<ol class="arabic">
 <li><p>In ‘New Project Wizard’:</p>
 <ol class="arabic simple">
 <li><p>Click the three-dots on the ‘Device’ tab and select ‘Manufacturer’ as
@@ -176,12 +170,11 @@ on the top left of the page</p>
 </div></blockquote>
 </li>
 <li><p>Run the image by clicking the ‘Play’ button on the top left (or press the F5
-key)</p></li>
-</ol>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; The output of the EFR32 can be viewed on the console of the Ozone GUI
-</pre></div>
-</div>
-<ol class="arabic" start="11">
+key)</p>
+<blockquote>
+<div><p>The output of the EFR32 can be viewed on the console of the Ozone GUI</p>
+</div></blockquote>
+</li>
 <li><p><strong>[Optional]</strong> This step is for when the device has already been flashed and
 is being used for testing/debug purposes:</p>
 <blockquote>

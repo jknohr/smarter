@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matter Repositories and Commit Hashes &mdash; Matter 2.1.0-1.1 documentation</title>
+  <title>Matter Repositories and Commit Hashes &mdash; Matter 2.2.0-1.2-alpha.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
@@ -39,7 +39,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2.1.0-1.1
+                2.2.0-1.2-alpha.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -51,17 +51,16 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../OVERVIEW.html">Silicon Labs Matter User’s Guide Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../NEW_FEATURES.html">Silicon Labs Matter New Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../OVERVIEW.html">User's Guide Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NEW_FEATURES.html">Matter New Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_1_overview.html">Matter Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_2_prereq.html">Matter Development Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_4_thread.html">Matter Over Thread</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_5_wifi.html">Matter Over Wi-Fi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../unify/index.html">Unify Matter Bridge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dev/vscode/index.html">VS Code Development</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../nav_3_general.html">Developer Reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="CODE_SIZE_SAVINGS.html">Code Savings Guide for Matter Applications</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Matter Repositories and Commit Hashes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CODE_SIZE_SAVINGS.html">Code Savings Guide</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Commit Hash Reference</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#open-thread-border-router-otbr">Open Thread Border Router (OTBR)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#radio-co-processor-rcp">Radio Co-Processor (RCP)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#connectivity-standards-alliance-csa-connectedhomeip-matter">Connectivity Standards Alliance (CSA) connectedhomeip (Matter)</a></li>
@@ -69,16 +68,17 @@
 <li class="toctree-l3"><a class="reference internal" href="#matter-accessory-device-mad">Matter Accessory Device (MAD)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="CUSTOM_MATTER_DEVICE.html">Custom Matter Device Development</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FIND_RASPI.html">How to find your Raspberry Pi on the Network</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FLASH_SILABS_DEVICE.html">How to Flash a Silicon Labs Device</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FLASH_SILABS_SiWx917_SOC_DEVICE.html">How to Flash a SiWx917 SoC Device</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MATTER_ICD.html">Matter Intermittently Connected Devices (ICD)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ZAP.html">ZCL Advanced Platform (ZAP) Tool for Matter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WIRESHARK.html">Using Wireshark to Capture Network Traffic in Matter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="EP.html">Using Simplicity Studio’s Energy Profiler with Matter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="GATT.html">Using Simplicity Studio’s GATT Configurator with Matter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="PINTOOL.html">Using Simplicity Studio’s Pintool and Project Configuration with Matter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CUSTOM_MATTER_DEVICE.html">Custom Matter Device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FIND_RASPI.html">Find Your Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FLASH_SILABS_DEVICE.html">Flash an EFR32 Device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FLASH_SILABS_SiWx917_SOC_DEVICE.html">Flash a 917SoC Device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MATTER_ICD.html">Matter ICDs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ZAP.html">Using ZAP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WIRESHARK.html">Using Wireshark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="EP.html">Using Energy Profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GATT.html">BLE GATT Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PINTOOL.html">Hardware Pin Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev/vscode/index.html">VS Code Development</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_6_faq.html">FAQ</a></li>
@@ -125,7 +125,7 @@ in this release of the Silicon Labs Matter Out of Box Experience</p>
 <tbody>
 <tr class="row-even"><td><p><a class="reference external" href="https://github.com/SiliconLabs/ot-br-posix">https://github.com/SiliconLabs/ot-br-posix</a></p></td>
 <td><p>main</p></td>
-<td><p>1813352247aa60fb8993773918f1e5b4af6f3b79</p></td>
+<td><p>bb565ca0164981f58a2659222c30917399703a9b</p></td>
 </tr>
 </tbody>
 </table>
@@ -142,7 +142,7 @@ in this release of the Silicon Labs Matter Out of Box Experience</p>
 <tbody>
 <tr class="row-even"><td><p><a class="reference external" href="https://github.com/SiliconLabs/ot-efr32">https://github.com/SiliconLabs/ot-efr32</a></p></td>
 <td><p>main</p></td>
-<td><p>7a567da02a078546eb34136c1c44170c8832dd55</p></td>
+<td><p>3528d4bba47743a5367a822e350aaccb04698542</p></td>
 </tr>
 </tbody>
 </table>
@@ -158,8 +158,8 @@ in this release of the Silicon Labs Matter Out of Box Experience</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><a class="reference external" href="https://github.com/project-chip/connectedhomeip">https://github.com/project-chip/connectedhomeip</a></p></td>
-<td><p>v1.1-branch</p></td>
-<td><p>8f66f4215bc0708efc8cc73bda80620e67d8955f</p></td>
+<td><p>master</p></td>
+<td><p>684b9d6246e5e5ef33db589af61a30e224d61ee3</p></td>
 </tr>
 </tbody>
 </table>

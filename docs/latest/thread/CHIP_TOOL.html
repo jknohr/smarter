@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Using the Mattertool (chip-tool) &mdash; Matter 2.1.0-1.1 documentation</title>
+  <title>Using the Matter Hub and the Mattertool (chip-tool) &mdash; Matter 2.2.0-1.2-alpha.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
@@ -39,7 +39,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2.1.0-1.1
+                2.2.0-1.2-alpha.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -51,17 +51,17 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../OVERVIEW.html">Silicon Labs Matter User’s Guide Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../NEW_FEATURES.html">Silicon Labs Matter New Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../OVERVIEW.html">User's Guide Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NEW_FEATURES.html">Matter New Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_1_overview.html">Matter Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_2_prereq.html">Matter Development Prerequisites</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../nav_4_thread.html">Matter Over Thread</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="THREAD.html">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DEMO_OVERVIEW.html">Matter over Thread Demo Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RASPI_IMG.html">Setting up the Matter Hub (Raspberry Pi)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RCP.html">How to Build and Flash the Radio Co-Processor (RCP)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_FLASH_MAD.html">How to Build and Flash the Matter Accessory Device (MAD)</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Using the Mattertool (chip-tool)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DEMO_OVERVIEW.html">Demo Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RASPI_IMG.html">Setting up the Matter Hub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RCP.html">Setting up the RCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BUILD_FLASH_MAD.html">Build, Flash Matter Device</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Using the Matter Hub</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#basic-mattertool-commands">Basic Mattertool Commands</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#advanced-information-on-the-matter-hub">Advanced Information on the Matter Hub</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#open-thread-border-router-otbr">Open Thread Border Router (OTBR)</a></li>
@@ -73,7 +73,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_5_wifi.html">Matter Over Wi-Fi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../unify/index.html">Unify Matter Bridge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dev/vscode/index.html">VS Code Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_3_general.html">Developer Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_6_faq.html">FAQ</a></li>
 </ul>
@@ -93,7 +92,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../nav_4_thread.html">Matter Over Thread</a></li>
-      <li class="breadcrumb-item active">Using the Mattertool (chip-tool)</li>
+      <li class="breadcrumb-item active">Using the Matter Hub and the Mattertool (chip-tool)</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/thread/CHIP_TOOL.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -103,8 +102,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section class="tex2jax_ignore mathjax_ignore" id="using-the-mattertool-chip-tool">
-<h1>Using the Mattertool (chip-tool)<a class="headerlink" href="#using-the-mattertool-chip-tool" title="Permalink to this heading"></a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="using-the-matter-hub-and-the-mattertool-chip-tool">
+<h1>Using the Matter Hub and the Mattertool (chip-tool)<a class="headerlink" href="#using-the-matter-hub-and-the-mattertool-chip-tool" title="Permalink to this heading"></a></h1>
 <p>The following commands show how to start a new Thread network from the local
 OTBR, commission an EFR32 Matter End Device (Matter Accessory Device), and then
 send the on/off commands with the <code class="docutils literal notranslate"><span class="pre">mattertool</span></code> automated script. The <code class="docutils literal notranslate"><span class="pre">mattertool</span></code>

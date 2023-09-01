@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matter Over Wi-Fi &mdash; Matter 2.1.0-1.1 documentation</title>
+  <title>Matter Over Wi-Fi &mdash; Matter 2.2.0-1.2-alpha.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/tabs.css" type="text/css" />
@@ -23,7 +23,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Matter over Wi-Fi Demo Overview" href="wifi/DEMO_OVERVIEW.html" />
-    <link rel="prev" title="Using the Mattertool (chip-tool)" href="thread/CHIP_TOOL.html" /> 
+    <link rel="prev" title="Using the Matter Hub and the Mattertool (chip-tool)" href="thread/CHIP_TOOL.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,7 +39,7 @@
               <img src="_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2.1.0-1.1
+                2.2.0-1.2-alpha.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -51,37 +51,24 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="OVERVIEW.html">Silicon Labs Matter User’s Guide Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="NEW_FEATURES.html">Silicon Labs Matter New Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OVERVIEW.html">User's Guide Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NEW_FEATURES.html">Matter New Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nav_1_overview.html">Matter Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nav_2_prereq.html">Matter Development Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nav_4_thread.html">Matter Over Thread</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Matter Over Wi-Fi</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="wifi/DEMO_OVERVIEW.html">Matter over Wi-Fi Demo Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/RUN_DEMO.html">Running the Matter Demo over Wi-Fi on EFR32 device</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/RUN_DEMO_SiWx917_SoC.html">Running the Matter Demo over Wi-Fi for SiWx917 SoC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/SiWx917_Enablement_For_Ozone.html">Ozone Environment Setup for a SiWx917 SoC Device</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/SiWx917_SoC_FWUpdate.html">Updating SiWx917 SoC Firmware using Tera Term</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/SiWx917SoC_Factory_Reset.html">SiWx917 SoC Factory Reset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/using_917_NCP_with_the_Google_Ecosystem_SETUP.html">Google Ecosystem Setup and Demo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/SW_SETUP.html">Software Setup and Preliminaries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/WIFI_SLEEPY_END_DEVICE.html">Matter Sleepy End Devices over Wi-Fi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/OPENSSL_CERTIFICATE_CREATION.html">Openssl Certificate Creation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/MOSQUITTO_SETUP.html">Mosquitto</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/MQTT_EXPLORER_SETUP.html">Set Up MQTT Explorer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/DIC_Wi-Fi.html">Matter Wi-Fi Direct Internet Connectivity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/BUILD_DIC.html">Build Procedure For Direct Internet Connectivity (DIC)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/BUILD_CHIP_ENV.html">Building Your Wi-Fi Matter End Device and the chip-tool</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/BUILD_CHIP_ENV.html#build-environment-for-linux">Build Environment for Linux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/BUILD_PI_ENV.html">Using the Pre-Built Rasberry Pi “Matter Hub” Image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/BUILD_PI_ENV.html#building-environment-using-raspberry-pi-4">Building Environment using Raspberry Pi 4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/AWS_CONFIGURATION_REGISTRATION.html">Amazon Web Services (AWS)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/WIFI_Sleepy_Device_Power_Measurement.html">Power Measurements for Wi-Fi Devices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/WIFI_ANDROID.html">Commissioning Wi-Fi Device using Android</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/DEMO_OVERVIEW.html">Demo Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/RUN_DEMO.html">Demo on EFR32 NCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/RUN_DEMO_SiWx917_SoC.html">Demo on 917 SoC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/SW_SETUP.html">Wi-Fi GitHub Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nav_5_wifi_917.html">917 SoC Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nav_5_wifi_dic.html">Wi-Fi Direct Internet Connectivity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/WIFI_SLEEPY_END_DEVICE.html">Wi-Fi Intermittently Connected Devices (ICD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/WIFI_Sleepy_Device_Power_Measurement.html">Wi-Fi ICD Power Measurement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/BUILD_PI_ENV.html">Build Chip Tool on Raspi</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="unify/index.html">Unify Matter Bridge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dev/vscode/index.html">VS Code Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nav_3_general.html">Developer Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nav_6_faq.html">FAQ</a></li>
 </ul>
@@ -114,103 +101,69 @@
 <h1>Matter Over Wi-Fi<a class="headerlink" href="#matter-over-wi-fi" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="wifi/DEMO_OVERVIEW.html">Matter over Wi-Fi Demo Overview</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="wifi/DEMO_OVERVIEW.html">Demo Overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="wifi/DEMO_OVERVIEW.html#step-1-matter-wi-fi-prerequisites">Step 1: Matter Wi-Fi Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wifi/DEMO_OVERVIEW.html#step-2-building-the-chip-tool-for-wi-fi">Step 2: Building the chip-tool for Wi-Fi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wifi/DEMO_OVERVIEW.html#step-3-building-the-matter-accessory-device-mad-for-wi-fi">Step 3: Building the Matter Accessory Device (MAD) for Wi-Fi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wifi/DEMO_OVERVIEW.html#step-4-running-the-demo">Step 4: Running the Demo</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="wifi/RUN_DEMO.html">Running the Matter Demo over Wi-Fi on EFR32 device</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="wifi/RUN_DEMO.html">Demo on EFR32 NCP</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="wifi/RUN_DEMO.html#flashing-images-binaries-on-efr32mg24-platform-using-ozone-simplicity-studio-or-simplicity-commander">Flashing Images/Binaries on EFR32MG24 Platform using Ozone, Simplicity Studio, or Simplicity Commander</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/RUN_DEMO.html#directions-for-flashing-using-ozone">Directions for Flashing using Ozone</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wifi/RUN_DEMO.html#demo-execution-commissioning-a-wi-fi-device-using-chip-tool-for-linux">Demo Execution - Commissioning a Wi-Fi Device using chip-tool for Linux</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="wifi/RUN_DEMO_SiWx917_SoC.html">Running the Matter Demo over Wi-Fi for SiWx917 SoC</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="wifi/RUN_DEMO_SiWx917_SoC.html">Demo on 917 SoC</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="wifi/RUN_DEMO_SiWx917_SoC.html#flashing-images-binaries-on-the-siwx917-soc-platform-using-ozone-or-simplicity-studio-and-simplicity-commander">Flashing Images/Binaries on the SiWx917 SoC platform using Ozone or Simplicity Studio and Simplicity Commander</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/RUN_DEMO_SiWx917_SoC.html#flashing-images-binaries-on-the-siwx917-soc-platform-using-simplicity-studio">Flashing Images/Binaries on the SiWx917 SoC platform using Simplicity Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/RUN_DEMO_SiWx917_SoC.html#alternate-flashing-methods-for-siwx917-soc-without-simplicity-studio">Alternate flashing methods for SiWx917 SoC without Simplicity Studio</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wifi/RUN_DEMO_SiWx917_SoC.html#demo-execution-commissioning-a-siwx917-soc-device-using-chip-tool-for-linux">Demo Execution - Commissioning a SiWx917 SoC Device using chip-tool for Linux</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="wifi/SiWx917_Enablement_For_Ozone.html">Ozone Environment Setup for a SiWx917 SoC Device</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="wifi/SiWx917_Enablement_For_Ozone.html#steps-to-configure-the-siwx917-soc-on-the-ozone-debugger">Steps to Configure the SiWx917 SoC on the Ozone Debugger</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="wifi/SiWx917_SoC_FWUpdate.html">Updating SiWx917 SoC Firmware using Tera Term</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="wifi/SiWx917_SoC_FWUpdate.html#steps-to-update-the-firmware-on-siwx917-soc-radio-board">Steps to update the firmware on SiWx917 SoC radio board</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="wifi/SiWx917SoC_Factory_Reset.html">SiWx917 SoC Factory Reset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="wifi/using_917_NCP_with_the_Google_Ecosystem_SETUP.html">Google Ecosystem Setup and Demo</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="wifi/using_917_NCP_with_the_Google_Ecosystem_SETUP.html#hardware-requirements">1. Hardware Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/using_917_NCP_with_the_Google_Ecosystem_SETUP.html#set-up-google-home-and-android-smartphone">2. Set Up Google Home and Android Smartphone</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/using_917_NCP_with_the_Google_Ecosystem_SETUP.html#matter-integration-setup-in-the-developer-console">3. Matter Integration Setup in the Developer Console</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/using_917_NCP_with_the_Google_Ecosystem_SETUP.html#matter-demo-using-google-home">4. Matter Demo using Google Home</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="wifi/SW_SETUP.html">Software Setup and Preliminaries</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="wifi/SW_SETUP.html">Wi-Fi GitHub Development</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="wifi/SW_SETUP.html#software-setup">Software Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wifi/SW_SETUP.html#compiling-the-chip-tool">Compiling the chip-tool</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wifi/SW_SETUP.html#using-the-matter-accessory-device-mad-pre-built-binaries">Using the Matter Accessory Device (MAD) Pre-Built Binaries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wifi/SW_SETUP.html#building-the-matter-application">Building the Matter Application</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="wifi/WIFI_SLEEPY_END_DEVICE.html">Matter Sleepy End Devices over Wi-Fi</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="nav_5_wifi_917.html">917 SoC Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="wifi/SiWx917_Enablement_For_Ozone.html">Using Ozone with 917 SoC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/SiWx917_SoC_FWUpdate.html">917 SoC Firmware Update</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/SiWx917SoC_Factory_Reset.html">917 SoC Factory Reset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/using_917_NCP_with_the_Google_Ecosystem_SETUP.html">917 SoC with Google Ecosystem</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nav_5_wifi_dic.html">Wi-Fi Direct Internet Connectivity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="wifi/DIC_Wi-Fi.html">What is DIC?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/BUILD_DIC.html">How to Build DIC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/MOSQUITTO_SETUP.html">MQTT Server with Mosquitto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/AWS_CONFIGURATION_REGISTRATION.html">MQTT Server with AWS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/MQTT_EXPLORER_SETUP.html">MQTT Explorer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/OPENSSL_CERTIFICATE_CREATION.html">Open SSL for MQTT</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="wifi/WIFI_SLEEPY_END_DEVICE.html">Wi-Fi Intermittently Connected Devices (ICD)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="wifi/WIFI_SLEEPY_END_DEVICE.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wifi/WIFI_SLEEPY_END_DEVICE.html#power-save-methods">Power Save Methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wifi/WIFI_SLEEPY_END_DEVICE.html#building">Building</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="wifi/OPENSSL_CERTIFICATE_CREATION.html">Openssl Certificate Creation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="wifi/OPENSSL_CERTIFICATE_CREATION.html#openssl-installation-in-ubuntu">Openssl Installation (In ubuntu)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/OPENSSL_CERTIFICATE_CREATION.html#certificates-creation">Certificates Creation</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="wifi/MOSQUITTO_SETUP.html">Mosquitto</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="wifi/MOSQUITTO_SETUP.html#set-up-the-mosquitto-connection">Set Up the Mosquitto Connection</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="wifi/MQTT_EXPLORER_SETUP.html">Set Up MQTT Explorer</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="wifi/MQTT_EXPLORER_SETUP.html#connecting-to-mqtt-server">Connecting to MQTT Server</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="wifi/DIC_Wi-Fi.html">Matter Wi-Fi Direct Internet Connectivity</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="wifi/DIC_Wi-Fi.html#feature-design">Feature Design</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/DIC_Wi-Fi.html#end-to-end-set-up-bring-up">End-to-End Set-up bring up</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/DIC_Wi-Fi.html#message-queuing-telemetry-transport-mqtt">Message Queuing Telemetry Transport (MQTT)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/DIC_Wi-Fi.html#end-to-end-test-of-dic-light-application">End-to-End Test of DIC Light Application</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="wifi/BUILD_DIC.html">Build Procedure For Direct Internet Connectivity (DIC)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="wifi/BUILD_DIC.html#build-command-with-dic">Build command with DIC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/BUILD_DIC.html#compile-using-new-different-certificates">Compile using new/different certificates</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="wifi/BUILD_CHIP_ENV.html">Building Your Wi-Fi Matter End Device and the chip-tool</a></li>
-<li class="toctree-l1"><a class="reference internal" href="wifi/BUILD_CHIP_ENV.html#build-environment-for-linux">Build Environment for Linux</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="wifi/BUILD_CHIP_ENV.html#prepare-linux-packages">Prepare Linux Packages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/BUILD_CHIP_ENV.html#prerequisites-for-matter-chip-project-on-linux">Prerequisites for Matter (CHIP) project on Linux</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="wifi/BUILD_PI_ENV.html">Using the Pre-Built Rasberry Pi “Matter Hub” Image</a></li>
-<li class="toctree-l1"><a class="reference internal" href="wifi/BUILD_PI_ENV.html#building-environment-using-raspberry-pi-4">Building Environment using Raspberry Pi 4</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="wifi/BUILD_PI_ENV.html#to-flash-the-ubuntu-os-onto-the-sd-card">To flash the Ubuntu OS onto the SD card:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/BUILD_PI_ENV.html#to-start-using-the-raspberry-pi">To start using the Raspberry Pi:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/BUILD_PI_ENV.html#build-environment">Build Environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/BUILD_PI_ENV.html#bluetooth-setup">Bluetooth Setup</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="wifi/AWS_CONFIGURATION_REGISTRATION.html">Amazon Web Services (AWS)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="wifi/AWS_CONFIGURATION_REGISTRATION.html#aws-ca-certitifcate-registration">AWS CA Certitifcate Registration</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="wifi/WIFI_Sleepy_Device_Power_Measurement.html">Power Measurements for Wi-Fi Devices</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="wifi/WIFI_Sleepy_Device_Power_Measurement.html">Wi-Fi ICD Power Measurement</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="wifi/WIFI_Sleepy_Device_Power_Measurement.html#efr32-rs9116-setup-for-sleepy-devices">EFR32 + RS9116 Setup for Sleepy Devices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wifi/WIFI_Sleepy_Device_Power_Measurement.html#using-simplicity-studio-energy-profiler-for-current-measurement">Using Simplicity Studio Energy Profiler for Current Measurement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wifi/WIFI_Sleepy_Device_Power_Measurement.html#power-consumption-measurment-efr-using-energy-profiler">Power Consumption Measurment (EFR) Using Energy Profiler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wifi/WIFI_Sleepy_Device_Power_Measurement.html#power-consumption-mmasurment-using-a-power-meter">Power Consumption mMasurment Using a Power Meter</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="wifi/WIFI_ANDROID.html">Commissioning Wi-Fi Device using Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wifi/BUILD_PI_ENV.html">Build Chip Tool on Raspi</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="wifi/BUILD_PI_ENV.html#to-flash-the-ubuntu-os-onto-the-sd-card">To flash the Ubuntu OS onto the SD card:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/BUILD_PI_ENV.html#to-start-using-the-raspberry-pi">To start using the Raspberry Pi:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/BUILD_PI_ENV.html#build-environment">Build Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/BUILD_PI_ENV.html#bluetooth-setup">Bluetooth Setup</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>

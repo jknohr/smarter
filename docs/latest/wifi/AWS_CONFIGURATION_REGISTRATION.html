@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amazon Web Services (AWS) &mdash; Matter 2.1.0-1.1 documentation</title>
+  <title>Amazon Web Services (AWS) &mdash; Matter 2.2.0-1.2-alpha.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
@@ -22,8 +22,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Power Measurements for Wi-Fi Devices" href="WIFI_Sleepy_Device_Power_Measurement.html" />
-    <link rel="prev" title="Using the Pre-Built Rasberry Pi “Matter Hub” Image" href="BUILD_PI_ENV.html" /> 
+    <link rel="next" title="Set Up MQTT Explorer" href="MQTT_EXPLORER_SETUP.html" />
+    <link rel="prev" title="Mosquitto" href="MOSQUITTO_SETUP.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,7 +39,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2.1.0-1.1
+                2.2.0-1.2-alpha.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -51,40 +51,32 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../OVERVIEW.html">Silicon Labs Matter User’s Guide Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../NEW_FEATURES.html">Silicon Labs Matter New Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../OVERVIEW.html">User's Guide Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NEW_FEATURES.html">Matter New Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_1_overview.html">Matter Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_2_prereq.html">Matter Development Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_4_thread.html">Matter Over Thread</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../nav_5_wifi.html">Matter Over Wi-Fi</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="DEMO_OVERVIEW.html">Matter over Wi-Fi Demo Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO.html">Running the Matter Demo over Wi-Fi on EFR32 device</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO_SiWx917_SoC.html">Running the Matter Demo over Wi-Fi for SiWx917 SoC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SiWx917_Enablement_For_Ozone.html">Ozone Environment Setup for a SiWx917 SoC Device</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SiWx917_SoC_FWUpdate.html">Updating SiWx917 SoC Firmware using Tera Term</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SiWx917SoC_Factory_Reset.html">SiWx917 SoC Factory Reset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using_917_NCP_with_the_Google_Ecosystem_SETUP.html">Google Ecosystem Setup and Demo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SW_SETUP.html">Software Setup and Preliminaries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WIFI_SLEEPY_END_DEVICE.html">Matter Sleepy End Devices over Wi-Fi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="OPENSSL_CERTIFICATE_CREATION.html">Openssl Certificate Creation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MOSQUITTO_SETUP.html">Mosquitto</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MQTT_EXPLORER_SETUP.html">Set Up MQTT Explorer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DIC_Wi-Fi.html">Matter Wi-Fi Direct Internet Connectivity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_DIC.html">Build Procedure For Direct Internet Connectivity (DIC)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_CHIP_ENV.html">Building Your Wi-Fi Matter End Device and the chip-tool</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_CHIP_ENV.html#build-environment-for-linux">Build Environment for Linux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_PI_ENV.html">Using the Pre-Built Rasberry Pi “Matter Hub” Image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD_PI_ENV.html#building-environment-using-raspberry-pi-4">Building Environment using Raspberry Pi 4</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Amazon Web Services (AWS)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#aws-ca-certitifcate-registration">AWS CA Certitifcate Registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DEMO_OVERVIEW.html">Demo Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO.html">Demo on EFR32 NCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO_SiWx917_SoC.html">Demo on 917 SoC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SW_SETUP.html">Wi-Fi GitHub Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nav_5_wifi_917.html">917 SoC Development</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../nav_5_wifi_dic.html">Wi-Fi Direct Internet Connectivity</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="DIC_Wi-Fi.html">What is DIC?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BUILD_DIC.html">How to Build DIC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MOSQUITTO_SETUP.html">MQTT Server with Mosquitto</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">MQTT Server with AWS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MQTT_EXPLORER_SETUP.html">MQTT Explorer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OPENSSL_CERTIFICATE_CREATION.html">Open SSL for MQTT</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="WIFI_Sleepy_Device_Power_Measurement.html">Power Measurements for Wi-Fi Devices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WIFI_ANDROID.html">Commissioning Wi-Fi Device using Android</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WIFI_SLEEPY_END_DEVICE.html">Wi-Fi Intermittently Connected Devices (ICD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WIFI_Sleepy_Device_Power_Measurement.html">Wi-Fi ICD Power Measurement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BUILD_PI_ENV.html">Build Chip Tool on Raspi</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../unify/index.html">Unify Matter Bridge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dev/vscode/index.html">VS Code Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_3_general.html">Developer Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_6_faq.html">FAQ</a></li>
 </ul>
@@ -104,6 +96,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../nav_5_wifi.html">Matter Over Wi-Fi</a></li>
+          <li class="breadcrumb-item"><a href="../nav_5_wifi_dic.html">Wi-Fi Direct Internet Connectivity</a></li>
       <li class="breadcrumb-item active">Amazon Web Services (AWS)</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/wifi/AWS_CONFIGURATION_REGISTRATION.md.txt" rel="nofollow"> View page source</a>
@@ -171,6 +164,33 @@
 </li>
 <li><p>Copy the contents of <a class="reference external" href="https://www.amazontrust.com/repository/AmazonRootCA1.pem">AWS_CA CERT</a> and create a .pem file to use as a SERVER CERTIFICATE in MQTT Explorer.</p></li>
 </ol>
+</section>
+<section id="how-to-create-aws-ota-job">
+<h2>How to create AWS OTA JOB<a class="headerlink" href="#how-to-create-aws-ota-job" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Go to AWS Amazon link <a class="reference external" href="https://aws.amazon.com/">https://aws.amazon.com/</a></p></li>
+<li><p>Login with Amazon Credentials.</p></li>
+<li><p>Click on Services and select <code class="docutils literal notranslate"><span class="pre">IOT</span> <span class="pre">Core</span></code>.</p></li>
+<li><p>On Side Bar Menu in Manage Section click on <code class="docutils literal notranslate"><span class="pre">Remote</span> <span class="pre">Actions</span></code> and click on <code class="docutils literal notranslate"><span class="pre">jobs</span></code>.</p></li>
+<li><p>Click on Create Job and select Job type as a <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">FreeRTOS</span> <span class="pre">OTA</span> <span class="pre">update</span> <span class="pre">job</span></code>.</p></li>
+<li><p>Enter a unique Job name without spaces.</p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">Devices</span> <span class="pre">to</span> <span class="pre">update</span></code> dropdown select your Certificates which is configured above. for example:- SQA_DIC_C2, SQA_DIC_C3, DIC_2</p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">MQTT</span></code> as the protocol for file transfer.</p></li>
+<li><p>In File Section select <code class="docutils literal notranslate"><span class="pre">New/Previously/Custom</span></code> signed gbl file.</p>
+<ul class="simple">
+<li><p>If gbl file is newly created then select <code class="docutils literal notranslate"><span class="pre">Sign</span> <span class="pre">a</span> <span class="pre">new</span> <span class="pre">file</span> <span class="pre">for</span> <span class="pre">me</span></code></p></li>
+<li><p>If gbl file is already uploaded to AWS then select <code class="docutils literal notranslate"><span class="pre">Choose</span> <span class="pre">a</span> <span class="pre">previously</span> <span class="pre">signed</span> <span class="pre">file</span></code></p></li>
+<li><p>If gbl file is modified customly then select <code class="docutils literal notranslate"><span class="pre">Use</span> <span class="pre">my</span> <span class="pre">custome</span> <span class="pre">signed</span> <span class="pre">file</span></code></p></li>
+</ul>
+</li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">Existing</span> <span class="pre">code</span> <span class="pre">signing</span> <span class="pre">profile</span></code> select <code class="docutils literal notranslate"><span class="pre">dic_ota_codesign</span></code> . Refer <a class="reference external" href="https://docs.aws.amazon.com/freertos/latest/userguide/ota-code-sign-cert.html">AWS Code Signing Certificate Creation</a></p></li>
+<li><p>For uploading gbl file follow above step <code class="docutils literal notranslate"><span class="pre">9</span></code>.</p></li>
+<li><p>In File upload location in S3 select S3 URL as <code class="docutils literal notranslate"><span class="pre">ota_demo</span></code>. Refer <a class="reference external" href="https://docs.aws.amazon.com/freertos/latest/userguide/dg-ota-bucket.html">AWS S3 bucket Creation</a></p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">Path</span> <span class="pre">name</span> <span class="pre">of</span> <span class="pre">file</span> <span class="pre">on</span> <span class="pre">device</span></code> give any file name (file.txt).</p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">ota_demo</span></code> as <code class="docutils literal notranslate"><span class="pre">IAM</span> <span class="pre">role</span></code> and click on Next.</p></li>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">create</span> <span class="pre">job</span></code>.</p></li>
+</ol>
+<p>Note: For more details, Refer <a class="reference external" href="https://docs.aws.amazon.com/freertos/latest/userguide/ota-prereqs.html">AWS OTA prerequisites</a></p>
 </section>
 </section>
 

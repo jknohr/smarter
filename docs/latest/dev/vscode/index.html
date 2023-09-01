@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VS Code Development &mdash; Matter 2.1.0-1.1 documentation</title>
+  <title>VS Code Development &mdash; Matter 2.2.0-1.2-alpha.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
@@ -23,7 +23,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Set Up the VS Code environment" href="SETUP.html" />
-    <link rel="prev" title="Building the Unify Matter Bridge for Debian Bullseye (Or similar Ubunutu) x86_64" href="../../unify/readme_building_x86_64.html" /> 
+    <link rel="prev" title="Using Simplicity Studio’s Pintool and Project Configuration with Matter" href="../../general/PINTOOL.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,7 +39,7 @@
               <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2.1.0-1.1
+                2.2.0-1.2-alpha.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -51,24 +51,38 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../OVERVIEW.html">Silicon Labs Matter User’s Guide Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../NEW_FEATURES.html">Silicon Labs Matter New Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../OVERVIEW.html">User's Guide Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../NEW_FEATURES.html">Matter New Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../nav_1_overview.html">Matter Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../nav_2_prereq.html">Matter Development Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../nav_4_thread.html">Matter Over Thread</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../nav_5_wifi.html">Matter Over Wi-Fi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../unify/index.html">Unify Matter Bridge</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">VS Code Development</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="SETUP.html">Set Up the VS Code environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="CREATE.html">Building in VS Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BUILD.html">Building in VS Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FLASH.html">Flashing EFR32 Examples in VS Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DEBUG.html">Debugging in VS Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="LOGS.html">Logs in VS Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="TASKS.html">Tasks in VS Code</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../nav_3_general.html">Developer Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../general/CODE_SIZE_SAVINGS.html">Code Savings Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../general/COMMIT_HASHES.html">Commit Hash Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../general/CUSTOM_MATTER_DEVICE.html">Custom Matter Device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../general/FIND_RASPI.html">Find Your Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../general/FLASH_SILABS_DEVICE.html">Flash an EFR32 Device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../general/FLASH_SILABS_SiWx917_SOC_DEVICE.html">Flash a 917SoC Device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../general/MATTER_ICD.html">Matter ICDs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../general/ZAP.html">Using ZAP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../general/WIRESHARK.html">Using Wireshark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../general/EP.html">Using Energy Profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../general/GATT.html">BLE GATT Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../general/PINTOOL.html">Hardware Pin Configuration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">VS Code Development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="SETUP.html">Set Up the VS Code environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CREATE.html">Building in VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BUILD.html">Building in VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FLASH.html">Flashing EFR32 Examples in VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DEBUG.html">Debugging in VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LOGS.html">Logs in VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TASKS.html">Tasks in VS Code</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../nav_3_general.html">Developer Reference</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../nav_6_faq.html">FAQ</a></li>
 </ul>
 
@@ -86,6 +100,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../nav_3_general.html">Developer Reference</a></li>
       <li class="breadcrumb-item active">VS Code Development</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/dev/vscode/index.rst.txt" rel="nofollow"> View page source</a>
