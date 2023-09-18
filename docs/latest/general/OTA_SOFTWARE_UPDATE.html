@@ -146,7 +146,10 @@ example):</p>
 </li>
 <li><p>In a terminal start the Provider app and pass to it the path to the Matter
 OTA file created in the previous step:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>rm<span class="w"> </span>-r<span class="w"> </span>/tmp/chip_*<span class="w"> </span>./out/debug/chip-ota-provider-app<span class="w"> </span>-f<span class="w"> </span>chip-efr32-lighting-example.ota
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>rm<span class="w"> </span>-r<span class="w"> </span>/tmp/chip_kvs_provider
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./out/debug/chip-ota-provider-app<span class="w"> </span>--KVS<span class="w"> </span>/tmp/chip_kvs_provider<span class="w"> </span>-f<span class="w"> </span>chip-efr32-lighting-example.ota
 </pre></div>
 </div>
 </li>
@@ -169,7 +172,7 @@ for six seconds to factory-reset the device.</p></li>
 <p>where operationalDataset is obtained from the OpenThread Border Router.</p>
 <ul>
 <li><p>Once the commissioning process completes enter:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./out/chip-tool<span class="w"> </span>otasoftwareupdaterequestor<span class="w"> </span>announce-ota-provider<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">0</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./out/chip-tool<span class="w"> </span>otasoftwareupdaterequestor<span class="w"> </span>announce-otaprovider<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">0</span>
 </pre></div>
 </div>
 </li>

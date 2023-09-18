@@ -225,9 +225,20 @@ The Thread router will send all buffered messages to the ICD when it polls the r
 <span class="w">  </span><span class="nv">sl_active_mode_threshold_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">500</span><span class="w">  </span><span class="c1"># 500ms Active Mode Threshold</span>
 </pre></div>
 </div>
+<p>In some cases, as with the light-switch-app, these default values are overridden as in: <code class="docutils literal notranslate"><span class="pre">examples/light-switch-app/silabs/openthread.gni</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="c1"># Openthread Configuration flags</span>
+<span class="w">  </span><span class="nv">sl_ot_idle_interval_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30000</span><span class="w">  </span><span class="c1"># 30s Idle Intervals</span>
+<span class="w">  </span><span class="nv">sl_ot_active_interval_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">500</span><span class="w">  </span><span class="c1"># 500ms Active Intervals</span>
+
+<span class="w">  </span><span class="c1"># ICD Matter Configuration flags</span>
+<span class="w">  </span><span class="nv">sl_idle_mode_interval_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3600000</span><span class="w">  </span><span class="c1"># 60min Idle Mode Interval</span>
+<span class="w">  </span><span class="nv">sl_active_mode_interval_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">60000</span><span class="w">  </span><span class="c1"># 60s Active Mode Interval</span>
+<span class="w">  </span><span class="nv">sl_active_mode_threshold_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span><span class="w">  </span><span class="c1"># 1s Active Mode Threshold</span>
+</pre></div>
+</div>
 <p>There are two methods with which you can change these defaults values.</p>
 <p>The first method is by adding these defines to <code class="docutils literal notranslate"><span class="pre">CHIPProjectConfig.h</span></code> file of your project.
-For the lighting-app, the file is <code class="docutils literal notranslate"><span class="pre">examples/lighting-app/silabs/efr32/include/CHIPProjectConfig.h</span></code>.</p>
+For the lighting-app, the file is <code class="docutils literal notranslate"><span class="pre">examples/lighting-app/silabs/include/CHIPProjectConfig.h</span></code>.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#define CHIP_DEVICE_CONFIG_ICD_FAST_POLL_INTERVAL chip::System::Clock::Milliseconds32(&lt;value_ms&gt;)</span>
 <span class="cp">#define CHIP_DEVICE_CONFIG_ICD_SLOW_POLL_INTERVAL chip::System::Clock::Milliseconds32(&lt;value_ms&gt;)</span>
 <span class="cp">#define CHIP_CONFIG_ICD_IDLE_MODE_INTERVAL &lt;value_ms&gt;</span>
@@ -236,7 +247,7 @@ For the lighting-app, the file is <code class="docutils literal notranslate"><sp
 </pre></div>
 </div>
 <p>The second method is by adding arguments to the build command. Here is an example building the EFR32MG24 BRD4186C with different values.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./scripts/examples/gn_efr32_example.sh<span class="w"> </span>examples/lighting-app/silabs/efr32<span class="w"> </span>out/lighting-app<span class="w"> </span>BRD41686C<span class="w"> </span><span class="nv">sl_ot_idle_interval_ms</span><span class="o">=</span><span class="m">10000</span><span class="w"> </span><span class="nv">sl_ot_active_interval_ms</span><span class="o">=</span><span class="m">200</span><span class="w"> </span><span class="nv">sl_idle_mode_interval_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300000</span><span class="w"> </span><span class="nv">sl_active_mode_interval_ms</span><span class="o">=</span><span class="m">5000</span><span class="w"> </span><span class="nv">sl_active_mode_threshold_ms</span><span class="o">=</span><span class="m">1000</span><span class="w"> </span>--icd
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./scripts/examples/gn_silabs_example.sh<span class="w"> </span>examples/lighting-app/silabs<span class="w"> </span>out/lighting-app<span class="w"> </span>BRD41686C<span class="w"> </span><span class="nv">sl_ot_idle_interval_ms</span><span class="o">=</span><span class="m">10000</span><span class="w"> </span><span class="nv">sl_ot_active_interval_ms</span><span class="o">=</span><span class="m">200</span><span class="w"> </span><span class="nv">sl_idle_mode_interval_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300000</span><span class="w"> </span><span class="nv">sl_active_mode_interval_ms</span><span class="o">=</span><span class="m">5000</span><span class="w"> </span><span class="nv">sl_active_mode_threshold_ms</span><span class="o">=</span><span class="m">1000</span><span class="w"> </span>--icd
 </pre></div>
 </div>
 <p>If both methods of changing the default values are used, the defines added to the <code class="docutils literal notranslate"><span class="pre">CHIPProjectConfig.h</span></code> take precedence on the build arguments.</p>
@@ -253,7 +264,7 @@ For the lighting-app, the file is <code class="docutils literal notranslate"><sp
 3) The example must use the MTD OpenThread libraries to be able to leverage OpenThread Sleepy functionalities.</p>
 <p>Adding the preset <code class="docutils literal notranslate"><span class="pre">--icd</span></code> to your build command will ensure that conditions 2 and 3 are met to enable icd functionalities. This of course only works on sample apps that respect the first condition. The Lock and Light-switch sample applications are configured with the ICD cluster enabled.</p>
 <p>Here is an example to build the light-switch-app as an ICD for the EFR32MG24 BRD4186C.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./scripts/examples/gn_efr32_example.sh<span class="w"> </span>./examples/light-switch-app/efr32/<span class="w"> </span>./out/light-switch-app_SED<span class="w"> </span>BRD4186C<span class="w"> </span>--icd
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./scripts/examples/gn_silabs_example.sh<span class="w"> </span>./examples/light-switch-app/silabs<span class="w"> </span>./out/light-switch-app_SED<span class="w"> </span>BRD4186C<span class="w"> </span>--icd
 </pre></div>
 </div>
 </section>
@@ -268,7 +279,7 @@ The following set of features increase power consumption.</p>
 <li><p>LCD and Qr Code</p></li>
 </ul>
 <p>To achieve the most power-efficient build, add the following build arguments to the build command to disable all power-consuming features.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./scripts/examples/gn_efr32_example.sh<span class="w"> </span>./examples/light-switch-app/efr32/<span class="w"> </span>./out/light-switch-app_ICD<span class="w"> </span>BRD4186C<span class="w"> </span>--icd<span class="w"> </span>--low-power
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./scripts/examples/gn_silabs_example.sh<span class="w"> </span>./examples/light-switch-app/silabs<span class="w"> </span>./out/light-switch-app_ICD<span class="w"> </span>BRD4186C<span class="w"> </span>--icd<span class="w"> </span>--low-power
 </pre></div>
 </div>
 </section>
