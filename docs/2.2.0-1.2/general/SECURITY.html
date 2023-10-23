@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security &mdash; Matter 2.2.0-1.2 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom_styles.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Matter Development Prerequisites" href="../nav_2_prereq.html" />
+    <link rel="prev" title="Matter Software Update with EFR32 Example Applications" href="OTA_SOFTWARE_UPDATE.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #3b82f6" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Matter
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                2.2.0-1.2
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../OVERVIEW.html">User's Guide Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NEW_FEATURES.html">Matter New Features</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../nav_1_overview.html">Matter Overview</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="FUNDAMENTALS_INTRO.html">Introduction to Matter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FUNDAMENTALS_DATA_MODEL.html">The Matter Data Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FUNDAMENTALS_INTERACTION_MODEL.html">The Matter Interaction Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="COMMISSIONING.html">Matter Commissioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OT_SLEEPY_END_DEVICE.html">Matter Intermittently Connected Devices over OpenThread</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OTA_BOOTLOADER.html">Creating Gecko Bootloader for Use in Matter OTA Software Update</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OTA_SOFTWARE_UPDATE.html">Matter Software Update with EFR32 Example Applications</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Security</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general">General</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#message-protection">Message Protection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#device-attestation">Device Attestation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#distributed-compliance-ledger">Distributed Compliance Ledger</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../nav_2_prereq.html">Matter Development Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nav_4_thread.html">Matter Over Thread</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nav_5_wifi.html">Matter Over Wi-Fi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../unify/index.html">Unify Matter Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nav_3_general.html">Developer Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nav_6_faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #3b82f6" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Matter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../nav_1_overview.html">Matter Overview</a></li>
+      <li class="breadcrumb-item active">Security</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/general/SECURITY.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="security">
+<h1>Security<a class="headerlink" href="#security" title="Permalink to this heading"></a></h1>
+<section id="general">
+<h2>General<a class="headerlink" href="#general" title="Permalink to this heading"></a></h2>
+<p>Each Matter device gets two certificates. The first, the <strong>device certificate</strong>, is programmed by the manufacturer before the device is shipped. This will be used later for device attestation when trying to join the network. The other, the <strong>operational certificate</strong>, is assigned by the commissioner in the commissioning stage. Certificates natively use a CHIP TLV format but can convert to/from X.509 format. All devices are given an operational certificate to prove their authorization on the Matter network (fabric) and securely identify them.</p>
+<p>Communication between Matter devices is protected with different keys in different stages. At the commissioning stage, the key is a result of the Password Authenticated Session Establishment (<strong>PASE</strong>) process over the commissioning channel using the passcode from the device’s QR code as the input. During this initial setup, verification of possession of the passcode by both commissioner and joining device is confirmed. At the operational stage, the key is a result of the Certificate Authenticated Session Establishment (<strong>CASE</strong>) process over the operational channel using the operational certificate as the input. These sessions are used during normal operation between controller and device to validate that both are part of the Matter network.</p>
+<section id="principles">
+<h3>Principles<a class="headerlink" href="#principles" title="Permalink to this heading"></a></h3>
+<p>The following are guiding principles for the Matter security design:</p>
+<ol class="arabic simple">
+<li><p><strong>No anonymous joining</strong> - Always requires “proof of ownership” (that is, a device-specific passcode)</p></li>
+<li><p><strong>Device Attestation</strong> - Every device has unique identity that is authenticated by the manufacturer and verified through the CSA as a certified device</p></li>
+<li><p><strong>Operational Credentials</strong> - When commissioned onto a Matter network every device is given unique operational credentials after verifying their manufacturer credentials</p></li>
+<li><p><strong>Network credentials are given only <em>after</em> device authentication</strong> - Wi-Fi network key or Thread Master Key are not given until device’s certificate is verified</p></li>
+<li><p><strong>Open standard and open-source software</strong> - Open to third parties vetting the claims by examining the standard and auditing the source code</p></li>
+</ol>
+</section>
+</section>
+<section id="message-protection">
+<h2>Message Protection<a class="headerlink" href="#message-protection" title="Permalink to this heading"></a></h2>
+<p>Various cryptographic algorithms are used to ensure communication security and integrity. These include:</p>
+<ul class="simple">
+<li><p><strong>Hashing Algorithm</strong> - SHA-256</p></li>
+<li><p><strong>Message Authentication</strong> - HMAC-SHA-256</p></li>
+<li><p><strong>Public Key</strong> - ECC Curve NIST P-256</p></li>
+<li><p><strong>Message Encryption</strong> - AES-CCM (128 bit keys)</p></li>
+</ul>
+<p><img alt="Payload Encryption" src="../_images/PayloadEncryption.png" /></p>
+<p><strong>Confidentiality</strong> - Message payload is encrypted by the encryption key (AES)</p>
+<p><img alt="Address Encryption" src="../_images/AddressEncryption.png" /></p>
+<p><strong>Privacy</strong> - Addresses are encrypted by the privacy key</p>
+</section>
+<section id="device-attestation">
+<h2>Device Attestation<a class="headerlink" href="#device-attestation" title="Permalink to this heading"></a></h2>
+<p>Every device has a unique certificate that is signed by the manufacturer. There is no single root CA across all devices. During commissioning the device is challenged to prove possession of the associated private key. The certificate can be validated against the Distributed Compliance Ledger (<strong>DCL</strong>) to verify device certification status</p>
+<p><img alt="Certificate Authentication" src="../_images/CertificateAuthentication.png" /></p>
+<p>The hierarchy allows for a 3-level tier:</p>
+<ul class="simple">
+<li><p>The first level is the Product Attestation Authority (<strong>PAA</strong>)</p></li>
+<li><p>The PAA will be used to sign the Product Attestation Intermediate (<strong>PAI</strong>)</p></li>
+<li><p>The PAI will be used to sign the Device Attestation Certificate (<strong>DAC</strong>). The DAC will be transferred to the commissioner and verified against the DCL.</p></li>
+</ul>
+<p><img alt="Attestation Overview" src="../_images/AttestationOverview.png" /></p>
+<p>DAC is retrieved and verified before the device joins the Thread or Wi-Fi network. The Commissioner issues a challenge to the device to prove it possesses the associated Private Key.</p>
+</section>
+<section id="distributed-compliance-ledger">
+<h2>Distributed Compliance Ledger<a class="headerlink" href="#distributed-compliance-ledger" title="Permalink to this heading"></a></h2>
+<p><img alt="DCL Overview" src="../_images/DCL_Overview.png" /></p>
+<p>DCL is a database of all certified products which includes:</p>
+<ul class="simple">
+<li><p>Certification status</p></li>
+<li><p>Product name / description / firmware URL</p></li>
+<li><p>Product certificates</p></li>
+</ul>
+<p>Reading from the DCL is open to public, but writing to the DCL is restricted to various parties/roles. These roles typically include CSA certification, test house, and vendor roles.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+    <hr/>
+    <p>Copyright © 2023 Silicon Laboratories. All rights reserved.</p>
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XXXXXXXXXX', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>
