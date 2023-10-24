@@ -144,7 +144,7 @@ The Thread router will send all buffered messages to the ICD when it polls the r
 </section>
 <section id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading"></a></h2>
-<p>Matter exposes some defines to configure the ICD mode intervals and the polling intervals of the openthread stack in both Idle and Active modes.</p>
+<p>Matter exposes some defines to configure the polling intervals of the openthread stack in both Idle and Active modes.</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter Name</p></th>
@@ -155,31 +155,13 @@ The Thread router will send all buffered messages to the ICD when it polls the r
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>IdleModeInterval</p></td>
-<td><p>CHIP_CONFIG_ICD_IDLE_MODE_INTERVAL</p></td>
-<td><p>Maximum interval in seconds the server can stay in idle mode.</p></td>
-<td><p>600 s</p></td>
-<td><p>64800 s</p></td>
-</tr>
-<tr class="row-odd"><td><p>ActiveModeInterval</p></td>
-<td><p>CHIP_CONFIG_ICD_ACTIVE_MODE_INTERVAL</p></td>
-<td><p>Minimum interval in milliseconds the server typically will stay in active mode</p></td>
-<td><p>1000 ms</p></td>
-<td><p>NA</p></td>
-</tr>
-<tr class="row-even"><td><p>ActiveModeThreshold</p></td>
-<td><p>CHIP_CONFIG_ICD_ACTIVE_MODE_THRESHOLD</p></td>
-<td><p>Minimum amount of time in milliseconds the server typically will stay active after network activity when in active mode.</p></td>
-<td><p>500 ms</p></td>
-<td><p>NA</p></td>
-</tr>
-<tr class="row-odd"><td><p>SlowPollInterval</p></td>
+<tr class="row-even"><td><p>SlowPollInterval</p></td>
 <td><p>CHIP_DEVICE_CONFIG_ICD_SLOW_POLL_INTERVAL</p></td>
 <td><p>Interval, in milliseconds, at which the thread radio will poll its network in idle mode.</p></td>
 <td><p>15000 ms</p></td>
 <td><p>&lt;= IdleModeInterval</p></td>
 </tr>
-<tr class="row-even"><td><p>FastPollInterval</p></td>
+<tr class="row-odd"><td><p>FastPollInterval</p></td>
 <td><p>CHIP_DEVICE_CONFIG_ICD_FAST_POLL_INTERVAL</p></td>
 <td><p>Interval, in milliseconds, at which the thread radio will poll its network in active mode.</p></td>
 <td><p>200 ms</p></td>
@@ -187,23 +169,10 @@ The Thread router will send all buffered messages to the ICD when it polls the r
 </tr>
 </tbody>
 </table>
+<p>For Matter configuration, see the <a class="reference internal" href="MATTER_ICD.html"><span class="std std-doc">Matter ICD</span></a> documentation.</p>
 <section id="usage">
 <h3>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h3>
 <p>The default values for these defines for the Silabs platform is split in two files:</p>
-<p>In <code class="docutils literal notranslate"><span class="pre">src/platform/silabs/CHIPPlatformConfig.h</span></code> you will find the ICD cluster related default defines;</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef CHIP_CONFIG_ICD_IDLE_MODE_INTERVAL</span>
-<span class="cp">#define CHIP_CONFIG_ICD_IDLE_MODE_INTERVAL SL_IDLE_MODE_INTERVAL</span>
-<span class="cp">#endif </span><span class="c1">// CHIP_CONFIG_ICD_IDLE_MODE_INTERVAL</span>
-
-<span class="cp">#ifndef CHIP_CONFIG_ICD_ACTIVE_MODE_INTERVAL</span>
-<span class="cp">#define CHIP_CONFIG_ICD_ACTIVE_MODE_INTERVAL SL_ACTIVE_MODE_INTERVAL</span>
-<span class="cp">#endif </span><span class="c1">// CHIP_CONFIG_ICD_ACTIVE_MODE_INTERVAL</span>
-
-<span class="cp">#ifndef CHIP_CONFIG_ICD_ACTIVE_MODE_THRESHOLD</span>
-<span class="cp">#define CHIP_CONFIG_ICD_ACTIVE_MODE_THRESHOLD SL_ACTIVE_MODE_THRESHOLD</span>
-<span class="cp">#endif </span><span class="c1">// CHIP_CONFIG_ICD_ACTIVE_MODE_THRESHOLD</span>
-</pre></div>
-</div>
 <p>and <code class="docutils literal notranslate"><span class="pre">src/platform/silabs/CHIPDevicePlatformConfig.h</span></code> is where the openthread polling intervals default are set.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef CHIP_DEVICE_CONFIG_ICD_SLOW_POLL_INTERVAL</span>
 <span class="cp">#define CHIP_DEVICE_CONFIG_ICD_SLOW_POLL_INTERVAL chip::System::Clock::Milliseconds32(SL_OT_IDLE_INTERVAL)</span>
@@ -218,22 +187,12 @@ The Thread router will send all buffered messages to the ICD when it polls the r
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="c1"># ICD Openthread Configuration flags</span>
 <span class="w">  </span><span class="nv">sl_ot_idle_interval_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">15000</span><span class="w">  </span><span class="c1"># 15s Idle Intervals</span>
 <span class="w">  </span><span class="nv">sl_ot_active_interval_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">200</span><span class="w">  </span><span class="c1"># 200ms Active Intervals</span>
-
-<span class="w">  </span><span class="c1"># ICD Matter Configuration flags</span>
-<span class="w">  </span><span class="nv">sl_idle_mode_interval_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">600000</span><span class="w">  </span><span class="c1"># 10min Idle Mode Interval</span>
-<span class="w">  </span><span class="nv">sl_active_mode_interval_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span><span class="w">  </span><span class="c1"># 1s Active Mode Interval</span>
-<span class="w">  </span><span class="nv">sl_active_mode_threshold_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">500</span><span class="w">  </span><span class="c1"># 500ms Active Mode Threshold</span>
 </pre></div>
 </div>
 <p>In some cases, as with the light-switch-app, these default values are overridden as in: <code class="docutils literal notranslate"><span class="pre">examples/light-switch-app/silabs/openthread.gni</span></code></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="c1"># Openthread Configuration flags</span>
 <span class="w">  </span><span class="nv">sl_ot_idle_interval_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30000</span><span class="w">  </span><span class="c1"># 30s Idle Intervals</span>
 <span class="w">  </span><span class="nv">sl_ot_active_interval_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">500</span><span class="w">  </span><span class="c1"># 500ms Active Intervals</span>
-
-<span class="w">  </span><span class="c1"># ICD Matter Configuration flags</span>
-<span class="w">  </span><span class="nv">sl_idle_mode_interval_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3600000</span><span class="w">  </span><span class="c1"># 60min Idle Mode Interval</span>
-<span class="w">  </span><span class="nv">sl_active_mode_interval_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">60000</span><span class="w">  </span><span class="c1"># 60s Active Mode Interval</span>
-<span class="w">  </span><span class="nv">sl_active_mode_threshold_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span><span class="w">  </span><span class="c1"># 1s Active Mode Threshold</span>
 </pre></div>
 </div>
 <p>There are two methods with which you can change these defaults values.</p>
@@ -241,9 +200,6 @@ The Thread router will send all buffered messages to the ICD when it polls the r
 For the lighting-app, the file is <code class="docutils literal notranslate"><span class="pre">examples/lighting-app/silabs/include/CHIPProjectConfig.h</span></code>.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#define CHIP_DEVICE_CONFIG_ICD_FAST_POLL_INTERVAL chip::System::Clock::Milliseconds32(&lt;value_ms&gt;)</span>
 <span class="cp">#define CHIP_DEVICE_CONFIG_ICD_SLOW_POLL_INTERVAL chip::System::Clock::Milliseconds32(&lt;value_ms&gt;)</span>
-<span class="cp">#define CHIP_CONFIG_ICD_IDLE_MODE_INTERVAL &lt;value_ms&gt;</span>
-<span class="cp">#define CHIP_CONFIG_ICD_ACTIVE_MODE_INTERVAL  &lt;value_ms&gt;</span>
-<span class="cp">#define CHIP_CONFIG_ICD_ACTIVE_MODE_THRESHOLD &lt;value_ms&gt;</span>
 </pre></div>
 </div>
 <p>The second method is by adding arguments to the build command. Here is an example building the EFR32MG24 BRD4186C with different values.</p>

@@ -2,6 +2,25 @@
 
 ## New Features for v2.2.0-1.2
 
+- GA support for Intermittently Connected Devices
+- Introduction of a third LCD screen to display application information
+- Introduction of the Dishwasher Demo Application
+- Adds support of Matter 1.2 Apps on all Wi-Fi devices.
+- Adds Matter support on SiWx917 SoC Common flash variants - BRD4338A.
+- Adds LCD display support on SiWx917 SoC for all the Wi-Fi Matter Apps.
+- Adds support for Direct Internet Connectivity on the SiWx917 SoC & NCP
+
+### ICD Sample Apps
+With the official introduction of Matter Short Idle Time (SIT) ICDs, both the door-lock sample app and the light-switch sample app are configured as SIT ICDs by default.
+The default configurations can be found in their respective openthread.gni.
+
+### Self-Provisioning Mode
+
+Silicon Labs' Matter examples now include a self-provision mode, which enables the application to be used as Generator Firmware with the provisioning script:
+  - e.g.:`python3 provision.py -c config/silabs.json -gf ../out/light/BRD4187C/matter-silabs-lighting-example.s37`
+
+To enter the self-provisioning mode, factory reset the device pressing buttons BTN0 and BTN1 for six seconds. Using this method, the device application only needs to be flashed once, provisioned multiple times, and be ready for commissioning after each provisioning.
+
 ## New Features for v2.2.0-1.2-alpha.1
 
 ### Support for Intermittently Connected Devices (ICD)
