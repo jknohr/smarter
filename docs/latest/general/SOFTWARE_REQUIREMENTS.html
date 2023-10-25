@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matter Software Requirements &mdash; Matter 2.2.0-1.2-alpha.1 documentation</title>
+  <title>Matter Software Requirements &mdash; Matter 2.2.0-1.2 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
@@ -39,7 +39,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2.2.0-1.2-alpha.1
+                2.2.0-1.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -61,7 +61,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#windows-specific-software-requirements">Windows-Specific Software Requirements:</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mac-specific-requirements-building-own-images">Mac-Specific Requirements (building own images):</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#linux-specific-requirements">Linux Specific Requirements:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#wi-fi-rs9116-specific-requirements">Wi-Fi RS9116 Specific Requirements:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wi-fi-specific-requirements">Wi-Fi Specific Requirements:</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#wi-fi-siwx917-specific-requirements">Wi-Fi SiWx917 Specific Requirements:</a></li>
 </ul>
 </li>
@@ -70,7 +70,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_4_thread.html">Matter Over Thread</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_5_wifi.html">Matter Over Wi-Fi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../unify/index.html">Unify Matter Bridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../unify/index.html">Unify Matter Solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_3_general.html">Developer Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_6_faq.html">FAQ</a></li>
 </ul>
@@ -117,7 +117,7 @@ operating system is the demo image.</p>
 <li><p>Flash Tools</p>
 <ul>
 <li><p><a class="reference internal" href="FLASH_SILABS_DEVICE.html"><span class="std std-doc">Flash tool for EFR32 and SiWx917 Devices</span></a></p>
-<p>Simplicity Commander standalone or Simplicity Studio can be used to flash Silicon Labs hardware with firmware images for the RCP and the Matter Accessory Device.</p>
+<p>Simplicity Commander standalone can be used to flash Silicon Labs hardware with firmware images for the RCP and the Matter Accessory Device.</p>
 </li>
 <li><p><a class="reference internal" href="FLASH_SILABS_SiWx917_SOC_DEVICE.html"><span class="std std-doc">Additional Flash tools for SiWx917 SoC Device</span></a></p>
 <p>The Ozone Debugger can be configured to flash the application for the SiWx917 SoC device.</p>
@@ -127,6 +127,9 @@ The SiWx917 SoC device is not yet officially added in Ozone, but it can be confi
 </div></blockquote>
 </li>
 </ul>
+</li>
+<li><p><a class="reference external" href="https://osdn.net/projects/ttssh2/releases/">Tera Term</a></p>
+<p>Tera Term is the terminal emulator for Microsoft Windows that supports serial port, telnet and SSH connections.</p>
 </li>
 <li><p><a class="reference external" href="https://git-scm.com/downloads">Git Version Control </a>[only required for
 building images and development]</p>
@@ -174,22 +177,24 @@ users building their own images.</p>
 </pre></div>
 </div>
 </li>
-<li><p>Install pkg-config, openssl, git-lfs</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>pkg-config<span class="w"> </span>openssl<span class="w"> </span>git-lfs
+<li><p>Install pkg-config, openssl, git-lfs, python3</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>pkg-config<span class="w"> </span>openssl<span class="w"> </span>git-lfs<span class="w"> </span>python3
 </pre></div>
 </div>
 </li>
-<li><p>Install ARM GNU Toolchain (<a class="reference external" href="https://developer.arm.com/downloads/-/gnu-rm">https://developer.arm.com/downloads/-/gnu-rm</a>)</p></li>
+<li><p>Install ARM GNU Toolchain (<a class="reference external" href="https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads/12-2-rel1">https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads/12-2-rel1</a>)</p>
+<p>Use the x86_64-arm-none-eabi package for Intel-based Macs and arm64-arm-none-eabi for M1/M2-based Macs.</p>
+</li>
 <li><p>Add ARM GCC toolchain to the search path within <code class="docutils literal notranslate"><span class="pre">bootstrap.sh</span></code> by adding this
 line of code:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/Applications/ARM/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/Applications/ArmGNUToolchain/12.2.rel1/arm-none-eabi/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 <p>Depending on your Mac processor, you will have to complete the following additional steps.</p>
 </li>
 </ol>
-<section id="apple-silicon-m1-software-requirements">
-<h3>Apple Silicon (M1) Software Requirements:<a class="headerlink" href="#apple-silicon-m1-software-requirements" title="Permalink to this heading"></a></h3>
+<section id="apple-silicon-m1-m2-software-requirements">
+<h3>Apple Silicon (M1/M2) Software Requirements:<a class="headerlink" href="#apple-silicon-m1-m2-software-requirements" title="Permalink to this heading"></a></h3>
 <p>Users may also have to specify which <code class="docutils literal notranslate"><span class="pre">pkg-config</span></code>/<code class="docutils literal notranslate"><span class="pre">openssl</span></code> to use by adding
 these lines of code to <code class="docutils literal notranslate"><span class="pre">bootstrap.sh</span></code>:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/opt/homebrew/opt/openssl@3/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
@@ -225,11 +230,10 @@ satisfied with the following:</p>
 </pre></div>
 </div>
 </section>
-<section id="wi-fi-rs9116-specific-requirements">
-<h2>Wi-Fi RS9116 Specific Requirements:<a class="headerlink" href="#wi-fi-rs9116-specific-requirements" title="Permalink to this heading"></a></h2>
-<p>Before you run the demo or development on the RS9116 please be sure that you
-update the RS9116 firmware.</p>
-<p>Pre-Built RS9116 firmware is available in the github repository under <code class="docutils literal notranslate"><span class="pre">third_party/silabs/wiseconnect-wifi-bt-sdk/firmware</span></code></p>
+<section id="wi-fi-specific-requirements">
+<h2>Wi-Fi Specific Requirements:<a class="headerlink" href="#wi-fi-specific-requirements" title="Permalink to this heading"></a></h2>
+<p>Before you run the demo or development on the Wi-Fi, please be sure that you update the NCP firmware to the latest version.</p>
+<p>Pre-Built firmware images are available in the github repository under <code class="docutils literal notranslate"><span class="pre">third_party/silabs/wiseconnect-wifi-bt-sdk/firmware</span></code></p>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://docs.silabs.com/rs9116/wiseconnect/2.0/tera-term-setup">Setting up TeraTerm</a></p></li>
 <li><p><a class="reference external" href="https://docs.silabs.com/rs9116/wiseconnect/2.0/update-evk-firmware">Updating the RS9116 Firmware</a></p></li>
@@ -237,18 +241,13 @@ update the RS9116 firmware.</p>
 </section>
 <section id="wi-fi-siwx917-specific-requirements">
 <h2>Wi-Fi SiWx917 Specific Requirements:<a class="headerlink" href="#wi-fi-siwx917-specific-requirements" title="Permalink to this heading"></a></h2>
-<p>Before you run the demo or development on the SiWx917 please be sure that you
-update the SiWx917 firmware.</p>
-<p>Pre-Built SiWx917 firmware is available under <code class="docutils literal notranslate"><span class="pre">third_party/silabs/wifi-sdk/connectivity_firmware</span></code></p>
+<p>Before you run the demo or development on the SiWx917, please be sure that you update the SiWx917 firmware to the latest version.</p>
+<p>Pre-Built SiWx917 firmware images are available in the github repository under <code class="docutils literal notranslate"><span class="pre">third_party/silabs/wifi-sdk/connectivity_firmware</span></code></p>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://docs.silabs.com/SiWx917/wiseconnect/2.0/tera-term-setup">Setting up TeraTerm</a></p></li>
-<li><p>For updating the SiWx917 NCP Firmware, refer <a class="reference external" href="https://docs.silabs.com/rs9116/wiseconnect/2.0/update-evk-firmware">Updating the RS9116 Firmware</a>. Instructions are the same for both SiWx917 and RS9116.</p></li>
-<li><p>For updating the SiWx917 SoC Firmware, you have several options outlined here:</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="../wifi/RUN_DEMO_SiWx917_SoC.html"><span class="std std-doc">Updating the SiWx917 SoC Firmware using Simplicity Commander</span></a></p></li>
-<li><p><a class="reference internal" href="../wifi/SiWx917_SoC_FWUpdate.html"><span class="std std-doc">Updating the SiWx917 SoC Firmware using Tera Term (Legacy Mode)</span></a></p></li>
-</ul>
-</li>
+<li><p>For updating the SiWx917 NCP Firmware, refer <a class="reference external" href="https://docs.silabs.com/rs9116/wiseconnect/2.0/update-evk-firmware">Updating the RS9116 Firmware</a>.
+Instructions are the same for both SiWx917 and RS9116.</p></li>
+<li><p>For updating the SiWx917 SoC Firmware, refer <a class="reference internal" href="../wifi/RUN_DEMO_SiWx917_SoC.html#steps-to-update-the-firmware-on-siwx917-soc-radio-board-using-simplicity-commander"><span class="std std-ref">Updating the SiWx917 SOC Firmware Using Simplicity Commander</span></a></p></li>
 </ol>
 </section>
 </section>

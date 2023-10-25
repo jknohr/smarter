@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Building the Chip-Tool using Raspberry Pi 4 &mdash; Matter 2.2.0-1.2-alpha.1 documentation</title>
+  <title>Building the Chip-Tool using Raspberry Pi 4 &mdash; Matter 2.2.0-1.2 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
@@ -22,8 +22,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Unify Matter Bridge" href="../unify/index.html" />
-    <link rel="prev" title="Power Measurements for Wi-Fi Devices" href="WIFI_Sleepy_Device_Power_Measurement.html" /> 
+    <link rel="next" title="Getting Started with EFR32 Host in NCP Mode" href="RUN_DEMO.html" />
+    <link rel="prev" title="Building a Wi-Fi End Device for Matter in GitHub" href="SW_SETUP.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,7 +39,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2.2.0-1.2-alpha.1
+                2.2.0-1.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -57,14 +57,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../nav_2_prereq.html">Matter Development Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_4_thread.html">Matter Over Thread</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../nav_5_wifi.html">Matter Over Wi-Fi</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="DEMO_OVERVIEW.html">Demo Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO.html">Demo on EFR32 NCP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO_SiWx917_SoC.html">Demo on 917 SoC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DEMO_OVERVIEW.html">Wi-Fi Getting Started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SW_SETUP.html">Wi-Fi GitHub Development</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../nav_5_wifi_917.html">917 SoC Development</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../nav_5_wifi_dic.html">Wi-Fi Direct Internet Connectivity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WIFI_SLEEPY_END_DEVICE.html">Wi-Fi Intermittently Connected Devices (ICD)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WIFI_Sleepy_Device_Power_Measurement.html">Wi-Fi ICD Power Measurement</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Build Chip Tool on Raspi</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#to-flash-the-ubuntu-os-onto-the-sd-card">To flash the Ubuntu OS onto the SD card:</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#to-start-using-the-raspberry-pi">To start using the Raspberry Pi:</a></li>
@@ -72,9 +66,17 @@
 <li class="toctree-l3"><a class="reference internal" href="#bluetooth-setup">Bluetooth Setup</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO.html">Matter Demo on EFR32 NCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RUN_DEMO_SiWx917_SoC.html">Matter Demo on 917 SoC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SiWx917_Enablement_For_Ozone.html">Enablement of Ozone for 917 SOC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nav_5_wifi_dic.html">Wi-Fi Direct Internet Connectivity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WIFI_SLEEPY_END_DEVICE.html">Wi-Fi Intermittently Connected Devices (ICD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WIFI_Sleepy_Device_Power_Measurement.html">Wi-Fi ICD Power Measurement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MATTER_SHELL.html">Matter Shell Console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nav_5_wifi_ecosystem.html">Matter Ecosystem Development</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../unify/index.html">Unify Matter Bridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../unify/index.html">Unify Matter Solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_3_general.html">Developer Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_6_faq.html">FAQ</a></li>
 </ul>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>How to Flash a SiWx917 SoC Device &mdash; Matter 2.2.0-1.2-alpha.1 documentation</title>
+  <title>How to Flash a SiWx917 SoC Device &mdash; Matter 2.2.0-1.2 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
@@ -39,7 +39,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2.2.0-1.2-alpha.1
+                2.2.0-1.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -57,17 +57,19 @@
 <li class="toctree-l1"><a class="reference internal" href="../nav_2_prereq.html">Matter Development Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_4_thread.html">Matter Over Thread</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_5_wifi.html">Matter Over Wi-Fi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../unify/index.html">Unify Matter Bridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../unify/index.html">Unify Matter Solutions</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../nav_3_general.html">Developer Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="CODE_SIZE_SAVINGS.html">Code Savings Guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="COMMIT_HASHES.html">Commit Hash Reference</a></li>
 <li class="toctree-l2"><a class="reference internal" href="CUSTOM_MATTER_DEVICE.html">Custom Matter Device</a></li>
 <li class="toctree-l2"><a class="reference internal" href="FIND_RASPI.html">Find Your Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FLASHING_USING_COMMANDER.html">Flashing Using Simplicity Commander</a></li>
 <li class="toctree-l2"><a class="reference internal" href="FLASH_SILABS_DEVICE.html">Flash an EFR32 Device</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Flash a 917SoC Device</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#simplicity-commander">Simplicity Commander</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#simplicity-studio">Simplicity Studio:</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ozone-j-link-debugger">Ozone J-Link Debugger:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optional-j-link-rtt-for-logging">(Optional) J-Link RTT for Logging:</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="MATTER_ICD.html">Matter ICDs</a></li>
@@ -116,12 +118,13 @@
 <ul class="simple">
 <li><p>Linux: <a class="reference external" href="https://www.silabs.com/documents/public/software/SimplicityCommander-Linux.zip">https://www.silabs.com/documents/public/software/SimplicityCommander-Linux.zip</a></p></li>
 <li><p>Mac: <a class="reference external" href="https://www.silabs.com/documents/public/software/SimplicityCommander-Mac.zip">https://www.silabs.com/documents/public/software/SimplicityCommander-Mac.zip</a></p></li>
-<li><p>Windows: <a class="reference external" href="https://www.silabs.com/documents/public/software/SimplicityCommander-Windows.zip">https://www.silabs.com/documents/public/software/SimplicityCommander-Windows.zip</a></p></li>
+<li><p>Windows: <a class="reference external" href="https://www.silabs.com/documents/public/software/SimplicityCommander-Windows.zip">https://www.silabs.com/documents/public/software/SimplicityCommander-Windows.zip</a>
+To Flash the bootloader and Binaries, refer <a class="reference internal" href="FLASHING_USING_COMMANDER.html"><span class="std std-doc">Flashing using Commander</span></a></p></li>
 </ul>
 </section>
 <section id="simplicity-studio">
 <h2>Simplicity Studio:<a class="headerlink" href="#simplicity-studio" title="Permalink to this heading"></a></h2>
-<p>Simplicity Studio is a complete development environment and tool suite. It has the ability to discover USB-connected development boards and flash them.</p>
+<p>Simplicity Studio is a complete development environment and tool suite. It has the ability to discover USB connected development boards and flash them.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.silabs.com/developers/simplicity-studio">Download Simplicity Studio</a></p></li>
 <li><p><a class="reference external" href="https://docs.silabs.com/simplicity-studio-5-users-guide/latest/ss-5-users-guide-building-and-flashing/flashing">Simplicity Studio Reference Guide</a></p></li>
@@ -136,6 +139,15 @@
 </ul>
 </li>
 <li><p><a class="reference internal" href="../wifi/RUN_DEMO_SiWx917_SoC.html"><span class="std std-doc">Flashing and debug procedure for Ozone</span></a></p></li>
+</ul>
+</section>
+<section id="optional-j-link-rtt-for-logging">
+<h2>(Optional) J-Link RTT for Logging:<a class="headerlink" href="#optional-j-link-rtt-for-logging" title="Permalink to this heading"></a></h2>
+<p>Multi-platform Logging software for device logs. Links to download J-Link RTT for logging are included below</p>
+<ul class="simple">
+<li><p>Linux: <a class="reference external" href="https://www.segger.com/downloads/jlink/JLink_Linux_x86_64.deb">https://www.segger.com/downloads/jlink/JLink_Linux_x86_64.deb</a></p></li>
+<li><p>Mac: <a class="reference external" href="https://www.segger.com/downloads/jlink/JLink_MacOSX_universal.pkg">https://www.segger.com/downloads/jlink/JLink_MacOSX_universal.pkg</a></p></li>
+<li><p>Window: <a class="reference external" href="https://www.segger.com/downloads/jlink/JLink_Windows_x86_64.exe">https://www.segger.com/downloads/jlink/JLink_Windows_x86_64.exe</a></p></li>
 </ul>
 </section>
 </section>

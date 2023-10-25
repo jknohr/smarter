@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wi-Fi Direct Internet Connectivity &mdash; Matter 2.2.0-1.2-alpha.1 documentation</title>
+  <title>Wi-Fi Direct Internet Connectivity &mdash; Matter 2.2.0-1.2 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/tabs.css" type="text/css" />
@@ -23,7 +23,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Matter Wi-Fi Direct Internet Connectivity" href="wifi/DIC_Wi-Fi.html" />
-    <link rel="prev" title="Google Ecosystem Setup and Demo" href="wifi/using_917_NCP_with_the_Google_Ecosystem_SETUP.html" /> 
+    <link rel="prev" title="Ozone and JLink RTT Environment Setup for a SiWx917 SoC Device" href="wifi/SiWx917_Enablement_For_Ozone.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,7 +39,7 @@
               <img src="_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2.2.0-1.2-alpha.1
+                2.2.0-1.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -57,11 +57,12 @@
 <li class="toctree-l1"><a class="reference internal" href="nav_2_prereq.html">Matter Development Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nav_4_thread.html">Matter Over Thread</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="nav_5_wifi.html">Matter Over Wi-Fi</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="wifi/DEMO_OVERVIEW.html">Demo Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/RUN_DEMO.html">Demo on EFR32 NCP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/RUN_DEMO_SiWx917_SoC.html">Demo on 917 SoC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/DEMO_OVERVIEW.html">Wi-Fi Getting Started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wifi/SW_SETUP.html">Wi-Fi GitHub Development</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nav_5_wifi_917.html">917 SoC Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/BUILD_PI_ENV.html">Build Chip Tool on Raspi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/RUN_DEMO.html">Matter Demo on EFR32 NCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/RUN_DEMO_SiWx917_SoC.html">Matter Demo on 917 SoC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/SiWx917_Enablement_For_Ozone.html">Enablement of Ozone for 917 SOC</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Wi-Fi Direct Internet Connectivity</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="wifi/DIC_Wi-Fi.html">What is DIC?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="wifi/BUILD_DIC.html">How to Build DIC</a></li>
@@ -73,10 +74,11 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="wifi/WIFI_SLEEPY_END_DEVICE.html">Wi-Fi Intermittently Connected Devices (ICD)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wifi/WIFI_Sleepy_Device_Power_Measurement.html">Wi-Fi ICD Power Measurement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/BUILD_PI_ENV.html">Build Chip Tool on Raspi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/MATTER_SHELL.html">Matter Shell Console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nav_5_wifi_ecosystem.html">Matter Ecosystem Development</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="unify/index.html">Unify Matter Bridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unify/index.html">Unify Matter Solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nav_3_general.html">Developer Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nav_6_faq.html">FAQ</a></li>
 </ul>
@@ -111,10 +113,11 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="wifi/DIC_Wi-Fi.html">What is DIC?</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="wifi/DIC_Wi-Fi.html#feature-design">Feature Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/DIC_Wi-Fi.html#dic-feature-diagram">DIC Feature Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/DIC_Wi-Fi.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wifi/DIC_Wi-Fi.html#end-to-end-set-up-bring-up">End-to-End Set-up bring up</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wifi/DIC_Wi-Fi.html#message-queuing-telemetry-transport-mqtt">Message Queuing Telemetry Transport (MQTT)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wifi/DIC_Wi-Fi.html#end-to-end-test-of-dic-light-application">End-to-End Test of DIC Light Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/DIC_Wi-Fi.html#end-to-end-test-of-dic-application">End-to-End Test of DIC Application</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="wifi/BUILD_DIC.html">How to Build DIC</a><ul>
@@ -133,7 +136,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="wifi/MQTT_EXPLORER_SETUP.html">MQTT Explorer</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="wifi/MQTT_EXPLORER_SETUP.html#connecting-to-mqtt-server">Connecting to MQTT Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi/MQTT_EXPLORER_SETUP.html#setting-up-mqtt-explorer">Setting up MQTT Explorer</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="wifi/OPENSSL_CERTIFICATE_CREATION.html">Open SSL for MQTT</a><ul>

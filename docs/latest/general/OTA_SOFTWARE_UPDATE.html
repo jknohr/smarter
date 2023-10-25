@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matter Software Update with EFR32 Example Applications &mdash; Matter 2.2.0-1.2-alpha.1 documentation</title>
+  <title>Matter Software Update with EFR32 Example Applications &mdash; Matter 2.2.0-1.2 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
@@ -39,7 +39,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2.2.0-1.2-alpha.1
+                2.2.0-1.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -61,11 +61,11 @@
 <li class="toctree-l2"><a class="reference internal" href="OT_SLEEPY_END_DEVICE.html">Matter Intermittently Connected Devices over OpenThread</a></li>
 <li class="toctree-l2"><a class="reference internal" href="OTA_BOOTLOADER.html">Creating Gecko Bootloader for Use in Matter OTA Software Update</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Matter Software Update with EFR32 Example Applications</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#running-the-ota-download-scenario">Running the OTA Download Scenario</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#internal-storage-bootloader">Internal Storage Bootloader</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#managing-the-software-version">Managing the Software Version</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#managing-the-vendor-and-product-id">Managing the Vendor and Product ID</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#additional-info">Additional Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-requirements">Hardware Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#software-requirements">Software Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-up-ota-environment">Setting up OTA Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#matter-ota-images">Matter OTA Images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#executing-ota-scenario">Executing OTA Scenario</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="SECURITY.html">Security</a></li>
@@ -74,7 +74,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../nav_2_prereq.html">Matter Development Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_4_thread.html">Matter Over Thread</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_5_wifi.html">Matter Over Wi-Fi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../unify/index.html">Unify Matter Bridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../unify/index.html">Unify Matter Solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_3_general.html">Developer Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_6_faq.html">FAQ</a></li>
 </ul>
@@ -109,151 +109,200 @@
 <p>The Over The Air (OTA) Software Update functionality is enabled by default for
 all of the EFR32 example applications. Its inclusion in an application is
 controlled by the <code class="docutils literal notranslate"><span class="pre">chip_enable_ota_requestor</span></code> compile flag.</p>
-<section id="running-the-ota-download-scenario">
-<h2>Running the OTA Download Scenario<a class="headerlink" href="#running-the-ota-download-scenario" title="Permalink to this heading"></a></h2>
-<ul>
-<li><p>For Matter with OpenThread: Bring up the OpenThread Border Router as
-discussed in <a class="reference internal" href="../thread/DEMO_OVERVIEW.html"><span class="std std-doc">Thread Demo Overview</span></a> and get its operational
-dataset.</p></li>
-<li><p>On a Linux or Darwin platform build the chip-tool and the ota-provider-app
-as follows:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>scripts/examples/gn_build_example.sh<span class="w"> </span>examples/chip-tool<span class="w"> </span>out/
-</pre></div>
-</div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>scripts/examples/gn_build_example.sh<span class="w"> </span>examples/ota-provider-app/linux<span class="w"> </span>out/debug<span class="w"> </span><span class="nv">chip_config_network_layer_ble</span><span class="o">=</span><span class="nb">false</span>
-</pre></div>
-</div>
-</li>
-<li><p>Build or download the Gecko Bootloader binary. Follow the instructions in
-<a class="reference internal" href="OTA_BOOTLOADER.html"><span class="std std-doc">Creating the Bootloader for Use in Matter OTA</span></a>. For the
-bootloader using the external flash select the “external SPI” bootloader
-type configured with a single slot of at least 1000 KB. For the bootloader
-using the internal flash see the Internal Storage Bootloader section below.
-Pre-built binaries for some configurations are available on the
-<a class="reference internal" href="ARTIFACTS.html"><span class="std std-doc">Matter Artifacts page</span></a>, see <a class="reference external" href="http://README.md">README.md</a> for details.</p></li>
-<li><p>Using the commander tool, upload the bootloader to the device running the
-application.</p></li>
-<li><p>Create a bootable image file (using the Lighting application image as an
-example):</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>commander<span class="w"> </span>gbl<span class="w"> </span>create<span class="w"> </span>chip-efr32-lighting-example.gbl<span class="w"> </span>--app<span class="w"> </span>chip-efr32-lighting-example.s37
-</pre></div>
-</div>
-</li>
-<li><p>Create the Matter OTA file from the bootable image file:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./src/app/ota_image_tool.py<span class="w"> </span>create<span class="w"> </span>-v<span class="w"> </span>0xFFF1<span class="w"> </span>-p<span class="w"> </span>0x8005<span class="w"> </span>-vn<span class="w"> </span><span class="m">2</span><span class="w"> </span>-vs<span class="w"> </span><span class="s2">&quot;2.0&quot;</span><span class="w"> </span>-da<span class="w"> </span>sha256<span class="w"> </span>chip-efr32-lighting-example.gbl<span class="w"> </span>chip-efr32-lighting-example.ota
-</pre></div>
-</div>
-</li>
-<li><p>In a terminal start the Provider app and pass to it the path to the Matter
-OTA file created in the previous step:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>rm<span class="w"> </span>-r<span class="w"> </span>/tmp/chip_kvs_provider
-</pre></div>
-</div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./out/debug/chip-ota-provider-app<span class="w"> </span>--KVS<span class="w"> </span>/tmp/chip_kvs_provider<span class="w"> </span>-f<span class="w"> </span>chip-efr32-lighting-example.ota
-</pre></div>
-</div>
-</li>
-<li><p>In a separate terminal run the chip-tool commands to provision the Provider:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./out/chip-tool<span class="w"> </span>pairing<span class="w"> </span>onnetwork<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">20202021</span>
-</pre></div>
-</div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./out/chip-tool<span class="w"> </span>accesscontrol<span class="w"> </span>write<span class="w"> </span>acl<span class="w"> </span><span class="s1">&#39;[{&quot;fabricIndex&quot;: 1, &quot;privilege&quot;: 5, &quot;authMode&quot;: 2, &quot;subjects&quot;: [112233], &quot;targets&quot;: null}, {&quot;fabricIndex&quot;: 1, &quot;privilege&quot;: 3, &quot;authMode&quot;: 2, &quot;subjects&quot;: null, &quot;targets&quot;: null}]&#39;</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span>
-</pre></div>
-</div>
-</li>
-<li><p>If the application device had been previously commissioned, hold Button 0
-for six seconds to factory-reset the device.</p></li>
-<li><p>In the chip-tool terminal enter:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./out/chip-tool<span class="w"> </span>pairing<span class="w"> </span>ble-thread<span class="w"> </span><span class="m">2</span><span class="w"> </span>hex:&lt;operationalDataset&gt;<span class="w"> </span><span class="m">20202021</span><span class="w"> </span><span class="m">3840</span>
-</pre></div>
-</div>
-</li>
-</ul>
-<p>where operationalDataset is obtained from the OpenThread Border Router.</p>
-<ul>
-<li><p>Once the commissioning process completes enter:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./out/chip-tool<span class="w"> </span>otasoftwareupdaterequestor<span class="w"> </span>announce-otaprovider<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">0</span>
-</pre></div>
-</div>
-</li>
-<li><p>The application device will connect to the Provider and start the image
-download. Once the image is downloaded the device will reboot into the
-downloaded image.</p></li>
+<section id="hardware-requirements">
+<h2>Hardware Requirements<a class="headerlink" href="#hardware-requirements" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>To run matter ota on Silicon Labs Platform, refer to: <a class="reference internal" href="HARDWARE_REQUIREMENTS.html"><span class="std std-doc">Hardware Requirements</span></a></p></li>
 </ul>
 </section>
-<section id="internal-storage-bootloader">
-<h2>Internal Storage Bootloader<a class="headerlink" href="#internal-storage-bootloader" title="Permalink to this heading"></a></h2>
-<p>Internal storage bootloader for Matter OTA software update is supported on MG24
-boards only. In this use case both the running image and the downloadable update
-image must fit on the internal flash at the same time. This in turn requires
-that both images are built with a reduced feature set, such as disabled logging
-and Matter shell. The following set of compile flags leaves out all the optional
-features and results in the minimal image size:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>chip_detail_logging=false
-chip_automation_logging=false
-chip_progress_logging=false
-is_debug=false
-show_qr_code=false
-chip_build_libshell=false
-enable_openthread_cli=false
-chip_openthread_ftd=true
+<section id="software-requirements">
+<h2>Software Requirements<a class="headerlink" href="#software-requirements" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>To run matter ota on Silicon Labs Platform, refer to: <a class="reference internal" href="SOFTWARE_REQUIREMENTS.html"><span class="std std-doc">Software Requirements</span></a></p></li>
+</ul>
+</section>
+<section id="setting-up-ota-environment">
+<h2>Setting up OTA Environment<a class="headerlink" href="#setting-up-ota-environment" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>To execute OTA on Silicon Labs Platform Wi-Fi Boards, we need to build two different applications below:</p>
+<ul>
+<li><p><strong>OTA-A</strong> is a normal application with default or older software version. It acts as <strong>ota-requestor</strong> where it needs to update the latest software version.</p></li>
+<li><p><strong>OTA-B</strong> is a normal application with an updated software version.</p></li>
+<li><p><strong>Chip-tool</strong> is a controller for sending commands to the ota-requestor to update the software version and receiving commands from device.</p></li>
+<li><p><strong>OTA-Provider</strong> is the server that has the latest software version and from which ota-requestor will download the updated software.</p></li>
+</ul>
+</li>
+</ul>
+<section id="setting-up-chip-tool-controller">
+<h3>Setting up Chip-tool Controller<a class="headerlink" href="#setting-up-chip-tool-controller" title="Permalink to this heading"></a></h3>
+<p>If you have not downloaded or cloned this repository, you can run the following
+commands on a Linux terminal running on either Linux machine, WSL or Virtual
+Machine to clone the repository and run bootstrap to prepare to build the sample
+application images.</p>
+<ol class="arabic">
+<li><p>To download the <a class="reference external" href="https://github.com/SiliconLabs/matter.git">SiliconLabs Matter codebase</a>, run the following commands.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/SiliconLabs/matter.git
 </pre></div>
 </div>
-<p>Using LZMA compression when building the .gbl file ( passing <code class="docutils literal notranslate"><span class="pre">--compress</span> <span class="pre">lzma</span></code>
-parameter to the <code class="docutils literal notranslate"><span class="pre">commander</span> <span class="pre">gbl</span> <span class="pre">create</span></code> command) further reduces the downloaded
-image size.</p>
-<p>When building an internal storage bootloader the two key configuration
-parameters are the Slot Start Address and Slot Size in the Bootloader Storage
-Slot component. The storage slot must not overlap with the running image and the
-NVM section of the flash. In other words, the slot start address must be greater
-than the end of the running image address and the sum of the start address and
-the slot size must be less than the address of the NVM section. The simplest way
-to get the relevant addresses for the running image and NVM is by using the
-Silicon Labs <code class="docutils literal notranslate"><span class="pre">Simplicity</span> <span class="pre">Commander</span></code> (Device Info-&gt;Main Flash-&gt;Flash Map).</p>
-<p>The pre-built bootloader binaries are configured with slot start address of
-0x080EC000 and slot size of 548864</p>
+</li>
+<li><p>Bootstrapping:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>matter
+$<span class="w"> </span>./scripts/checkout_submodules.py<span class="w"> </span>--shallow<span class="w"> </span>--recursive<span class="w"> </span>--platform<span class="w"> </span>efr32
+$<span class="w"> </span>.<span class="w"> </span>scripts/bootstrap.sh
+<span class="c1"># Create a directory where binaries will be updated/compiled called `out`</span>
+$<span class="w"> </span>mkdir<span class="w"> </span>out
+</pre></div>
+</div>
+</li>
+</ol>
+<p>In order to control the Wi-Fi Matter Accessory Device, you will have to compile
+and run the chip-tool on either a Linux, Mac or Raspberry Pi. The chip-tool builds
+faster on the Mac and Linux machines, so that is recommended, but if you have
+access to a Raspberry Pi that will work as well.</p>
+<ol class="arabic" start="3">
+<li><p>Build the chip-tool</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./scripts/examples/gn_build_example.sh<span class="w"> </span>examples/chip-tool<span class="w"> </span>out/standalone
+</pre></div>
+</div>
+</li>
+</ol>
+<p>This will build chip-tool in <code class="docutils literal notranslate"><span class="pre">out/standalone</span></code>.</p>
 </section>
-<section id="managing-the-software-version">
-<h2>Managing the Software Version<a class="headerlink" href="#managing-the-software-version" title="Permalink to this heading"></a></h2>
-<p>In order for the Provider to successfully serve the image to a device during the
-OTA Software Update process the Software Version parameter that the .ota file
-was built with must be greater than the
-CHIP_DEVICE_CONFIG_DEVICE_SOFTWARE_VERSION parameter set in the application’s
-<code class="docutils literal notranslate"><span class="pre">CHIPProjectConfig.h</span></code> file. The Software Version parameter is set by the <code class="docutils literal notranslate"><span class="pre">-vn</span></code>
-parameter passed to the <code class="docutils literal notranslate"><span class="pre">ota_image_tool.py</span> <span class="pre">create</span></code> command. For example, if the
-application’s running image was built with
-CHIP_DEVICE_CONFIG_DEVICE_SOFTWARE_VERSION set to 1 and if the <code class="docutils literal notranslate"><span class="pre">.ota</span></code> file is
-built with <code class="docutils literal notranslate"><span class="pre">-vn</span> <span class="pre">2</span></code> then the Provider will serve the update image when requested.</p>
-<p>In order for the OTA Software Update subsystem to consider an update to be
-successful and for the NotifyUpdateApplied command to be transmitted the
-CHIP_DEVICE_CONFIG_DEVICE_SOFTWARE_VERSION in the updated image must exceed the
-software version of the running image (continuing the above example, the image
-for the update must be built with CHIP_DEVICE_CONFIG_DEVICE_SOFTWARE_VERSION set
-to 2).</p>
-</section>
-<section id="managing-the-vendor-and-product-id">
-<h2>Managing the Vendor and Product ID<a class="headerlink" href="#managing-the-vendor-and-product-id" title="Permalink to this heading"></a></h2>
-<p>Starting the ota-provider-app with the –otaImageList command line option allows
-the user to supply a JSON file specifying the Software Version, Vendor and
-Product ID that identify the image served by the Provider, see
-<a class="reference external" href="https://github.com/SiliconLabs/matter/blob/latest/examples/ota-provider-app/linux/README.md">ota-provider-app</a></p>
-<p>Example provider configuration file:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;foo&quot;</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="c1">// ignored by parser</span>
-<span class="w">          </span><span class="s">&quot;deviceSoftwareVersionModel&quot;</span><span class="o">:</span>
-<span class="w">          </span><span class="p">[</span>
-<span class="w">           </span><span class="p">{</span><span class="w"> </span>
-<span class="w">            </span><span class="s">&quot;vendorId&quot;</span><span class="o">:</span><span class="w"> </span><span class="mi">65521</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;productId&quot;</span><span class="o">:</span><span class="w"> </span><span class="mi">32773</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;softwareVersion&quot;</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;softwareVersionString&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;1.0.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cDVersionNumber&quot;</span><span class="o">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;softwareVersionValid&quot;</span><span class="o">:</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;minApplicableSoftwareVersion&quot;</span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;maxApplicableSoftwareVersion&quot;</span><span class="o">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;otaURL&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;chip-efr32-lighting-example.ota&quot;</span><span class="w"> </span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">          </span><span class="p">]</span>
-<span class="w">        </span><span class="p">}</span>
+<section id="setting-up-ota-provider">
+<h3>Setting up OTA-Provider<a class="headerlink" href="#setting-up-ota-provider" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>To Build OTA-Provider app for Linux Platform, run below command in the matter repository.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>scripts/examples/gn_build_example.sh<span class="w"> </span>examples/ota-provider-app/linux<span class="w"> </span>out/debug<span class="w"> </span><span class="nv">chip_config_network_layer_ble</span><span class="o">=</span><span class="nb">false</span>
 </pre></div>
 </div>
 </section>
-<section id="additional-info">
-<h2>Additional Info<a class="headerlink" href="#additional-info" title="Permalink to this heading"></a></h2>
-<p>Developers can find more resources on
-<a class="reference external" href="https://community.silabs.com/s/article/connected-home-over-ip-chip-faq?language=en_US">Silicon Labs Matter Community Page</a>
-.</p>
+</section>
+<section id="matter-ota-images">
+<h2>Matter OTA Images<a class="headerlink" href="#matter-ota-images" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>To create and Build matter OTA from matter code, need two different applications to build mentioned below:</p>
+<ul>
+<li><p>OTA A</p></li>
+<li><p>OTA B</p></li>
+</ul>
+</li>
+</ul>
+<section id="build-ota-a-application">
+<h3>Build OTA A Application<a class="headerlink" href="#build-ota-a-application" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Matter OTA-A Application will be used to flash on the matter device.</p></li>
+<li><p>In matter cloned directory run below commands to build an OTA A application.</p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">For</span><span class="w"> </span><span class="n">RS9116</span><span class="o">:</span><span class="w"> </span>
+
+<span class="p">.</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">gn_silabs_example</span><span class="p">.</span><span class="n">sh</span><span class="w"> </span><span class="n">examples</span><span class="o">/</span><span class="n">lighting</span><span class="o">-</span><span class="n">app</span><span class="o">/</span><span class="n">silabs</span><span class="o">/</span><span class="w"> </span><span class="n">out</span><span class="o">/</span><span class="n">rs911x_lighting_A</span><span class="w"> </span><span class="n">BRD41xxx</span><span class="w"> </span><span class="n">disable_lcd</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="n">use_external_flash</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="n">chip_enable_ble_rs911x</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="o">--</span><span class="n">wifi</span><span class="w"> </span><span class="n">rs9116</span>
+
+<span class="n">For</span><span class="w"> </span><span class="n">WF200</span>
+
+<span class="p">.</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">gn_silabs_example</span><span class="p">.</span><span class="n">sh</span><span class="w"> </span><span class="n">examples</span><span class="o">/</span><span class="n">lighting</span><span class="o">-</span><span class="n">app</span><span class="o">/</span><span class="n">silabs</span><span class="o">/</span><span class="w"> </span><span class="n">out</span><span class="o">/</span><span class="n">wf200_lighting_A</span><span class="w"> </span><span class="n">BRD41xxx</span><span class="w"> </span><span class="n">chip_build_libshell</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="o">--</span><span class="n">wifi</span><span class="w"> </span><span class="n">wf200</span>
+</pre></div>
+</div>
+<p><strong>Note:</strong> Matter OTA-A application will be having software version as 1 by default in <strong>third_party/silabs/BUILD.gn</strong> file.</p>
+</section>
+<section id="build-ota-b-application">
+<h3>Build OTA B Application<a class="headerlink" href="#build-ota-b-application" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Matter OTA-B application will be used to create gbl &amp; OTA file.</p></li>
+<li><p>Open the file <strong>third_party/silabs/BUILD.gn</strong> from matter code cloned directory and modify <strong>sl_matter_version = 1</strong> to any number.</p></li>
+</ul>
+<p><strong>Note:</strong> Make sure always <strong>sl_matter_version</strong> should be greater than <strong>sl_hardware_version</strong></p>
+<ul class="simple">
+<li><p>After Modifying software version build OTA B application using below commands for EFR boards</p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">For</span><span class="w"> </span><span class="n">RS9116</span><span class="o">:</span><span class="w"> </span>
+
+<span class="p">.</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">gn_silabs_example</span><span class="p">.</span><span class="n">sh</span><span class="w"> </span><span class="n">examples</span><span class="o">/</span><span class="n">lighting</span><span class="o">-</span><span class="n">app</span><span class="o">/</span><span class="n">silabs</span><span class="o">/</span><span class="w"> </span><span class="n">out</span><span class="o">/</span><span class="n">rs911x_lighting_B</span><span class="w"> </span><span class="n">BRD41xxx</span><span class="w"> </span><span class="n">disable_lcd</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="n">use_external_flash</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="n">chip_enable_ble_rs911x</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="o">--</span><span class="n">wifi</span><span class="w"> </span><span class="n">rs9116</span>
+
+<span class="n">For</span><span class="w"> </span><span class="n">WF200</span>
+
+<span class="p">.</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">gn_silabs_example</span><span class="p">.</span><span class="n">sh</span><span class="w"> </span><span class="n">examples</span><span class="o">/</span><span class="n">lighting</span><span class="o">-</span><span class="n">app</span><span class="o">/</span><span class="n">silabs</span><span class="o">/</span><span class="w"> </span><span class="n">out</span><span class="o">/</span><span class="n">wf200_lighting_B</span><span class="w"> </span><span class="n">BRD41xxx</span><span class="w"> </span><span class="n">chip_build_libshell</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="o">--</span><span class="n">wifi</span><span class="w"> </span><span class="n">wf200</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="executing-ota-scenario">
+<h2>Executing OTA Scenario<a class="headerlink" href="#executing-ota-scenario" title="Permalink to this heading"></a></h2>
+<section id="generating-the-ota-image">
+<h3>Generating the OTA image<a class="headerlink" href="#generating-the-ota-image" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Locate Simplicity Commander Path via <strong>Command Prompt Terminal</strong>.</p></li>
+<li><p>Create a bootable image file by running below command in commander terminal(using the Lighting application as an
+example):</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>commander<span class="w"> </span>gbl<span class="w"> </span>create<span class="w"> </span>chip-efr32-lighting-example.gbl<span class="w"> </span>--compress<span class="w"> </span>lzma<span class="w"> </span>--app<span class="w"> </span>chip-efr32-lighting-example.s37
+</pre></div>
+</div>
+<p><strong>Note</strong>:- Using LZMA compression when building the .gbl file ( passing <code class="docutils literal notranslate"><span class="pre">--compress</span> <span class="pre">lzma</span></code> parameter to the <code class="docutils literal notranslate"><span class="pre">commander</span> <span class="pre">gbl</span> <span class="pre">create</span></code> command) further reduces the downloaded image size.</p>
+<ol class="arabic simple" start="3">
+<li><p>Create the Matter OTA file by running below command in <strong>${WORKSPACE_DIR}/matter</strong> path:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>./src/app/ota_image_tool.py<span class="w"> </span>create<span class="w"> </span>-v<span class="w"> </span>0xFFF1<span class="w"> </span>-p<span class="w"> </span>0x8005<span class="w"> </span>-vn<span class="w"> </span><span class="m">2</span><span class="w"> </span>-vs<span class="w"> </span><span class="s2">&quot;2.0&quot;</span><span class="w"> </span>-da<span class="w"> </span>sha256<span class="w"> </span>chip-efr32-lighting-example.gbl<span class="w"> </span>chip-efr32-lighting-example.ota
+</pre></div>
+</div>
+<p><strong>Note</strong>: Modify <strong>-vn</strong> to <strong>sl_matter_version</strong> as per OTA-B application Building step <a class="reference internal" href="#build-ota-b-application">Build OTA B</a></p>
+</section>
+<section id="running-ota-provider">
+<h3>Running OTA Provider<a class="headerlink" href="#running-ota-provider" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Locate <strong>ota-provider</strong> terminal and start the Provider app passing to it the path to the Matter OTA file created in the previous step:</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>rm<span class="w"> </span>-rf<span class="w"> </span>/tmp/chip_*
+<span class="w">    </span>./out/debug/chip-ota-provider-app<span class="w"> </span>-f<span class="w"> </span>chip-efr32-lighting-example.ota
+</pre></div>
+</div>
+</section>
+<section id="setting-up-ota-requestor">
+<h3>Setting up OTA-Requestor<a class="headerlink" href="#setting-up-ota-requestor" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Before running <strong>ota-requestor</strong> app flash the bootloader binary images for Silicon Labs Devices.</p></li>
+</ul>
+<section id="flash-bootloader-images">
+<h4>Flash Bootloader Images<a class="headerlink" href="#flash-bootloader-images" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p>Bootloader binaries will be flashed using Simplicity Commander only. It will support EFR32 NCP Boards only.</p></li>
+<li><p>Silicon Labs Devices will supports below Bootloader variants for EFR32 Boards.</p>
+<ul>
+<li><p>Internal Storage Bootloader</p></li>
+<li><p>External Storage Bootloader</p></li>
+</ul>
+</li>
+<li><p>To Flash the Bootloader Binary along with the application for Silicon Labs Device, refer <a class="reference internal" href="FLASHING_USING_COMMANDER.html"><span class="std std-doc">Flashing Binaries</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="running-ota-requestor">
+<h3>Running OTA-Requestor<a class="headerlink" href="#running-ota-requestor" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>In a separate terminal, locate the chip-tool and ota-requestor and run the chip-tool commands to provision the Provider:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>./out/chip-tool<span class="w"> </span>pairing<span class="w"> </span>onnetwork<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">20202021</span>
+<span class="w">    </span>./out/chip-tool<span class="w"> </span>accesscontrol<span class="w"> </span>write<span class="w"> </span>acl<span class="w"> </span><span class="s1">&#39;[{&quot;fabricIndex&quot;: 1, &quot;privilege&quot;: 5, &quot;authMode&quot;: 2, &quot;subjects&quot;: [112233], &quot;targets&quot;: null}, {&quot;fabricIndex&quot;: 1, &quot;privilege&quot;: 3, &quot;authMode&quot;: 2, &quot;subjects&quot;: null, &quot;targets&quot;: null}]&#39;</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>If the application device had been previously commissioned hold Button 0 for six seconds to factory-reset the device.</p></li>
+<li><p>In the chip-tool terminal, commission the Device by passing below command:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>./out/chip-tool<span class="w"> </span>pairing<span class="w"> </span>ble-wifi<span class="w"> </span><span class="s2">&quot;node_id&quot;</span><span class="w"> </span><span class="s2">&quot;SSID&quot;</span><span class="w"> </span><span class="s2">&quot;PSK&quot;</span><span class="w"> </span><span class="m">20202021</span><span class="w"> </span><span class="m">3840</span>
+</pre></div>
+</div>
+<p>where SSID and PSK are AP username and password.</p>
+<ol class="arabic simple" start="4">
+<li><p>Once the commissioning process completes in the same terminal, run below requestor command to start downloading the image:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>./out/chip-tool<span class="w"> </span>otasoftwareupdaterequestor<span class="w"> </span>announce-otaprovider<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">0</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The application device will connect to the Provider and start the image download. Once the image is downloaded the device will reboot into the downloaded image.</p></li>
+</ul>
+</section>
 </section>
 </section>
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matter Intermittently Connected Devices (ICD) &mdash; Matter 2.2.0-1.2-alpha.1 documentation</title>
+  <title>Matter Intermittently Connected Devices (ICD) &mdash; Matter 2.2.0-1.2 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
@@ -39,7 +39,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2.2.0-1.2-alpha.1
+                2.2.0-1.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -57,17 +57,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../nav_2_prereq.html">Matter Development Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_4_thread.html">Matter Over Thread</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nav_5_wifi.html">Matter Over Wi-Fi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../unify/index.html">Unify Matter Bridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../unify/index.html">Unify Matter Solutions</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../nav_3_general.html">Developer Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="CODE_SIZE_SAVINGS.html">Code Savings Guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="COMMIT_HASHES.html">Commit Hash Reference</a></li>
 <li class="toctree-l2"><a class="reference internal" href="CUSTOM_MATTER_DEVICE.html">Custom Matter Device</a></li>
 <li class="toctree-l2"><a class="reference internal" href="FIND_RASPI.html">Find Your Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FLASHING_USING_COMMANDER.html">Flashing Using Simplicity Commander</a></li>
 <li class="toctree-l2"><a class="reference internal" href="FLASH_SILABS_DEVICE.html">Flash an EFR32 Device</a></li>
 <li class="toctree-l2"><a class="reference internal" href="FLASH_SILABS_SiWx917_SOC_DEVICE.html">Flash a 917SoC Device</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Matter ICDs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#icd-device-types">ICD Device Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#icd-management-cluster">ICD Management Cluster</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#subscription-maximum-interval">Subscription Maximum Interval</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#persistent-subscriptions">Persistent Subscriptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#subscription-synchronisation">Subscription synchronisation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="ZAP.html">Using ZAP</a></li>
@@ -108,17 +112,114 @@
              
   <section class="tex2jax_ignore mathjax_ignore" id="matter-intermittently-connected-devices-icd">
 <h1>Matter Intermittently Connected Devices (ICD)<a class="headerlink" href="#matter-intermittently-connected-devices-icd" title="Permalink to this heading"></a></h1>
-<p>With the 1.1 release, Matter introduced the concept of Intermittently Connected Devices (ICD) in the SDK and in the specification.
+<p>Matter introduces the concept of Intermittently Connected Devices (ICD) in the SDK and in the specification.
 An Intermittently Connected Device is the Matter representation of a device that is not always reachable.
 This covers battery-powered devices that disable their underlying hardware when in a low-power mode or devices that can be disconnected from the network, like a phone app.</p>
 <p>This page focuses on features designed to improve the performance and reliability of battery-powered devices.</p>
+<section id="icd-device-types">
+<h2>ICD Device Types<a class="headerlink" href="#icd-device-types" title="Permalink to this heading"></a></h2>
+<p>Matter introduces two types of Intermittently Connected Device.</p>
+<ul class="simple">
+<li><p>Short Idle Time ICDs</p></li>
+<li><p>Long Idle Time ICDs</p></li>
+</ul>
+<section id="short-idle-time-icds">
+<h3>Short Idle Time ICDs<a class="headerlink" href="#short-idle-time-icds" title="Permalink to this heading"></a></h3>
+<p>Short Idle Time ICDs are battery powered devices that can always be reached by clients.
+This means that their polling intervals are small enough to garantee that a message sent from client will be able to reach the ICD without any synchronization.
+A door lock, for example, is typicaly a SIT ICD because it needs to be able to receive commands from clients at any given time.
+These devices are usually not the initiators in the communication flow.</p>
+</section>
+<section id="long-idle-icds">
+<h3>Long Idle ICDs<a class="headerlink" href="#long-idle-icds" title="Permalink to this heading"></a></h3>
+<p>Long Idle Time ICDs are battery powered devices that require synchronization between the client and the ICD for communication to succeed.
+A sensor device is an example of a device that are typicaly LIT ICDs.</p>
+<p>Long Idle Time ICDs are provisionnal with the Matter 1.2 release.</p>
+</section>
+</section>
+<section id="icd-management-cluster">
+<h2>ICD Management Cluster<a class="headerlink" href="#icd-management-cluster" title="Permalink to this heading"></a></h2>
+<p>The ICD Management Cluster enables configuration of the ICD’s behavior.
+It is required for an ICD to have this cluster enabled on endpoint 0.</p>
+<p>The ICDM Cluster exposes three configuration attributes that enable to configure an ICD.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Constraints</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>IdleModeInterval</p></td>
+<td><p>uint32</p></td>
+<td><p>1 to 64800</p></td>
+<td><p>Maximum interval in seconds or milliseconds the server can stay in idle mode</p></td>
+</tr>
+<tr class="row-odd"><td><p>ActiveModeInterval</p></td>
+<td><p>uint32</p></td>
+<td><p>min 300</p></td>
+<td><p>minimum interval in milliseconds the server will stay in active mode</p></td>
+</tr>
+<tr class="row-even"><td><p>ActiveModeThreshold</p></td>
+<td><p>uint32</p></td>
+<td><p>min 300</p></td>
+<td><p>minimum amount of time in milliseconds the server typically will stay active after network activity when in active mode</p></td>
+</tr>
+</tbody>
+</table>
+<p>These configurations can be change two different ways.</p>
+<p>They can be changed by using the following build configuration.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="n">sl_idle_mode_interval_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">600000</span><span class="w">  </span><span class="c1">//10min Idle Mode Interval</span>
+<span class="w">    </span><span class="n">sl_active_mode_interval_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span><span class="w">  </span><span class="c1">//1s Active Mode Interval</span>
+<span class="w">    </span><span class="n">sl_active_mode_threshold_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">500</span><span class="w">  </span><span class="c1">//500ms Active Mode Threshold</span>
+</pre></div>
+</div>
+<p>To change them within a build command</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./scripts/examples/gn_silabs_example.sh<span class="w"> </span>./examples/light-switch-app/silabs<span class="w"> </span>./out/light-switch-app_ICD<span class="w"> </span>BRD4187C<span class="w"> </span>--icd<span class="w"> </span><span class="nv">sl_idle_mode_interval_ms</span><span class="o">=</span><span class="m">600000</span><span class="w"> </span><span class="nv">sl_active_mode_interval_ms</span><span class="o">=</span><span class="m">1000</span><span class="w"> </span><span class="nv">sl_active_mode_threshold_ms</span><span class="o">=</span><span class="w"> </span><span class="m">500</span>
+</pre></div>
+</div>
+<p>These options can also be change by setting them to a default value in the projects <code class="docutils literal notranslate"><span class="pre">openthread.gni</span></code> file.
+See <code class="docutils literal notranslate"><span class="pre">examples/lock-app/silabs/openthread.gni</span></code> for an example on how they can be configured.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// ICD Matter Configuration flags</span>
+<span class="n">sl_idle_mode_interval_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">600</span><span class="w">       </span><span class="c1">//10min Idle Mode Interval</span>
+<span class="n">sl_active_mode_interval_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span><span class="w">  </span><span class="c1">//10s Active Mode Interval</span>
+<span class="n">sl_active_mode_threshold_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span><span class="w">  </span><span class="c1">//1s Active Mode Threshold</span>
+</pre></div>
+</div>
+<p>The second way of changing the configuration is to set these defines in the projects <code class="docutils literal notranslate"><span class="pre">ChipProjectConfig.h</span></code>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * @def CHIP_CONFIG_ICD_IDLE_MODE_INTERVAL_SEC</span>
+<span class="cm"> *</span>
+<span class="cm"> * @brief Default value for the ICD Management cluster IdleModeInterval attribute, in seconds</span>
+<span class="cm"> */</span>
+<span class="cp">#define CHIP_CONFIG_ICD_IDLE_MODE_INTERVAL_SEC 2</span>
+
+
+<span class="cm">/**</span>
+<span class="cm"> * @def CHIP_CONFIG_ICD_ACTIVE_MODE_INTERVAL_MS</span>
+<span class="cm"> *</span>
+<span class="cm"> * @brief Default value for the ICD Management cluster ActiveModeInterval attribute, in milliseconds</span>
+<span class="cm"> */</span>
+<span class="cp">#define CHIP_CONFIG_ICD_ACTIVE_MODE_INTERVAL_MS 300</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @def CHIP_CONFIG_ICD_ACTIVE_MODE_THRESHOLD_MS</span>
+<span class="cm"> *</span>
+<span class="cm"> * @brief Default value for the ICD Management cluster ActiveModeThreshold attribute, in milliseconds</span>
+<span class="cm"> */</span>
+<span class="cp">#define CHIP_CONFIG_ICD_ACTIVE_MODE_THRESHOLD_MS 300</span>
+</pre></div>
+</div>
+<p>Using the build arguments either in the build command or in the <code class="docutils literal notranslate"><span class="pre">openthread.gni</span></code> file is the preffered method.</p>
+</section>
 <section id="subscription-maximum-interval">
 <h2>Subscription Maximum Interval<a class="headerlink" href="#subscription-maximum-interval" title="Permalink to this heading"></a></h2>
 <p>The subscription mechanism is used by ecosystems and controllers to receive attribute change updates and liveness checks.
 The maximum interval of a subscription request is what defines the frequency at which a device will send a liveness check if there are no attribute changes.</p>
 <p>Within the subscription request / response model, a device has the opportunity to decide the maximum interval at which it will send its liveness check (Empty Report Update).
-The device can set a maximum interval within this range:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>MinIntervalRequested<span class="w"> </span>≤<span class="w"> </span>MaxInterval<span class="w"> </span>≤<span class="w"> </span>MAX<span class="o">(</span>1h,<span class="w"> </span>MaxIntervalRequested<span class="o">)</span>
+The device can set a maximum interval within this range if and only if it is an ICD:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>MinIntervalRequested<span class="w"> </span>≤<span class="w"> </span>MaxInterval<span class="w"> </span>≤<span class="w"> </span>MAX<span class="o">(</span>IdleModeInterval,<span class="w"> </span>MaxIntervalRequested<span class="o">)</span>
 </pre></div>
 </div>
 <p>The following table shows the subscribe response fields.</p>
@@ -142,8 +243,63 @@ The device can set a maximum interval within this range:</p>
 </table>
 <section id="maximum-interval-negotiation">
 <h3>Maximum Interval Negotiation<a class="headerlink" href="#maximum-interval-negotiation" title="Permalink to this heading"></a></h3>
-<p>For a device to be able to Negotiate the Maximum Interval when receiving a subscribe request,
-the application first needs to implement the <code class="docutils literal notranslate"><span class="pre">ApplicationCallback</span></code> class from the <code class="docutils literal notranslate"><span class="pre">ReadHandler.h</span></code> header.</p>
+<p>The Matter SDK provides a default implementation that allows an ICD to negotiate its MaxInterval.
+The goal of the algorithme is to set the MaxInterval to the IdleModeInterval.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#if CHIP_CONFIG_ENABLE_ICD_SERVER</span>
+
+<span class="w">    </span><span class="c1">// Default behavior for ICDs where the wanted MaxInterval for a subscription is the IdleModeInterval</span>
+<span class="w">    </span><span class="c1">// defined in the ICD Management Cluster.</span>
+<span class="w">    </span><span class="c1">// Behavior can be changed with the OnSubscriptionRequested function defined in the application callbacks</span>
+
+<span class="w">    </span><span class="c1">// Default Behavior Steps :</span>
+<span class="w">    </span><span class="c1">// If MinInterval &gt; IdleModeInterval, try to set the MaxInterval to the first interval of IdleModeIntervals above the</span>
+<span class="w">    </span><span class="c1">// MinInterval.</span>
+<span class="w">    </span><span class="c1">// If the next interval is greater than the MaxIntervalCeiling, use the MaxIntervalCeiling.</span>
+<span class="w">    </span><span class="c1">// Otherwise, use IdleModeInterval as MaxInterval</span>
+
+<span class="w">    </span><span class="c1">// GetPublisherSelectedIntervalLimit() returns the IdleModeInterval if the device is an ICD</span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">decidedMaxInterval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetPublisherSelectedIntervalLimit</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Check if the PublisherSelectedIntervalLimit is 0. If so, set decidedMaxInterval to MaxIntervalCeiling</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">decidedMaxInterval</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">decidedMaxInterval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mMaxInterval</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// If requestedMinInterval is greater than the IdleTimeInterval, select next active up time as max interval</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mMinIntervalFloorSeconds</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">decidedMaxInterval</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">ratio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mMinIntervalFloorSeconds</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">uint16_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">decidedMaxInterval</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mMinIntervalFloorSeconds</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">decidedMaxInterval</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">ratio</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">decidedMaxInterval</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="n">ratio</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Verify that decidedMaxInterval is an acceptable value (overflow)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">decidedMaxInterval</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">System</span><span class="o">::</span><span class="n">Clock</span><span class="o">::</span><span class="n">Seconds16</span><span class="o">::</span><span class="n">max</span><span class="p">().</span><span class="n">count</span><span class="p">())</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">decidedMaxInterval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="o">::</span><span class="n">Clock</span><span class="o">::</span><span class="n">Seconds16</span><span class="o">::</span><span class="n">max</span><span class="p">().</span><span class="n">count</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Verify that the decidedMaxInterval respects MAX(GetPublisherSelectedIntervalLimit(), MaxIntervalCeiling)</span>
+<span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">maximumMaxInterval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">GetPublisherSelectedIntervalLimit</span><span class="p">(),</span><span class="w"> </span><span class="n">mMaxInterval</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">decidedMaxInterval</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">maximumMaxInterval</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">decidedMaxInterval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">maximumMaxInterval</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Set max interval of the subscription</span>
+<span class="w">    </span><span class="n">mMaxInterval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">uint16_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">decidedMaxInterval</span><span class="p">);</span>
+
+<span class="cp">#endif </span><span class="c1">// CHIP_CONFIG_ENABLE_ICD_SERVER</span>
+</pre></div>
+</div>
+<p>If the default implementation does fit within the use-case,
+an implementation can override the default implementation.
+The first step is to implement the <code class="docutils literal notranslate"><span class="pre">ApplicationCallback</span></code> class from the <code class="docutils literal notranslate"><span class="pre">ReadHandler.h</span></code> header.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm"> * A callback used to interact with the application.</span>
 <span class="cm"> */</span>
@@ -191,62 +347,6 @@ the application first needs to implement the <code class="docutils literal notra
 <span class="n">chip</span><span class="o">::</span><span class="n">app</span><span class="o">::</span><span class="n">InteractionModelEngine</span><span class="o">::</span><span class="n">GetInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">RegisterReadHandlerAppCallback</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mICDSubscriptionHandler</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">ICDSubscriptionCallback</span></code> class in <code class="docutils literal notranslate"><span class="pre">examples/platform/silabs/ICDSubscriptionCallback.cpp</span></code> gives an example implementation of the Maximum Interval negotiation a device can do when receiving a Subscription Request.</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">CHIP_ERROR</span><span class="w"> </span><span class="nf">ICDSubscriptionCallback::OnSubscriptionRequested</span><span class="p">(</span><span class="n">chip</span><span class="o">::</span><span class="n">app</span><span class="o">::</span><span class="n">ReadHandler</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">aReadHandler</span><span class="p">,</span>
-<span class="w">                                                            </span><span class="n">chip</span><span class="o">::</span><span class="n">Transport</span><span class="o">::</span><span class="n">SecureSession</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">aSecureSession</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">chip</span><span class="o">::</span><span class="nn">System</span><span class="o">::</span><span class="nn">Clock</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">Seconds32</span><span class="w"> </span><span class="n">interval_s32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">duration_cast</span><span class="o">&lt;</span><span class="n">Seconds32</span><span class="o">&gt;</span><span class="p">(</span><span class="n">CHIP_DEVICE_CONFIG_SED_IDLE_INTERVAL</span><span class="p">);</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">interval_s32</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">Seconds16</span><span class="o">::</span><span class="n">max</span><span class="p">())</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="n">interval_s32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Seconds16</span><span class="o">::</span><span class="n">max</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">decidedMaxInterval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">interval_s32</span><span class="p">.</span><span class="n">count</span><span class="p">();</span>
-
-<span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">requestedMinInterval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">requestedMaxInterval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">    </span><span class="n">aReadHandler</span><span class="p">.</span><span class="n">GetReportingIntervals</span><span class="p">(</span><span class="n">requestedMinInterval</span><span class="p">,</span><span class="w"> </span><span class="n">requestedMaxInterval</span><span class="p">);</span>
-
-<span class="w">    </span><span class="c1">// If requestedMinInterval is greater than IdleTimeInterval, select next wake up time as max interval</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">requestedMinInterval</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">decidedMaxInterval</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">ratio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">requestedMinInterval</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">decidedMaxInterval</span><span class="p">;</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">requestedMinInterval</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">decidedMaxInterval</span><span class="p">)</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="n">ratio</span><span class="o">++</span><span class="p">;</span>
-<span class="w">        </span><span class="p">}</span>
-
-<span class="w">        </span><span class="n">decidedMaxInterval</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="n">ratio</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="c1">// Verify that decidedMaxInterval is an acceptable value</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">decidedMaxInterval</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">Seconds16</span><span class="o">::</span><span class="n">max</span><span class="p">().</span><span class="n">count</span><span class="p">())</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="n">decidedMaxInterval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Seconds16</span><span class="o">::</span><span class="n">max</span><span class="p">().</span><span class="n">count</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="c1">// Verify that the decidedMaxInterval respects MAX(SUBSCRIPTION_MAX_INTERVAL_PUBLISHER_LIMIT, MaxIntervalCeiling)</span>
-<span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">maximumMaxInterval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">kSubscriptionMaxIntervalPublisherLimit</span><span class="p">,</span><span class="w"> </span><span class="n">requestedMaxInterval</span><span class="p">);</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">decidedMaxInterval</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">maximumMaxInterval</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="n">decidedMaxInterval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">maximumMaxInterval</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">aReadHandler</span><span class="p">.</span><span class="n">SetReportingIntervals</span><span class="p">(</span><span class="n">decidedMaxInterval</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>The Silabs implementation is enabled by default when building an SED application.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="c1"># Use default handler to negotiate subscription max interval</span>
-<span class="w">  </span><span class="nv">chip_config_use_icd_subscription_callbacks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>enable_sleepy_device
-</pre></div>
-</div>
-<p>To disable the feature when building a sleepy end device (SED) application, this argument needs to be added to the build command.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">chip_config_use_icd_subscription_callbacks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span>
-</pre></div>
-</div>
 </section>
 </section>
 <section id="persistent-subscriptions">
@@ -256,15 +356,25 @@ When a device accepts a subscription request, it will persist the subscription.
 When the device reboots, it will try to re-establish its subscription with the subscriber.
 If the subscription is torn down during normal operations or if the re-establishement fails,
 the subscription will be deleted.</p>
-<p>Persistent subscriptions are enable by default when enabling an SED example.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use persistent subscriptions for ICDs</span>
-<span class="nv">chip_persist_subscriptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>enable_sleepy_device
+<p>Persistent subscriptions are enable by default on all Silabs sample apps.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">chip_persist_subscriptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
 </pre></div>
 </div>
-<p>To disable the feature when building an SED application, this argument needs to be added to the build command.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">chip_persist_subscriptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span>
+<p>Matter also provides a retry mecanishme for devices to try to re-establish a lost subscription with a client.
+This feature is desable by default on the door-lock and light-switch example.
+This feature should not be used a ICD since it can significantly reduce battery life.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">chip_subscription_timeout_resumption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span>
 </pre></div>
 </div>
+</section>
+<section id="subscription-synchronisation">
+<h2>Subscription synchronisation<a class="headerlink" href="#subscription-synchronisation" title="Permalink to this heading"></a></h2>
+<p>To avoid forcing an ICD to become active multiple times, the Matter SDK allows an ICD to synchronize its subscription reporting and send all the reports at the same time.
+The mecansim syncrhonizes the maximum interval of the all subscription to only require the ICD to become active one.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">sl_use_subscription_synching</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+</pre></div>
+</div>
+<p>This feature is enabled by default on the door-lock sample app and the light-switch simple app.</p>
 </section>
 </section>
 

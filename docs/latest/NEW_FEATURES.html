@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Silicon Labs Matter New Features &mdash; Matter 2.2.0-1.2-alpha.1 documentation</title>
+  <title>Silicon Labs Matter New Features &mdash; Matter 2.2.0-1.2 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/tabs.css" type="text/css" />
@@ -39,7 +39,7 @@
               <img src="_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2.2.0-1.2-alpha.1
+                2.2.0-1.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -53,6 +53,11 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="OVERVIEW.html">User's Guide Overview</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Matter New Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#new-features-for-v2-2-0-1-2">New Features for v2.2.0-1.2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#icd-sample-apps">ICD Sample Apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self-provisioning-mode">Self-Provisioning Mode</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#new-features-for-v2-2-0-1-2-alpha-1">New Features for v2.2.0-1.2-alpha.1</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#support-for-intermittently-connected-devices-icd">Support for Intermittently Connected Devices (ICD)</a></li>
 </ul>
@@ -71,7 +76,7 @@
 <li class="toctree-l1"><a class="reference internal" href="nav_2_prereq.html">Matter Development Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nav_4_thread.html">Matter Over Thread</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nav_5_wifi.html">Matter Over Wi-Fi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="unify/index.html">Unify Matter Bridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unify/index.html">Unify Matter Solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nav_3_general.html">Developer Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nav_6_faq.html">FAQ</a></li>
 </ul>
@@ -102,6 +107,31 @@
              
   <section class="tex2jax_ignore mathjax_ignore" id="silicon-labs-matter-new-features">
 <h1>Silicon Labs Matter New Features<a class="headerlink" href="#silicon-labs-matter-new-features" title="Permalink to this heading"></a></h1>
+<section id="new-features-for-v2-2-0-1-2">
+<h2>New Features for v2.2.0-1.2<a class="headerlink" href="#new-features-for-v2-2-0-1-2" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>GA support for Intermittently Connected Devices</p></li>
+<li><p>Introduction of a third LCD screen to display application information</p></li>
+<li><p>Introduction of the Dishwasher Demo Application</p></li>
+<li><p>Adds support of Matter 1.2 Apps on all Wi-Fi devices.</p></li>
+<li><p>Adds Matter support on SiWx917 SoC Common flash variants - BRD4338A.</p></li>
+<li><p>Adds LCD display support on SiWx917 SoC for all the Wi-Fi Matter Apps.</p></li>
+<li><p>Adds support for Direct Internet Connectivity on the SiWx917 SoC &amp; NCP</p></li>
+</ul>
+<section id="icd-sample-apps">
+<h3>ICD Sample Apps<a class="headerlink" href="#icd-sample-apps" title="Permalink to this heading"></a></h3>
+<p>With the official introduction of Matter Short Idle Time (SIT) ICDs, both the door-lock sample app and the light-switch sample app are configured as SIT ICDs by default.
+The default configurations can be found in their respective openthread.gni.</p>
+</section>
+<section id="self-provisioning-mode">
+<h3>Self-Provisioning Mode<a class="headerlink" href="#self-provisioning-mode" title="Permalink to this heading"></a></h3>
+<p>Silicon Labs’ Matter examples now include a self-provision mode, which enables the application to be used as Generator Firmware with the provisioning script:</p>
+<ul class="simple">
+<li><p>e.g.:<code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">provision.py</span> <span class="pre">-c</span> <span class="pre">config/silabs.json</span> <span class="pre">-gf</span> <span class="pre">../out/light/BRD4187C/matter-silabs-lighting-example.s37</span></code></p></li>
+</ul>
+<p>To enter the self-provisioning mode, factory reset the device pressing buttons BTN0 and BTN1 for six seconds. Using this method, the device application only needs to be flashed once, provisioned multiple times, and be ready for commissioning after each provisioning.</p>
+</section>
+</section>
 <section id="new-features-for-v2-2-0-1-2-alpha-1">
 <h2>New Features for v2.2.0-1.2-alpha.1<a class="headerlink" href="#new-features-for-v2-2-0-1-2-alpha-1" title="Permalink to this heading"></a></h2>
 <section id="support-for-intermittently-connected-devices-icd">
@@ -125,7 +155,8 @@
 <li><p>CHIP_CONFIG_ICD_IDLE_MODE_INTERVAL set value for the ICD IdleInterval attribute</p></li>
 <li><p>CHIP_CONFIG_ICD_ACTIVE_MODE_INTERVAL set value for the ICD ActiveInterval attribute</p></li>
 <li><p>CHIP_CONFIG_ICD_ACTIVE_MODE_THRESHOLD set value for the ICD ActiveThreshold attribute</p></li>
-<li><p>CHIP_CONFIG_ICD_CLIENTS_SUPPORTED_PER_FABRIC set value for the ICD ClientsSupportedPerFabric attribute</p></li>
+<li><p>CHIP_CONFIG_ICD_CLIENTS_SUPPORTED_PER_FABRIC set value for the ICD ClientsSupportedPerFabric attribute</p>
+<ul>
 <li><p>All of these defines can be configured by our following build arguments (default values listed here)</p>
 <ul>
 <li><p>sl_idle_mode_interval_ms = 600000  <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">10min</span> <span class="pre">Idle</span> <span class="pre">Mode</span> <span class="pre">Interval</span></code></p></li>
@@ -138,6 +169,8 @@
 <ul>
 <li><p>sl_ot_idle_interval_ms = 15000  <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">15s</span> <span class="pre">Idle</span> <span class="pre">Intervals</span></code></p></li>
 <li><p>sl_ot_active_interval_ms = 200  <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">200ms</span> <span class="pre">Active</span> <span class="pre">Intervals</span></code></p></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
