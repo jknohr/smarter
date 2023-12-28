@@ -1,0 +1,1157 @@
+repo_name: jknohr/smarter
+report_id: db96acd2df09259067c1cecdd8d582d1
+version: 0.1
+repo_type: Public
+timestamp: '2023-12-28T05:01:03+00:00'
+requested_by: jmartinez-silabs
+provider: github
+branch: release_2.2.0-1.2
+detected_tools_count: 92
+tools:
+- name: C lang
+  description: One of the most widely used programming languages of all time
+  website_url: http://en.wikipedia.org/wiki/C_(programming_language)
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/no-img-open-source.png
+  detection_source: Repo Metadata
+- name: C++
+  description: Has imperative, object-oriented and generic programming features, while
+    also providing the facilities for low level memory manipulation
+  website_url: http://www.cplusplus.com/
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1049/cplusplus.png
+  detection_source: Repo Metadata
+- name: Java
+  description: A concurrent, class-based, object-oriented, language specifically designed
+    to have as few implementation dependencies as possible
+  website_url: https://www.java.com
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/995/K85ZWV2F.png
+  detection_source: Repo Metadata
+- name: JavaScript
+  description: Lightweight, interpreted, object-oriented language with first-class
+    functions
+  website_url: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1209/javascript.jpeg
+  detection_source: Repo Metadata
+- name: Jinja
+  description: Full featured template engine for Python
+  website_url: https://palletsprojects.com/p/jinja/
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Templating Languages & Extensions
+  image_url: https://img.stackshare.io/service/2303/New_Project__20_.png
+  detection_source: integrations/docker/images/stage-2/chip-build-efr32/requirements.txt
+  last_updated_by: Rohan S
+  last_updated_on: 2023-10-12 23:44:20.000000000 Z
+- name: Kotlin
+  description: Statically typed Programming Language targeting JVM and JavaScript
+  website_url: https://kotlinlang.org/
+  open_source: true
+  hosted_saas: true
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/3750/pCfEzr6L.png
+  detection_source: Repo Metadata
+- name: Objective-C
+  description: The primary programming language you use when writing software for
+    OS X and iOS
+  website_url: https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1008/xcode.png
+  detection_source: Repo Metadata
+- name: Python
+  description: A clear and powerful object-oriented programming language, comparable
+    to Perl, Ruby, Scheme, or Java.
+  website_url: https://www.python.org
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/993/pUBY5pVj.png
+  detection_source: Repo Metadata
+- name: Ruby
+  description: A dynamic, interpreted, open source programming language with a focus
+    on simplicity and productivity
+  website_url: https://www.ruby-lang.org
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/989/ruby.png
+  detection_source: scripts/setup/requirements.zephyr.txt
+  last_updated_by: Andrei Litvin
+  last_updated_on: 2023-06-19 15:13:29.000000000 Z
+- name: Rust
+  description: A safe, concurrent, practical language
+  website_url: http://www.rust-lang.org/
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1070/v7txhrjp9pdqrkdtxxp0.png
+  detection_source: silabs_examples/unify-matter-common/docker/Dockerfile
+  last_updated_by: Anders Esbensen
+  last_updated_on: 2022-09-13 13:00:42.000000000 Z
+- name: Swift
+  description: 'An innovative new programming language for Cocoa and Cocoa Touch. '
+  website_url: https://developer.apple.com/swift/
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1009/tuHsaI2U.png
+  detection_source: Repo Metadata
+- name: Android SDK
+  description: An SDK that provides you the API libraries and developer tools necessary
+    to build, test, and debug apps for Android.
+  website_url: http://developer.android.com
+  open_source: false
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Frameworks (Full Stack)
+  image_url: https://img.stackshare.io/service/1010/m8jf0po4imu8t5eemjdd.png
+  detection_source: examples/virtual-device-app/android/App/app/build.gradle.kts
+  last_updated_by: chulspro
+  last_updated_on: 2023-07-20 05:33:35.000000000 Z
+- name: Flask
+  description: A microframework for Python based on Werkzeug, Jinja 2 and good intentions
+  website_url: http://flask.pocoo.org/
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Microframeworks (Backend)
+  image_url: https://img.stackshare.io/service/1001/default_6d109315b60108628b7cd3e159b84645c31ef0e2.png
+  detection_source: integrations/docker/images/stage-2/chip-build-cirque/requirements_nogrpc.txt
+  last_updated_by: dependabot[bot]
+  last_updated_on: 2023-08-30 17:30:53.000000000 Z
+- name: Node.js
+  description: A platform built on Chrome's JavaScript runtime for easily building
+    fast, scalable network applications
+  website_url: http://nodejs.org/
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Frameworks (Full Stack)
+  image_url: https://img.stackshare.io/service/1011/n1JRsFeB_400x400.png
+  detection_source: integrations/docker/images/base/chip-build/Dockerfile
+  last_updated_by: Justin Wood
+  last_updated_on: 2023-06-22 23:11:50.000000000 Z
+- name: Protobuf
+  description: Google's data interchange format
+  website_url: https://developers.google.com/protocol-buffers/
+  version: 3.20.1
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Serialization Frameworks
+  image_url: https://img.stackshare.io/service/4393/ma2jqJKH_400x400.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.all.txt
+  detection_source: examples/android/CHIPTool/app/build.gradle
+  last_updated_by: joonhaengHeo
+  last_updated_on: 2023-03-07 21:59:38.000000000 Z
+- name: Tornado
+  description: A Python web framework and asynchronous networking library, originally
+    developed at FriendFeed
+  website_url: http://www.tornadoweb.org/
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Frameworks (Full Stack)
+  image_url: https://img.stackshare.io/service/1002/tornado.png
+  detection_source: scripts/setup/requirements.all.txt
+  last_updated_by: Tennessee Carmel-Veilleux
+  last_updated_on: 2022-09-14 14:58:54.000000000 Z
+- name: CMake
+  description: 'An open-source system that manages the build process '
+  website_url: http://www.cmake.org/
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Java Build Tools
+  image_url: https://img.stackshare.io/service/2424/0UlUI_y1_400x400.jpg
+  detection_source: Repo Metadata
+- name: Docker
+  description: Enterprise Container Platform for High-Velocity Innovation.
+  website_url: https://www.docker.com/
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Virtual Machine Platforms & Containers
+  image_url: https://img.stackshare.io/service/586/n4u37v9t_400x400.png
+  detection_source: Repo Metadata
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source: Repo Metadata
+- name: GitHub Actions
+  description: Automate your workflow from idea to production
+  website_url: https://github.com/features/actions
+  open_source: false
+  hosted_saas: true
+  category: Build, Test, Deploy
+  sub_category: Continuous Integration
+  image_url: https://img.stackshare.io/service/11563/actions.png
+  detection_source: ".github/workflows/artifacts.yaml"
+  last_updated_by: Justin Wood
+  last_updated_on: 2020-08-21 19:19:36.000000000 Z
+- name: Gradle
+  description: A powerful build system for the JVM
+  website_url: https://www.gradle.org/
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Java Build Tools
+  image_url: https://img.stackshare.io/service/975/gradlephant-social-black-bg.png
+  detection_source: examples/android/CHIPTest/app/build.gradle
+  last_updated_by: Hui.Li-TCL
+  last_updated_on: 2021-09-30 12:51:41.000000000 Z
+- name: PyPI
+  description: A repository of software for the Python programming language
+  website_url: https://pypi.org/
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Hosted Package Repository
+  image_url: https://img.stackshare.io/service/12572/-RIWgodF_400x400.jpg
+  detection_source: src/tools/interop/idt/requirements.txt
+  last_updated_by: Austin Bozowski
+  last_updated_on: 2023-10-12 16:01:48.000000000 Z
+- name: Pylint
+  description: Source-code, bug and quality checker for the Python programming language
+  website_url: https://www.pylint.org/
+  version: '2.4'
+  license: GPL-2.0
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Code Review
+  image_url: https://img.stackshare.io/service/4837/py.jpg
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/integrations/docker/images/stage-2/chip-build-cirque/requirements_nogrpc.txt
+  detection_source: integrations/docker/images/stage-2/chip-build-cirque/requirements_nogrpc.txt
+  last_updated_by: Song GUO
+  last_updated_on: 2023-08-29 16:32:00.000000000 Z
+- name: RubyGems
+  description: Easily download, install, and use ruby software packages on your system
+  website_url: https://rubygems.org/
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/service/12795/5jL6-BA5_400x400.jpeg
+  detection_source: scripts/setup/requirements.zephyr.txt
+  last_updated_by: Andrei Litvin
+  last_updated_on: 2023-06-19 15:13:29.000000000 Z
+- name: Travis CI
+  description: A hosted continuous integration service for open source and private
+    projects
+  website_url: http://travis-ci.com/
+  open_source: false
+  hosted_saas: true
+  category: Build, Test, Deploy
+  sub_category: Continuous Integration
+  image_url: https://img.stackshare.io/service/460/Lu6cGu0z_400x400.png
+  detection_source: third_party/inipp/repo/inipp/.travis.yml
+  last_updated_by: Yufeng Wang
+  last_updated_on: 2020-06-15 20:46:29.000000000 Z
+- name: Visual Studio
+  description: State-of-the-art tools and services that you can use to create great
+    apps for devices, the cloud, and everything in between.
+  website_url: http://msdn.microsoft.com/en-us/vstudio/aa718325.aspx
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Integrated Development Environment
+  image_url: https://img.stackshare.io/service/1451/SR2hUhQN.png
+  detection_source: third_party/inipp/repo/inipp/inipp.sln
+  last_updated_by: Yufeng Wang
+  last_updated_on: 2020-06-15 20:46:29.000000000 Z
+- name: Visual Studio Code
+  description: Build and debug modern web and cloud applications, by Microsoft
+  website_url: https://code.visualstudio.com/
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Text Editor
+  image_url: https://img.stackshare.io/service/4202/Visual_Studio_Code_logo.png
+  detection_source: ".vscode/tasks.json"
+  last_updated_by: Andrei Litvin
+  last_updated_on: 2021-11-05 06:15:25.000000000 Z
+- name: npm
+  description: The package manager for JavaScript.
+  website_url: https://www.npmjs.com/
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Front End Package Manager
+  image_url: https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png
+  detection_source: scripts/setup/requirements.build.txt
+  last_updated_by: Karsten Sperling
+  last_updated_on: 2023-05-03 03:41:32.000000000 Z
+- name: pytest
+  description: A full-featured Python testing tool to help you write better programs
+  website_url: http://pytest.org/latest/
+  version: 6.2.5
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Testing Frameworks
+  image_url: https://img.stackshare.io/service/4586/Lu99Qe0Z_400x400.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.mbed.txt
+  detection_source: scripts/setup/requirements.mbed.txt
+  last_updated_by: Artur Tynecki
+  last_updated_on: 2023-06-05 17:16:12.000000000 Z
+- name: Alpine Linux
+  description: Security-oriented, lightweight Linux distribution based on musl libc
+    and busybox
+  website_url: https://www.alpinelinux.org/
+  open_source: false
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Operating Systems
+  image_url: https://img.stackshare.io/service/6429/alpine_linux.png
+  detection_source: integrations/docker/images/stage-2/chip-build-doxygen/Dockerfile
+  last_updated_by: Victor Morales
+  last_updated_on: 2021-11-30 16:31:47.000000000 Z
+- name: Android OS
+  description: An open source mobile operating system by Google
+  website_url: https://www.android.com
+  open_source: false
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Operating Systems
+  image_url: https://img.stackshare.io/service/9586/ZvmtaSXW_400x400.jpg
+  detection_source: examples/virtual-device-app/android/App/app/build.gradle.kts
+  last_updated_by: chulspro
+  last_updated_on: 2023-07-20 05:33:35.000000000 Z
+- name: CocoaPods
+  description: A dependency manager for Swift and Objective-C Cocoa projects
+  website_url: https://cocoapods.org/
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: CocoaPods Packages
+  image_url: https://img.stackshare.io/service/2426/e1cbdef9d4b11484049a033886578e54_400x400.png
+  detection_source: integrations/docker/images/stage-3/chip-build-tizen-qemu/Dockerfile
+  last_updated_by: Arkadiusz Bokowy
+  last_updated_on: 2023-02-02 19:10:52.000000000 Z
+- name: Debian
+  description: The Universal Operating System
+  website_url: https://www.debian.org/
+  open_source: false
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Operating Systems
+  image_url: https://img.stackshare.io/service/1656/vd4gAekh.png
+  detection_source: silabs_examples/unify-matter-common/docker/Dockerfile
+  last_updated_by: Dennis Jensen
+  last_updated_on: 2023-02-02 08:28:04.000000000 Z
+- name: IPython
+  description: A command shell for interactive computing in multiple programming languages
+  website_url: http://ipython.org/index.html
+  open_source: false
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Shells
+  image_url: https://img.stackshare.io/service/4477/820a0bb9a44fe5a1d640993ab1e6fd84_400x400.png
+  detection_source: scripts/setup/requirements.all.txt
+  last_updated_by: Andrei Litvin
+  last_updated_on: 2023-08-09 21:07:52.000000000 Z
+- name: Pandas
+  description: High-performance, easy-to-use data structures and data analysis tools
+    for the Python programming language
+  website_url: http://pandas.pydata.org/
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Data Science Tools
+  image_url: https://img.stackshare.io/service/2180/1284191.png
+  detection_source: scripts/setup/requirements.memory.txt
+  last_updated_by: Andrei Litvin
+  last_updated_on: 2023-06-19 15:13:29.000000000 Z
+- name: PowerShell
+  description: A task automation and configuration management framework
+  website_url: https://docs.microsoft.com/en-us/powershell/
+  open_source: false
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/3681/powershell-logo.png
+  detection_source: Repo Metadata
+- name: Shell
+  description: A shell is a text-based terminal, used for manipulating programs and
+    files. Shell scripts typically manage program execution.
+  website_url: https://en.wikipedia.org/wiki/Shell_script
+  open_source: false
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/4631/default_c2062d40130562bdc836c13dbca02d318205a962.png
+  detection_source: Repo Metadata
+- name: Sphinx
+  description: Open source full text search server, designed from the ground up with
+    performance, relevance (aka search quality), and integration simplicity in mind
+  website_url: http://sphinxsearch.com/
+  open_source: false
+  hosted_saas: false
+  category: Application Utilities
+  sub_category: Search Engines
+  image_url: https://img.stackshare.io/service/1598/TtqoAo1V.png
+  detection_source: scripts/setup/requirements.silabs_docker.txt
+  last_updated_by: Rohan S
+  last_updated_on: 2023-10-12 23:44:20.000000000 Z
+- name: Ubuntu
+  description: The leading OS for PC, tablet, phone and cloud
+  website_url: http://www.ubuntu.com/
+  open_source: false
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Operating Systems
+  image_url: https://img.stackshare.io/service/3511/cof_orange_hex.jpg
+  detection_source: integrations/docker/images/base/chip-build-minimal/Dockerfile
+  last_updated_by: Karsten Sperling
+  last_updated_on: 2023-05-03 03:41:32.000000000 Z
+- name: Websockets
+  description: A technology that makes it possible to open a two-way interactive communication
+  website_url: https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API
+  open_source: false
+  hosted_saas: false
+  image_url: https://img.stackshare.io/service/4220/LNPwoiWi_400x400.jpg
+  detection_source: scripts/tests/requirements.txt
+  last_updated_by: Andrei Litvin
+  last_updated_on: 2023-08-09 17:09:16.000000000 Z
+- name: mypy
+  description: Developers of mypy, a Python variant with seamless dynamic and static
+    typing
+  website_url: http://mypy-lang.org/
+  open_source: false
+  hosted_saas: false
+  image_url: https://img.stackshare.io/service/7350/eaca159133a3901e24ddb407d1235c25_normal.png
+  detection_source: scripts/setup/requirements.all.txt
+  last_updated_by: rgoliver
+  last_updated_on: 2022-11-23 17:24:44.000000000 Z
+- name: qrcode
+  website_url: http://goqr.me/
+  open_source: false
+  hosted_saas: false
+  image_url: https://img.stackshare.io/service/8580/no-img-open-source.png
+  detection_source: scripts/setup/requirements.bouffalolab.txt
+  last_updated_by: shchen-Lab
+  last_updated_on: 2023-07-21 15:51:00.000000000 Z
+- name: virtualenv
+  description: Local environment for python
+  website_url: https://virtualenv.pypa.io/en/latest/
+  open_source: false
+  hosted_saas: false
+  image_url: https://img.stackshare.io/service/3581/no-img-open-source.png
+  detection_source: scripts/setup/requirements.all.txt
+  last_updated_by: Michael Spang
+  last_updated_on: 2021-06-15 20:36:35.000000000 Z
+- name: GitPython
+  description: Python Git Library
+  package_url: https://pypi.org/project/GitPython
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19867/default_bd86f80ade48cfe191d5781a2efa0e66fa22163a.png
+  detection_source: scripts/setup/requirements.mbed.txt
+  last_updated_by: Michael Spang
+  last_updated_on: 2022-07-07 12:53:58.000000000 Z
+- name: anytree
+  description: Powerful and Lightweight Python Tree Data Structure.
+  package_url: https://pypi.org/project/anytree
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20513/default_18bb83c7f98aaa7340bc5d2ca9b439885b1d95bc.png
+  detection_source: scripts/setup/requirements.memory.txt
+  last_updated_by: Andrei Litvin
+  last_updated_on: 2023-06-19 15:13:29.000000000 Z
+- name: appdirs
+  description: A small Python module for determining appropriate platform-specific
+    dirs, e.g
+  package_url: https://pypi.org/project/appdirs
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19878/default_2270bfab784e3d2c2d999d26b11ee478a9dad238.png
+  detection_source: scripts/setup/requirements.all.txt
+  last_updated_by: Michael Spang
+  last_updated_on: 2021-06-15 20:36:35.000000000 Z
+- name: appnope
+  description: Disable App Nap on OS X 10.9
+  package_url: https://pypi.org/project/appnope
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/pypi/image.png
+  detection_source: scripts/setup/requirements.all.txt
+  last_updated_by: Michael Spang
+  last_updated_on: 2021-06-15 20:36:35.000000000 Z
+- name: bitarray
+  description: Efficient arrays of booleans -- C extension
+  package_url: https://pypi.org/project/bitarray
+  version: 2.6.0
+  license: Python-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20209/default_6796c4086c025d18cdc673750b208b846d8e0914.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.bouffalolab.txt
+  detection_source: scripts/setup/requirements.bouffalolab.txt
+  last_updated_by: shchen-Lab
+  last_updated_on: 2023-07-21 15:51:00.000000000 Z
+- name: bitstring
+  description: Simple construction
+  package_url: https://pypi.org/project/bitstring
+  version: 3.1.6
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20286/default_e7371996f4d5cb0bf54948a99b306e1decefbc7c.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.esp32.txt
+  detection_source: scripts/setup/requirements.esp32.txt
+  last_updated_by: pankore
+  last_updated_on: 2023-05-08 19:02:56.000000000 Z
+- name: breathe
+  description: Sphinx Doxygen renderer
+  package_url: https://pypi.org/project/breathe
+  version: '4.34'
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/pypi/image.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/docs/requirements.txt
+  detection_source: docs/requirements.txt
+  last_updated_by: Gaute Svanes Lunde
+  last_updated_on: 2023-01-10 11:42:48.000000000 Z
+- name: cbor2
+  description: Pure Python CBOR
+  package_url: https://pypi.org/project/cbor2
+  version: 5.4.3
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/pypi/image.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.bouffalolab.txt
+  detection_source: scripts/setup/requirements.bouffalolab.txt
+  last_updated_by: shchen-Lab
+  last_updated_on: 2023-07-21 15:51:00.000000000 Z
+- name: cffi
+  description: Foreign Function Interface for Python calling C code
+  package_url: https://pypi.org/project/cffi
+  version: 1.15.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19909/default_67f813d4aac73d024261bcfded6ef2b918e384a0.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/tools/telink/requirements.txt
+  detection_source: scripts/tools/telink/requirements.txt
+  last_updated_by: Maciej Bojczuk
+  last_updated_on: 2023-01-04 16:54:02.000000000 Z
+- name: click
+  description: Composable command line interface toolkit
+  package_url: https://pypi.org/project/click
+  version: '7.0'
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19830/default_74a61b43bdb9fc0cba2978316b9976f43545029b.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.esp32.txt
+  detection_source: scripts/build/setup.py
+  last_updated_by: Arkadiusz Bokowy
+  last_updated_on: 2022-04-05 03:29:47.000000000 Z
+- name: cmd2
+  description: Cmd2 - quickly build feature-rich and user-friendly interactive command
+    line applications in Python
+  package_url: https://pypi.org/project/cmd2
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20354/default_4fff53bc8c15a9ea5decdac96fdba9b8874b07ce.png
+  detection_source: integrations/docker/images/stage-2/chip-build-cirque/requirements_nogrpc.txt
+  last_updated_by: Song GUO
+  last_updated_on: 2023-08-29 16:32:00.000000000 Z
+- name: colorama
+  description: Cross-platform colored terminal text
+  package_url: https://pypi.org/project/colorama
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19845/default_accee5d2b8ed75c2245f13504daf75b1cbc8cc9f.png
+  detection_source: scripts/setup/requirements.all.txt
+  last_updated_by: Andrei Litvin
+  last_updated_on: 2022-05-18 00:58:08.000000000 Z
+- name: coloredlogs
+  description: Colored terminal output for Python's logging module
+  package_url: https://pypi.org/project/coloredlogs
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19966/default_08ca82e926d4333989c376f7cbf2803cef43771c.png
+  detection_source: scripts/build/setup.py
+  last_updated_by: Arkadiusz Bokowy
+  last_updated_on: 2022-04-05 03:29:47.000000000 Z
+- name: construct
+  description: A powerful declarative symmetric parser/builder for binary data
+  package_url: https://pypi.org/project/construct
+  version: 2.10.54
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/pypi/image.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.esp32.txt
+  detection_source: scripts/setup/requirements.esp32.txt
+  last_updated_by: Shubham Patil
+  last_updated_on: 2023-02-11 14:46:55.000000000 Z
+- name: cryptography
+  description: Cryptography is a package which provides cryptographic recipes and
+    primitives to Python developers
+  package_url: https://pypi.org/project/cryptography
+  version: 41.0.4
+  license: BSD-3-Clause,Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19850/default_db2ab2702f70e20c272f6ce65251108fb2b8f1ea.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/tools/telink/requirements.txt
+  detection_source: scripts/setup/requirements.all.txt
+  last_updated_by: Vijay Selvaraj
+  last_updated_on: 2022-03-23 19:36:37.000000000 Z
+  vulnerabilities:
+  - name: cryptography vulnerable to NULL-dereference when loading PKCS7 certificates
+    cve_id: CVE-2023-49083
+    cve_url: https://github.com/advisories/GHSA-jfhm-5ghh-2f97
+    detected_date: Nov 29
+    severity: moderate
+    first_patched: 41.0.6
+- name: diskcache
+  description: Disk Cache -- Disk and file backed persistent cache
+  package_url: https://pypi.org/project/diskcache
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20549/default_cde277f9f5ddb25ccf86d553790fb97f5a8f825c.png
+  detection_source: scripts/setup/requirements.all.txt
+  last_updated_by: Andrei Litvin
+  last_updated_on: 2023-08-09 21:07:52.000000000 Z
+- name: docutils
+  description: Docutils -- Python Documentation Utilities
+  package_url: https://pypi.org/project/docutils
+  version: 0.17.1
+  license: Unlicense,Python-2.0,BSD-2-Clause,CNRI-Python-GPL-Compatible
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19874/default_7ed3c4ccf2a3218ae3655165b980bd4a90a445dc.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/docs/requirements.txt
+  detection_source: docs/requirements.txt
+  last_updated_by: Gaute Svanes Lunde
+  last_updated_on: 2023-01-10 11:42:48.000000000 Z
+- name: ecdsa
+  description: ECDSA cryptographic signature library
+  package_url: https://pypi.org/project/ecdsa
+  version: 0.18.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19979/default_a82f3cd9981909e38152c6f66eefe94bed2aa5ca.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.bouffalolab.txt
+  detection_source: scripts/setup/requirements.bouffalolab.txt
+  last_updated_by: shchen-Lab
+  last_updated_on: 2023-07-21 15:51:00.000000000 Z
+- name: future
+  description: Clean single-source support for Python 3 and 2
+  package_url: https://pypi.org/project/future
+  version: 0.15.2
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19839/default_85689b353a3a9409328e253ea28d859d29151e0c.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.esp32.txt
+  detection_source: scripts/setup/requirements.esp32.txt
+  last_updated_by: Shubham Patil
+  last_updated_on: 2023-02-11 14:46:55.000000000 Z
+  vulnerabilities:
+  - name: Python Charmers Future denial of service vulnerability
+    cve_id: CVE-2022-40899
+    cve_url: https://github.com/advisories/GHSA-v3c5-jqr6-7qm8
+    detected_date: Jan 5
+    severity: high
+    first_patched: 0.18.3
+- name: itsdangerous
+  description: Various helpers to pass data to untrusted environments and back
+  package_url: https://pypi.org/project/itsdangerous
+  version: '2.1'
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19989/default_b1f1fc9c4c59a78443018e01395203ba8c61dcde.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.esp32.txt
+  detection_source: scripts/setup/requirements.esp32.txt
+  last_updated_by: Shubham Patil
+  last_updated_on: 2023-08-01 13:34:33.000000000 Z
+- name: jsonschema
+  description: An implementation of JSON Schema validation for Python
+  package_url: https://pypi.org/project/jsonschema
+  version: 4.4.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19854/default_3fbfa1d88b4408e903227ac391490e8efb8dea58.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.bouffalolab.txt
+  detection_source: scripts/setup/requirements.bouffalolab.txt
+  last_updated_by: shchen-Lab
+  last_updated_on: 2023-07-21 15:51:00.000000000 Z
+- name: mbed-ls
+  description: Mbed-ls is a Python module that detects and lists mbed-enabled devices
+    connected to the host computer
+  package_url: https://pypi.org/project/mbed-ls
+  version: 1.8.11
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/pypi/image.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.mbed.txt
+  detection_source: scripts/setup/requirements.mbed.txt
+  last_updated_by: Artur Tynecki
+  last_updated_on: 2022-08-29 15:45:33.000000000 Z
+- name: pip-tools
+  description: Pip-tools keeps your pinned dependencies fresh
+  package_url: https://pypi.org/project/pip-tools
+  version: 7.0.0
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20726/default_ce4a377c6ada3db6767eb3c966642d2537ef1d8e.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.all.txt
+  detection_source: scripts/setup/requirements.all.txt
+  last_updated_by: Anthony DiGirolamo
+  last_updated_on: 2023-07-18 00:02:02.000000000 Z
+- name: portpicker
+  description: A library to choose unique available network ports
+  package_url: https://pypi.org/project/portpicker
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/pypi/image.png
+  detection_source: scripts/setup/requirements.all.txt
+  last_updated_by: Michael Spang
+  last_updated_on: 2021-06-15 20:36:35.000000000 Z
+- name: pyasn1
+  description: ASN.1 types and codecs
+  package_url: https://pypi.org/project/pyasn1
+  license: BSD-2-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19915/default_37434feaacace26053e41d6e4802560af16ebe44.png
+  detection_source: src/python_testing/requirements.txt
+  last_updated_by: Andrei Litvin
+  last_updated_on: 2023-08-09 17:09:16.000000000 Z
+- name: pycodestyle
+  description: Python style guide checker
+  package_url: https://pypi.org/project/pycodestyle
+  version: 2.5.0
+  license: Saxpath
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20145/default_a55249b25c76872ebbee6b173a63c5fce36136f9.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/integrations/docker/images/stage-2/chip-build-cirque/requirements_nogrpc.txt
+  detection_source: integrations/docker/images/stage-2/chip-build-cirque/requirements_nogrpc.txt
+  last_updated_by: Song GUO
+  last_updated_on: 2023-08-29 16:32:00.000000000 Z
+- name: pycparser
+  description: C parser in Python
+  package_url: https://pypi.org/project/pycparser
+  version: '2.21'
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20072/default_d7fc4eabe57370d13c2a8ad2f7f6bb876c96c66d.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/tools/telink/requirements.txt
+  detection_source: scripts/tools/telink/requirements.txt
+  last_updated_by: Maciej Bojczuk
+  last_updated_on: 2023-01-04 16:54:02.000000000 Z
+- name: pyparsing
+  description: Python parsing module
+  package_url: https://pypi.org/project/pyparsing
+  version: 3.0.3
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19881/default_2270bfab784e3d2c2d999d26b11ee478a9dad238.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.esp32.txt
+  detection_source: scripts/setup/requirements.esp32.txt
+  last_updated_by: Shubham Patil
+  last_updated_on: 2023-08-01 13:34:33.000000000 Z
+- name: pypng
+  description: Pure Python PNG image encoder/decoder
+  package_url: https://pypi.org/project/pypng
+  version: 0.0.21
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/pypi/image.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.telink.txt
+  detection_source: scripts/setup/requirements.telink.txt
+  last_updated_by: Maciej Bojczuk
+  last_updated_on: 2023-01-04 16:54:02.000000000 Z
+- name: pyroute2
+  description: Python Netlink library
+  package_url: https://pypi.org/project/pyroute2
+  version: 0.5.7
+  license: NRL,Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/pypi/image.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/integrations/docker/images/stage-2/chip-build-cirque/requirements_nogrpc.txt
+  detection_source: integrations/docker/images/stage-2/chip-build-cirque/requirements_nogrpc.txt
+  last_updated_by: Song GUO
+  last_updated_on: 2023-08-29 16:32:00.000000000 Z
+- name: python-dotenv
+  description: Add .env support to your django/flask apps in development and deployments
+  package_url: https://pypi.org/project/python-dotenv
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20095/default_3141eabecdd8efa55de73a33c43f2ac0d5bbf954.png
+  detection_source: scripts/setup/requirements.mbed.txt
+  last_updated_by: Michael Spang
+  last_updated_on: 2022-07-07 12:53:58.000000000 Z
+- name: python-socketio
+  description: Socket.IO server
+  package_url: https://pypi.org/project/python-socketio
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20330/default_cf6b540611cb9b9b5d016a661f54f50ad3400f1a.png
+  detection_source: scripts/setup/requirements.esp32.txt
+  last_updated_by: Anthony DiGirolamo
+  last_updated_on: 2023-07-12 15:54:09.000000000 Z
+- name: python-stdnum
+  description: Python module to handle standardized numbers and codes
+  package_url: https://pypi.org/project/python-stdnum
+  license: Other
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20677/default_938412afa3ed7ffc3fee4a1452a9a7f93797a0d7.png
+  detection_source: scripts/setup/requirements.bouffalolab.txt
+  last_updated_by: shchen-Lab
+  last_updated_on: 2023-07-21 15:51:00.000000000 Z
+- name: pyudev
+  description: A libudev binding
+  package_url: https://pypi.org/project/pyudev
+  license: LGPL-2.1+
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/pypi/image.png
+  detection_source: scripts/setup/requirements.mbed.txt
+  last_updated_by: Michael Spang
+  last_updated_on: 2022-07-07 12:53:58.000000000 Z
+- name: requests
+  description: Python HTTP for Humans
+  package_url: https://pypi.org/project/requests
+  version: 2.24.0
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19826/default_d7c684bf2673f008a9f02ac93901229297a22d7e.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.cirque.txt
+  detection_source: scripts/setup/requirements.cirque.txt
+  last_updated_by: Andrei Litvin
+  last_updated_on: 2023-06-19 15:13:29.000000000 Z
+  vulnerabilities:
+  - name: Unintended leak of Proxy-Authorization header in requests
+    cve_id: CVE-2023-32681
+    cve_url: https://github.com/advisories/GHSA-j8r2-6x86-q33q
+    detected_date: May 23
+    severity: moderate
+    first_patched: 2.31.0
+- name: six
+  description: Python 2 and 3 compatibility utilities
+  package_url: https://pypi.org/project/six
+  version: '1.12'
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19827/default_74a61b43bdb9fc0cba2978316b9976f43545029b.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/integrations/docker/images/stage-2/chip-build-cirque/requirements_nogrpc.txt
+  detection_source: integrations/docker/images/stage-2/chip-build-cirque/requirements_nogrpc.txt
+  last_updated_by: Song GUO
+  last_updated_on: 2023-08-29 16:32:00.000000000 Z
+- name: sphinx-rtd-theme
+  description: Read the Docs theme for Sphinx
+  package_url: https://pypi.org/project/sphinx-rtd-theme
+  version: 1.3.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20198/default_1b766c7727f93da29992cd7a2499f00a0ba7bc2d.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/integrations/docker/images/stage-2/chip-build-efr32/requirements.txt
+  detection_source: integrations/docker/images/stage-2/chip-build-efr32/requirements.txt
+  last_updated_by: Rohan S
+  last_updated_on: 2023-10-12 23:44:20.000000000 Z
+- name: tabulate
+  description: Pretty-print tabular data
+  package_url: https://pypi.org/project/tabulate
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19864/default_7975a21f3bf03129dc3bc4168cf7cb7ee2cc14cc.png
+  detection_source: scripts/setup/requirements.memory.txt
+  last_updated_by: Andrei Litvin
+  last_updated_on: 2023-06-19 15:13:29.000000000 Z
+- name: toml
+  description: Python Library for Tom's Obvious, Minimal Language
+  package_url: https://pypi.org/project/toml
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19912/default_bc82f0b22ca8fd942e21c317967f4ab61f43eb2c.png
+  detection_source: integrations/docker/images/stage-2/chip-build-cirque/requirements_nogrpc.txt
+  last_updated_by: Song GUO
+  last_updated_on: 2023-08-29 16:32:00.000000000 Z
+- name: typing-extensions
+  description: Backported and Experimental Type Hints for Python 3.5+
+  package_url: https://pypi.org/project/typing-extensions
+  license: Python-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19875/default_2270bfab784e3d2c2d999d26b11ee478a9dad238.png
+  detection_source: scripts/setup/requirements.mbed.txt
+  last_updated_by: Michael Spang
+  last_updated_on: 2022-07-07 12:53:58.000000000 Z
+- name: watchdog
+  description: Filesystem events monitoring
+  package_url: https://pypi.org/project/watchdog
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19927/default_bb29140b72c0fb9789e567bba0ef0ffadeaef5d4.png
+  detection_source: scripts/setup/requirements.all.txt
+  last_updated_by: Andrei Litvin
+  last_updated_on: 2022-07-01 18:55:53.000000000 Z
+- name: wheel
+  description: A built-package format for Python
+  package_url: https://pypi.org/project/wheel
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19889/default_7182952cb92ae36151a754e2592ac68e6e6340df.png
+  detection_source: scripts/setup/requirements.all.txt
+  last_updated_by: yunhanw-google
+  last_updated_on: 2022-11-14 20:16:33.000000000 Z
+- name: zeroconf
+  description: Pure Python Multicast DNS Service Discovery Library
+  package_url: https://pypi.org/project/zeroconf
+  version: 0.74.0
+  license: LGPL-2.1
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20233/default_cb6acd0ec3f2884b905de7c1ca3a23418f37ebb3.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/src/tools/interop/idt/requirements.txt
+  detection_source: src/tools/interop/idt/requirements.txt
+  last_updated_by: Austin Bozowski
+  last_updated_on: 2023-10-12 16:01:48.000000000 Z
+- name: com.google.code.gson:gson
+  description: Gson JSON library
+  version: 2.8.5
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/examples/android/CHIPTool/app/build.gradle
+  detection_source: examples/android/CHIPTool/app/build.gradle
+  last_updated_by: joonhaengHeo
+  last_updated_on: 2023-03-07 21:59:38.000000000 Z
+  vulnerabilities:
+  - name: Deserialization of Untrusted Data in Gson
+    cve_id: CVE-2022-25647
+    cve_url: https://github.com/advisories/GHSA-4jrv-ppp4-jm57
+    detected_date: May 21
+    severity: high
+    first_patched: 2.8.9
+- name: com.google.protobuf:protobuf-java
+  description: Core Protocol Buffers library
+  version: 3.22.0
+  license: BSD-1-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/examples/android/CHIPTool/app/build.gradle
+  detection_source: examples/android/CHIPTool/app/build.gradle
+  last_updated_by: joonhaengHeo
+  last_updated_on: 2023-03-07 21:59:38.000000000 Z
+- name: com.google.zxing:core
+  description: Core barcode encoding/decoding library
+  version: 3.3.0
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/examples/tv-app/android/App/platform-app/build.gradle
+  detection_source: examples/tv-app/android/App/platform-app/build.gradle
+  last_updated_by: amitnj
+  last_updated_on: 2022-04-14 21:54:12.000000000 Z
+- name: junit:junit
+  description: JUnit is a unit testing framework for Java
+  version: '4.12'
+  license: EPL-1.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/examples/android/CHIPTool/app/build.gradle
+  detection_source: examples/android/CHIPTool/app/build.gradle
+  last_updated_by: randyrossi
+  last_updated_on: 2020-06-24 14:54:39.000000000 Z
+  vulnerabilities:
+  - name: TemporaryFolder on unix-like systems does not limit access to created files
+    cve_id: CVE-2020-15250
+    cve_url: https://github.com/advisories/GHSA-269g-pwp5-87pp
+    detected_date: Aug 22
+    severity: moderate
+    first_patched: 4.13.1
+- name: org.jetbrains.kotlin:kotlin-stdlib
+  description: Kotlin Standard Library for JVM
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: examples/android/CHIPTest/app/build.gradle
+  last_updated_by: Hui.Li-TCL
+  last_updated_on: 2021-09-30 12:51:41.000000000 Z
+- name: org.jetbrains.kotlin:kotlin-stdlib-jdk7
+  description: Kotlin Standard Library JDK 7 extension
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: examples/android/CHIPTool/app/build.gradle
+  last_updated_by: Yufeng Wang
+  last_updated_on: 2023-05-17 16:25:24.000000000 Z
