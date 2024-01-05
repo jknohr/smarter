@@ -90,7 +90,7 @@ Full tech stack [here](/techstack.md)
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [jknohr/smarter](https://github.com/jknohr/smarter)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|92<br/>Tools used|12/28/23 <br/>Report generated|
+|96<br/>Tools used|01/05/24 <br/>Report generated|
 |------|------|
 </div>
 
@@ -465,9 +465,9 @@ Full tech stack [here](/techstack.md)
 </table>
 
 
-## <img src='https://img.stackshare.io/group.svg' /> Open source packages (49)</h2>
+## <img src='https://img.stackshare.io/group.svg' /> Open source packages (53)</h2>
 
-## <img width='24' height='24' src='https://img.stackshare.io/service/12572/-RIWgodF_400x400.jpg'/> PyPI (43)
+## <img width='24' height='24' src='https://img.stackshare.io/service/12572/-RIWgodF_400x400.jpg'/> PyPI (47)
 
 |NAME|VERSION|LAST UPDATED|LAST UPDATED BY|LICENSE|VULNERABILITIES|
 |:------|:------|:------|:------|:------|:------|
@@ -493,6 +493,7 @@ Full tech stack [here](/techstack.md)
 |[itsdangerous](https://pypi.org/project/itsdangerous)|v2.1|08/01/23|Shubham Patil |BSD-3-Clause|N/A|
 |[jsonschema](https://pypi.org/project/jsonschema)|v4.4.0|07/21/23|shchen-Lab |MIT|N/A|
 |[mbed-ls](https://pypi.org/project/mbed-ls)|v1.8.11|08/29/22|Artur Tynecki |Apache-2.0|N/A|
+|[mypy](https://pypi.org/project/mypy)|v0.971|11/23/22|rgoliver |MIT|N/A|
 |[pip-tools](https://pypi.org/project/pip-tools)|v7.0.0|07/18/23|Anthony DiGirolamo |BSD-3-Clause|N/A|
 |[portpicker](https://pypi.org/project/portpicker)|N/A|06/15/21|Michael Spang |Apache-2.0|N/A|
 |[pyasn1](https://pypi.org/project/pyasn1)|N/A|08/09/23|Andrei Litvin |BSD-2-Clause|N/A|
@@ -505,13 +506,16 @@ Full tech stack [here](/techstack.md)
 |[python-socketio](https://pypi.org/project/python-socketio)|N/A|07/12/23|Anthony DiGirolamo |MIT|N/A|
 |[python-stdnum](https://pypi.org/project/python-stdnum)|N/A|07/21/23|shchen-Lab |Other|N/A|
 |[pyudev](https://pypi.org/project/pyudev)|N/A|07/07/22|Michael Spang |LGPL-2.1+|N/A|
+|[qrcode](https://pypi.org/project/qrcode)|v7.4.2|07/21/23|shchen-Lab |BSD-3-Clause|N/A|
 |[requests](https://pypi.org/project/requests)|v2.24.0|06/19/23|Andrei Litvin |Apache-2.0|[CVE-2023-32681](https://github.com/advisories/GHSA-j8r2-6x86-q33q) (Moderate)|
 |[six](https://pypi.org/project/six)|v1.12|08/29/23|Song GUO |MIT|N/A|
 |[sphinx-rtd-theme](https://pypi.org/project/sphinx-rtd-theme)|v1.3.0|10/12/23|Rohan S |MIT|N/A|
 |[tabulate](https://pypi.org/project/tabulate)|N/A|06/19/23|Andrei Litvin |MIT|N/A|
 |[toml](https://pypi.org/project/toml)|N/A|08/29/23|Song GUO |MIT|N/A|
 |[typing-extensions](https://pypi.org/project/typing-extensions)|N/A|07/07/22|Michael Spang |Python-2.0|N/A|
+|[virtualenv](https://pypi.org/project/virtualenv)|N/A|06/15/21|Michael Spang |MIT|N/A|
 |[watchdog](https://pypi.org/project/watchdog)|N/A|07/01/22|Andrei Litvin |Apache-2.0|N/A|
+|[websockets](https://pypi.org/project/websockets)|N/A|08/09/23|Andrei Litvin |BSD-3-Clause|N/A|
 |[wheel](https://pypi.org/project/wheel)|N/A|11/14/22|yunhanw-google |MIT|N/A|
 |[zeroconf](https://pypi.org/project/zeroconf)|v0.74.0|10/12/23|Austin Bozowski |LGPL-2.1|N/A|
 
