@@ -2,11 +2,11 @@ repo_name: jknohr/smarter
 report_id: db96acd2df09259067c1cecdd8d582d1
 version: 0.1
 repo_type: Public
-timestamp: '2023-12-28T05:01:03+00:00'
+timestamp: '2024-01-05T08:15:09+00:00'
 requested_by: jmartinez-silabs
 provider: github
 branch: release_2.2.0-1.2
-detected_tools_count: 92
+detected_tools_count: 96
 tools:
 - name: C lang
   description: One of the most widely used programming languages of all time
@@ -16,6 +16,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/no-img-open-source.png
+  detection_source_url: https://github.com/jknohr/smarter
   detection_source: Repo Metadata
 - name: C++
   description: Has imperative, object-oriented and generic programming features, while
@@ -26,6 +27,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/1049/cplusplus.png
+  detection_source_url: https://github.com/jknohr/smarter
   detection_source: Repo Metadata
 - name: Java
   description: A concurrent, class-based, object-oriented, language specifically designed
@@ -36,6 +38,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/995/K85ZWV2F.png
+  detection_source_url: https://github.com/jknohr/smarter
   detection_source: Repo Metadata
 - name: JavaScript
   description: Lightweight, interpreted, object-oriented language with first-class
@@ -46,6 +49,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/1209/javascript.jpeg
+  detection_source_url: https://github.com/jknohr/smarter
   detection_source: Repo Metadata
 - name: Jinja
   description: Full featured template engine for Python
@@ -56,6 +60,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Templating Languages & Extensions
   image_url: https://img.stackshare.io/service/2303/New_Project__20_.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/integrations/docker/images/stage-2/chip-build-efr32/requirements.txt
   detection_source: integrations/docker/images/stage-2/chip-build-efr32/requirements.txt
   last_updated_by: Rohan S
   last_updated_on: 2023-10-12 23:44:20.000000000 Z
@@ -67,6 +72,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/3750/pCfEzr6L.png
+  detection_source_url: https://github.com/jknohr/smarter
   detection_source: Repo Metadata
 - name: Objective-C
   description: The primary programming language you use when writing software for
@@ -77,6 +83,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/1008/xcode.png
+  detection_source_url: https://github.com/jknohr/smarter
   detection_source: Repo Metadata
 - name: Python
   description: A clear and powerful object-oriented programming language, comparable
@@ -87,6 +94,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/993/pUBY5pVj.png
+  detection_source_url: https://github.com/jknohr/smarter
   detection_source: Repo Metadata
 - name: Ruby
   description: A dynamic, interpreted, open source programming language with a focus
@@ -97,6 +105,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/989/ruby.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.zephyr.txt
   detection_source: scripts/setup/requirements.zephyr.txt
   last_updated_by: Andrei Litvin
   last_updated_on: 2023-06-19 15:13:29.000000000 Z
@@ -108,6 +117,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/1070/v7txhrjp9pdqrkdtxxp0.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/silabs_examples/unify-matter-common/docker/Dockerfile
   detection_source: silabs_examples/unify-matter-common/docker/Dockerfile
   last_updated_by: Anders Esbensen
   last_updated_on: 2022-09-13 13:00:42.000000000 Z
@@ -120,6 +130,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/1009/tuHsaI2U.png
+  detection_source_url: https://github.com/jknohr/smarter
   detection_source: Repo Metadata
 - name: Android SDK
   description: An SDK that provides you the API libraries and developer tools necessary
@@ -130,6 +141,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Frameworks (Full Stack)
   image_url: https://img.stackshare.io/service/1010/m8jf0po4imu8t5eemjdd.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/examples/virtual-device-app/android/App/app/build.gradle.kts
   detection_source: examples/virtual-device-app/android/App/app/build.gradle.kts
   last_updated_by: chulspro
   last_updated_on: 2023-07-20 05:33:35.000000000 Z
@@ -142,6 +154,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Microframeworks (Backend)
   image_url: https://img.stackshare.io/service/1001/default_6d109315b60108628b7cd3e159b84645c31ef0e2.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/integrations/docker/images/stage-2/chip-build-cirque/requirements_nogrpc.txt
   detection_source: integrations/docker/images/stage-2/chip-build-cirque/requirements_nogrpc.txt
   last_updated_by: dependabot[bot]
   last_updated_on: 2023-08-30 17:30:53.000000000 Z
@@ -154,6 +167,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Frameworks (Full Stack)
   image_url: https://img.stackshare.io/service/1011/n1JRsFeB_400x400.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/integrations/docker/images/base/chip-build/Dockerfile
   detection_source: integrations/docker/images/base/chip-build/Dockerfile
   last_updated_by: Justin Wood
   last_updated_on: 2023-06-22 23:11:50.000000000 Z
@@ -180,6 +194,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Frameworks (Full Stack)
   image_url: https://img.stackshare.io/service/1002/tornado.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.all.txt
   detection_source: scripts/setup/requirements.all.txt
   last_updated_by: Tennessee Carmel-Veilleux
   last_updated_on: 2022-09-14 14:58:54.000000000 Z
@@ -191,6 +206,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Java Build Tools
   image_url: https://img.stackshare.io/service/2424/0UlUI_y1_400x400.jpg
+  detection_source_url: https://github.com/jknohr/smarter
   detection_source: Repo Metadata
 - name: Docker
   description: Enterprise Container Platform for High-Velocity Innovation.
@@ -201,6 +217,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Virtual Machine Platforms & Containers
   image_url: https://img.stackshare.io/service/586/n4u37v9t_400x400.png
+  detection_source_url: https://github.com/jknohr/smarter
   detection_source: Repo Metadata
 - name: Git
   description: Fast, scalable, distributed revision control system
@@ -210,6 +227,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Version Control System
   image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/jknohr/smarter
   detection_source: Repo Metadata
 - name: GitHub Actions
   description: Automate your workflow from idea to production
@@ -219,6 +237,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Continuous Integration
   image_url: https://img.stackshare.io/service/11563/actions.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/.github/workflows/artifacts.yaml
   detection_source: ".github/workflows/artifacts.yaml"
   last_updated_by: Justin Wood
   last_updated_on: 2020-08-21 19:19:36.000000000 Z
@@ -231,6 +250,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Java Build Tools
   image_url: https://img.stackshare.io/service/975/gradlephant-social-black-bg.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/examples/android/CHIPTest/app/build.gradle
   detection_source: examples/android/CHIPTest/app/build.gradle
   last_updated_by: Hui.Li-TCL
   last_updated_on: 2021-09-30 12:51:41.000000000 Z
@@ -242,6 +262,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Hosted Package Repository
   image_url: https://img.stackshare.io/service/12572/-RIWgodF_400x400.jpg
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/src/tools/interop/idt/requirements.txt
   detection_source: src/tools/interop/idt/requirements.txt
   last_updated_by: Austin Bozowski
   last_updated_on: 2023-10-12 16:01:48.000000000 Z
@@ -267,6 +288,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Package Managers
   image_url: https://img.stackshare.io/service/12795/5jL6-BA5_400x400.jpeg
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.zephyr.txt
   detection_source: scripts/setup/requirements.zephyr.txt
   last_updated_by: Andrei Litvin
   last_updated_on: 2023-06-19 15:13:29.000000000 Z
@@ -279,6 +301,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Continuous Integration
   image_url: https://img.stackshare.io/service/460/Lu6cGu0z_400x400.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/third_party/inipp/repo/inipp/.travis.yml
   detection_source: third_party/inipp/repo/inipp/.travis.yml
   last_updated_by: Yufeng Wang
   last_updated_on: 2020-06-15 20:46:29.000000000 Z
@@ -291,6 +314,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Integrated Development Environment
   image_url: https://img.stackshare.io/service/1451/SR2hUhQN.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/third_party/inipp/repo/inipp/inipp.sln
   detection_source: third_party/inipp/repo/inipp/inipp.sln
   last_updated_by: Yufeng Wang
   last_updated_on: 2020-06-15 20:46:29.000000000 Z
@@ -303,6 +327,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Text Editor
   image_url: https://img.stackshare.io/service/4202/Visual_Studio_Code_logo.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/.vscode/tasks.json
   detection_source: ".vscode/tasks.json"
   last_updated_by: Andrei Litvin
   last_updated_on: 2021-11-05 06:15:25.000000000 Z
@@ -314,6 +339,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Front End Package Manager
   image_url: https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.build.txt
   detection_source: scripts/setup/requirements.build.txt
   last_updated_by: Karsten Sperling
   last_updated_on: 2023-05-03 03:41:32.000000000 Z
@@ -340,6 +366,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Operating Systems
   image_url: https://img.stackshare.io/service/6429/alpine_linux.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/integrations/docker/images/stage-2/chip-build-doxygen/Dockerfile
   detection_source: integrations/docker/images/stage-2/chip-build-doxygen/Dockerfile
   last_updated_by: Victor Morales
   last_updated_on: 2021-11-30 16:31:47.000000000 Z
@@ -351,6 +378,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Operating Systems
   image_url: https://img.stackshare.io/service/9586/ZvmtaSXW_400x400.jpg
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/examples/virtual-device-app/android/App/app/build.gradle.kts
   detection_source: examples/virtual-device-app/android/App/app/build.gradle.kts
   last_updated_by: chulspro
   last_updated_on: 2023-07-20 05:33:35.000000000 Z
@@ -362,6 +390,7 @@ tools:
   category: Libraries
   sub_category: CocoaPods Packages
   image_url: https://img.stackshare.io/service/2426/e1cbdef9d4b11484049a033886578e54_400x400.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/integrations/docker/images/stage-3/chip-build-tizen-qemu/Dockerfile
   detection_source: integrations/docker/images/stage-3/chip-build-tizen-qemu/Dockerfile
   last_updated_by: Arkadiusz Bokowy
   last_updated_on: 2023-02-02 19:10:52.000000000 Z
@@ -373,6 +402,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Operating Systems
   image_url: https://img.stackshare.io/service/1656/vd4gAekh.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/silabs_examples/unify-matter-common/docker/Dockerfile
   detection_source: silabs_examples/unify-matter-common/docker/Dockerfile
   last_updated_by: Dennis Jensen
   last_updated_on: 2023-02-02 08:28:04.000000000 Z
@@ -384,6 +414,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Shells
   image_url: https://img.stackshare.io/service/4477/820a0bb9a44fe5a1d640993ab1e6fd84_400x400.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.all.txt
   detection_source: scripts/setup/requirements.all.txt
   last_updated_by: Andrei Litvin
   last_updated_on: 2023-08-09 21:07:52.000000000 Z
@@ -397,6 +428,7 @@ tools:
   category: Libraries
   sub_category: Data Science Tools
   image_url: https://img.stackshare.io/service/2180/1284191.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.memory.txt
   detection_source: scripts/setup/requirements.memory.txt
   last_updated_by: Andrei Litvin
   last_updated_on: 2023-06-19 15:13:29.000000000 Z
@@ -408,6 +440,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/3681/powershell-logo.png
+  detection_source_url: https://github.com/jknohr/smarter
   detection_source: Repo Metadata
 - name: Shell
   description: A shell is a text-based terminal, used for manipulating programs and
@@ -418,6 +451,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/4631/default_c2062d40130562bdc836c13dbca02d318205a962.png
+  detection_source_url: https://github.com/jknohr/smarter
   detection_source: Repo Metadata
 - name: Sphinx
   description: Open source full text search server, designed from the ground up with
@@ -428,6 +462,7 @@ tools:
   category: Application Utilities
   sub_category: Search Engines
   image_url: https://img.stackshare.io/service/1598/TtqoAo1V.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.silabs_docker.txt
   detection_source: scripts/setup/requirements.silabs_docker.txt
   last_updated_by: Rohan S
   last_updated_on: 2023-10-12 23:44:20.000000000 Z
@@ -439,6 +474,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Operating Systems
   image_url: https://img.stackshare.io/service/3511/cof_orange_hex.jpg
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/integrations/docker/images/base/chip-build-minimal/Dockerfile
   detection_source: integrations/docker/images/base/chip-build-minimal/Dockerfile
   last_updated_by: Karsten Sperling
   last_updated_on: 2023-05-03 03:41:32.000000000 Z
@@ -448,6 +484,7 @@ tools:
   open_source: false
   hosted_saas: false
   image_url: https://img.stackshare.io/service/4220/LNPwoiWi_400x400.jpg
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/tests/requirements.txt
   detection_source: scripts/tests/requirements.txt
   last_updated_by: Andrei Litvin
   last_updated_on: 2023-08-09 17:09:16.000000000 Z
@@ -458,6 +495,7 @@ tools:
   open_source: false
   hosted_saas: false
   image_url: https://img.stackshare.io/service/7350/eaca159133a3901e24ddb407d1235c25_normal.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.all.txt
   detection_source: scripts/setup/requirements.all.txt
   last_updated_by: rgoliver
   last_updated_on: 2022-11-23 17:24:44.000000000 Z
@@ -466,6 +504,7 @@ tools:
   open_source: false
   hosted_saas: false
   image_url: https://img.stackshare.io/service/8580/no-img-open-source.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.bouffalolab.txt
   detection_source: scripts/setup/requirements.bouffalolab.txt
   last_updated_by: shchen-Lab
   last_updated_on: 2023-07-21 15:51:00.000000000 Z
@@ -475,6 +514,7 @@ tools:
   open_source: false
   hosted_saas: false
   image_url: https://img.stackshare.io/service/3581/no-img-open-source.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.all.txt
   detection_source: scripts/setup/requirements.all.txt
   last_updated_by: Michael Spang
   last_updated_on: 2021-06-15 20:36:35.000000000 Z
@@ -487,6 +527,7 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/19867/default_bd86f80ade48cfe191d5781a2efa0e66fa22163a.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.mbed.txt
   detection_source: scripts/setup/requirements.mbed.txt
   last_updated_by: Michael Spang
   last_updated_on: 2022-07-07 12:53:58.000000000 Z
@@ -499,6 +540,7 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/20513/default_18bb83c7f98aaa7340bc5d2ca9b439885b1d95bc.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.memory.txt
   detection_source: scripts/setup/requirements.memory.txt
   last_updated_by: Andrei Litvin
   last_updated_on: 2023-06-19 15:13:29.000000000 Z
@@ -512,6 +554,7 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/19878/default_2270bfab784e3d2c2d999d26b11ee478a9dad238.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.all.txt
   detection_source: scripts/setup/requirements.all.txt
   last_updated_by: Michael Spang
   last_updated_on: 2021-06-15 20:36:35.000000000 Z
@@ -524,6 +567,7 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/pypi/image.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.all.txt
   detection_source: scripts/setup/requirements.all.txt
   last_updated_by: Michael Spang
   last_updated_on: 2021-06-15 20:36:35.000000000 Z
@@ -621,6 +665,7 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/20354/default_4fff53bc8c15a9ea5decdac96fdba9b8874b07ce.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/integrations/docker/images/stage-2/chip-build-cirque/requirements_nogrpc.txt
   detection_source: integrations/docker/images/stage-2/chip-build-cirque/requirements_nogrpc.txt
   last_updated_by: Song GUO
   last_updated_on: 2023-08-29 16:32:00.000000000 Z
@@ -633,6 +678,7 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/19845/default_accee5d2b8ed75c2245f13504daf75b1cbc8cc9f.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.all.txt
   detection_source: scripts/setup/requirements.all.txt
   last_updated_by: Andrei Litvin
   last_updated_on: 2022-05-18 00:58:08.000000000 Z
@@ -645,6 +691,7 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/19966/default_08ca82e926d4333989c376f7cbf2803cef43771c.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/build/setup.py
   detection_source: scripts/build/setup.py
   last_updated_by: Arkadiusz Bokowy
   last_updated_on: 2022-04-05 03:29:47.000000000 Z
@@ -693,6 +740,7 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/20549/default_cde277f9f5ddb25ccf86d553790fb97f5a8f825c.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.all.txt
   detection_source: scripts/setup/requirements.all.txt
   last_updated_by: Andrei Litvin
   last_updated_on: 2023-08-09 21:07:52.000000000 Z
@@ -788,6 +836,20 @@ tools:
   detection_source: scripts/setup/requirements.mbed.txt
   last_updated_by: Artur Tynecki
   last_updated_on: 2022-08-29 15:45:33.000000000 Z
+- name: mypy
+  description: Optional static typing for Python
+  package_url: https://pypi.org/project/mypy
+  version: '0.971'
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20219/default_d4dd0466552a9776ca8535b869e22a3362790c94.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.all.txt
+  detection_source: scripts/setup/requirements.all.txt
+  last_updated_by: rgoliver
+  last_updated_on: 2022-11-23 17:24:44.000000000 Z
 - name: pip-tools
   description: Pip-tools keeps your pinned dependencies fresh
   package_url: https://pypi.org/project/pip-tools
@@ -811,6 +873,7 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/pypi/image.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.all.txt
   detection_source: scripts/setup/requirements.all.txt
   last_updated_by: Michael Spang
   last_updated_on: 2021-06-15 20:36:35.000000000 Z
@@ -823,6 +886,7 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/19915/default_37434feaacace26053e41d6e4802560af16ebe44.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/src/python_testing/requirements.txt
   detection_source: src/python_testing/requirements.txt
   last_updated_by: Andrei Litvin
   last_updated_on: 2023-08-09 17:09:16.000000000 Z
@@ -905,6 +969,7 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/20095/default_3141eabecdd8efa55de73a33c43f2ac0d5bbf954.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.mbed.txt
   detection_source: scripts/setup/requirements.mbed.txt
   last_updated_by: Michael Spang
   last_updated_on: 2022-07-07 12:53:58.000000000 Z
@@ -917,6 +982,7 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/20330/default_cf6b540611cb9b9b5d016a661f54f50ad3400f1a.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.esp32.txt
   detection_source: scripts/setup/requirements.esp32.txt
   last_updated_by: Anthony DiGirolamo
   last_updated_on: 2023-07-12 15:54:09.000000000 Z
@@ -929,6 +995,7 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/20677/default_938412afa3ed7ffc3fee4a1452a9a7f93797a0d7.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.bouffalolab.txt
   detection_source: scripts/setup/requirements.bouffalolab.txt
   last_updated_by: shchen-Lab
   last_updated_on: 2023-07-21 15:51:00.000000000 Z
@@ -941,9 +1008,24 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/pypi/image.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.mbed.txt
   detection_source: scripts/setup/requirements.mbed.txt
   last_updated_by: Michael Spang
   last_updated_on: 2022-07-07 12:53:58.000000000 Z
+- name: qrcode
+  description: QR Code image generator
+  package_url: https://pypi.org/project/qrcode
+  version: 7.4.2
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20148/default_29fd040eb57820a7b7a415b9eba1bba73c05d9c8.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.bouffalolab.txt
+  detection_source: scripts/setup/requirements.bouffalolab.txt
+  last_updated_by: shchen-Lab
+  last_updated_on: 2023-07-21 15:51:00.000000000 Z
 - name: requests
   description: Python HTTP for Humans
   package_url: https://pypi.org/project/requests
@@ -1002,6 +1084,7 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/19864/default_7975a21f3bf03129dc3bc4168cf7cb7ee2cc14cc.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.memory.txt
   detection_source: scripts/setup/requirements.memory.txt
   last_updated_by: Andrei Litvin
   last_updated_on: 2023-06-19 15:13:29.000000000 Z
@@ -1014,6 +1097,7 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/19912/default_bc82f0b22ca8fd942e21c317967f4ab61f43eb2c.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/integrations/docker/images/stage-2/chip-build-cirque/requirements_nogrpc.txt
   detection_source: integrations/docker/images/stage-2/chip-build-cirque/requirements_nogrpc.txt
   last_updated_by: Song GUO
   last_updated_on: 2023-08-29 16:32:00.000000000 Z
@@ -1026,9 +1110,23 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/19875/default_2270bfab784e3d2c2d999d26b11ee478a9dad238.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.mbed.txt
   detection_source: scripts/setup/requirements.mbed.txt
   last_updated_by: Michael Spang
   last_updated_on: 2022-07-07 12:53:58.000000000 Z
+- name: virtualenv
+  description: Virtual Python Environment builder
+  package_url: https://pypi.org/project/virtualenv
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19970/default_1c8812e05cf754e8f654b8d86b3f025827f5bfb6.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.all.txt
+  detection_source: scripts/setup/requirements.all.txt
+  last_updated_by: Michael Spang
+  last_updated_on: 2021-06-15 20:36:35.000000000 Z
 - name: watchdog
   description: Filesystem events monitoring
   package_url: https://pypi.org/project/watchdog
@@ -1038,9 +1136,23 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/19927/default_bb29140b72c0fb9789e567bba0ef0ffadeaef5d4.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.all.txt
   detection_source: scripts/setup/requirements.all.txt
   last_updated_by: Andrei Litvin
   last_updated_on: 2022-07-01 18:55:53.000000000 Z
+- name: websockets
+  description: An implementation of the WebSocket Protocol
+  package_url: https://pypi.org/project/websockets
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19951/default_fbe690a687f1af7dc36ac3d526708be3294c4cc9.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.all.txt
+  detection_source: scripts/setup/requirements.all.txt
+  last_updated_by: Andrei Litvin
+  last_updated_on: 2023-08-09 21:07:52.000000000 Z
 - name: wheel
   description: A built-package format for Python
   package_url: https://pypi.org/project/wheel
@@ -1050,6 +1162,7 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/19889/default_7182952cb92ae36151a754e2592ac68e6e6340df.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/scripts/setup/requirements.all.txt
   detection_source: scripts/setup/requirements.all.txt
   last_updated_by: yunhanw-google
   last_updated_on: 2022-11-14 20:16:33.000000000 Z
@@ -1141,6 +1254,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/examples/android/CHIPTest/app/build.gradle
   detection_source: examples/android/CHIPTest/app/build.gradle
   last_updated_by: Hui.Li-TCL
   last_updated_on: 2021-09-30 12:51:41.000000000 Z
@@ -1152,6 +1266,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/jknohr/smarter/blob/release_2.2.0-1.2/examples/android/CHIPTool/app/build.gradle
   detection_source: examples/android/CHIPTool/app/build.gradle
   last_updated_by: Yufeng Wang
   last_updated_on: 2023-05-17 16:25:24.000000000 Z
