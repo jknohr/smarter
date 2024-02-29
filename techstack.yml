@@ -2,7 +2,7 @@ repo_name: jknohr/smarter
 report_id: db96acd2df09259067c1cecdd8d582d1
 version: 0.1
 repo_type: Public
-timestamp: '2024-01-05T08:15:09+00:00'
+timestamp: '2024-02-29T19:12:34+00:00'
 requested_by: jmartinez-silabs
 provider: github
 branch: release_2.2.0-1.2
@@ -122,7 +122,7 @@ tools:
   last_updated_by: Anders Esbensen
   last_updated_on: 2022-09-13 13:00:42.000000000 Z
 - name: Swift
-  description: 'An innovative new programming language for Cocoa and Cocoa Touch. '
+  description: An innovative new programming language for Cocoa and Cocoa Touch.
   website_url: https://developer.apple.com/swift/
   license: Apache-2.0
   open_source: true
@@ -199,7 +199,7 @@ tools:
   last_updated_by: Tennessee Carmel-Veilleux
   last_updated_on: 2022-09-14 14:58:54.000000000 Z
 - name: CMake
-  description: 'An open-source system that manages the build process '
+  description: An open-source system that manages the build process
   website_url: http://www.cmake.org/
   open_source: false
   hosted_saas: false
@@ -725,12 +725,32 @@ tools:
   last_updated_by: Vijay Selvaraj
   last_updated_on: 2022-03-23 19:36:37.000000000 Z
   vulnerabilities:
+  - name: cryptography NULL pointer dereference with pkcs12.serialize_key_and_certificates
+      when called with a non-matching certificate and private key and an hmac_hash
+      override
+    cve_id: CVE-2024-26130
+    cve_url: https://github.com/advisories/GHSA-6vqw-3v5j-54x4
+    detected_date: Feb 22
+    severity: high
+    first_patched: 42.0.4
+  - name: Python Cryptography package vulnerable to Bleichenbacher timing oracle attack
+    cve_id: CVE-2023-50782
+    cve_url: https://github.com/advisories/GHSA-3ww4-gg4f-jr7f
+    detected_date: Feb 6
+    severity: high
+    first_patched: 42.0.0
   - name: cryptography vulnerable to NULL-dereference when loading PKCS7 certificates
     cve_id: CVE-2023-49083
     cve_url: https://github.com/advisories/GHSA-jfhm-5ghh-2f97
     detected_date: Nov 29
     severity: moderate
     first_patched: 41.0.6
+  - name: Null pointer dereference in PKCS12 parsing
+    cve_id: CVE-2024-0727
+    cve_url: https://github.com/advisories/GHSA-9v9h-cgj8-h64p
+    detected_date: Feb 17
+    severity: moderate
+    first_patched: 42.0.2
 - name: diskcache
   description: Disk Cache -- Disk and file backed persistent cache
   package_url: https://pypi.org/project/diskcache
@@ -772,6 +792,13 @@ tools:
   detection_source: scripts/setup/requirements.bouffalolab.txt
   last_updated_by: shchen-Lab
   last_updated_on: 2023-07-21 15:51:00.000000000 Z
+  vulnerabilities:
+  - name: Minerva timing attack on P-256 in python-ecdsa
+    cve_id: CVE-2024-23342
+    cve_url: https://github.com/advisories/GHSA-wj6h-64fc-37mp
+    detected_date: Jan 23
+    severity: high
+    first_patched: 
 - name: future
   description: Clean single-source support for Python 3 and 2
   package_url: https://pypi.org/project/future
